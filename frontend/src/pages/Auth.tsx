@@ -19,7 +19,11 @@ export function Auth() {
     try {
       const endpoint = isLogin ? '/auth/login' : '/auth/signup';
       await api.post(endpoint, { email, password });
-      navigate('/dashboard');
+      if (isLogin) {
+        navigate('/dashboard');
+      } else {
+        navigate('/awakening');
+      }
     } catch (err: any) {
       setError(err.response?.data?.error || 'An error occurred');
     }

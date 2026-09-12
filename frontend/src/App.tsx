@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Landing } from './pages/Landing';
 import { Auth } from './pages/Auth';
+import { Awakening } from './pages/Awakening';
 import { api } from './api';
 import { Sanctum } from './pages/Sanctum';
 import { Questbook } from './pages/Questbook';
@@ -34,6 +35,7 @@ export default function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/auth" element={<Auth />} />
+        <Route path="/awakening" element={<ProtectedRoute><Awakening /></ProtectedRoute>} />
         <Route path="/dashboard" element={
           <ProtectedRoute>
             <Layout>
