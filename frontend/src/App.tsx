@@ -4,6 +4,9 @@ import { Landing } from './pages/Landing';
 import { Auth } from './pages/Auth';
 import { api } from './api';
 
+import { Sanctum } from './pages/Sanctum';
+import { Layout } from './components/layout/Layout';
+
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
   const [authed, setAuthed] = useState(false);
@@ -21,7 +24,6 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
 }
 
 export default function App() {
-  // Use dark mode by default for the Gothic theme
   useEffect(() => {
     document.documentElement.classList.add('dark');
   }, []);
@@ -33,9 +35,9 @@ export default function App() {
         <Route path="/auth" element={<Auth />} />
         <Route path="/dashboard" element={
           <ProtectedRoute>
-            <div className="min-h-screen bg-background text-foreground flex items-center justify-center text-4xl font-bold">
-              The Sanctum
-            </div>
+            <Layout>
+              <Sanctum />
+            </Layout>
           </ProtectedRoute>
         } />
       </Routes>
