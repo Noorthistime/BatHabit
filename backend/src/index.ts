@@ -6,6 +6,7 @@ import cookieParser from 'cookie-parser';
 import { rateLimit } from 'express-rate-limit';
 import authRoutes from './routes/auth.routes';
 import questRoutes from './routes/quest.routes';
+import shopRoutes from './routes/shop.routes';
 
 dotenv.config();
 
@@ -29,6 +30,7 @@ app.get('/health', (req, res) => {
 
 app.use('/api/auth', authRoutes);
 app.use('/api/quests', questRoutes);
+app.use('/api/shop', shopRoutes);
 
 app.listen(port, () => {
   console.log(`Server running on port ${port}`);
