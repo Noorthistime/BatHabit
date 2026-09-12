@@ -5,6 +5,7 @@ import { Auth } from './pages/Auth';
 import { api } from './api';
 
 import { Sanctum } from './pages/Sanctum';
+import { Questbook } from './pages/Questbook';
 import { Layout } from './components/layout/Layout';
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -37,6 +38,13 @@ export default function App() {
           <ProtectedRoute>
             <Layout>
               <Sanctum />
+            </Layout>
+          </ProtectedRoute>
+        } />
+        <Route path="/quests" element={
+          <ProtectedRoute>
+            <Layout>
+              <Questbook />
             </Layout>
           </ProtectedRoute>
         } />
