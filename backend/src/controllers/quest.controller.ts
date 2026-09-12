@@ -142,6 +142,7 @@ export const completeQuest = async (req: AuthRequest, res: Response): Promise<vo
 
       // Process RPG rewards
       const rpgResult = await rpgService.processQuestCompletion(
+        tx,
         userId,
         id,
         rewards.xp,
@@ -154,6 +155,7 @@ export const completeQuest = async (req: AuthRequest, res: Response): Promise<vo
 
     res.status(200).json(result);
   } catch (error) {
+    console.error('completeQuest error:', error);
     res.status(500).json({ error: 'Internal server error' });
   }
 };

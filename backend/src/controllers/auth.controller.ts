@@ -46,6 +46,7 @@ export const signup = async (req: Request, res: Response): Promise<void> => {
     if (error instanceof z.ZodError) {
       res.status(400).json({ error: error.errors });
     } else {
+      console.error('auth controller error:', error);
       res.status(500).json({ error: 'Internal server error' });
     }
   }
@@ -81,6 +82,7 @@ export const login = async (req: Request, res: Response): Promise<void> => {
     if (error instanceof z.ZodError) {
       res.status(400).json({ error: error.errors });
     } else {
+      console.error('auth controller error:', error);
       res.status(500).json({ error: 'Internal server error' });
     }
   }

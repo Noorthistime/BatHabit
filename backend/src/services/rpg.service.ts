@@ -9,13 +9,13 @@ export const rpgService = {
   calculateRequiredXp,
 
   processQuestCompletion: async (
+    tx: any,
     userId: string,
     questId: string,
     xpReward: number,
     currencyReward: number,
     category: QuestCategory
   ) => {
-    return prisma.$transaction(async (tx) => {
       // Create completion record
       const completion = await tx.questCompletion.create({
         data: {
@@ -119,7 +119,7 @@ export const rpgService = {
       // Basic Achievement checking
       const achievements: string[] = [];
       const userAchievements = await tx.achievement.findMany({ where: { userId } });
-      const achievedBadges = new Set(userAchievements.map(a => a.badgeName));
+      const achievedBadges = new Set(userAchievements.map((a: any) => a.badgeName));
 
       const awardAchievement = async (badgeName: string) => {
         if (!achievedBadges.has(badgeName)) {
@@ -143,6 +143,5 @@ export const rpgService = {
         leveledUp,
         newAchievements: achievements 
       };
-    });
   }
 };
