@@ -3,6 +3,7 @@ import { api } from '../api';
 import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/Card';
 import { Button } from '../components/ui/Button';
 import { Input } from '../components/ui/Input';
+import { EventUI } from '../components/ui/EventUI';
 
 export function Questbook() {
   const [quests, setQuests] = useState<any[]>([]);
@@ -10,6 +11,7 @@ export function Questbook() {
   const [category, setCategory] = useState('GENERAL');
   const [difficulty, setDifficulty] = useState('EASY');
   const [error, setError] = useState('');
+  const [activeEvent, setActiveEvent] = useState<{type: 'QUEST_COMPLETE' | 'LEVEL_UP', data: any} | null>(null);
 
   const fetchQuests = async () => {
     try {
@@ -38,8 +40,16 @@ export function Questbook() {
 
   const handleComplete = async (id: string) => {
     try {
-      await api.post(`/quests/${id}/complete`);
+      const res = await api.post(`/quests/${id}/complete`);
       fetchQuests();
+      
+      const { completion, leveledUp, character } = res.data;
+      if (leveledUp) {
+        setActiveEvent({ type: 'LEVEL_UP', data: { level: character.level } });
+      } else {
+        setActiveEvent({ type: 'QUEST_COMPLETE', data: completion });
+      }
+      
     } catch (e: any) {
       alert(e.response?.data?.error || 'Failed to complete quest');
     }
@@ -133,6 +143,14 @@ export function Questbook() {
           ))}
         </div>
       </div>
+      
+      {activeEvent && (
+        <EventUI 
+          type={activeEvent.type} 
+          data={activeEvent.data} 
+          onClose={() => setActiveEvent(null)} 
+        />
+      )}
     </div>
   );
 }
