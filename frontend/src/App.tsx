@@ -3,9 +3,9 @@ import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
 import { Landing } from './pages/Landing';
 import { Auth } from './pages/Auth';
 import { api } from './api';
-
 import { Sanctum } from './pages/Sanctum';
 import { Questbook } from './pages/Questbook';
+import { Grimoire } from './pages/Grimoire';
 import { Layout } from './components/layout/Layout';
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -45,6 +45,13 @@ export default function App() {
           <ProtectedRoute>
             <Layout>
               <Questbook />
+            </Layout>
+          </ProtectedRoute>
+        } />
+        <Route path="/profile" element={
+          <ProtectedRoute>
+            <Layout>
+              <Grimoire />
             </Layout>
           </ProtectedRoute>
         } />
