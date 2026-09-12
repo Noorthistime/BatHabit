@@ -62,7 +62,7 @@ export function Sanctum() {
 
       {/* Main Container */}
       <div className="pt-20 px-4 md:px-8 pb-16">
-        <div className="max-w-6xl mx-auto space-y-8 mt-6">
+        <div className="max-w-6xl mx-auto space-y-8">
           
           {/* Welcome Ribbon */}
           <section className="flex flex-col lg:flex-row lg:items-end justify-between gap-5 pb-4 border-b border-[#415A77] dark:border-[#D4AF37]/25 relative">

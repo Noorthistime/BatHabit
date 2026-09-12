@@ -1,156 +1,378 @@
-import React, { useEffect, useState } from 'react';
-import { api } from '../api';
-import { Card, CardContent, CardHeader, CardTitle } from '../components/ui/Card';
-import { Button } from '../components/ui/Button';
-import { Input } from '../components/ui/Input';
-import { EventUI } from '../components/ui/EventUI';
+import React, { useState } from 'react';
+import { 
+  Search, SlidersHorizontal, BookOpen, Brain, 
+  Dumbbell, Focus as FocusIcon, Eye, CheckCircle, 
+  Flame, Calendar, Target, Award, Clock
+} from 'lucide-react';
 
-export function Questbook() {
-  const [quests, setQuests] = useState<any[]>([]);
-  const [title, setTitle] = useState('');
-  const [category, setCategory] = useState('GENERAL');
-  const [difficulty, setDifficulty] = useState('EASY');
-  const [error, setError] = useState('');
-  const [activeEvent, setActiveEvent] = useState<{type: 'QUEST_COMPLETE' | 'LEVEL_UP', data: any} | null>(null);
+type Discipline = 'INTELLECT' | 'VITALITY' | 'FOCUS' | 'STRENGTH' | 'WISDOM';
+type Tier = 'INITIATE' | 'ADEPT' | 'MASTER' | 'EPIC';
 
-  const fetchQuests = async () => {
-    try {
-      const res = await api.get('/quests');
-      setQuests(res.data);
-    } catch (e) {
-      console.error(e);
-    }
+interface Quest {
+  id: string;
+  discipline: Discipline;
+  type: string;
+  tier: Tier;
+  tierLevel: string;
+  title: string;
+  dueDate: string;
+  dueStatus: 'normal' | 'urgent' | 'sealed';
+  progress: {
+    current: number;
+    max: number;
+    unit: string;
+    label: string;
   };
-
-  useEffect(() => {
-    fetchQuests();
-  }, []);
-
-  const handleCreate = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setError('');
-    try {
-      await api.post('/quests', { title, category, difficulty });
-      setTitle('');
-      fetchQuests();
-    } catch (e: any) {
-      setError(e.response?.data?.error || 'Failed to create quest');
-    }
+  rewards: {
+    xp: number;
+    crowns: number;
+    stat: string;
+    statValue: string;
   };
+  isSealed?: boolean;
+}
 
-  const handleComplete = async (id: string) => {
-    try {
-      const res = await api.post(`/quests/${id}/complete`);
-      fetchQuests();
-      
-      const { completion, leveledUp, character } = res.data;
-      if (leveledUp) {
-        setActiveEvent({ type: 'LEVEL_UP', data: { level: character.level } });
-      } else {
-        setActiveEvent({ type: 'QUEST_COMPLETE', data: completion });
-      }
-      
-    } catch (e: any) {
-      alert(e.response?.data?.error || 'Failed to complete quest');
+const QUESTS: Quest[] = [
+  {
+    id: 'q1',
+    discipline: 'INTELLECT',
+    type: 'EPIC QUEST',
+    tier: 'MASTER',
+    tierLevel: 'TIER III',
+    title: 'Master 30 Minutes of React & Vite Architecture',
+    dueDate: 'Due Tonight • Nocturne Cycle 23:59',
+    dueStatus: 'urgent',
+    progress: { current: 25, max: 30, unit: 'mins', label: 'INSCRIBED PROGRESS' },
+    rewards: { xp: 120, crowns: 40, stat: 'INT', statValue: '+2' }
+  },
+  {
+    id: 'q2',
+    discipline: 'VITALITY',
+    type: 'DAILY RITUAL',
+    tier: 'ADEPT',
+    tierLevel: 'TIER II',
+    title: 'Deep Focus: 5 km Dawn Run',
+    dueDate: 'Due Before Sunset • Nocturnal Phase',
+    dueStatus: 'normal',
+    progress: { current: 3.8, max: 5.0, unit: 'km', label: 'STRIDE DISTANCE' },
+    rewards: { xp: 80, crowns: 25, stat: 'VIT', statValue: '+3' }
+  },
+  {
+    id: 'q3',
+    discipline: 'FOCUS',
+    type: 'ESSENTIAL VOW',
+    tier: 'INITIATE',
+    tierLevel: 'TIER I',
+    title: 'Review 3 Algorithmic Systems & Notes',
+    dueDate: 'Ready to Verify & Seal',
+    dueStatus: 'normal',
+    progress: { current: 3, max: 3, unit: 'systems', label: 'TOME INSCRIPTIONS' },
+    rewards: { xp: 60, crowns: 20, stat: 'FOC', statValue: '+1' }
+  },
+  {
+    id: 'q4',
+    discipline: 'STRENGTH',
+    type: 'PHYSICAL VIGIL',
+    tier: 'ADEPT',
+    tierLevel: 'TIER II',
+    title: '45-Minute Kettlebell & Core Conditioning',
+    dueDate: 'Due in 4 hours • Cold Sanctum',
+    dueStatus: 'urgent',
+    progress: { current: 20, max: 45, unit: 'mins', label: 'EXERTION THRESHOLD' },
+    rewards: { xp: 90, crowns: 30, stat: 'STR', statValue: '+2' }
+  },
+  {
+    id: 'q5',
+    discipline: 'WISDOM',
+    type: 'SOLITUDE RITE',
+    tier: 'ADEPT',
+    tierLevel: 'TIER II',
+    title: 'Meditation in the Solitude Chamber (15m)',
+    dueDate: 'Claimed 22 minutes ago • Waxing Moon',
+    dueStatus: 'sealed',
+    progress: { current: 15, max: 15, unit: 'mins', label: 'VOW INSCRIBED IN BLOODLINE' },
+    rewards: { xp: 50, crowns: 15, stat: 'WIS', statValue: '+1' },
+    isSealed: true
+  }
+];
+
+const DISCIPLINES = ['ALL', 'INTELLECT', 'VITALITY', 'FOCUS', 'STRENGTH', 'WISDOM'];
+const TIERS = ['ALL TIERS', 'INITIATE', 'ADEPT', 'MASTER'];
+
+export default function QuestBook() {
+  const [activeTab, setActiveTab] = useState('ACTIVE VOWS');
+  const [selectedDisc, setSelectedDisc] = useState('ALL');
+  const [selectedTier, setSelectedTier] = useState('ALL TIERS');
+
+  const getDisciplineIcon = (disc: string) => {
+    switch (disc) {
+      case 'INTELLECT': return <Brain size={14} />;
+      case 'VITALITY': return <Flame size={14} />;
+      case 'FOCUS': return <Eye size={14} />;
+      case 'STRENGTH': return <Dumbbell size={14} />;
+      case 'WISDOM': return <BookOpen size={14} />;
+      default: return <Target size={14} />;
     }
   };
 
   return (
-    <div className="p-6 md:p-10 max-w-4xl mx-auto space-y-8">
-      <header>
-        <h1 className="text-4xl md:text-5xl font-bold font-serif tracking-tight text-primary">The Questbook</h1>
-        <p className="text-muted-foreground mt-2">Forge your destiny and track your deeds.</p>
-      </header>
+    <>
+      <div 
+        className="absolute inset-0 -z-10 pointer-events-none"
+        style={{
+          backgroundColor: '#0c0608',
+          backgroundImage: `
+            radial-gradient(circle at 18% 15%, rgba(109, 8, 8, 0.45) 0%, transparent 50%),
+            radial-gradient(circle at 82% 22%, rgba(212, 175, 55, 0.15) 0%, transparent 45%),
+            radial-gradient(circle at 50% 85%, rgba(69, 3, 3, 0.55) 0%, transparent 60%),
+            radial-gradient(circle at 50% 50%, #18080a 0%, #0c0608 100%)
+          `
+        }}
+      />
+      <div className="w-full max-w-[1200px] mx-auto flex flex-col gap-6">
+        
+        {/* Top Header Section */}
+      <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-5 pb-4 border-b border-[#415A77]/50 dark:border-[#D4AF37]/25 relative mb-6">
+        
+        <div className="space-y-1.5 max-w-2xl">
+          <div className="flex items-center gap-2">
+            <span className="font-mono text-xs uppercase text-[#D4AF37] dark:text-[#F5D77F] tracking-[0.3em] flex items-center gap-1.5 bg-[#415A77]/20 dark:bg-[#250101] px-2.5 py-0.5 rounded border border-[#415A77]/40 dark:border-[#D4AF37]/35 shadow-inner">
+              Sanctum Noctis • Chamber of Vows
+            </span>
+          </div>
+          <h1 className="font-serif text-3xl lg:text-4xl text-[#F7F3E9] dark:text-[#EEEAD7] tracking-tight font-bold drop-shadow-md">
+            The Questbook
+          </h1>
+          <p className="font-sans text-sm text-[#F7F3E9]/70 dark:text-[#8d9685] max-w-2xl leading-relaxed">
+            Every vow inscribed resonates through the obsidian arches. Transmute mortal labor into sovereign arcane sovereignty through consecrated night vigils.
+          </p>
+          <div className="pt-2">
+            <button className="flex items-center gap-2 bg-[#6D0808] hover:bg-[#9e1313] text-white border border-[#D4AF37]/30 px-6 py-2.5 rounded font-serif font-bold text-sm transition-colors shadow-[0_0_15px_rgba(109,8,8,0.5)]">
+              <span className="text-xl leading-none -mt-1">+</span> FORGE A QUEST <span className="font-mono text-[10px] ml-2 text-white/70">[N]</span>
+            </button>
+          </div>
+        </div>
 
-      <Card className="border-primary/20 bg-card/80 backdrop-blur shadow-lg shadow-primary/5">
-        <CardHeader>
-          <CardTitle className="font-serif">Forge a Quest</CardTitle>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleCreate} className="flex flex-col md:flex-row gap-4">
-            <Input 
-              value={title} 
-              onChange={e => setTitle(e.target.value)} 
-              placeholder="Quest Title..." 
-              required 
-              className="flex-1"
-            />
-            <select 
-              value={category} 
-              onChange={e => setCategory(e.target.value)}
-              className="bg-background border border-muted rounded-md px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-            >
-              <option value="GENERAL">General</option>
-              <option value="STRENGTH">Strength</option>
-              <option value="INTELLECT">Intellect</option>
-              <option value="WISDOM">Wisdom</option>
-              <option value="FOCUS">Focus</option>
-              <option value="VITALITY">Vitality</option>
-            </select>
-            <select 
-              value={difficulty} 
-              onChange={e => setDifficulty(e.target.value)}
-              className="bg-background border border-muted rounded-md px-3 py-2 text-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary"
-            >
-              <option value="EASY">Easy</option>
-              <option value="MEDIUM">Medium</option>
-              <option value="HARD">Hard</option>
-            </select>
-            <Button type="submit">Forge</Button>
-          </form>
-          {error && <p className="text-red-500 mt-2 text-sm">{error}</p>}
-        </CardContent>
-      </Card>
-
-      <div className="space-y-4">
-        <h2 className="text-2xl font-serif text-primary">Active Quests</h2>
-        {quests.filter(q => q.status !== 'COMPLETED').map(q => (
-          <Card key={q.id} className="border-muted hover:border-primary/50 transition-colors shadow-sm">
-            <CardContent className="p-4 flex justify-between items-center">
-              <div>
-                <h3 className="font-bold text-lg">{q.title}</h3>
-                <div className="flex gap-2 text-xs text-muted-foreground mt-1">
-                  <span className="uppercase tracking-wider font-semibold text-primary">{q.category}</span>
-                  <span>•</span>
-                  <span className="uppercase tracking-wider">{q.difficulty}</span>
-                </div>
+        {/* Quick Stats Pills */}
+        <div className="flex flex-wrap items-center gap-3 shrink-0">
+          
+          <div className="flex items-center gap-3 px-4 py-2.5 rounded-lg bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 shadow-lg">
+            <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#B6CBF6] dark:from-[#9e1313] to-[#D4AF37] dark:to-[#2D0000] flex items-center justify-center border border-[#415A77] dark:border-[#D4AF37]/60 shadow-inner text-[#D4AF37] dark:text-[#F5D77F]">
+              <Flame size={20} className="text-[#ff6600]" />
+            </div>
+            <div className="flex flex-col">
+              <div className="flex items-baseline gap-1">
+                <span className="font-serif text-xl font-bold text-[#D4AF37] dark:text-[#F5D77F]">4</span>
+                <span className="font-mono text-xs text-[#F7F3E9]/70 dark:text-[#8d9685] uppercase">Days</span>
               </div>
-              <Button onClick={() => handleComplete(q.id)} variant="outline" className="border-primary text-primary hover:bg-primary/20">
-                Complete
-              </Button>
-            </CardContent>
-          </Card>
-        ))}
-        {quests.filter(q => q.status !== 'COMPLETED').length === 0 && (
-          <p className="text-muted-foreground italic">Your active quest list is empty.</p>
-        )}
+              <span className="font-mono text-[10px] text-[#D4AF37] dark:text-[#C5A059] uppercase tracking-widest font-semibold">UNBROKEN VOW</span>
+            </div>
+          </div>
 
-        <h2 className="text-2xl font-serif mt-12 text-muted-foreground">Completed Deeds</h2>
-        <div className="grid gap-3">
-          {quests.filter(q => q.status === 'COMPLETED').map(q => (
-            <Card key={q.id} className="border-muted/50 opacity-60 bg-muted/10">
-              <CardContent className="p-4 flex justify-between items-center">
-                <div>
-                  <h3 className="font-bold text-lg line-through text-muted-foreground">{q.title}</h3>
-                  <div className="flex gap-2 text-xs text-muted-foreground mt-1">
-                    <span className="uppercase tracking-wider">{q.category}</span>
-                    <span>•</span>
-                    <span className="uppercase tracking-wider">{q.difficulty}</span>
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
+          <div className="flex items-center gap-3 px-4 py-2.5 rounded-lg bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 shadow-lg">
+            <div className="w-9 h-9 rounded-lg bg-[#1B263B] dark:bg-[#200000] flex items-center justify-center border border-[#415A77] dark:border-[#D4AF37]/55 shadow-inner text-[#D4AF37] dark:text-[#F5D77F]">
+              <Award size={20} />
+            </div>
+            <div className="flex flex-col">
+              <div className="flex items-baseline gap-1">
+                <span className="font-serif text-xl font-bold text-[#D4AF37] dark:text-[#F5D77F]">1</span>
+              </div>
+              <span className="font-mono text-[10px] text-[#D4AF37] dark:text-[#C5A059] uppercase tracking-widest font-semibold">SEALED VOWS</span>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-3 px-4 py-2.5 rounded-lg bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 shadow-lg">
+            <div className="w-9 h-9 rounded-lg bg-[#1B263B] dark:bg-[#1a0510] flex items-center justify-center border border-[#415A77] dark:border-[#8b5cf6]/50 shadow-inner text-blue-300">
+              <Target size={20} />
+            </div>
+            <div className="flex flex-col">
+              <div className="flex items-baseline gap-1">
+                <span className="font-serif text-xl font-bold text-blue-300">+310</span>
+                <span className="font-mono text-xs text-blue-300/70 uppercase">XP</span>
+              </div>
+              <span className="font-mono text-[10px] text-blue-400 uppercase tracking-widest font-semibold">+95 CROWNS</span>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      {/* Tabs and Filters */}
+      <div className="flex flex-col gap-4 border-t border-[#415A77]/50 dark:border-[#3a0404] pt-6">
+        
+        {/* Main Tabs */}
+        <div className="flex flex-wrap items-center gap-6">
+          {['ACTIVE VOWS (4)', 'COMPLETED / SEALED (1)', 'RECURRING RITES (3)', 'ALL CODEX (5)'].map((tab) => (
+            <button 
+              key={tab}
+              onClick={() => setActiveTab(tab.split(' (')[0])}
+              className={`pb-2 border-b-2 font-mono text-[10px] uppercase tracking-widest font-bold transition-colors ${
+                activeTab === tab.split(' (')[0]
+                  ? 'border-[#D4AF37] text-[#D4AF37]' 
+                  : 'border-transparent text-[#F7F3E9]/50 hover:text-[#F7F3E9]/80'
+              }`}
+            >
+              {activeTab === tab.split(' (')[0] && <span className="mr-2 text-[8px]">✦</span>}
+              {tab}
+            </button>
           ))}
         </div>
+
+        {/* Filters Bar */}
+        <div className="flex flex-col lg:flex-row lg:items-center gap-6 mt-2">
+          
+          <div className="relative w-full max-w-sm">
+            <Search size={14} className="absolute left-3 top-2.5 text-[#F7F3E9]/40" />
+            <input 
+              type="text" 
+              placeholder="Search active vows or ancient rites..."
+              className="w-full bg-[#1B263B]/30 dark:bg-[#1a0101] border border-[#415A77]/50 dark:border-[#3a0404] text-[#F7F3E9] text-sm pl-9 pr-3 py-2 rounded focus:outline-none focus:border-[#D4AF37]/50 placeholder-[#F7F3E9]/30"
+            />
+            <div className="absolute right-2 top-1.5 p-1 bg-[#415A77]/20 dark:bg-[#3a0404] rounded border border-[#415A77]/30">
+              <SlidersHorizontal size={12} className="text-[#F7F3E9]/50" />
+            </div>
+          </div>
+
+          <div className="flex-1 flex flex-wrap items-center gap-4">
+            <div className="flex items-center gap-2">
+              <span className="font-mono text-[9px] uppercase tracking-widest text-[#D4AF37] font-bold mr-2">✦ DISCIPLINES:</span>
+              {DISCIPLINES.map(d => (
+                <button 
+                  key={d} onClick={() => setSelectedDisc(d)}
+                  className={`px-3 py-1 rounded border font-mono text-[9px] uppercase tracking-widest transition-colors ${selectedDisc === d ? 'bg-[#6D0808]/20 border-[#6D0808] text-red-400 font-bold' : 'bg-transparent border-[#415A77]/30 dark:border-[#3a0404] text-[#F7F3E9]/50 hover:border-[#415A77]'}`}
+                >
+                  {d}
+                </button>
+              ))}
+            </div>
+
+            <div className="flex items-center gap-2 ml-auto">
+              <span className="font-mono text-[9px] uppercase tracking-widest text-[#D4AF37] font-bold mr-2">TIER:</span>
+              {TIERS.map(t => (
+                <button 
+                  key={t} onClick={() => setSelectedTier(t)}
+                  className={`px-3 py-1 rounded border font-mono text-[9px] uppercase tracking-widest transition-colors ${selectedTier === t ? 'bg-[#6D0808]/20 border-[#6D0808] text-red-400 font-bold' : 'bg-transparent border-[#415A77]/30 dark:border-[#3a0404] text-[#F7F3E9]/50 hover:border-[#415A77]'}`}
+                >
+                  {t}
+                </button>
+              ))}
+            </div>
+          </div>
+
+        </div>
+
       </div>
-      
-      {activeEvent && (
-        <EventUI 
-          type={activeEvent.type} 
-          data={activeEvent.data} 
-          onClose={() => setActiveEvent(null)} 
-        />
-      )}
-    </div>
+
+      {/* Quests Grid */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-4 pb-12">
+        {QUESTS.map((quest) => (
+          <div 
+            key={quest.id} 
+            className={`flex flex-col relative bg-[#1B263B]/40 dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md rounded-xl p-5 border transition-all hover:scale-[1.01] hover:shadow-[0_8px_30px_rgba(0,0,0,0.4)] dark:hover:shadow-[0_8px_30px_rgba(212,175,55,0.15)] ${
+              quest.isSealed 
+                ? 'border-[#415A77]/30 dark:border-[#3a0404]/50 opacity-60' 
+                : 'border-[#415A77]/60 dark:border-[#D4AF37]/35 hover:border-[#415A77] dark:hover:border-[#D4AF37]/60 shadow-[0_4px_20px_rgba(0,0,0,0.5)]'
+            }`}
+          >
+            {/* Ambient Glow for Active Quests */}
+            {!quest.isSealed && (
+              <div className="absolute top-0 right-0 w-32 h-32 bg-[#D4AF37]/5 dark:bg-[#6D0808]/10 rounded-bl-full blur-[40px] pointer-events-none"></div>
+            )}
+            
+            {/* Card Header */}
+            <div className="flex items-center justify-between mb-5">
+              <div className="flex items-center gap-2">
+                <div className={`p-1.5 rounded bg-[#1B263B] dark:bg-[#3a0404] border ${quest.isSealed ? 'border-[#415A77]/30 text-[#F7F3E9]/40' : 'border-[#415A77]/50 dark:border-[#6D0808] text-[#D4AF37] dark:text-[#F5D77F]'}`}>
+                  {getDisciplineIcon(quest.discipline)}
+                </div>
+                <span className={`font-mono text-[9px] uppercase tracking-widest font-bold ${quest.isSealed ? 'text-[#F7F3E9]/50' : 'text-[#D4AF37]'}`}>
+                  {quest.discipline} • {quest.type}
+                </span>
+              </div>
+
+              <div className="flex items-center gap-3">
+                {!quest.isSealed ? (
+                  <div className="flex items-center gap-1.5 bg-[#6D0808]/20 border border-[#6D0808] px-2 py-1 rounded">
+                    <span className="font-mono text-[8px] uppercase tracking-widest text-[#F7F3E9]">{quest.tierLevel} • {quest.tier}</span>
+                  </div>
+                ) : (
+                  <div className="flex items-center gap-1.5 bg-[#1B263B]/50 border border-[#415A77]/50 px-2 py-1 rounded">
+                    <CheckCircle size={10} className="text-[#D4AF37]" />
+                    <span className="font-mono text-[8px] uppercase tracking-widest text-[#D4AF37]">RITE SEALED</span>
+                  </div>
+                )}
+                <button className="text-[#F7F3E9]/40 hover:text-[#D4AF37]">
+                  <span className="font-serif font-bold tracking-widest leading-none block -mt-1">...</span>
+                </button>
+              </div>
+            </div>
+
+            {/* Title & Due */}
+            <div className="flex flex-col gap-2 mb-8 relative z-10">
+              <h3 className={`font-serif text-xl font-bold ${quest.isSealed ? 'text-[#F7F3E9]/50 line-through decoration-[#415A77]' : 'text-white'}`}>
+                {quest.title}
+              </h3>
+              <div className="flex items-center gap-1.5">
+                {quest.isSealed ? (
+                  <CheckCircle size={12} className="text-[#F7F3E9]/40" />
+                ) : quest.dueStatus === 'urgent' ? (
+                  <Clock size={12} className="text-red-400" />
+                ) : (
+                  <Calendar size={12} className="text-[#F7F3E9]/50" />
+                )}
+                <span className={`font-sans text-xs ${quest.isSealed ? 'text-[#F7F3E9]/40' : quest.dueStatus === 'urgent' ? 'text-red-400' : 'text-[#F7F3E9]/60'}`}>
+                  {quest.dueDate}
+                </span>
+              </div>
+            </div>
+
+            {/* Progress */}
+            <div className="flex flex-col gap-2 mb-8 relative z-10">
+              <div className="flex items-center justify-between font-mono text-[9px] uppercase tracking-widest text-[#F7F3E9]/60">
+                <span>{quest.progress.label}</span>
+                <span className="font-bold text-white">
+                  {quest.progress.current} / {quest.progress.max} {quest.progress.unit} ({Math.round((quest.progress.current / quest.progress.max) * 100)}%)
+                </span>
+              </div>
+              <div className="w-full h-1.5 bg-[#1B263B] dark:bg-[#1a0101] rounded-full overflow-hidden border border-[#415A77]/30 dark:border-[#3a0404]">
+                <div 
+                  className={`h-full rounded-full transition-all duration-1000 ${quest.isSealed ? 'bg-[#415A77]' : 'bg-[#D4AF37] dark:bg-red-700'}`}
+                  style={{ width: `${(quest.progress.current / quest.progress.max) * 100}%` }}
+                ></div>
+              </div>
+            </div>
+
+            {/* Footer / Bounties */}
+            <div className="mt-auto flex items-center justify-between border-t border-[#415A77]/30 dark:border-[#3a0404] pt-4 relative z-10">
+              
+              <div className="flex items-center gap-2 flex-wrap">
+                <span className="font-mono text-[9px] uppercase tracking-widest text-[#F7F3E9]/40 mr-1">TITHE:</span>
+                <span className={`font-mono text-[9px] font-bold uppercase tracking-widest border px-2 py-0.5 rounded ${quest.isSealed ? 'bg-[#1B263B]/30 border-[#415A77]/30 text-[#F7F3E9]/40' : 'bg-[#1B263B] dark:bg-[#3a0404]/50 border-[#415A77]/50 dark:border-[#6D0808]/50 text-white'}`}>
+                  +{quest.rewards.xp} XP
+                </span>
+                <span className={`font-mono text-[9px] font-bold uppercase tracking-widest border px-2 py-0.5 rounded ${quest.isSealed ? 'bg-[#1B263B]/30 border-[#415A77]/30 text-[#F7F3E9]/40' : 'bg-[#D4AF37]/10 dark:bg-[#3a0404]/50 border-[#D4AF37]/30 dark:border-[#D4AF37]/30 text-[#D4AF37]'}`}>
+                  +{quest.rewards.crowns} Crowns
+                </span>
+                <span className={`font-mono text-[9px] font-bold uppercase tracking-widest border px-2 py-0.5 rounded ${quest.isSealed ? 'bg-[#1B263B]/30 border-[#415A77]/30 text-[#F7F3E9]/40' : 'bg-[#415A77]/20 dark:bg-[#1a0101] border-[#415A77]/50 text-[#F7F3E9]/80'}`}>
+                  {quest.rewards.stat} {quest.rewards.statValue}
+                </span>
+              </div>
+
+              {!quest.isSealed && (
+                <button className="bg-[#6D0808] hover:bg-[#9e1313] text-white border border-red-500/30 px-3 py-1.5 rounded font-mono text-[8px] sm:text-[9px] font-bold uppercase tracking-widest transition-colors shadow-[0_0_10px_rgba(109,8,8,0.3)] flex items-center gap-1.5 whitespace-nowrap">
+                  <CheckCircle size={10} />
+                  COMPLETE QUEST
+                </button>
+              )}
+
+            </div>
+
+          </div>
+        ))}
+      </div>
+
+      </div>
+    </>
   );
 }

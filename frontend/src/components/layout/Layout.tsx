@@ -8,12 +8,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
   const navItems = [
     { icon: Home, label: 'Sanctum', path: '/dashboard' },
-    { icon: Book, label: 'Questbook', path: '/quests' },
-    { icon: User, label: 'Grimoire', path: '/profile' },
+    { icon: Book, label: 'Questbook', path: '/dashboard/questbook' },
+    { icon: User, label: 'Grimoire', path: '/grimoire' },
     { icon: Zap, label: 'Ascension', path: '/ascension' },
     { icon: Flame, label: 'Bloodline', path: '/bloodline' },
     { icon: Shield, label: 'Treasury', path: '/treasury' },
-    { icon: Store, label: 'Night Market', path: '/shop' },
+    { icon: Store, label: 'Night Market', path: '/market' },
     { icon: Crosshair, label: 'Vault', path: '/vault' },
     { icon: History, label: 'Hall of Deeds', path: '/deeds' },
     { icon: Map, label: 'Chronicle', path: '/chronicle' },

@@ -358,21 +358,20 @@ export function Awakening() {
             <span className="font-mono text-[8px] text-[#D4AF37] uppercase tracking-widest font-bold mb-1 flex items-center gap-1.5">
                <span className="text-[6px]">✦</span> Conscript Summary Ledger
             </span>
-            <div className="font-serif text-sm md:text-base text-[#F7F3E9] dark:text-[#EEEAD7] tracking-wide">
-               Vessel: <span className="font-bold">{characterName}</span> • 
-               Path: <span className="font-bold text-[#F7F3E9]/70 dark:text-[#8d9685]">{currentPath.name}</span> • 
-               Prime: <span className="font-bold text-[#D4AF37] dark:text-red-800">{currentDiscipline.name} (+2)</span> • 
-               Rank: <span className="font-bold text-[#F7F3E9]/70 dark:text-[#8d9685]">Novice I</span>
-            </div>
-            <div className="mt-1 flex items-center gap-3 font-mono text-[9px] text-[#F7F3E9]/40 dark:text-[#8d9685]/70">
-               <span>Solemn Seal pending in Blood & Ink</span>
-               <span className="cursor-pointer hover:text-[#D4AF37] underline underline-offset-2">→ Alter Prior Inscription</span>
-            </div>
+            <span className="font-serif text-[#F7F3E9] dark:text-[#EEEAD7] text-lg mb-1 flex items-center flex-wrap gap-2">
+              Vessel: <span className="font-bold text-white">{characterName || 'Unknown'}</span> <span className="text-[#D4AF37]">•</span> 
+              Path: <span className="font-bold text-white">{currentPath.name}</span> <span className="text-[#D4AF37]">•</span> 
+              Prime: <span className="font-bold text-[#D4AF37] uppercase tracking-wider">{currentDiscipline.name} (+2)</span> <span className="text-[#D4AF37]">•</span> 
+              Rank: <span className="font-bold text-[#F7F3E9]/70 dark:text-[#8d9685]">Novice I</span>
+            </span>
+            <span className="font-mono text-[9px] text-[#F7F3E9]/40 dark:text-[#8d9685]/50 tracking-wider">
+               Solemn seal pending in Blood & Ink <span className="ml-2 underline cursor-pointer hover:text-[#D4AF37]">→ Alter Prior Inscription</span>
+            </span>
          </div>
          
          <button 
-           onClick={handleAwaken}
-           className="bg-gradient-to-r from-[#415A77] dark:from-[#3a0000] to-[#1B263B] dark:to-[#1a0000] border border-[#D4AF37]/50 dark:border-red-700/50 hover:border-[#D4AF37] dark:hover:border-red-500 hover:shadow-[0_0_20px_rgba(212,175,55,0.3)] dark:hover:shadow-[0_0_20px_rgba(220,38,38,0.3)] text-[#F7F3E9] dark:text-[#EEEAD7] font-serif uppercase tracking-[0.2em] font-bold text-xs py-3 px-12 rounded transition-all flex items-center justify-center gap-3 shrink-0"
+            onClick={() => navigate('/dashboard/questbook')}
+            className="flex-shrink-0 bg-gradient-to-r from-[#415A77] to-[#1B263B] dark:from-[#3a0404] dark:to-[#6D0808] border border-[#415A77] dark:border-red-900/50 hover:border-[#D4AF37] text-[#F7F3E9] px-8 py-3 rounded font-serif font-bold tracking-widest transition-all hover:scale-[1.02] shadow-[0_0_15px_rgba(65,90,119,0.3)] dark:shadow-[0_0_15px_rgba(109,8,8,0.4)]"
          >
             Awaken ✦ →
          </button>
