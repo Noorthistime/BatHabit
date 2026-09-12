@@ -25,12 +25,11 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
   return authed ? <>{children}</> : <Navigate to="/auth" />;
 }
 
-export default function App() {
-  useEffect(() => {
-    document.documentElement.classList.add('dark');
-  }, []);
+import { ThemeProvider } from './context/ThemeContext';
 
+export default function App() {
   return (
+    <ThemeProvider>
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Landing />} />
@@ -65,5 +64,6 @@ export default function App() {
         } />
       </Routes>
     </BrowserRouter>
+    </ThemeProvider>
   );
 }

@@ -20,36 +20,36 @@ export function Layout({ children }: { children: React.ReactNode }) {
   ];
 
   return (
-    <div className="min-h-screen bg-[#0c0608] text-[#EEEAD7] font-sans selection:bg-[#6D0808] selection:text-[#F5D77F] flex flex-col md:flex-row">
+    <div className="min-h-screen bg-[#F8F6F0] dark:bg-[#0c0608] text-slate-800 dark:text-[#EEEAD7] font-sans selection:bg-[#8AA3F8] dark:bg-[#6D0808] selection:text-[#8AA3F8] dark:text-[#F5D77F] flex flex-col md:flex-row">
       {/* Desktop Sidebar (The Gothic Rail) */}
-      <aside className="hidden md:flex flex-col fixed left-0 top-0 h-full w-72 bg-[#120305]/95 backdrop-blur-xl z-50 border-r border-[#D4AF37]/30 shadow-[6px_0_32px_rgba(0,0,0,0.9)] overflow-y-auto">
-        <div className="h-20 px-4 flex items-center gap-3 bg-[#1e0306] border-b border-[#D4AF37]/30 flex-shrink-0">
-          <div className="w-10 h-10 rounded-full bg-[#3d0303] border border-[#F5D77F] flex items-center justify-center shadow-[0_0_12px_rgba(212,175,55,0.7)] text-[#F5D77F]">
+      <aside className="hidden md:flex flex-col fixed left-0 top-0 h-full w-72 bg-[#F8F6F0]/95 dark:bg-[#120305]/95 backdrop-blur-xl z-50 border-r border-[#B6CBF6] dark:border-[#D4AF37]/30 shadow-[6px_0_32px_rgba(0,0,0,0.9)] overflow-y-auto">
+        <div className="h-20 px-4 flex items-center gap-3 bg-[#D0F4F0] dark:bg-[#1e0306] border-b border-[#B6CBF6] dark:border-[#D4AF37]/30 flex-shrink-0">
+          <div className="w-10 h-10 rounded-full bg-[#B6CBF6] dark:bg-[#3d0303] border border-[#B6CBF6] dark:border-[#F5D77F] flex items-center justify-center shadow-[0_0_12px_rgba(212,175,55,0.7)] text-[#8AA3F8] dark:text-[#F5D77F]">
             <span className="font-serif font-bold text-xl">B</span>
           </div>
           <div className="flex flex-col">
-            <span className="font-serif text-xl font-bold text-[#EEEAD7] tracking-[0.22em] flex items-center gap-1.5">
-              BATHABIT <span className="w-1.5 h-1.5 rounded-full bg-[#F5D77F] shadow-[0_0_8px_#D4AF37]"></span>
+            <span className="font-serif text-xl font-bold text-slate-800 dark:text-[#EEEAD7] tracking-[0.22em] flex items-center gap-1.5">
+              BATHABIT <span className="w-1.5 h-1.5 rounded-full bg-[#8AA3F8] dark:bg-[#F5D77F] shadow-[0_0_8px_#D4AF37]"></span>
             </span>
-            <span className="font-mono text-[10px] text-[#C5A059] tracking-[0.25em] uppercase">Gothic Nocturnal Codex</span>
+            <span className="font-mono text-[10px] text-[#8AA3F8] dark:text-[#C5A059] tracking-[0.25em] uppercase">Gothic Nocturnal Codex</span>
           </div>
         </div>
 
         <div className="flex-1 px-3 py-4">
-          <div className="px-3 pb-2 font-mono text-[11px] text-[#C5A059]/80 uppercase tracking-[0.25em] flex items-center justify-between">
+          <div className="px-3 pb-2 font-mono text-[11px] text-[#8AA3F8] dark:text-[#C5A059]/80 uppercase tracking-[0.25em] flex items-center justify-between">
             <span>Sanctuaries</span>
-            <span className="text-xs text-[#D4AF37]/50">✦</span>
+            <span className="text-xs text-[#8AA3F8] dark:text-[#D4AF37]/50">✦</span>
           </div>
           <nav className="space-y-1.5">
             {navItems.map(item => {
               const active = location.pathname === item.path;
               return (
                 <Link key={item.path} to={item.path} className={cn("group flex items-center gap-3 px-3 py-2 rounded transition-all", 
-                  active ? "justify-between border border-[#D4AF37]/70 bg-gradient-to-r from-[#6D0808] to-[#3a0404] text-[#EEEAD7] font-semibold shadow-[0_0_20px_rgba(109,8,8,0.75)]" 
-                         : "text-[#8d9685] hover:text-[#F5D77F] hover:bg-[#260303] hover:border hover:border-[#D4AF37]/30"
+                  active ? "justify-between border border-[#B6CBF6] dark:border-[#D4AF37]/70 bg-gradient-to-r from-[#8AA3F8] to-[#B6CBF6] dark:from-[#6D0808] dark:to-[#3a0404] text-slate-800 dark:text-[#EEEAD7] font-semibold shadow-[0_0_20px_rgba(109,8,8,0.75)]" 
+                         : "text-slate-600 dark:text-[#8d9685] hover:text-[#8AA3F8] dark:hover:text-[#F5D77F] hover:bg-[#D0F4F0] dark:hover:bg-[#260303] hover:border hover:border-[#B6CBF6] dark:hover:border-[#D4AF37]/30"
                 )}>
                   <div className="flex items-center gap-3">
-                    <item.icon className={cn("w-5 h-5", active ? "text-[#F5D77F]" : "text-[#8d9685] group-hover:text-[#F5D77F]")} />
+                    <item.icon className={cn("w-5 h-5", active ? "text-[#8AA3F8] dark:text-[#F5D77F]" : "text-slate-600 dark:text-[#8d9685] group-hover:text-[#8AA3F8] dark:group-hover:text-[#F5D77F]")} />
                     <span className="font-mono text-xs uppercase tracking-wider">{item.label}</span>
                   </div>
                   {active && <span className="w-2 h-2 rounded-full bg-[#F5D77F] shadow-[0_0_10px_#D4AF37]"></span>}
@@ -66,11 +66,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
       </main>
 
       {/* Mobile Bottom Nav */}
-      <nav className="md:hidden fixed bottom-0 w-full bg-[#120305] border-t border-[#D4AF37]/30 flex justify-around p-3 z-50 shadow-2xl">
+      <nav className="md:hidden fixed bottom-0 w-full bg-[#F8F6F0] dark:bg-[#120305] border-t border-[#B6CBF6] dark:border-[#D4AF37]/30 flex justify-around p-3 z-50 shadow-2xl">
         {navItems.slice(0, 5).map(item => (
           <Link key={item.path} to={item.path} className={cn("flex flex-col items-center gap-1", {
-            "text-[#F5D77F]": location.pathname === item.path,
-            "text-[#8d9685]": location.pathname !== item.path
+            "text-[#8AA3F8] dark:text-[#F5D77F]": location.pathname === item.path,
+            "text-slate-600 dark:text-[#8d9685]": location.pathname !== item.path
           })}>
             <item.icon className="w-6 h-6" />
           </Link>
