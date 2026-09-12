@@ -22,8 +22,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-[#0D1B2A] dark:bg-[#0c0608] text-[#F7F3E9] dark:text-[#EEEAD7] font-sans selection:bg-[#D4AF37] dark:bg-[#6D0808] selection:text-[#D4AF37] dark:text-[#F5D77F] flex flex-col md:flex-row">
       {/* Desktop Sidebar (The Gothic Rail) */}
-      <aside className="hidden md:flex flex-col fixed left-0 top-0 h-full w-72 bg-[#0D1B2A]/95 dark:bg-[#120305]/95 backdrop-blur-xl z-50 border-r border-[#415A77] dark:border-[#D4AF37]/30 shadow-[6px_0_32px_rgba(0,0,0,0.9)] overflow-y-auto">
-        <div className="h-20 px-4 flex items-center gap-3 bg-[#1B263B] dark:bg-[#1e0306] border-b border-[#415A77] dark:border-[#D4AF37]/30 flex-shrink-0">
+      <aside className="hidden md:flex flex-col fixed left-0 top-0 h-full w-72 bg-[#1B263B]/95 dark:bg-[#120305]/95 backdrop-blur-xl z-50 border-r border-[#415A77] dark:border-[#D4AF37]/30 shadow-[4px_0_24px_rgba(0,0,0,0.5)] dark:shadow-[6px_0_32px_rgba(0,0,0,0.9)] overflow-y-auto">
+        <div className="h-20 px-4 flex items-center gap-3 bg-[#0D1B2A]/50 dark:bg-[#1e0306] border-b border-[#415A77] dark:border-[#D4AF37]/30 flex-shrink-0 shadow-inner">
           <div className="w-10 h-10 rounded-full bg-[#415A77] dark:bg-[#3d0303] border border-[#415A77] dark:border-[#F5D77F] flex items-center justify-center shadow-[0_0_12px_rgba(212,175,55,0.7)] text-[#D4AF37] dark:text-[#F5D77F]">
             <span className="font-serif font-bold text-xl">B</span>
           </div>

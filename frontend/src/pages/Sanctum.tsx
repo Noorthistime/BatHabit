@@ -114,7 +114,7 @@ export function Sanctum() {
             <div className="absolute top-2 right-2 text-[#D4AF37] dark:text-[#D4AF37]/60 font-serif text-xs">❖</div>
             <div className="absolute bottom-2 left-2 text-[#D4AF37] dark:text-[#D4AF37]/60 font-serif text-xs">❖</div>
             <div className="absolute bottom-2 right-2 text-[#D4AF37] dark:text-[#D4AF37]/60 font-serif text-xs">❖</div>
-            <div className="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-[#D4AF37] dark:bg-[#6D0808]/40 blur-3xl pointer-events-none"></div>
+            <div className="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-transparent dark:bg-[#6D0808]/40 blur-3xl pointer-events-none"></div>
             <div className="absolute -left-20 -bottom-20 w-96 h-96 rounded-full bg-[#f59e0b]/15 blur-3xl pointer-events-none"></div>
 
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
@@ -133,13 +133,13 @@ export function Sanctum() {
                       )}
                     </div>
                   </div>
-                  <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-md bg-gradient-to-r from-[#6D0808] via-[#8e0e0e] to-[#6D0808] text-[#D4AF37] dark:text-[#F5D77F] shadow-lg flex items-center gap-2 whitespace-nowrap border border-[#415A77] dark:border-[#F5D77F]">
+                  <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-md bg-gradient-to-r from-[#1B263B] via-[#415A77] to-[#1B263B] dark:from-[#6D0808] dark:via-[#8e0e0e] dark:to-[#6D0808] text-[#D4AF37] dark:text-[#F5D77F] shadow-[0_4px_12px_rgba(0,0,0,0.6)] dark:shadow-lg flex items-center gap-2 whitespace-nowrap border border-[#415A77] dark:border-[#F5D77F]">
                     <span className="font-serif text-xs font-bold tracking-widest text-[#F7F3E9] dark:text-[#EEEAD7]">LEVEL {char.level || 1} • {char.currentTitle || 'INITIATE'}</span>
                   </div>
                 </div>
               </div>
               <div className="lg:col-span-8 xl:col-span-9 flex flex-col justify-center space-y-5">
-                <div className="space-y-2.5 bg-[#140305]/95 p-5 rounded-lg border border-[#415A77] dark:border-[#D4AF37]/40 shadow-inner relative overflow-hidden">
+                <div className="space-y-2.5 bg-[#0D1B2A]/90 dark:bg-[#140305]/95 p-5 rounded-lg border border-[#415A77] dark:border-[#D4AF37]/40 shadow-[0_4px_24px_rgba(0,0,0,0.4)] dark:shadow-inner relative overflow-hidden">
                   <div className="flex justify-between items-baseline font-mono text-xs">
                     <span className="text-[#D4AF37] dark:text-[#F5D77F] flex items-center gap-2 uppercase tracking-wider font-semibold">
                       <span className="w-2.5 h-2.5 rounded-full bg-[#F5D77F] animate-ping"></span>
@@ -263,7 +263,7 @@ export function Sanctum() {
                     </div>
                   </div>
                   <div className="flex items-center pl-2 md:pl-0">
-                    <button className="px-5 py-2.5 rounded-lg bg-gradient-to-r from-[#1B263B] to-[#415A77] dark:from-[#6D0808] dark:to-[#8b0e0e] text-[#D4AF37] dark:text-[#F5D77F] font-serif text-xs font-bold uppercase tracking-widest shadow-[0_0_15px_rgba(109,8,8,0.6)] border border-[#415A77] dark:border-[#F5D77F] flex items-center gap-2">
+                    <button className="px-5 py-2.5 rounded-lg bg-gradient-to-r from-[#1B263B] to-[#415A77] dark:from-[#6D0808] dark:to-[#8b0e0e] text-[#D4AF37] dark:text-[#F5D77F] font-serif text-xs font-bold uppercase tracking-widest shadow-[0_0_15px_rgba(65,90,119,0.6)] dark:shadow-[0_0_15px_rgba(109,8,8,0.6)] border border-[#415A77] dark:border-[#F5D77F] flex items-center gap-2">
                       <CheckCircle size={16} /> COMPLETE QUEST
                     </button>
                   </div>
