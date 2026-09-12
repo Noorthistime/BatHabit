@@ -6,6 +6,7 @@ import { api } from './api';
 import { Sanctum } from './pages/Sanctum';
 import { Questbook } from './pages/Questbook';
 import { Grimoire } from './pages/Grimoire';
+import { Shop } from './pages/Shop';
 import { Layout } from './components/layout/Layout';
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
@@ -52,6 +53,13 @@ export default function App() {
           <ProtectedRoute>
             <Layout>
               <Grimoire />
+            </Layout>
+          </ProtectedRoute>
+        } />
+        <Route path="/shop" element={
+          <ProtectedRoute>
+            <Layout>
+              <Shop />
             </Layout>
           </ProtectedRoute>
         } />
