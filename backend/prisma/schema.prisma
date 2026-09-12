@@ -1,0 +1,196 @@
+datasource db {
+  provider = "mysql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+model User {
+  id             String   @id @default(uuid())
+  email          String   @unique
+  passwordHash   String
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  character      Character?
+  attribute      Attribute?
+  streak         Streak?
+  currency       Currency?
+  quests         Quest[]
+  completions    QuestCompletion[]
+  transactions   Transaction[]
+  inventory      Inventory[]
+  achievements   Achievement[]
+}
+
+model Character {
+  id           String   @id @default(uuid())
+  userId       String   @unique
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  avatarUrl    String?
+  level        Int      @default(1)
+  totalXp      Int      @default(0)
+  currentTitle String   @default("Novice")
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Attribute {
+  id           String   @id @default(uuid())
+  userId       String   @unique
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  strengthXp   Int      @default(0)
+  intellectXp  Int      @default(0)
+  wisdomXp     Int      @default(0)
+  focusXp      Int      @default(0)
+  vitalityXp   Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Streak {
+  id               String   @id @default(uuid())
+  userId           String   @unique
+  user             User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  currentStreak    Int      @default(0)
+  bestStreak       Int      @default(0)
+  lastActivityDate DateTime?
+  createdAt        DateTime @default(now())
+  updatedAt        DateTime @updatedAt
+}
+
+model Currency {
+  id           String   @id @default(uuid())
+  userId       String   @unique
+  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  balance      Int      @default(0)
+  totalEarned  Int      @default(0)
+  totalSpent   Int      @default(0)
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+enum QuestCategory {
+  STRENGTH
+  INTELLECT
+  WISDOM
+  FOCUS
+  VITALITY
+  GENERAL
+}
+
+enum QuestDifficulty {
+  EASY
+  MEDIUM
+  HARD
+}
+
+enum QuestRecurrence {
+  ONCE
+  DAILY
+  WEEKLY
+  MONTHLY
+}
+
+enum QuestStatus {
+  PENDING
+  COMPLETED
+  FAILED
+}
+
+model Quest {
+  id          String   @id @default(uuid())
+  userId      String
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  title       String
+  description String?
+  category    QuestCategory
+  difficulty  QuestDifficulty
+  recurrence  QuestRecurrence @default(ONCE)
+  dueDate     DateTime?
+  status      QuestStatus     @default(PENDING)
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  completions QuestCompletion[]
+}
+
+model QuestCompletion {
+  id              String   @id @default(uuid())
+  questId         String
+  quest           Quest    @relation(fields: [questId], references: [id], onDelete: Cascade)
+  userId          String
+  user            User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  xpEarned        Int
+  currencyEarned  Int
+  attributeGained QuestCategory
+  completedAt     DateTime @default(now())
+}
+
+enum TransactionType {
+  EARN
+  SPEND
+}
+
+model Transaction {
+  id          String          @id @default(uuid())
+  userId      String
+  user        User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  amount      Int
+  type        TransactionType
+  description String
+  timestamp   DateTime        @default(now())
+}
+
+enum ItemRarity {
+  COMMON
+  RARE
+  EPIC
+  LEGENDARY
+}
+
+enum ItemCategory {
+  THEME
+  BADGE
+  AVATAR
+  FRAME
+  TITLE
+  COSMETIC
+}
+
+model ShopItem {
+  id          String       @id @default(uuid())
+  name        String
+  description String
+  rarity      ItemRarity
+  category    ItemCategory
+  price       Int
+  isAvailable Boolean      @default(true)
+  createdAt   DateTime     @default(now())
+
+  inventory   Inventory[]
+}
+
+model Inventory {
+  id         String    @id @default(uuid())
+  userId     String
+  user       User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  itemId     String
+  item       ShopItem  @relation(fields: [itemId], references: [id], onDelete: Cascade)
+  isEquipped Boolean   @default(false)
+  acquiredAt DateTime  @default(now())
+  
+  @@unique([userId, itemId])
+}
+
+model Achievement {
+  id         String   @id @default(uuid())
+  userId     String
+  user       User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  badgeName  String
+  unlockedAt DateTime @default(now())
+
+  @@unique([userId, badgeName])
+}
