@@ -1,1 +1,54 @@
 @import "tailwindcss";
+
+@theme {
+  --color-gothic-dark-900: #2D0000;
+  --color-gothic-dark-800: #6D0808;
+  --color-gothic-dark-400: #757D6F;
+  --color-gothic-dark-100: #EEEAD7;
+  
+  --color-gothic-light-100: #FAF7F0;
+  --color-gothic-light-200: #CDFCF6;
+  --color-gothic-light-300: #BCCEF8;
+  --color-gothic-light-400: #98A8F8;
+}
+
+@layer base {
+  :root {
+    --background: var(--color-gothic-light-100);
+    --foreground: var(--color-gothic-dark-900);
+    --primary: var(--color-gothic-dark-800);
+    --primary-foreground: var(--color-gothic-light-100);
+    --card: var(--color-gothic-light-200);
+    --card-foreground: var(--color-gothic-dark-900);
+    --muted: var(--color-gothic-light-300);
+    --muted-foreground: var(--color-gothic-dark-400);
+  }
+
+  .dark {
+    --background: var(--color-gothic-dark-900);
+    --foreground: var(--color-gothic-dark-100);
+    --primary: var(--color-gothic-dark-800);
+    --primary-foreground: var(--color-gothic-dark-100);
+    --card: var(--color-gothic-dark-800);
+    --card-foreground: var(--color-gothic-dark-100);
+    --muted: var(--color-gothic-dark-400);
+    --muted-foreground: var(--color-gothic-dark-100);
+  }
+
+  body {
+    background-color: var(--background);
+    color: var(--foreground);
+    font-family: 'Inter', system-ui, sans-serif;
+  }
+}
+
+@theme {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+}
