@@ -7,12 +7,32 @@ import QuestBook from './pages/QuestBook';
 import { ThemeProvider } from './context/ThemeContext';
 import { api } from './api';
 
-// Old placeholder pages if they still exist
+// Landing
 import { Landing } from './pages/Landing';
+
+// Sanctum uses old Layout to preserve its styling
 import { Sanctum } from './pages/Sanctum';
-import { Grimoire } from './pages/Grimoire';
-import { Shop } from './pages/Shop';
 import { Layout } from './components/layout/Layout';
+
+// New pages under DashboardLayout
+import { Grimoire } from './pages/Grimoire';
+import { Bloodline } from './pages/Bloodline';
+import { NightMarket } from './pages/NightMarket';
+import { Vault } from './pages/Vault';
+import { Chamber } from './pages/Chamber';
+
+// Placeholder for pages not yet built
+function ComingSoon({ title }: { title: string }) {
+  return (
+    <div className="flex flex-col items-center justify-center h-[60vh] gap-4">
+      <div className="font-mono text-[10px] uppercase tracking-[0.3em] text-[#D4AF37] bg-[#250101] px-3 py-1 border border-[#D4AF37]/30">
+        Coming Soon
+      </div>
+      <h1 className="font-serif text-3xl text-[#EEEAD7] font-bold">{title}</h1>
+      <p className="font-sans text-sm text-[#8d9685]">This sanctuary is still being forged in the obsidian fires.</p>
+    </div>
+  );
+}
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
@@ -25,7 +45,7 @@ function ProtectedRoute({ children }: { children: React.ReactNode }) {
       .finally(() => setLoading(false));
   }, []);
 
-  if (loading) return <div className="min-h-screen bg-[#0D1B2A] dark:bg-[#0a0204] flex items-center justify-center text-[#F7F3E9] dark:text-[#EEEAD7] font-serif">Opening the Codex...</div>;
+  if (loading) return <div className="min-h-screen bg-[#0c0608] flex items-center justify-center text-[#EEEAD7] font-serif">Opening the Codex...</div>;
   
   return authed ? <>{children}</> : <Navigate to="/" />;
 }
@@ -35,27 +55,38 @@ export default function App() {
     <ThemeProvider>
       <Router>
         <Routes>
+          {/* Public Routes */}
           <Route path="/" element={<Auth />} />
           <Route path="/landing" element={<Landing />} />
           
+          {/* Onboarding */}
           <Route path="/awakening" element={
             <ProtectedRoute>
               <Awakening />
             </ProtectedRoute>
           } />
-          
-          {/* Old Layout for Sanctum, Grimoire, Shop to preserve their original look */}
+
+          {/* Sanctum uses its own legacy Layout */}
           <Route path="/dashboard" element={<ProtectedRoute><Layout><Sanctum /></Layout></ProtectedRoute>} />
-          <Route path="/grimoire" element={<ProtectedRoute><Layout><Grimoire /></Layout></ProtectedRoute>} />
-          <Route path="/market" element={<ProtectedRoute><Layout><Shop /></Layout></ProtectedRoute>} />
-          
-          {/* New Dashboard Layout for Questbook */}
-          <Route path="/dashboard/questbook" element={
+
+          {/* All dashboard sub-pages use DashboardLayout */}
+          <Route path="/dashboard/*" element={
             <ProtectedRoute>
               <DashboardLayout />
             </ProtectedRoute>
           }>
-            <Route index element={<QuestBook />} />
+            <Route path="questbook" element={<QuestBook />} />
+            <Route path="grimoire" element={<Grimoire />} />
+            <Route path="bloodline" element={<Bloodline />} />
+            <Route path="market" element={<NightMarket />} />
+            <Route path="vault" element={<Vault />} />
+            <Route path="chamber" element={<Chamber />} />
+            <Route path="ascension" element={<ComingSoon title="The Ascension Path" />} />
+            <Route path="treasury" element={<ComingSoon title="The Treasury" />} />
+            <Route path="deeds" element={<ComingSoon title="Hall of Deeds" />} />
+            <Route path="chronicle" element={<ComingSoon title="The Chronicle" />} />
+            <Route path="ravens" element={<ComingSoon title="Ravens" />} />
+            <Route path="oracle" element={<ComingSoon title="The Oracle" />} />
           </Route>
         </Routes>
       </Router>

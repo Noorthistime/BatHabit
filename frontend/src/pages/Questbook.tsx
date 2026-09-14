@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { 
   Search, SlidersHorizontal, BookOpen, Brain, 
   Dumbbell, Focus as FocusIcon, Eye, CheckCircle, 
-  Flame, Calendar, Target, Award, Clock
+  Flame, Calendar, Target, Award, Clock, X
 } from 'lucide-react';
 
 type Discipline = 'INTELLECT' | 'VITALITY' | 'FOCUS' | 'STRENGTH' | 'WISDOM';
@@ -103,6 +103,7 @@ export default function QuestBook() {
   const [activeTab, setActiveTab] = useState('ACTIVE VOWS');
   const [selectedDisc, setSelectedDisc] = useState('ALL');
   const [selectedTier, setSelectedTier] = useState('ALL TIERS');
+  const [showForgeModal, setShowForgeModal] = useState(false);
 
   const getDisciplineIcon = (disc: string) => {
     switch (disc) {
@@ -147,7 +148,10 @@ export default function QuestBook() {
             Every vow inscribed resonates through the obsidian arches. Transmute mortal labor into sovereign arcane sovereignty through consecrated night vigils.
           </p>
           <div className="pt-2">
-            <button className="flex items-center gap-2 bg-[#6D0808] hover:bg-[#9e1313] text-white border border-[#D4AF37]/30 px-6 py-2.5 rounded font-serif font-bold text-sm transition-colors shadow-[0_0_15px_rgba(109,8,8,0.5)]">
+            <button 
+              onClick={() => setShowForgeModal(true)}
+              className="flex items-center gap-2 bg-[#6D0808] hover:bg-[#9e1313] text-white border border-[#D4AF37]/30 px-6 py-2.5 rounded font-serif font-bold text-sm transition-colors shadow-[0_0_15px_rgba(109,8,8,0.5)]"
+            >
               <span className="text-xl leading-none -mt-1">+</span> FORGE A QUEST <span className="font-mono text-[10px] ml-2 text-white/70">[N]</span>
             </button>
           </div>
@@ -372,7 +376,136 @@ export default function QuestBook() {
         ))}
       </div>
 
+      {/* Forge Quest Modal */}
       </div>
+      {showForgeModal && (
+        <div className="fixed inset-0 z-[200] flex items-center justify-center p-4" style={{ background: 'rgba(10,2,4,0.85)', backdropFilter: 'blur(8px)' }}>
+          <div
+            className="w-full max-w-lg max-h-[90vh] overflow-y-auto relative"
+            style={{ background: 'linear-gradient(135deg, #160003 0%, #0c0608 100%)', border: '1px solid rgba(212,175,55,0.5)', boxShadow: '0 0 60px rgba(109,8,8,0.6), inset 0 1px 0 rgba(212,175,55,0.15)' }}
+          >
+            {/* Corner Brackets */}
+            <div className="absolute top-0 left-0 w-5 h-5 border-t-2 border-l-2 border-[#D4AF37]/70" />
+            <div className="absolute top-0 right-0 w-5 h-5 border-t-2 border-r-2 border-[#D4AF37]/70" />
+            <div className="absolute bottom-0 left-0 w-5 h-5 border-b-2 border-l-2 border-[#D4AF37]/70" />
+            <div className="absolute bottom-0 right-0 w-5 h-5 border-b-2 border-r-2 border-[#D4AF37]/70" />
+
+            <div className="p-6 border-b border-[#D4AF37]/20 flex items-center justify-between">
+              <div>
+                <p className="font-mono text-[9px] uppercase tracking-[0.3em] text-[#D4AF37]">Sanctum Noctis • Codex of Vows</p>
+                <h2 className="font-serif text-xl font-bold text-[#EEEAD7] mt-0.5">Forge a Quest</h2>
+              </div>
+              <button onClick={() => setShowForgeModal(false)} className="text-[#8d9685] hover:text-[#D4AF37] transition-colors">
+                <X size={18} />
+              </button>
+            </div>
+
+            <form className="p-6 flex flex-col gap-4" onSubmit={e => { e.preventDefault(); setShowForgeModal(false); }}>
+
+              {/* Quest Name */}
+              <div className="flex flex-col gap-1.5">
+                <label className="font-mono text-[10px] uppercase tracking-widest text-[#D4AF37]">Quest Name *</label>
+                <input
+                  type="text"
+                  placeholder="Name your vow..."
+                  className="bg-[#1a0204] border border-[#D4AF37]/25 px-3 py-2.5 font-sans text-sm text-[#EEEAD7] placeholder-[#8d9685]/50 focus:border-[#D4AF37]/60 focus:outline-none transition-colors"
+                  style={{ boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.5)' }}
+                />
+              </div>
+
+              {/* Category + Discipline row */}
+              <div className="grid grid-cols-2 gap-3">
+                <div className="flex flex-col gap-1.5">
+                  <label className="font-mono text-[10px] uppercase tracking-widest text-[#D4AF37]">Category</label>
+                  <select className="bg-[#1a0204] border border-[#D4AF37]/25 px-3 py-2.5 font-mono text-xs text-[#EEEAD7] focus:border-[#D4AF37]/60 focus:outline-none" style={{ boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.5)' }}>
+                    <option value="">Select...</option>
+                    <option>Daily Rite</option>
+                    <option>Weekly Vow</option>
+                    <option>Epic Quest</option>
+                    <option>Recurring Rite</option>
+                  </select>
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  <label className="font-mono text-[10px] uppercase tracking-widest text-[#D4AF37]">Discipline</label>
+                  <select className="bg-[#1a0204] border border-[#D4AF37]/25 px-3 py-2.5 font-mono text-xs text-[#EEEAD7] focus:border-[#D4AF37]/60 focus:outline-none" style={{ boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.5)' }}>
+                    <option value="">Select...</option>
+                    <option>Intellect</option>
+                    <option>Vitality</option>
+                    <option>Focus</option>
+                    <option>Strength</option>
+                    <option>Wisdom</option>
+                  </select>
+                </div>
+              </div>
+
+              {/* Difficulty */}
+              <div className="flex flex-col gap-1.5">
+                <label className="font-mono text-[10px] uppercase tracking-widest text-[#D4AF37]">Difficulty Tier</label>
+                <div className="flex gap-2">
+                  {['I', 'II', 'III', 'IV', 'V'].map(t => (
+                    <button
+                      key={t}
+                      type="button"
+                      className="flex-1 py-2 font-mono text-xs font-bold transition-all"
+                      style={{ background: t === 'III' ? '#6D0808' : 'rgba(35,6,8,0.8)', border: `1px solid ${t === 'III' ? 'rgba(212,175,55,0.5)' : 'rgba(212,175,55,0.15)'}`, color: t === 'III' ? '#D4AF37' : '#8d9685' }}
+                    >
+                      {t}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* XP + Crowns */}
+              <div className="grid grid-cols-2 gap-3">
+                <div className="flex flex-col gap-1.5">
+                  <label className="font-mono text-[10px] uppercase tracking-widest text-[#D4AF37]">XP Reward</label>
+                  <input type="number" defaultValue={50} className="bg-[#1a0204] border border-[#D4AF37]/25 px-3 py-2.5 font-mono text-sm text-[#EEEAD7] focus:border-[#D4AF37]/60 focus:outline-none" style={{ boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.5)' }} />
+                </div>
+                <div className="flex flex-col gap-1.5">
+                  <label className="font-mono text-[10px] uppercase tracking-widest text-[#D4AF37]">Crown Reward</label>
+                  <input type="number" defaultValue={15} className="bg-[#1a0204] border border-[#D4AF37]/25 px-3 py-2.5 font-mono text-sm text-[#EEEAD7] focus:border-[#D4AF37]/60 focus:outline-none" style={{ boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.5)' }} />
+                </div>
+              </div>
+
+              {/* Due Date */}
+              <div className="flex flex-col gap-1.5">
+                <label className="font-mono text-[10px] uppercase tracking-widest text-[#D4AF37]">Due Date</label>
+                <input type="date" className="bg-[#1a0204] border border-[#D4AF37]/25 px-3 py-2.5 font-mono text-sm text-[#EEEAD7] focus:border-[#D4AF37]/60 focus:outline-none" style={{ boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.5)', colorScheme: 'dark' }} />
+              </div>
+
+              {/* Description */}
+              <div className="flex flex-col gap-1.5">
+                <label className="font-mono text-[10px] uppercase tracking-widest text-[#D4AF37]">Quest Lore (optional)</label>
+                <textarea
+                  rows={3}
+                  placeholder="Describe the ancient rite..."
+                  className="bg-[#1a0204] border border-[#D4AF37]/25 px-3 py-2.5 font-sans text-sm text-[#EEEAD7] placeholder-[#8d9685]/50 focus:border-[#D4AF37]/60 focus:outline-none resize-none"
+                  style={{ boxShadow: 'inset 0 2px 4px rgba(0,0,0,0.5)' }}
+                />
+              </div>
+
+              {/* Actions */}
+              <div className="flex gap-3 pt-2">
+                <button
+                  type="submit"
+                  className="flex-1 py-3 font-mono text-xs uppercase tracking-widest font-bold transition-all"
+                  style={{ background: '#6D0808', border: '1px solid rgba(212,175,55,0.5)', color: '#D4AF37', boxShadow: '0 0 20px rgba(109,8,8,0.5)' }}
+                >
+                  ✦ Seal the Vow
+                </button>
+                <button
+                  type="button"
+                  onClick={() => setShowForgeModal(false)}
+                  className="px-6 py-3 font-mono text-xs uppercase tracking-widest transition-all"
+                  style={{ background: 'transparent', border: '1px solid rgba(212,175,55,0.2)', color: '#8d9685' }}
+                >
+                  Cancel
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      )}
     </>
   );
 }

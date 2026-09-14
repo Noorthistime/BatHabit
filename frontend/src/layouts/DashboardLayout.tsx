@@ -3,21 +3,18 @@ import { NavLink, Outlet } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
 import { 
   Home, BookOpen, Scroll, Droplet, 
-  Coins, Store, Vault, Landmark, 
+  Coins, Store, Archive, Landmark, 
   History, Bell, MessageSquare, Key, 
-  Moon, Sun, User
+  Moon, Sun, User, Zap
 } from 'lucide-react';
 
 const SANCTUARIES = [
   { name: 'Sanctum', icon: Home, path: '/dashboard' },
   { name: 'Questbook', icon: BookOpen, path: '/dashboard/questbook' },
   { name: 'Grimoire', icon: Scroll, path: '/dashboard/grimoire' },
-  { name: 'Ascension', icon: Scroll, path: '/dashboard/ascension' },
   { name: 'Bloodline', icon: Droplet, path: '/dashboard/bloodline' },
-  { name: 'Treasury', icon: Coins, path: '/dashboard/treasury' },
   { name: 'Night Market', icon: Store, path: '/dashboard/market' },
-  { name: 'Vault', icon: Vault, path: '/dashboard/vault' },
-  { name: 'Hall of Deeds', icon: Landmark, path: '/dashboard/deeds' },
+  { name: 'Vault', icon: Archive, path: '/dashboard/vault' },
   { name: 'Chronicle', icon: History, path: '/dashboard/chronicle' },
 ];
 
