@@ -117,59 +117,35 @@ export default function DashboardLayout() {
       <div className="flex-1 flex flex-col h-screen overflow-hidden relative z-10 md:pl-72">
 
         {/* Top Header */}
-        <header className="h-20 border-b border-[#415A77] dark:border-[#3a0404] bg-[#0D1B2A]/90 dark:bg-[#060102]/90 backdrop-blur-md flex items-center justify-between px-8 z-40 shrink-0">
-
-          <div className="flex flex-col gap-1.5">
-            <div className="flex items-center gap-3">
-              <h2 className="font-serif text-xl font-bold text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
+        <header className="h-20 border-b border-[#415A77] dark:border-[#D4AF37]/35 bg-[#0D1B2A]/92 dark:bg-[#140406]/92 backdrop-blur-xl flex items-center justify-between px-8 z-40 shrink-0 shadow-[0_4px_32px_rgba(0,0,0,0.85)]">
+          
+          <div className="flex items-center gap-4">
+            <div className="flex flex-col">
+              <span className="font-serif text-lg font-bold text-[#F7F3E9] dark:text-[#EEEAD7] tracking-wide flex items-center gap-2">
                 Good evening, Alistair Vance
-              </h2>
-              <span className="bg-[#1B263B] dark:bg-[#1a0101] border border-[#415A77] dark:border-[#3a0404] px-2 py-0.5 rounded font-mono text-[9px] uppercase tracking-widest text-[#F7F3E9]/70">
-                RANK VII
+                <span className="font-mono text-[11px] font-normal px-2 py-0.5 rounded bg-[#415A77] dark:bg-[#2c0000] text-[#D4AF37] dark:text-[#F5D77F] border border-[#415A77] dark:border-[#D4AF37]/45">RANK 7</span>
               </span>
-            </div>
-            <div className="flex items-center gap-2 font-sans text-xs text-[#F7F3E9]/50 dark:text-[#8d9685]">
-              <Moon size={12} className="text-[#D4AF37]" />
-              <span>Waxing Gibbous • Cycle VII Nocturne</span>
+              <span className="font-mono text-xs text-[#D4AF37] dark:text-[#C5A059] flex items-center gap-1.5">
+                Waxing Gibbous • Cycle VII Nocturne
+              </span>
             </div>
           </div>
 
-          <div className="flex items-center gap-6">
-            {/* Crowns Widget */}
-            <div className="flex items-center gap-2 bg-[#1B263B]/50 dark:bg-[#1a0101] border border-[#415A77] dark:border-[#3a0404] rounded-full px-4 py-1.5 shadow-inner">
-              <Coins size={14} className="text-[#D4AF37]" />
-              <span className="font-serif text-sm font-bold text-[#F7F3E9] dark:text-[#EEEAD7]">2,840</span>
-              <span className="font-mono text-[9px] uppercase tracking-widest text-[#D4AF37]">CROWNS</span>
-            </div>
-
-            {/* Theme Toggle */}
-            <button
-              onClick={toggleTheme}
-              className="flex items-center gap-2 bg-[#1B263B]/50 dark:bg-[#1a0101] border border-[#415A77] dark:border-[#3a0404] rounded-full px-4 py-1.5 hover:bg-[#1B263B] dark:hover:bg-[#3a0404] transition-colors"
-            >
-              {theme === 'dark' ? (
-                <>
-                  <Moon size={12} className="text-[#F5D77F]" />
-                  <span className="font-mono text-[9px] text-[#D4AF37] uppercase tracking-wider font-semibold">Night Realm</span>
-                </>
-              ) : (
-                <>
-                  <Sun size={12} className="text-[#F5D77F]" />
-                  <span className="font-mono text-[9px] text-[#F5D77F] uppercase tracking-wider font-semibold">Light Realm</span>
-                </>
-              )}
-            </button>
-
-            {/* Profile Snippet */}
-            <div className="flex items-center gap-3 pl-4 border-l border-[#415A77] dark:border-[#3a0404]">
-              <div className="w-10 h-10 rounded-full border border-[#6D0808] dark:border-red-900 bg-[#0D1B2A] dark:bg-[#060102] flex items-center justify-center overflow-hidden">
-                <span className="text-red-500 font-serif font-bold">V</span>
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#0D1B2A] dark:bg-gradient-to-r dark:from-[#280406] dark:to-[#140203] border border-[#415A77] dark:border-[#D4AF37]/60 shadow-[0_0_18px_rgba(212,175,55,0.3)]">
+              <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-[#947014] via-[#F5D77F] to-[#D4AF37] flex items-center justify-center text-[#0c0608] font-bold text-xs shadow-md border border-[#FFF5C0]">
+                <span className="font-serif">✦</span>
               </div>
-              <div className="flex flex-col hidden lg:flex">
-                <span className="font-serif text-xs font-bold text-white uppercase tracking-wider">Alistair Vance</span>
-                <span className="font-mono text-[9px] text-[#F7F3E9]/50 dark:text-[#8d9685] tracking-widest uppercase flex items-center gap-1">
-                  <span className="text-[#6D0808] dark:text-red-500 font-bold">VII</span> Nightwalker Scholar
-                </span>
+              <span className="font-serif text-base font-bold text-[#D4AF37] dark:text-[#F5D77F] tracking-wider">2,840</span>
+              <span className="font-mono text-[10px] text-[#D4AF37] dark:text-[#C5A059] uppercase font-bold tracking-widest">Crowns</span>
+            </div>
+            
+            <div className="flex items-center gap-3 pl-3 border-l border-[#415A77] dark:border-[#D4AF37]/30">
+              <button onClick={toggleTheme} className="w-10 h-10 rounded-full bg-[#1B263B] dark:bg-[#3d0303] flex items-center justify-center border-2 border-[#415A77] dark:border-[#D4AF37] shadow-[0_0_12px_rgba(212,175,55,0.6)] text-[#D4AF37] dark:text-[#F5D77F] hover:scale-105 transition-transform">
+                {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+              </button>
+              <div className="w-10 h-10 rounded-full bg-[#1B263B] dark:bg-[#3d0303] flex items-center justify-center border-2 border-[#415A77] dark:border-[#D4AF37] shadow-[0_0_12px_rgba(212,175,55,0.6)] text-[#D4AF37] dark:text-[#F5D77F]">
+                <User size={20} />
               </div>
             </div>
           </div>
