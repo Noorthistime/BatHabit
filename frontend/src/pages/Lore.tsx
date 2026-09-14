@@ -65,7 +65,7 @@ export function Lore() {
           <h2 className="font-serif text-2xl text-[#F7F3E9] dark:text-[#EEEAD7] uppercase tracking-wide">The Gate & Awakening</h2>
         </motion.div>
         
-        <motion.div variants={fadeIn} className="bg-[#1B263B]/50 dark:bg-[#3a0404] border border-[#415A77] dark:border-[#D4AF37]/70 p-6 rounded-lg shadow-lg">
+        <motion.div variants={fadeIn} className="bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 p-6 rounded-xl shadow-lg dark:shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
           <p className="font-sans text-[#F7F3E9]/80 dark:text-[#8d9685] leading-relaxed mb-4">
             Your journey begins at <strong>The Gate</strong>, the portal that separates the mortal world from the Night Realm. Here, you create your account and bind your soul to BatHabit.
           </p>
@@ -90,7 +90,7 @@ export function Lore() {
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           
-          <motion.div variants={slideLeft} className="bg-[#1B263B]/50 dark:bg-[#3a0404] border border-[#415A77] dark:border-[#D4AF37]/70 p-6 rounded-lg shadow-lg">
+          <motion.div variants={slideLeft} className="bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 p-6 rounded-xl shadow-lg dark:shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
             <div className="flex items-center gap-4 mb-4">
               <div className="bg-[#0D1B2A] dark:bg-[#060102] p-3 rounded-full border border-[#415A77] dark:border-[#3a0404] text-[#D4AF37]">
                 <Home size={24} />
@@ -102,7 +102,7 @@ export function Lore() {
             </p>
           </motion.div>
 
-          <motion.div variants={slideRight} className="bg-[#1B263B]/50 dark:bg-[#3a0404] border border-[#415A77] dark:border-[#D4AF37]/70 p-6 rounded-lg shadow-lg md:mt-12">
+          <motion.div variants={slideRight} className="bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 p-6 rounded-xl shadow-lg dark:shadow-[0_10px_30px_rgba(0,0,0,0.8)] md:mt-12">
             <div className="flex items-center gap-4 mb-4">
               <div className="bg-[#0D1B2A] dark:bg-[#060102] p-3 rounded-full border border-[#415A77] dark:border-[#3a0404] text-[#D4AF37]">
                 <BookOpen size={24} />
@@ -114,7 +114,7 @@ export function Lore() {
             </p>
           </motion.div>
           
-          <motion.div variants={slideLeft} className="bg-[#1B263B]/50 dark:bg-[#3a0404] border border-[#415A77] dark:border-[#D4AF37]/70 p-6 rounded-lg shadow-lg">
+          <motion.div variants={slideLeft} className="bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 p-6 rounded-xl shadow-lg dark:shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
             <div className="flex items-center gap-4 mb-4">
               <div className="bg-[#0D1B2A] dark:bg-[#060102] p-3 rounded-full border border-[#415A77] dark:border-[#3a0404] text-[#D4AF37]">
                 <Scroll size={24} />
@@ -126,7 +126,7 @@ export function Lore() {
             </p>
           </motion.div>
 
-          <motion.div variants={slideRight} className="bg-[#1B263B]/50 dark:bg-[#3a0404] border border-[#415A77] dark:border-[#D4AF37]/70 p-6 rounded-lg shadow-lg md:mt-12">
+          <motion.div variants={slideRight} className="bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 p-6 rounded-xl shadow-lg dark:shadow-[0_10px_30px_rgba(0,0,0,0.8)] md:mt-12">
             <div className="flex items-center gap-4 mb-4">
               <div className="bg-[#0D1B2A] dark:bg-[#060102] p-3 rounded-full border border-[#415A77] dark:border-[#3a0404] text-[#D4AF37]">
                 <Droplet size={24} />
@@ -138,7 +138,7 @@ export function Lore() {
             </p>
           </motion.div>
 
-          <motion.div variants={slideLeft} className="bg-[#1B263B]/50 dark:bg-[#3a0404] border border-[#415A77] dark:border-[#D4AF37]/70 p-6 rounded-lg shadow-lg">
+          <motion.div variants={slideLeft} className="bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 p-6 rounded-xl shadow-lg dark:shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
             <div className="flex items-center gap-4 mb-4">
               <div className="bg-[#0D1B2A] dark:bg-[#060102] p-3 rounded-full border border-[#415A77] dark:border-[#3a0404] text-[#D4AF37]">
                 <Store size={24} />
@@ -150,7 +150,7 @@ export function Lore() {
             </p>
           </motion.div>
 
-          <motion.div variants={slideRight} className="bg-[#1B263B]/50 dark:bg-[#3a0404] border border-[#415A77] dark:border-[#D4AF37]/70 p-6 rounded-lg shadow-lg md:mt-12">
+          <motion.div variants={slideRight} className="bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 p-6 rounded-xl shadow-lg dark:shadow-[0_10px_30px_rgba(0,0,0,0.8)] md:mt-12">
             <div className="flex items-center gap-4 mb-4">
               <div className="bg-[#0D1B2A] dark:bg-[#060102] p-3 rounded-full border border-[#415A77] dark:border-[#3a0404] text-[#D4AF37]">
                 <Archive size={24} />
@@ -178,7 +178,7 @@ export function Lore() {
           <h2 className="font-serif text-2xl text-[#F7F3E9] dark:text-[#EEEAD7] uppercase tracking-wide">The Currency</h2>
         </motion.div>
         
-        <motion.div variants={fadeIn} className="bg-[#1B263B]/50 dark:bg-[#3a0404] border border-[#415A77] dark:border-[#D4AF37]/70 p-6 rounded-lg shadow-lg">
+        <motion.div variants={fadeIn} className="bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 p-6 rounded-xl shadow-lg dark:shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
           <div className="flex items-center gap-4 mb-4">
             <div className="bg-[#0D1B2A] dark:bg-[#060102] p-3 rounded-full border border-[#415A77] dark:border-[#3a0404] text-[#D4AF37]">
               <Coins size={24} />
@@ -212,7 +212,7 @@ export function Lore() {
           {/* The connecting string */}
           <div className="absolute left-4 md:left-6 top-8 bottom-0 w-0.5 bg-gradient-to-b from-[#D4AF37] via-[#D4AF37]/50 to-transparent"></div>
           
-          <motion.div variants={slideRight} className="relative bg-[#1B263B]/50 dark:bg-[#3a0404] border border-[#415A77] dark:border-[#D4AF37]/70 p-6 rounded-lg shadow-lg">
+          <motion.div variants={slideRight} className="relative bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 p-6 rounded-xl shadow-lg dark:shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
             <div className="absolute top-6 -left-[2.85rem] md:-left-[3.35rem] w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#0D1B2A] dark:bg-[#060102] border-2 border-[#D4AF37] flex items-center justify-center text-[#D4AF37] font-serif text-xl md:text-2xl font-bold z-10 shadow-[0_0_10px_rgba(212,175,55,0.4)]">
               1
             </div>
@@ -224,7 +224,7 @@ export function Lore() {
             </p>
           </motion.div>
 
-          <motion.div variants={slideRight} className="relative bg-[#1B263B]/50 dark:bg-[#3a0404] border border-[#415A77] dark:border-[#D4AF37]/70 p-6 rounded-lg shadow-lg">
+          <motion.div variants={slideRight} className="relative bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 p-6 rounded-xl shadow-lg dark:shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
             <div className="absolute top-6 -left-[2.85rem] md:-left-[3.35rem] w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#0D1B2A] dark:bg-[#060102] border-2 border-[#D4AF37] flex items-center justify-center text-[#D4AF37] font-serif text-xl md:text-2xl font-bold z-10 shadow-[0_0_10px_rgba(212,175,55,0.4)]">
               2
             </div>
@@ -236,7 +236,7 @@ export function Lore() {
             </p>
           </motion.div>
 
-          <motion.div variants={slideRight} className="relative bg-[#1B263B]/50 dark:bg-[#3a0404] border border-[#415A77] dark:border-[#D4AF37]/70 p-6 rounded-lg shadow-lg">
+          <motion.div variants={slideRight} className="relative bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 p-6 rounded-xl shadow-lg dark:shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
             <div className="absolute top-6 -left-[2.85rem] md:-left-[3.35rem] w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#0D1B2A] dark:bg-[#060102] border-2 border-[#D4AF37] flex items-center justify-center text-[#D4AF37] font-serif text-xl md:text-2xl font-bold z-10 shadow-[0_0_10px_rgba(212,175,55,0.4)]">
               3
             </div>
@@ -248,7 +248,7 @@ export function Lore() {
             </p>
           </motion.div>
 
-          <motion.div variants={slideRight} className="relative bg-[#1B263B]/50 dark:bg-[#3a0404] border border-[#415A77] dark:border-[#D4AF37]/70 p-6 rounded-lg shadow-lg">
+          <motion.div variants={slideRight} className="relative bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 p-6 rounded-xl shadow-lg dark:shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
             <div className="absolute top-6 -left-[2.85rem] md:-left-[3.35rem] w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#0D1B2A] dark:bg-[#060102] border-2 border-[#D4AF37] flex items-center justify-center text-[#D4AF37] font-serif text-xl md:text-2xl font-bold z-10 shadow-[0_0_10px_rgba(212,175,55,0.4)]">
               4
             </div>
@@ -260,7 +260,7 @@ export function Lore() {
             </p>
           </motion.div>
 
-          <motion.div variants={slideRight} className="relative bg-[#1B263B]/50 dark:bg-[#3a0404] border border-[#415A77] dark:border-[#D4AF37]/70 p-6 rounded-lg shadow-lg">
+          <motion.div variants={slideRight} className="relative bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 p-6 rounded-xl shadow-lg dark:shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
             <div className="absolute top-6 -left-[2.85rem] md:-left-[3.35rem] w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#0D1B2A] dark:bg-[#060102] border-2 border-[#D4AF37] flex items-center justify-center text-[#D4AF37] font-serif text-xl md:text-2xl font-bold z-10 shadow-[0_0_10px_rgba(212,175,55,0.4)]">
               5
             </div>

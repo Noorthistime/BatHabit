@@ -77,12 +77,7 @@ export function Grimoire() {
         {/* Character Card */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
           <div
-            className="rounded-none p-6 flex flex-col items-center text-center gap-4 relative overflow-hidden col-span-1"
-            style={{
-              background: 'linear-gradient(135deg, rgba(35,6,8,0.95) 0%, rgba(25,2,4,0.98) 100%)',
-              border: '1px solid rgba(212,175,55,0.45)',
-              boxShadow: '0 0 30px rgba(109,8,8,0.4), inset 0 1px 0 rgba(212,175,55,0.15)',
-            }}
+            className="rounded-xl p-6 flex flex-col items-center text-center gap-4 relative overflow-hidden col-span-1 bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 shadow-[0_0_30px_rgba(109,8,8,0.4)]"
           >
             {/* Corner Brackets */}
             <div className="absolute top-0 left-0 w-4 h-4 border-t-2 border-l-2 border-[#D4AF37]/70" />
@@ -171,12 +166,7 @@ export function Grimoire() {
                 {ATTRIBUTES.map(attr => (
                   <div
                     key={attr.key}
-                    className="p-4 flex flex-col gap-2 relative"
-                    style={{
-                      background: 'rgba(35,6,8,0.7)',
-                      border: '1px solid rgba(212,175,55,0.2)',
-                      boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.03)',
-                    }}
+                    className="p-4 flex flex-col gap-2 relative rounded-xl bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-sm border border-[#415A77] dark:border-[#D4AF37]/25 shadow-md"
                   >
                     <div className="flex items-center justify-between">
                       <div className="flex items-center gap-2">
@@ -260,11 +250,7 @@ export function Grimoire() {
                 {ACHIEVEMENTS.map(a => (
                   <div
                     key={a.title}
-                    className={`p-4 flex flex-col gap-2 ${!a.earned ? 'opacity-40 grayscale' : ''}`}
-                    style={{
-                      background: 'rgba(35,6,8,0.7)',
-                      border: `1px solid ${a.earned ? RARITY_COLORS[a.rarity] + '50' : 'rgba(212,175,55,0.1)'}`,
-                    }}
+                    className={`p-4 flex flex-col gap-2 rounded-xl bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-sm shadow-md ${!a.earned ? 'opacity-40 grayscale border border-[#415A77]/50 dark:border-[#D4AF37]/20' : 'border border-[#415A77] dark:border-[#D4AF37]/45'}`}
                   >
                     <div className="text-2xl">{a.icon}</div>
                     <div>

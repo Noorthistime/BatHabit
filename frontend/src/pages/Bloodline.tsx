@@ -85,8 +85,7 @@ export function Bloodline() {
           {/* Big Streak Counters */}
           <div className="flex gap-4 shrink-0">
             <div
-              className="px-6 py-4 text-center"
-              style={{ background: 'rgba(35,6,8,0.9)', border: '1px solid rgba(212,175,55,0.45)', boxShadow: '0 0 20px rgba(109,8,8,0.4)' }}
+              className="px-6 py-4 text-center rounded-xl bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 shadow-[0_0_20px_rgba(109,8,8,0.4)]"
             >
               <div className="flex items-center gap-2 justify-center mb-1">
                 <Flame size={16} className="text-orange-400" />
@@ -96,8 +95,7 @@ export function Bloodline() {
               <div className="font-mono text-[9px] text-[#8d9685] uppercase tracking-widest mt-0.5">Days</div>
             </div>
             <div
-              className="px-6 py-4 text-center"
-              style={{ background: 'rgba(35,6,8,0.6)', border: '1px solid rgba(212,175,55,0.2)' }}
+              className="px-6 py-4 text-center rounded-xl bg-[#1B263B] dark:bg-[rgba(35,6,8,0.5)] backdrop-blur-md border border-[#415A77]/50 dark:border-[#D4AF37]/25 shadow-md"
             >
               <div className="flex items-center gap-2 justify-center mb-1">
                 <Target size={14} className="text-[#D4AF37]" />
@@ -119,8 +117,7 @@ export function Bloodline() {
           ].map(s => (
             <div
               key={s.label}
-              className="p-4 flex flex-col gap-2"
-              style={{ background: 'rgba(35,6,8,0.7)', border: '1px solid rgba(212,175,55,0.2)' }}
+              className="p-4 flex flex-col gap-2 rounded-xl bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-sm border border-[#415A77] dark:border-[#D4AF37]/25 shadow-md"
             >
               <s.icon size={14} style={{ color: s.color }} />
               <div className="font-mono text-2xl font-bold" style={{ color: s.color }}>{s.value}</div>
@@ -134,8 +131,7 @@ export function Bloodline() {
 
         {/* Activity Calendar */}
         <div
-          className="p-5 flex flex-col gap-4"
-          style={{ background: 'rgba(25,4,6,0.95)', border: '1px solid rgba(212,175,55,0.25)', boxShadow: 'inset 0 1px 0 rgba(212,175,55,0.1)' }}
+          className="p-5 flex flex-col gap-4 rounded-xl bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 shadow-lg"
         >
           <div className="flex items-center justify-between">
             <div>
@@ -178,8 +174,7 @@ export function Bloodline() {
 
         {/* Recent Activity */}
         <div
-          className="p-5"
-          style={{ background: 'rgba(25,4,6,0.95)', border: '1px solid rgba(212,175,55,0.25)' }}
+          className="p-5 rounded-xl bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 shadow-lg"
         >
           <p className="font-mono text-xs uppercase tracking-widest text-[#D4AF37] mb-4">Recent Completions</p>
           <div className="flex flex-col">

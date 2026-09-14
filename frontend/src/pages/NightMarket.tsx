@@ -64,8 +64,7 @@ export function NightMarket() {
 
           {/* Wallet */}
           <div
-            className="flex items-center gap-3 px-5 py-3 shrink-0"
-            style={{ background: 'rgba(35,6,8,0.95)', border: '1px solid rgba(212,175,55,0.5)', boxShadow: '0 0 20px rgba(212,175,55,0.15)' }}
+            className="flex items-center gap-3 px-5 py-3 shrink-0 rounded-xl bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 shadow-lg"
           >
             <Coins size={18} className="text-[#D4AF37]" />
             <div>
@@ -99,12 +98,11 @@ export function NightMarket() {
           {filtered.map(item => (
             <div
               key={item.id}
-              className="p-5 flex flex-col gap-3 relative transition-all group"
-              style={{
-                background: 'rgba(25,4,6,0.95)',
-                border: `1px solid ${item.owned ? 'rgba(212,175,55,0.4)' : 'rgba(212,175,55,0.15)'}`,
-                boxShadow: item.owned ? '0 0 15px rgba(212,175,55,0.1)' : 'none',
-              }}
+              className={`p-5 flex flex-col gap-3 relative transition-all group rounded-xl bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md shadow-lg ${
+                item.owned 
+                  ? 'border border-[#415A77] dark:border-[#D4AF37]/45 dark:shadow-[0_0_15px_rgba(212,175,55,0.1)]' 
+                  : 'border border-[#415A77]/50 dark:border-[#D4AF37]/25'
+              }`}
             >
               {/* Corner brackets on hover */}
               <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-[#D4AF37]/0 group-hover:border-[#D4AF37]/70 transition-all" />

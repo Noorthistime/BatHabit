@@ -158,10 +158,10 @@ function NotificationCard({ notification, onRead }: { notification: Notification
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       onClick={onRead}
-      className={`relative flex gap-4 p-5 rounded-lg border cursor-pointer transition-all ${
+      className={`relative flex gap-4 p-5 rounded-xl border cursor-pointer transition-all ${
         !notification.read 
-          ? 'bg-[#1B263B]/80 dark:bg-[#1a0101]/80 border-[#415A77] dark:border-[#D4AF37]/50 shadow-md' 
-          : 'bg-[#1B263B]/30 dark:bg-[#060102]/60 border-[#415A77]/50 dark:border-[#3a0404] opacity-75 hover:opacity-100 hover:bg-[#1B263B]/50 dark:hover:bg-[#1a0101]/80'
+          ? 'bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border-[#415A77] dark:border-[#D4AF37]/45 shadow-lg dark:shadow-[0_10px_30px_rgba(0,0,0,0.8)]' 
+          : 'bg-[#1B263B]/50 dark:bg-[rgba(35,6,8,0.4)] backdrop-blur-sm border-[#415A77]/50 dark:border-[#D4AF37]/20 opacity-75 hover:opacity-100 hover:bg-[#1B263B] dark:hover:bg-[rgba(35,6,8,0.78)] dark:hover:border-[#D4AF37]/45 shadow-sm'
       }`}
     >
       {/* Unread Dot */}

@@ -42,8 +42,7 @@ function SettingRow({ label, desc, children }: { label: string; desc?: string; c
 function SectionCard({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div
-      className="p-5 flex flex-col"
-      style={{ background: 'rgba(25,4,6,0.95)', border: '1px solid rgba(212,175,55,0.2)', boxShadow: 'inset 0 1px 0 rgba(212,175,55,0.05)' }}
+      className="p-5 flex flex-col rounded-xl bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 shadow-lg"
     >
       <div className="flex items-center gap-2 mb-1 pb-3 border-b border-[#D4AF37]/15">
         <div className="w-1 h-4 bg-[#D4AF37]" />
@@ -93,8 +92,7 @@ export function Chamber() {
 
           {/* Section Navigation */}
           <div
-            className="lg:col-span-1 h-fit"
-            style={{ background: 'rgba(25,4,6,0.95)', border: '1px solid rgba(212,175,55,0.2)' }}
+            className="lg:col-span-1 h-fit rounded-xl bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 shadow-lg overflow-hidden"
           >
             {SECTIONS.map(sec => (
               <button

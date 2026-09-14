@@ -96,12 +96,11 @@ export function Vault() {
                 return (
                   <div
                     key={item.id}
-                    className="p-4 flex flex-col items-center gap-2 text-center cursor-pointer transition-all group"
-                    style={{
-                      background: isEquipped ? 'rgba(109,8,8,0.3)' : 'rgba(25,4,6,0.9)',
-                      border: `1px solid ${isEquipped ? 'rgba(212,175,55,0.5)' : 'rgba(212,175,55,0.15)'}`,
-                      boxShadow: isEquipped ? '0 0 15px rgba(109,8,8,0.4)' : 'none',
-                    }}
+                    className={`p-4 flex flex-col items-center gap-2 text-center cursor-pointer transition-all group rounded-xl bg-[#1B263B] backdrop-blur-md shadow-md ${
+                      isEquipped 
+                        ? 'dark:bg-[rgba(109,8,8,0.3)] border border-[#415A77] dark:border-[#D4AF37]/50 dark:shadow-[0_0_15px_rgba(109,8,8,0.4)]' 
+                        : 'dark:bg-[rgba(35,6,8,0.78)] border border-[#415A77]/50 dark:border-[#D4AF37]/25 hover:border-[#415A77] dark:hover:border-[#D4AF37]/45'
+                    }`}
                     onClick={() => toggleEquip(item.id, item.category)}
                   >
                     <div className="text-4xl">{item.icon}</div>
@@ -131,8 +130,7 @@ export function Vault() {
 
           {/* Active Loadout Panel */}
           <div
-            className="p-5 flex flex-col gap-4"
-            style={{ background: 'rgba(25,4,6,0.95)', border: '1px solid rgba(212,175,55,0.3)', boxShadow: 'inset 0 1px 0 rgba(212,175,55,0.08)' }}
+            className="p-5 flex flex-col gap-4 rounded-xl bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 shadow-lg"
           >
             <div>
               <p className="font-mono text-xs uppercase tracking-widest text-[#D4AF37]">Active Loadout</p>

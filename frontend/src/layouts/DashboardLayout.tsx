@@ -31,8 +31,8 @@ export default function DashboardLayout() {
     <div className="min-h-screen bg-[#0D1B2A] dark:bg-[#0a0204] text-[#F7F3E9] dark:text-[#EEEAD7] font-sans overflow-hidden flex">
       {/* Background Ambience */}
       <div className="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
-        <div className="absolute top-0 right-0 w-2/3 h-2/3 bg-[#415A77]/10 dark:bg-[#6D0808]/10 rounded-bl-full blur-[120px]"></div>
-        <div className="absolute bottom-0 left-0 w-2/3 h-2/3 bg-[#415A77]/10 dark:bg-[#6D0808]/10 rounded-tr-full blur-[120px]"></div>
+        <div className="absolute top-0 right-0 w-2/3 h-2/3 bg-[#415A77]/10 dark:bg-[#6D0808]/30 rounded-bl-full blur-[120px]"></div>
+        <div className="absolute bottom-0 left-0 w-2/3 h-2/3 bg-[#415A77]/10 dark:bg-[#f59e0b]/10 rounded-tr-full blur-[120px]"></div>
       </div>
 
       {/* Desktop Sidebar (The Gothic Rail) */}

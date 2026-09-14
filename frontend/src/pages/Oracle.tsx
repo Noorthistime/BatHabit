@@ -118,8 +118,8 @@ export function Oracle() {
                 <div 
                   className={`p-4 rounded-2xl ${
                     msg.sender === 'user' 
-                      ? 'bg-[#1B263B] dark:bg-[#3a0404] text-[#F7F3E9] dark:text-[#EEEAD7] rounded-br-sm border border-[#415A77] dark:border-[#6D0808] shadow-md' 
-                      : 'bg-[#0D1B2A] dark:bg-[#0a0204] text-[#F7F3E9] dark:text-[#EEEAD7] rounded-bl-sm border border-[#415A77]/50 dark:border-[#D4AF37]/50 font-serif italic shadow-[0_0_15px_rgba(212,175,55,0.1)]'
+                      ? 'bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md text-[#F7F3E9] dark:text-[#EEEAD7] rounded-br-sm border border-[#415A77] dark:border-[#D4AF37]/45 shadow-lg' 
+                      : 'bg-[#0D1B2A] dark:bg-[rgba(20,2,4,0.85)] backdrop-blur-md text-[#F7F3E9] dark:text-[#EEEAD7] rounded-bl-sm border border-[#415A77]/50 dark:border-[#D4AF37]/60 font-serif italic shadow-[0_0_20px_rgba(212,175,55,0.2)]'
                   }`}
                 >
                   <p className="text-sm leading-relaxed whitespace-pre-wrap">{msg.text}</p>
@@ -152,7 +152,7 @@ export function Oracle() {
                 }
               }}
               placeholder="Seek guidance..."
-              className="w-full bg-[#1B263B]/50 dark:bg-[#1a0101] border border-[#415A77] dark:border-[#3a0404] focus:border-[#D4AF37] dark:focus:border-[#D4AF37]/70 text-[#F7F3E9] dark:text-[#EEEAD7] rounded-xl pl-12 pr-4 py-3.5 outline-none resize-none overflow-hidden min-h-[52px] max-h-[120px] shadow-inner transition-colors font-sans"
+              className="w-full bg-[#1B263B]/50 dark:bg-[rgba(35,6,8,0.78)] border border-[#415A77] dark:border-[#D4AF37]/45 focus:border-[#D4AF37] dark:focus:border-[#D4AF37]/70 text-[#F7F3E9] dark:text-[#EEEAD7] rounded-xl pl-12 pr-4 py-3.5 outline-none resize-none overflow-hidden min-h-[52px] max-h-[120px] shadow-inner transition-colors font-sans"
               rows={1}
             />
           </div>
