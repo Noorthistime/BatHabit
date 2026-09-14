@@ -35,18 +35,7 @@ export function NightMarket() {
 
   return (
     <>
-      {/* Royal Background */}
-      <div
-        className="absolute inset-0 -z-10 pointer-events-none"
-        style={{
-          backgroundColor: '#0c0608',
-          backgroundImage: `
-            radial-gradient(circle at 18% 15%, rgba(109, 8, 8, 0.45) 0%, transparent 50%),
-            radial-gradient(circle at 82% 22%, rgba(212, 175, 55, 0.15) 0%, transparent 45%),
-            radial-gradient(circle at 50% 85%, rgba(69, 3, 3, 0.55) 0%, transparent 60%)
-          `,
-        }}
-      />
+
 
       <div className="w-full max-w-[1200px] mx-auto flex flex-col gap-6">
 

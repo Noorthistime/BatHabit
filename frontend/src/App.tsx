@@ -3,7 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { Auth } from './pages/Auth';
 import { Awakening } from './pages/Awakening';
 import DashboardLayout from './layouts/DashboardLayout';
-import QuestBook from './pages/QuestBook';
+import Questbook from './pages/Questbook';
 import { ThemeProvider } from './context/ThemeContext';
 import { api } from './api';
 
@@ -78,7 +78,7 @@ export default function App() {
               <DashboardLayout />
             </ProtectedRoute>
           }>
-            <Route path="questbook" element={<QuestBook />} />
+            <Route path="questbook" element={<Questbook />} />
             <Route path="grimoire" element={<Grimoire />} />
             <Route path="bloodline" element={<Bloodline />} />
             <Route path="market" element={<NightMarket />} />

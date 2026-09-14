@@ -29,11 +29,8 @@ export default function DashboardLayout() {
 
   return (
     <div className="min-h-screen bg-[#0D1B2A] dark:bg-[#0a0204] text-[#F7F3E9] dark:text-[#EEEAD7] font-sans overflow-hidden flex">
-      {/* Background Ambience */}
-      <div className="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
-        <div className="absolute top-0 right-0 w-2/3 h-2/3 bg-[#415A77]/10 dark:bg-[#6D0808]/30 rounded-bl-full blur-[120px]"></div>
-        <div className="absolute bottom-0 left-0 w-2/3 h-2/3 bg-[#415A77]/10 dark:bg-[#f59e0b]/10 rounded-tr-full blur-[120px]"></div>
-      </div>
+      {/* Solid Royal Red Background */}
+      <div className="fixed top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0 bg-[#0D1B2A] dark:bg-[#6D0808]"></div>
 
       {/* Desktop Sidebar (The Gothic Rail) */}
       <aside className="hidden md:flex flex-col fixed left-0 top-0 h-full w-72 bg-[#1B263B]/95 dark:bg-[#120305]/95 backdrop-blur-xl z-50 border-r border-[#415A77] dark:border-[#D4AF37]/30 shadow-[4px_0_24px_rgba(0,0,0,0.5)] dark:shadow-[6px_0_32px_rgba(0,0,0,0.9)] overflow-hidden">
