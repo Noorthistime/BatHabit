@@ -1,10 +1,10 @@
 import React from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 import { useTheme } from '../context/ThemeContext';
-import { 
-  Home, BookOpen, Scroll, Droplet, 
-  Coins, Store, Archive, Landmark, 
-  History, Bell, MessageSquare, Key, 
+import {
+  Home, BookOpen, Scroll, Droplet,
+  Coins, Store, Archive, Landmark,
+  History, Bell, MessageSquare, Key,
   Moon, Sun, User, Zap
 } from 'lucide-react';
 
@@ -15,7 +15,6 @@ const SANCTUARIES = [
   { name: 'Bloodline', icon: Droplet, path: '/dashboard/bloodline' },
   { name: 'Night Market', icon: Store, path: '/dashboard/market' },
   { name: 'Vault', icon: Archive, path: '/dashboard/vault' },
-  { name: 'Chronicle', icon: History, path: '/dashboard/chronicle' },
 ];
 
 const ORACLES = [
@@ -36,7 +35,7 @@ export default function DashboardLayout() {
       </div>
 
       {/* Desktop Sidebar (The Gothic Rail) */}
-      <aside className="hidden md:flex flex-col fixed left-0 top-0 h-full w-72 bg-[#1B263B]/95 dark:bg-[#120305]/95 backdrop-blur-xl z-50 border-r border-[#415A77] dark:border-[#D4AF37]/30 shadow-[4px_0_24px_rgba(0,0,0,0.5)] dark:shadow-[6px_0_32px_rgba(0,0,0,0.9)] overflow-y-auto">
+      <aside className="hidden md:flex flex-col fixed left-0 top-0 h-full w-72 bg-[#1B263B]/95 dark:bg-[#120305]/95 backdrop-blur-xl z-50 border-r border-[#415A77] dark:border-[#D4AF37]/30 shadow-[4px_0_24px_rgba(0,0,0,0.5)] dark:shadow-[6px_0_32px_rgba(0,0,0,0.9)] overflow-hidden">
         <div className="h-20 px-4 flex items-center gap-3 bg-[#0D1B2A]/50 dark:bg-[#1e0306] border-b border-[#415A77] dark:border-[#D4AF37]/30 flex-shrink-0 shadow-inner">
           <div className="w-10 h-10 rounded-full bg-[#415A77] dark:bg-[#3d0303] border border-[#415A77] dark:border-[#F5D77F] flex items-center justify-center shadow-[0_0_12px_rgba(212,175,55,0.7)] text-[#D4AF37] dark:text-[#F5D77F]">
             <span className="font-serif font-bold text-xl">B</span>
@@ -49,10 +48,10 @@ export default function DashboardLayout() {
           </div>
         </div>
 
-        <div className="flex-1 px-3 py-4">
-          <div className="px-3 pb-2 font-mono text-[11px] text-[#D4AF37] dark:text-[#C5A059]/80 uppercase tracking-[0.25em] flex items-center justify-between">
+        <div className="flex-1 px-3 py-2">
+          <div className="px-3 py-3 mb-3 font-serif text-sm font-bold text-[#D4AF37] dark:text-[#C5A059] uppercase tracking-[0.2em] flex items-center justify-center gap-2 border-b border-[#415A77]/50 dark:border-[#D4AF37]/30 bg-[#0D1B2A]/30 dark:bg-[#060102]/30 shadow-sm rounded-t">
             <span>Sanctuaries</span>
-            <span className="text-xs text-[#D4AF37] dark:text-[#D4AF37]/50">✦</span>
+            <span className="text-sm text-[#D4AF37] dark:text-[#D4AF37]/70">✦</span>
           </div>
           <nav className="space-y-1.5">
             {SANCTUARIES.map((item) => (
@@ -60,17 +59,15 @@ export default function DashboardLayout() {
                 key={item.name}
                 to={item.path}
                 end={item.path === '/dashboard'}
-                className={({ isActive }) => 
-                  `group flex items-center gap-3 px-3 py-2 rounded transition-all ${isActive ? "justify-between border border-[#415A77] dark:border-[#D4AF37]/70 bg-gradient-to-r from-[#1B263B] to-[#415A77] dark:from-[#6D0808] dark:to-[#3a0404] text-[#F7F3E9] dark:text-[#EEEAD7] font-semibold shadow-[0_0_20px_rgba(109,8,8,0.75)]" : "text-[#F7F3E9]/70 dark:text-[#8d9685] hover:text-[#D4AF37] dark:hover:text-[#F5D77F] hover:bg-[#1B263B] dark:hover:bg-[#260303] hover:border hover:border-[#415A77] dark:hover:border-[#D4AF37]/30"}`
+                className={({ isActive }) =>
+                  `group flex flex-col items-center justify-center gap-2 px-2 py-3 rounded transition-all relative ${isActive ? "border border-[#415A77] dark:border-[#D4AF37]/70 bg-gradient-to-b from-[#1B263B] to-[#415A77] dark:from-[#6D0808] dark:to-[#3a0404] text-[#F7F3E9] dark:text-[#EEEAD7] font-semibold shadow-[0_0_20px_rgba(109,8,8,0.75)]" : "text-[#F7F3E9]/70 dark:text-[#8d9685] hover:text-[#D4AF37] dark:hover:text-[#F5D77F] hover:bg-[#1B263B] dark:hover:bg-[#260303] hover:border hover:border-[#415A77] dark:hover:border-[#D4AF37]/30"}`
                 }
               >
                 {({ isActive }) => (
                   <>
-                    <div className="flex items-center gap-3">
-                      <item.icon className={`w-5 h-5 ${isActive ? "text-[#D4AF37] dark:text-[#F5D77F]" : "text-[#F7F3E9]/70 dark:text-[#8d9685] group-hover:text-[#D4AF37] dark:group-hover:text-[#F5D77F]"}`} />
-                      <span className="font-mono text-xs uppercase tracking-wider">{item.name}</span>
-                    </div>
-                    {isActive && <span className="w-2 h-2 rounded-full bg-[#F5D77F] shadow-[0_0_10px_#D4AF37]"></span>}
+                    <item.icon className={`w-5 h-5 ${isActive ? "text-[#D4AF37] dark:text-[#F5D77F]" : "text-[#F7F3E9]/70 dark:text-[#8d9685] group-hover:text-[#D4AF37] dark:group-hover:text-[#F5D77F]"}`} />
+                    <span className="font-mono text-xs uppercase tracking-wider text-center">{item.name}</span>
+                    {isActive && <span className="absolute top-1.5 right-2 w-2 h-2 rounded-full bg-[#F5D77F] shadow-[0_0_10px_#D4AF37]"></span>}
                   </>
                 )}
               </NavLink>
@@ -78,7 +75,7 @@ export default function DashboardLayout() {
           </nav>
         </div>
 
-        <div className="px-3 py-4 border-t border-[#415A77] dark:border-[#3a0404]">
+        <div className="px-3 py-2 border-t border-[#415A77] dark:border-[#3a0404]">
           <div className="px-3 pb-2 font-mono text-[11px] text-[#D4AF37] dark:text-[#C5A059]/80 uppercase tracking-[0.25em] flex items-center justify-between">
             <span>Oracle & Chambers</span>
           </div>
@@ -87,19 +84,19 @@ export default function DashboardLayout() {
               <NavLink
                 key={item.name}
                 to={item.path}
-                className={({ isActive }) => 
-                  `group flex items-center justify-between px-3 py-2 rounded transition-all ${isActive ? "border border-[#415A77] dark:border-[#D4AF37]/70 bg-gradient-to-r from-[#1B263B] to-[#415A77] dark:from-[#6D0808] dark:to-[#3a0404] text-[#F7F3E9] dark:text-[#EEEAD7] font-semibold shadow-[0_0_20px_rgba(109,8,8,0.75)]" : "text-[#F7F3E9]/70 dark:text-[#8d9685] hover:text-[#D4AF37] dark:hover:text-[#F5D77F] hover:bg-[#1B263B] dark:hover:bg-[#260303] hover:border hover:border-[#415A77] dark:hover:border-[#D4AF37]/30"}`
+                className={({ isActive }) =>
+                  `group flex items-center justify-between px-4 py-3 rounded transition-all ${isActive ? "border border-[#415A77] dark:border-[#D4AF37]/70 bg-gradient-to-r from-[#1B263B] to-[#415A77] dark:from-[#6D0808] dark:to-[#3a0404] text-[#F7F3E9] dark:text-[#EEEAD7] font-semibold shadow-[0_0_20px_rgba(109,8,8,0.75)]" : "text-[#F7F3E9]/70 dark:text-[#8d9685] hover:text-[#D4AF37] dark:hover:text-[#F5D77F] hover:bg-[#1B263B] dark:hover:bg-[#260303] hover:border hover:border-[#415A77] dark:hover:border-[#D4AF37]/30"}`
                 }
               >
                 {({ isActive }) => (
                   <>
                     <div className="flex items-center gap-3">
                       <item.icon className={`w-5 h-5 ${isActive ? "text-[#D4AF37] dark:text-[#F5D77F]" : "text-[#F7F3E9]/70 dark:text-[#8d9685] group-hover:text-[#D4AF37] dark:group-hover:text-[#F5D77F]"}`} />
-                      <span className="font-mono text-xs uppercase tracking-wider">{item.name}</span>
+                      <span className="font-mono text-sm uppercase tracking-wider">{item.name}</span>
                     </div>
                     <div className="flex items-center gap-2">
                       {item.badge && (
-                        <span className="bg-[#D4AF37]/20 dark:bg-[#9e1313] text-[#D4AF37] dark:text-white text-[9px] px-1.5 py-0.5 rounded font-mono border border-[#D4AF37]/30">
+                        <span className="bg-[#D4AF37]/20 dark:bg-[#9e1313] text-[#D4AF37] dark:text-white text-[10px] px-1.5 py-0.5 rounded font-mono border border-[#D4AF37]/30">
                           {item.badge}
                         </span>
                       )}
@@ -117,10 +114,10 @@ export default function DashboardLayout() {
 
       {/* Main Content Area */}
       <div className="flex-1 flex flex-col h-screen overflow-hidden relative z-10 md:pl-72">
-        
+
         {/* Top Header */}
         <header className="h-20 border-b border-[#415A77] dark:border-[#3a0404] bg-[#0D1B2A]/90 dark:bg-[#060102]/90 backdrop-blur-md flex items-center justify-between px-8 z-40 shrink-0">
-          
+
           <div className="flex flex-col gap-1.5">
             <div className="flex items-center gap-3">
               <h2 className="font-serif text-xl font-bold text-white drop-shadow-[0_2px_4px_rgba(0,0,0,0.5)]">
@@ -145,7 +142,7 @@ export default function DashboardLayout() {
             </div>
 
             {/* Theme Toggle */}
-            <button 
+            <button
               onClick={toggleTheme}
               className="flex items-center gap-2 bg-[#1B263B]/50 dark:bg-[#1a0101] border border-[#415A77] dark:border-[#3a0404] rounded-full px-4 py-1.5 hover:bg-[#1B263B] dark:hover:bg-[#3a0404] transition-colors"
             >
