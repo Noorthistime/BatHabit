@@ -20,6 +20,7 @@ import { Bloodline } from './pages/Bloodline';
 import { NightMarket } from './pages/NightMarket';
 import { Vault } from './pages/Vault';
 import { Chamber } from './pages/Chamber';
+import { Lore } from './pages/Lore';
 
 // Placeholder for pages not yet built
 function ComingSoon({ title }: { title: string }) {
@@ -80,6 +81,7 @@ export default function App() {
             <Route path="bloodline" element={<Bloodline />} />
             <Route path="market" element={<NightMarket />} />
             <Route path="vault" element={<Vault />} />
+            <Route path="lore" element={<Lore />} />
             <Route path="chamber" element={<Chamber />} />
             <Route path="ascension" element={<ComingSoon title="The Ascension Path" />} />
             <Route path="treasury" element={<ComingSoon title="The Treasury" />} />

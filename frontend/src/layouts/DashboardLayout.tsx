@@ -5,7 +5,7 @@ import {
   Home, BookOpen, Scroll, Droplet,
   Coins, Store, Archive, Landmark,
   History, Bell, MessageSquare, Key,
-  Moon, Sun, User, Zap
+  Moon, Sun, User, Zap, Compass
 } from 'lucide-react';
 
 const SANCTUARIES = [
@@ -15,6 +15,7 @@ const SANCTUARIES = [
   { name: 'Bloodline', icon: Droplet, path: '/dashboard/bloodline' },
   { name: 'Night Market', icon: Store, path: '/dashboard/market' },
   { name: 'Vault', icon: Archive, path: '/dashboard/vault' },
+  { name: 'Lore', icon: Compass, path: '/dashboard/lore' },
 ];
 
 const ORACLES = [
@@ -60,14 +61,14 @@ export default function DashboardLayout() {
                 to={item.path}
                 end={item.path === '/dashboard'}
                 className={({ isActive }) =>
-                  `group flex flex-col items-center justify-center gap-2 px-2 py-3 rounded transition-all relative ${isActive ? "border border-[#415A77] dark:border-[#D4AF37]/70 bg-gradient-to-b from-[#1B263B] to-[#415A77] dark:from-[#6D0808] dark:to-[#3a0404] text-[#F7F3E9] dark:text-[#EEEAD7] font-semibold shadow-[0_0_20px_rgba(109,8,8,0.75)]" : "text-[#F7F3E9]/70 dark:text-[#8d9685] hover:text-[#D4AF37] dark:hover:text-[#F5D77F] hover:bg-[#1B263B] dark:hover:bg-[#260303] hover:border hover:border-[#415A77] dark:hover:border-[#D4AF37]/30"}`
+                  `group flex flex-col items-center justify-center gap-1.5 px-2 py-2 rounded transition-all relative ${isActive ? "border border-[#415A77] dark:border-[#D4AF37]/70 bg-gradient-to-b from-[#1B263B] to-[#415A77] dark:from-[#6D0808] dark:to-[#3a0404] text-[#F7F3E9] dark:text-[#EEEAD7] font-semibold shadow-[0_0_20px_rgba(109,8,8,0.75)]" : "text-[#F7F3E9]/70 dark:text-[#8d9685] hover:text-[#D4AF37] dark:hover:text-[#F5D77F] hover:bg-[#1B263B] dark:hover:bg-[#260303] hover:border hover:border-[#415A77] dark:hover:border-[#D4AF37]/30"}`
                 }
               >
                 {({ isActive }) => (
                   <>
                     <item.icon className={`w-5 h-5 ${isActive ? "text-[#D4AF37] dark:text-[#F5D77F]" : "text-[#F7F3E9]/70 dark:text-[#8d9685] group-hover:text-[#D4AF37] dark:group-hover:text-[#F5D77F]"}`} />
                     <span className="font-mono text-xs uppercase tracking-wider text-center">{item.name}</span>
-                    {isActive && <span className="absolute top-1.5 right-2 w-2 h-2 rounded-full bg-[#F5D77F] shadow-[0_0_10px_#D4AF37]"></span>}
+                    {isActive && <span className="absolute top-1 right-2 w-2 h-2 rounded-full bg-[#F5D77F] shadow-[0_0_10px_#D4AF37]"></span>}
                   </>
                 )}
               </NavLink>
