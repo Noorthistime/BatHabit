@@ -21,6 +21,7 @@ import { NightMarket } from './pages/NightMarket';
 import { Vault } from './pages/Vault';
 import { Chamber } from './pages/Chamber';
 import { Lore } from './pages/Lore';
+import { Ravens } from './pages/Ravens';
 
 // Placeholder for pages not yet built
 function ComingSoon({ title }: { title: string }) {
@@ -87,7 +88,7 @@ export default function App() {
             <Route path="treasury" element={<ComingSoon title="The Treasury" />} />
             <Route path="deeds" element={<ComingSoon title="Hall of Deeds" />} />
             <Route path="chronicle" element={<ComingSoon title="The Chronicle" />} />
-            <Route path="ravens" element={<ComingSoon title="Ravens" />} />
+            <Route path="ravens" element={<Ravens />} />
             <Route path="oracle" element={<ComingSoon title="The Oracle" />} />
           </Route>
         </Routes>
