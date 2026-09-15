@@ -202,10 +202,10 @@ export default function Questbook() {
                 <button 
                   key={tab}
                   onClick={() => setActiveTab(tab.split(' (')[0])}
-                  className={`pb-2 border-b-2 font-mono text-[10px] uppercase tracking-widest font-bold transition-all ${
+                  className={`px-4 py-2 rounded border font-mono text-[10px] uppercase tracking-widest font-bold transition-all ${
                     activeTab === tab.split(' (')[0]
-                      ? 'border-[#D4AF37] text-[#D4AF37] drop-shadow-[0_0_8px_rgba(212,175,55,0.5)]' 
-                      : 'border-transparent text-[#F7F3E9]/50 dark:text-[#8d9685] hover:text-[#F7F3E9]/80 dark:hover:text-[#F5D77F]/80'
+                      ? 'bg-[#1B263B] dark:bg-[#4a1c02] border-[#D4AF37] text-[#D4AF37] dark:text-[#F5D77F] shadow-[0_0_12px_rgba(212,175,55,0.3)]' 
+                      : 'bg-[#1B263B]/40 dark:bg-[#2A0505] border-[#415A77]/50 dark:border-[#D4AF37]/25 text-[#F7F3E9]/60 dark:text-[#8d9685] hover:border-[#D4AF37]/50 hover:bg-[#1B263B]/60 dark:hover:bg-[#3A0A0A]'
                   }`}
                 >
                   {activeTab === tab.split(' (')[0] && <span className="mr-2 text-[8px] animate-pulse">✦</span>}
@@ -237,10 +237,10 @@ export default function Questbook() {
               {DISCIPLINES.map(d => (
                 <button 
                   key={d} onClick={() => setSelectedDisc(d)}
-                  className={`px-3 py-1 rounded border font-mono text-[9px] uppercase tracking-widest transition-all ${
+                  className={`px-3 py-1.5 rounded border font-mono text-[9px] uppercase tracking-widest transition-all ${
                     selectedDisc === d 
-                      ? 'bg-[#D4AF37]/10 dark:bg-[#D4AF37]/20 border-[#D4AF37] text-[#D4AF37] dark:text-[#F5D77F] font-bold shadow-[0_0_10px_rgba(212,175,55,0.2)]' 
-                      : 'bg-transparent border-[#415A77]/30 dark:border-[#D4AF37]/30 text-[#F7F3E9]/50 dark:text-[#8d9685] hover:border-[#D4AF37]/60'
+                      ? 'bg-[#1B263B] dark:bg-[#4a1c02] border-[#D4AF37] text-[#D4AF37] dark:text-[#F5D77F] font-bold shadow-[0_0_12px_rgba(212,175,55,0.3)]' 
+                      : 'bg-[#1B263B]/40 dark:bg-[#2A0505] border-[#415A77]/50 dark:border-[#D4AF37]/25 text-[#F7F3E9]/60 dark:text-[#8d9685] hover:border-[#D4AF37]/50 hover:bg-[#1B263B]/60 dark:hover:bg-[#3A0A0A]'
                   }`}
                 >
                   {d}
@@ -254,10 +254,10 @@ export default function Questbook() {
               {TIERS.map(t => (
                 <button 
                   key={t} onClick={() => setSelectedTier(t)}
-                  className={`px-3 py-1 rounded border font-mono text-[9px] uppercase tracking-widest transition-all ${
+                  className={`px-3 py-1.5 rounded border font-mono text-[9px] uppercase tracking-widest transition-all ${
                     selectedTier === t 
-                      ? 'bg-[#D4AF37]/10 dark:bg-[#D4AF37]/20 border-[#D4AF37] text-[#D4AF37] dark:text-[#F5D77F] font-bold shadow-[0_0_10px_rgba(212,175,55,0.2)]' 
-                      : 'bg-transparent border-[#415A77]/30 dark:border-[#D4AF37]/30 text-[#F7F3E9]/50 dark:text-[#8d9685] hover:border-[#D4AF37]/60'
+                      ? 'bg-[#1B263B] dark:bg-[#4a1c02] border-[#D4AF37] text-[#D4AF37] dark:text-[#F5D77F] font-bold shadow-[0_0_12px_rgba(212,175,55,0.3)]' 
+                      : 'bg-[#1B263B]/40 dark:bg-[#2A0505] border-[#415A77]/50 dark:border-[#D4AF37]/25 text-[#F7F3E9]/60 dark:text-[#8d9685] hover:border-[#D4AF37]/50 hover:bg-[#1B263B]/60 dark:hover:bg-[#3A0A0A]'
                   }`}
                 >
                   {t}
