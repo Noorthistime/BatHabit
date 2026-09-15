@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import {
-  Search, SlidersHorizontal, BookOpen, Brain,
-  Dumbbell, Focus as FocusIcon, Eye, CheckCircle,
+import { 
+  Search, SlidersHorizontal, BookOpen, Brain, 
+  Dumbbell, Focus as FocusIcon, Eye, CheckCircle, 
   Flame, Calendar, Target, Award, Clock, X, Plus
 } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 type Discipline = 'INTELLECT' | 'VITALITY' | 'FOCUS' | 'STRENGTH' | 'WISDOM';
 type Tier = 'INITIATE' | 'ADEPT' | 'MASTER' | 'EPIC';
@@ -272,9 +273,13 @@ export default function Questbook() {
         </div>
 
         {/* Quests Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-4 pb-12">
-          {QUESTS.map((quest) => (
-            <div
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-4 pb-12 overflow-hidden">
+          {QUESTS.map((quest, index) => (
+            <motion.div
+              initial={{ opacity: 0, x: index % 2 === 0 ? -50 : 50 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.6, ease: "easeOut", delay: index * 0.1 }}
               key={quest.id}
               className={`flex flex-col relative bg-[#1B263B]/40 dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md rounded-xl p-5 border transition-all hover:scale-[1.01] hover:shadow-[0_8px_30px_rgba(0,0,0,0.4)] dark:hover:shadow-[0_8px_30px_rgba(212,175,55,0.15)] ${quest.isSealed
                 ? 'border-[#415A77]/30 dark:border-[#D4AF37]/20 opacity-60'
@@ -374,7 +379,7 @@ export default function Questbook() {
 
               </div>
 
-            </div>
+            </motion.div>
           ))}
         </div>
 
