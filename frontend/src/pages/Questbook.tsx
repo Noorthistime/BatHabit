@@ -122,7 +122,7 @@ export default function Questbook() {
       <div className="w-full max-w-[1200px] mx-auto flex flex-col gap-6">
 
         {/* Top Header Section */}
-        <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-5 pb-4 border-b border-[#415A77]/50 dark:border-[#D4AF37]/25 relative mb-6">
+        <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-5 pb-5 border-b border-[#415A77]/50 dark:border-[#D4AF37]/25 relative">
 
           <div className="space-y-1.5 max-w-2xl">
             <div className="flex items-center gap-2">
@@ -139,9 +139,12 @@ export default function Questbook() {
             <div className="pt-2">
               <button
                 onClick={() => setShowForgeModal(true)}
-                className="px-4 py-2 rounded-lg bg-gradient-to-r from-[#1B263B] to-[#415A77] dark:from-[#6D0808] dark:to-[#8e0c0c] text-[#D4AF37] dark:text-[#F5D77F] font-serif text-xs font-bold tracking-widest hover:brightness-125 border border-[#415A77] dark:border-[#F5D77F] flex items-center gap-2 shadow-[0_0_15px_rgba(212,175,55,0.35)] transition-all"
+                className="relative overflow-hidden px-5 py-2.5 rounded-lg bg-gradient-to-r from-[#1B263B] to-[#415A77] dark:from-[#6D0808] dark:to-[#8e0c0c] text-[#D4AF37] dark:text-[#F5D77F] font-serif text-xs font-bold tracking-widest border border-[#415A77] dark:border-[#F5D77F] flex items-center gap-2 shadow-[0_0_15px_rgba(212,175,55,0.35)] transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_0_25px_rgba(212,175,55,0.6)] hover:brightness-125 active:scale-95 group"
               >
-                <Plus size={16} /> FORGE A QUEST <span className="font-mono text-[10px] ml-1 text-[#D4AF37]/70 dark:text-[#F5D77F]/70">[N]</span>
+                <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
+                <Plus size={16} className="transition-transform group-hover:rotate-90 duration-300" /> 
+                <span className="relative z-10">FORGE A QUEST</span> 
+                <span className="font-mono text-[10px] ml-1 text-[#D4AF37]/70 dark:text-[#F5D77F]/70 relative z-10">[N]</span>
               </button>
             </div>
           </div>
@@ -192,7 +195,7 @@ export default function Questbook() {
         </div>
 
         {/* Tabs and Filters - Dual Ribbon Layout */}
-        <div className="flex flex-col border-t border-[#415A77]/50 dark:border-[#D4AF37]/25 pt-2 mt-4">
+        <div className="flex flex-col pt-4">
           
           {/* Ribbon 1: Tabs (Left) & Search (Right) */}
           <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 pb-3 border-b border-[#415A77]/30 dark:border-[#D4AF37]/15">
