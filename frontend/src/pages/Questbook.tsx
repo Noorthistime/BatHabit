@@ -1,22 +1,70 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { 
   Search, SlidersHorizontal, BookOpen, Brain, 
   Dumbbell, Focus as FocusIcon, Eye, CheckCircle, 
   Flame, Calendar, Target, Award, Clock, X, Plus
 } from 'lucide-react';
-import { motion, animate, useMotionValue, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 
-const CountUp = ({ to, prefix = "", suffix = "" }: { to: number, prefix?: string, suffix?: string }) => {
-  const count = useMotionValue(0);
-  const rounded = useTransform(count, Math.round);
-  const display = useTransform(rounded, (v) => `${prefix}${v}${suffix}`);
-
-  useEffect(() => {
-    const animation = animate(count, to, { duration: 1.5, ease: "easeOut" });
-    return animation.stop;
-  }, [count, to]);
-
-  return <motion.span>{display}</motion.span>;
+const AnimatedFiligree = () => {
+  return (
+    <div className="absolute -top-[16px] left-1/2 -translate-x-1/2 w-[160px] h-[32px] pointer-events-none flex items-center justify-center z-20">
+      <motion.svg 
+        viewBox="0 0 160 32" 
+        fill="none" 
+        className="w-full h-full text-[#D4AF37] drop-shadow-[0_0_6px_rgba(212,175,55,0.7)]"
+      >
+        {/* Left primary sweeping vine */}
+        <motion.path 
+          d="M80,20 C 65,20 55,6 35,12 C 20,16 10,8 2,14" 
+          stroke="currentColor" 
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ duration: 1.8, ease: "easeInOut" }}
+        />
+        {/* Right primary sweeping vine */}
+        <motion.path 
+          d="M80,20 C 95,20 105,6 125,12 C 140,16 150,8 158,14" 
+          stroke="currentColor" 
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ duration: 1.8, ease: "easeInOut" }}
+        />
+        {/* Center Crest */}
+        <motion.path
+          d="M80,6 L84,18 L80,28 L76,18 Z"
+          fill="#F5D77F"
+          initial={{ scale: 0, opacity: 0, y: -10 }}
+          animate={{ scale: 1, opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1.4, type: "spring", bounce: 0.6 }}
+        />
+        {/* Inner flourish left */}
+        <motion.path 
+          d="M74,20 Q 65,28 50,22" 
+          stroke="currentColor" 
+          strokeWidth="1"
+          strokeLinecap="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 0.5 }}
+          transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
+        />
+        {/* Inner flourish right */}
+        <motion.path 
+          d="M86,20 Q 95,28 110,22" 
+          stroke="currentColor" 
+          strokeWidth="1"
+          strokeLinecap="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 0.5 }}
+          transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
+        />
+      </motion.svg>
+    </div>
+  );
 };
 
 type Discipline = 'INTELLECT' | 'VITALITY' | 'FOCUS' | 'STRENGTH' | 'WISDOM';
@@ -258,15 +306,14 @@ export default function Questbook() {
           <div className="flex flex-wrap items-center gap-4 shrink-0">
 
             {/* Stat 1: Unbroken Vow */}
-            <div className="group flex items-center gap-4 px-5 py-4 rounded-[12px] bg-[#110102] dark:bg-[radial-gradient(ellipse_at_center,_rgba(45,5,8,1)_0%,_rgba(15,2,4,1)_100%)] border border-[#D4AF37]/40 shadow-[0_4px_20px_rgba(0,0,0,0.5)] cursor-default transition-all duration-300 hover:border-[#D4AF37]/80 hover:shadow-[0_4px_25px_rgba(212,175,55,0.2)]">
+            <div className="relative group flex items-center gap-4 px-5 py-4 rounded-[12px] bg-[#110102] dark:bg-[radial-gradient(ellipse_at_center,_rgba(45,5,8,1)_0%,_rgba(15,2,4,1)_100%)] border border-[#D4AF37]/40 shadow-[0_4px_20px_rgba(0,0,0,0.5)] cursor-default transition-all duration-300 hover:border-[#D4AF37]/80 hover:shadow-[0_4px_25px_rgba(212,175,55,0.2)]">
+              <AnimatedFiligree />
               <div className="w-10 h-10 rounded-[10px] flex items-center justify-center border border-[#D4AF37]/50 text-[#F5D77F] shadow-[inset_0_0_8px_rgba(212,175,55,0.1)] transition-all duration-300 group-hover:bg-[#D4AF37]/10 group-hover:border-[#F5D77F] group-hover:scale-110">
                 <Flame size={20} strokeWidth={1.5} className="transition-transform duration-500 group-hover:rotate-12 group-hover:scale-110" />
               </div>
               <div className="flex flex-col justify-center">
                 <div className="flex items-baseline gap-1.5 leading-none mb-1.5">
-                  <span className="font-serif text-2xl font-bold text-[#F5D77F] drop-shadow-[0_0_8px_rgba(245,215,127,0.2)]">
-                    <CountUp to={4} />
-                  </span>
+                  <span className="font-serif text-2xl font-bold text-[#F5D77F] drop-shadow-[0_0_8px_rgba(245,215,127,0.2)]">4</span>
                   <span className="font-mono text-[11px] text-[#F7F3E9]/60 dark:text-[#F7F3E9]/50 uppercase tracking-wide">Days</span>
                 </div>
                 <span className="font-mono text-[9px] text-[#D4AF37] dark:text-[#D4AF37]/90 uppercase tracking-[0.15em] font-bold">UNBROKEN VOW</span>
@@ -274,30 +321,28 @@ export default function Questbook() {
             </div>
 
             {/* Stat 2: Sealed Vows */}
-            <div className="group flex items-center gap-4 px-5 py-4 rounded-[12px] bg-[#110102] dark:bg-[radial-gradient(ellipse_at_center,_rgba(45,5,8,1)_0%,_rgba(15,2,4,1)_100%)] border border-[#D4AF37]/40 shadow-[0_4px_20px_rgba(0,0,0,0.5)] cursor-default transition-all duration-300 hover:border-[#D4AF37]/80 hover:shadow-[0_4px_25px_rgba(212,175,55,0.2)]">
+            <div className="relative group flex items-center gap-4 px-5 py-4 rounded-[12px] bg-[#110102] dark:bg-[radial-gradient(ellipse_at_center,_rgba(45,5,8,1)_0%,_rgba(15,2,4,1)_100%)] border border-[#D4AF37]/40 shadow-[0_4px_20px_rgba(0,0,0,0.5)] cursor-default transition-all duration-300 hover:border-[#D4AF37]/80 hover:shadow-[0_4px_25px_rgba(212,175,55,0.2)]">
+              <AnimatedFiligree />
               <div className="w-10 h-10 rounded-[10px] flex items-center justify-center border border-[#D4AF37]/50 text-[#F5D77F] shadow-[inset_0_0_8px_rgba(212,175,55,0.1)] transition-all duration-300 group-hover:bg-[#D4AF37]/10 group-hover:border-[#F5D77F] group-hover:scale-110">
                 <Award size={20} strokeWidth={1.5} className="transition-transform duration-500 group-hover:-rotate-12 group-hover:scale-110" />
               </div>
               <div className="flex flex-col justify-center">
                 <div className="flex items-baseline gap-1.5 leading-none mb-1.5">
-                  <span className="font-serif text-2xl font-bold text-[#F5D77F] drop-shadow-[0_0_8px_rgba(245,215,127,0.2)]">
-                    <CountUp to={1} />
-                  </span>
+                  <span className="font-serif text-2xl font-bold text-[#F5D77F] drop-shadow-[0_0_8px_rgba(245,215,127,0.2)]">1</span>
                 </div>
                 <span className="font-mono text-[9px] text-[#D4AF37] dark:text-[#D4AF37]/90 uppercase tracking-[0.15em] font-bold">SEALED VOWS</span>
               </div>
             </div>
 
             {/* Stat 3: XP & Crowns */}
-            <div className="group flex items-center gap-4 px-5 py-4 rounded-[12px] bg-[#110102] dark:bg-[radial-gradient(ellipse_at_center,_rgba(45,5,8,1)_0%,_rgba(15,2,4,1)_100%)] border border-[#D4AF37]/40 shadow-[0_4px_20px_rgba(0,0,0,0.5)] cursor-default transition-all duration-300 hover:border-[#D4AF37]/80 hover:shadow-[0_4px_25px_rgba(212,175,55,0.2)]">
+            <div className="relative group flex items-center gap-4 px-5 py-4 rounded-[12px] bg-[#110102] dark:bg-[radial-gradient(ellipse_at_center,_rgba(45,5,8,1)_0%,_rgba(15,2,4,1)_100%)] border border-[#D4AF37]/40 shadow-[0_4px_20px_rgba(0,0,0,0.5)] cursor-default transition-all duration-300 hover:border-[#D4AF37]/80 hover:shadow-[0_4px_25px_rgba(212,175,55,0.2)]">
+              <AnimatedFiligree />
               <div className="w-10 h-10 rounded-[10px] flex items-center justify-center border border-[#D4AF37]/50 text-[#F5D77F] shadow-[inset_0_0_8px_rgba(212,175,55,0.1)] transition-all duration-300 group-hover:bg-[#D4AF37]/10 group-hover:border-[#F5D77F] group-hover:scale-110">
                 <Target size={20} strokeWidth={1.5} className="transition-transform duration-500 group-hover:rotate-45 group-hover:scale-110" />
               </div>
               <div className="flex flex-col justify-center">
                 <div className="flex items-baseline gap-1.5 leading-none mb-1.5">
-                  <span className="font-serif text-2xl font-bold text-[#F5D77F] drop-shadow-[0_0_8px_rgba(245,215,127,0.2)]">
-                    <CountUp to={310} prefix="+" />
-                  </span>
+                  <span className="font-serif text-2xl font-bold text-[#F5D77F] drop-shadow-[0_0_8px_rgba(245,215,127,0.2)]">+310</span>
                   <span className="font-mono text-[11px] text-[#F7F3E9]/60 dark:text-[#F7F3E9]/50 uppercase tracking-wide">XP</span>
                 </div>
                 <span className="font-mono text-[9px] text-[#D4AF37] dark:text-[#D4AF37]/90 uppercase tracking-[0.15em] font-bold">+95 CROWNS</span>
