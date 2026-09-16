@@ -38,6 +38,33 @@ const DISCIPLINE_COLORS: Record<string, string> = {
   STR: '#ff6b6b', INT: '#D4AF37', VIT: '#6ee7b7', FOC: '#818cf8', WIS: '#fbbf24',
 };
 
+const AnimatedNumber = ({ value, duration = 1000, decimals = 0, prefix = '', suffix = '' }: { value: number, duration?: number, decimals?: number, prefix?: string, suffix?: string }) => {
+  const [count, setCount] = React.useState(0);
+
+  React.useEffect(() => {
+    let startTime: number | null = null;
+    let animationFrameId: number;
+    const animate = (timestamp: number) => {
+      if (!startTime) startTime = timestamp;
+      const progress = timestamp - startTime;
+      const percentage = Math.min(progress / duration, 1);
+      
+      const easeOut = percentage === 1 ? 1 : 1 - Math.pow(2, -10 * percentage);
+      
+      setCount(easeOut * value);
+      
+      if (percentage < 1) {
+        animationFrameId = requestAnimationFrame(animate);
+      }
+    };
+    
+    animationFrameId = requestAnimationFrame(animate);
+    return () => cancelAnimationFrame(animationFrameId);
+  }, [value, duration]);
+
+  return <>{prefix}{count.toFixed(decimals)}{suffix}</>;
+};
+
 export function Bloodline() {
   const [hoverDay, setHoverDay] = useState<{ date: Date; count: number } | null>(null);
   const totalCompleted = calendarData.filter(d => d.count > 0).length;
@@ -86,14 +113,16 @@ export function Bloodline() {
               <div className="relative z-10 font-mono text-[9px] text-[#D4AF37]/80 uppercase tracking-widest mt-0.5">Days</div>
             </div>
             <div
-              className="px-6 py-4 text-center rounded-xl bg-[#1B263B]/40 dark:bg-[rgba(35,6,8,0.5)] backdrop-blur-md border border-[#415A77]/50 dark:border-[#D4AF37]/25 shadow-md relative overflow-hidden"
+              className="px-6 py-4 text-center rounded-xl relative group overflow-hidden"
+              style={{ background: 'radial-gradient(circle at center, rgba(109,8,8,0.6) 0%, rgba(15,2,4,0.9) 100%)', border: '1px solid rgba(212,175,55,0.5)', boxShadow: 'inset 0 0 40px rgba(0,0,0,0.8), 0 0 20px rgba(212,175,55,0.2)' }}
             >
+              <div className="absolute inset-0 opacity-20 mix-blend-overlay" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg width=\\'60\\' height=\\'60\\' viewBox=\\'0 0 60 60\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cg fill=\\'none\\' fill-rule=\\'evenodd\\'%3E%3Cg fill=\\'%23d4af37\\' fill-opacity=\\'0.15\\'%3E%3Cpath d=\\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')" }}></div>
               <div className="relative z-10 flex items-center gap-2 justify-center mb-1">
-                <Target size={14} className="text-[#D4AF37]" />
-                <span className="font-mono text-[9px] text-[#8d9685] uppercase tracking-widest">Longest</span>
+                <Target size={16} className="text-[#D4AF37] group-hover:scale-125 transition-transform" />
+                <span className="font-mono text-[9px] text-[#D4AF37] uppercase tracking-widest font-bold">Longest</span>
               </div>
-              <div className="relative z-10 font-serif text-4xl font-bold text-[#EEEAD7]">34</div>
-              <div className="relative z-10 font-mono text-[9px] text-[#8d9685] uppercase tracking-widest mt-0.5">Days</div>
+              <div className="relative z-10 font-serif text-4xl font-bold text-[#F5D77F] drop-shadow-[0_0_15px_rgba(212,175,55,0.8)]">34</div>
+              <div className="relative z-10 font-mono text-[9px] text-[#D4AF37]/80 uppercase tracking-widest mt-0.5">Days</div>
             </div>
           </div>
         </div>
@@ -101,20 +130,22 @@ export function Bloodline() {
         {/* Stats Row */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
           {[
-            { icon: CheckCircle2, label: 'Total Completed', value: totalCompleted, sub: 'quests sealed', color: '#D4AF37' },
-            { icon: TrendingUp, label: 'Consistency', value: `${consistency}%`, sub: 'last 365 days', color: '#F5D77F' },
-            { icon: Clock, label: 'Avg. Per Day', value: '2.4', sub: 'quests / day', color: '#8d9685' },
-            { icon: Flame, label: 'Streak Bonus', value: '×1.5', sub: 'XP multiplier', color: '#ff6b6b' },
+            { icon: CheckCircle2, label: 'Total Completed', value: totalCompleted, decimals: 0, prefix: '', suffix: '', sub: 'quests sealed', color: '#D4AF37' },
+            { icon: TrendingUp, label: 'Consistency', value: consistency, decimals: 0, prefix: '', suffix: '%', sub: 'last 365 days', color: '#F5D77F' },
+            { icon: Clock, label: 'Avg. Per Day', value: 2.4, decimals: 1, prefix: '', suffix: '', sub: 'quests / day', color: '#8d9685' },
+            { icon: Flame, label: 'Streak Bonus', value: 1.5, decimals: 1, prefix: '×', suffix: '', sub: 'XP multiplier', color: '#ff6b6b' },
           ].map(s => (
             <div
               key={s.label}
-              className="p-4 flex flex-col gap-2 relative rounded-xl bg-[#1B263B]/40 dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-sm border border-[#415A77]/60 dark:border-[#D4AF37]/35 shadow-[0_4px_20px_rgba(0,0,0,0.5)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(212,175,55,0.2)] hover:border-[#415A77] dark:hover:border-[#F5D77F] group"
+              className="p-4 flex flex-col items-center text-center gap-2 relative rounded-xl bg-[#1B263B]/40 dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-sm border border-[#415A77]/60 dark:border-[#D4AF37]/35 shadow-[0_4px_20px_rgba(0,0,0,0.5)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(212,175,55,0.2)] hover:border-[#415A77] dark:hover:border-[#F5D77F] group"
             >
-              <s.icon size={14} style={{ color: s.color }} className="group-hover:scale-110 transition-transform" />
-              <div className="font-mono text-2xl font-bold drop-shadow-[0_0_8px_currentColor]" style={{ color: s.color }}>{s.value}</div>
+              <s.icon size={20} style={{ color: s.color }} className="group-hover:scale-110 transition-transform" />
+              <div className="font-mono text-2xl font-bold drop-shadow-[0_0_8px_currentColor]" style={{ color: s.color }}>
+                <AnimatedNumber value={s.value} decimals={s.decimals} prefix={s.prefix} suffix={s.suffix} />
+              </div>
               <div>
                 <div className="font-mono text-[10px] uppercase tracking-widest text-[#EEEAD7]">{s.label}</div>
-                <div className="font-mono text-[9px] text-[#8d9685]">{s.sub}</div>
+                <div className="font-mono text-[11px] text-[#8d9685] mt-1">{s.sub}</div>
               </div>
             </div>
           ))}
