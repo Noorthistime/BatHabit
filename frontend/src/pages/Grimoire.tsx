@@ -448,13 +448,16 @@ export function Grimoire() {
             {/* Achievements Tab */}
             {activeTab === 'achievements' && (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                {ACHIEVEMENTS.map(a => {
+                {ACHIEVEMENTS.map((a, i) => {
                   const rStyle = RARITY_COLORS[a.rarity];
                   const Icon = a.icon;
                   return (
                     <motion.div
                       key={a.title}
-                      whileHover={{ scale: 1.02 }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.5, delay: i * 0.08 }}
+                      whileHover={{ scale: 1.02, transition: { duration: 0.2, delay: 0 } }}
                       className={`relative p-2 sm:p-2.5 flex flex-col gap-1.5 rounded-none bg-[radial-gradient(ellipse_at_center,_rgba(35,6,8,0.9)_0%,_rgba(15,2,4,0.95)_100%)] overflow-hidden group ${!a.earned ? 'opacity-40 grayscale' : ''}`}
                       style={{ border: `1px solid ${rStyle.frame}`, boxShadow: a.rarity === 'Mythic' || a.rarity === 'Legendary' ? `inset 0 0 15px ${rStyle.bg}, 0 0 10px rgba(0,0,0,0.5)` : '0 0 10px rgba(0,0,0,0.5)' }}
                     >
