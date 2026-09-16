@@ -1,10 +1,23 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
   Search, SlidersHorizontal, BookOpen, Brain, 
   Dumbbell, Focus as FocusIcon, Eye, CheckCircle, 
   Flame, Calendar, Target, Award, Clock, X, Plus
 } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, animate, useMotionValue, useTransform } from 'framer-motion';
+
+const CountUp = ({ to, prefix = "", suffix = "" }: { to: number, prefix?: string, suffix?: string }) => {
+  const count = useMotionValue(0);
+  const rounded = useTransform(count, Math.round);
+  const display = useTransform(rounded, (v) => `${prefix}${v}${suffix}`);
+
+  useEffect(() => {
+    const animation = animate(count, to, { duration: 1.5, ease: "easeOut" });
+    return animation.stop;
+  }, [count, to]);
+
+  return <motion.span>{display}</motion.span>;
+};
 
 type Discipline = 'INTELLECT' | 'VITALITY' | 'FOCUS' | 'STRENGTH' | 'WISDOM';
 type Tier = 'INITIATE' | 'ADEPT' | 'MASTER' | 'EPIC';
@@ -100,6 +113,63 @@ const QUESTS: Quest[] = [
 const DISCIPLINES = ['ALL', 'INTELLECT', 'VITALITY', 'FOCUS', 'STRENGTH', 'WISDOM'];
 const TIERS = ['ALL TIERS', 'INITIATE', 'ADEPT', 'MASTER'];
 
+const GothicButton = ({ active, onClick, children, pulse = false }: any) => (
+  <button
+    onClick={onClick}
+    className={`relative group px-2 py-1.5 sm:px-3 sm:py-2 border-none transition-all whitespace-nowrap overflow-hidden flex-shrink-0 ${
+      active 
+        ? 'bg-[#1B263B] dark:bg-[radial-gradient(ellipse_at_center,_rgba(35,6,8,1)_0%,_rgba(15,2,4,1)_100%)] text-[#D4AF37] dark:text-[#F5D77F] shadow-[0_0_12px_rgba(212,175,55,0.4)]' 
+        : 'bg-[#1B263B]/40 dark:bg-[rgba(15,2,4,0.6)] text-[#F7F3E9]/60 dark:text-[#8d9685] hover:bg-[#1B263B]/60 dark:hover:bg-[#2A0505]'
+    }`}
+    style={{ clipPath: 'polygon(6px 0, calc(100% - 6px) 0, 100% 6px, 100% calc(100% - 6px), calc(100% - 6px) 100%, 6px 100%, 0 calc(100% - 6px), 0 6px)' }}
+  >
+    {/* Dynamic Ornate Frame */}
+    <div className={`absolute inset-0 pointer-events-none transition-all duration-300 ${active ? 'opacity-100' : 'opacity-20 group-hover:opacity-40'}`}>
+      
+      {/* Central Border Lines */}
+      <div className={`absolute top-0 left-3 right-3 h-[1.5px] ${active ? 'bg-[#D4AF37]' : 'bg-[#D4AF37]/50'}`}></div>
+      <div className={`absolute bottom-0 left-3 right-3 h-[1.5px] ${active ? 'bg-[#D4AF37]' : 'bg-[#D4AF37]/50'}`}></div>
+      <div className={`absolute left-0 top-3 bottom-3 w-[1.5px] ${active ? 'bg-[#D4AF37]' : 'bg-[#D4AF37]/50'}`}></div>
+      <div className={`absolute right-0 top-3 bottom-3 w-[1.5px] ${active ? 'bg-[#D4AF37]' : 'bg-[#D4AF37]/50'}`}></div>
+      
+      {/* SVG Floral Corners */}
+      {active && (
+        <>
+          {/* Top Left */}
+          <svg className="absolute top-0 left-0 w-4 h-4 text-[#D4AF37]" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M0,0 L24,0 C 18,2 14,6 12,12 C 10,18 8,22 8,24 L0,24 Z" opacity="0.4"/>
+            <path d="M0,0 L16,0 C 12,2 8,6 6,10 C 4,14 2,16 0,16 Z" />
+            <circle cx="5" cy="5" r="1.5" fill="#F5D77F"/>
+          </svg>
+          {/* Top Right */}
+          <svg className="absolute top-0 right-0 w-4 h-4 text-[#D4AF37] transform rotate-90" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M0,0 L24,0 C 18,2 14,6 12,12 C 10,18 8,22 8,24 L0,24 Z" opacity="0.4"/>
+            <path d="M0,0 L16,0 C 12,2 8,6 6,10 C 4,14 2,16 0,16 Z" />
+            <circle cx="5" cy="5" r="1.5" fill="#F5D77F"/>
+          </svg>
+          {/* Bottom Right */}
+          <svg className="absolute bottom-0 right-0 w-4 h-4 text-[#D4AF37] transform rotate-180" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M0,0 L24,0 C 18,2 14,6 12,12 C 10,18 8,22 8,24 L0,24 Z" opacity="0.4"/>
+            <path d="M0,0 L16,0 C 12,2 8,6 6,10 C 4,14 2,16 0,16 Z" />
+            <circle cx="5" cy="5" r="1.5" fill="#F5D77F"/>
+          </svg>
+          {/* Bottom Left */}
+          <svg className="absolute bottom-0 left-0 w-4 h-4 text-[#D4AF37] transform -rotate-90" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M0,0 L24,0 C 18,2 14,6 12,12 C 10,18 8,22 8,24 L0,24 Z" opacity="0.4"/>
+            <path d="M0,0 L16,0 C 12,2 8,6 6,10 C 4,14 2,16 0,16 Z" />
+            <circle cx="5" cy="5" r="1.5" fill="#F5D77F"/>
+          </svg>
+        </>
+      )}
+    </div>
+    
+    <span className="relative z-10 flex items-center justify-center font-mono text-[8px] sm:text-[9px] uppercase tracking-wider font-bold">
+      {active && pulse && <span className="mr-1.5 text-[8px] text-[#F5D77F] drop-shadow-[0_0_2px_rgba(245,215,127,1)] animate-[pulse_2s_ease-in-out_infinite]">✦</span>}
+      {children}
+    </span>
+  </button>
+);
+
 export default function Questbook() {
   const [activeTab, setActiveTab] = useState('ACTIVE VOWS');
   const [selectedDisc, setSelectedDisc] = useState('ALL');
@@ -123,7 +193,7 @@ export default function Questbook() {
       <div className="w-full max-w-[1200px] mx-auto flex flex-col gap-6">
 
         {/* Top Header Section */}
-        <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-5 pb-5 border-b border-[#415A77]/50 dark:border-[#D4AF37]/25 relative">
+        <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-5 pb-5 border-b border-[#415A77]/50 dark:border-[#D4AF37]/25 relative">
 
           <div className="space-y-1.5 max-w-2xl">
             <div className="flex items-center gap-2">
@@ -140,54 +210,97 @@ export default function Questbook() {
             <div className="pt-2">
               <button
                 onClick={() => setShowForgeModal(true)}
-                className="relative overflow-hidden px-5 py-2.5 rounded-lg bg-gradient-to-r from-[#1B263B] to-[#415A77] dark:from-[#6D0808] dark:to-[#8e0c0c] text-[#D4AF37] dark:text-[#F5D77F] font-serif text-xs font-bold tracking-widest border border-[#415A77] dark:border-[#F5D77F] flex items-center gap-2 shadow-[0_0_15px_rgba(212,175,55,0.35)] transition-all duration-300 ease-out hover:-translate-y-1 hover:shadow-[0_0_25px_rgba(212,175,55,0.6)] hover:brightness-125 active:scale-95 group"
+                className="relative overflow-hidden px-6 py-3 border-none flex items-center gap-2 group transition-all duration-300 active:scale-95 bg-[#1B263B] dark:bg-[radial-gradient(ellipse_at_center,_rgba(60,8,12,1)_0%,_rgba(20,2,4,1)_100%)] text-[#D4AF37] dark:text-[#F5D77F] shadow-[0_0_15px_rgba(212,175,55,0.3)] hover:shadow-[0_0_25px_rgba(245,215,127,0.5)]"
+                style={{ clipPath: 'polygon(8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px), 0 8px)' }}
               >
-                <div className="absolute inset-0 w-full h-full bg-gradient-to-r from-transparent via-white/10 to-transparent -translate-x-full group-hover:animate-[shimmer_1.5s_infinite]"></div>
-                <Plus size={16} className="transition-transform group-hover:rotate-90 duration-300" /> 
-                <span className="relative z-10">FORGE A QUEST</span> 
-                <span className="font-mono text-[10px] ml-1 text-[#D4AF37]/70 dark:text-[#F5D77F]/70 relative z-10">[N]</span>
+                {/* SVG Ornate Frame */}
+                <div className="absolute inset-0 pointer-events-none">
+                  <div className="absolute top-0 left-4 right-4 h-[1.5px] bg-[#D4AF37] opacity-50 group-hover:opacity-100 group-hover:shadow-[0_0_5px_#F5D77F] transition-all"></div>
+                  <div className="absolute bottom-0 left-4 right-4 h-[1.5px] bg-[#D4AF37] opacity-50 group-hover:opacity-100 group-hover:shadow-[0_0_5px_#F5D77F] transition-all"></div>
+                  <div className="absolute left-0 top-4 bottom-4 w-[1.5px] bg-[#D4AF37] opacity-50 group-hover:opacity-100 group-hover:shadow-[0_0_5px_#F5D77F] transition-all"></div>
+                  <div className="absolute right-0 top-4 bottom-4 w-[1.5px] bg-[#D4AF37] opacity-50 group-hover:opacity-100 group-hover:shadow-[0_0_5px_#F5D77F] transition-all"></div>
+                  
+                  <svg className="absolute top-0 left-0 w-5 h-5 text-[#D4AF37] transition-transform duration-500 group-hover:scale-110 group-hover:text-[#F5D77F]" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M0,0 L24,0 C 18,2 14,6 12,12 C 10,18 8,22 8,24 L0,24 Z" opacity="0.4"/>
+                    <path d="M0,0 L16,0 C 12,2 8,6 6,10 C 4,14 2,16 0,16 Z" />
+                    <circle cx="5" cy="5" r="1.5" fill="#F5D77F"/>
+                  </svg>
+                  <svg className="absolute top-0 right-0 w-5 h-5 text-[#D4AF37] transform rotate-90 transition-all duration-500 group-hover:scale-110 group-hover:rotate-90 group-hover:text-[#F5D77F]" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M0,0 L24,0 C 18,2 14,6 12,12 C 10,18 8,22 8,24 L0,24 Z" opacity="0.4"/>
+                    <path d="M0,0 L16,0 C 12,2 8,6 6,10 C 4,14 2,16 0,16 Z" />
+                    <circle cx="5" cy="5" r="1.5" fill="#F5D77F"/>
+                  </svg>
+                  <svg className="absolute bottom-0 right-0 w-5 h-5 text-[#D4AF37] transform rotate-180 transition-all duration-500 group-hover:scale-110 group-hover:rotate-180 group-hover:text-[#F5D77F]" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M0,0 L24,0 C 18,2 14,6 12,12 C 10,18 8,22 8,24 L0,24 Z" opacity="0.4"/>
+                    <path d="M0,0 L16,0 C 12,2 8,6 6,10 C 4,14 2,16 0,16 Z" />
+                    <circle cx="5" cy="5" r="1.5" fill="#F5D77F"/>
+                  </svg>
+                  <svg className="absolute bottom-0 left-0 w-5 h-5 text-[#D4AF37] transform -rotate-90 transition-all duration-500 group-hover:scale-110 group-hover:-rotate-90 group-hover:text-[#F5D77F]" viewBox="0 0 24 24" fill="currentColor">
+                    <path d="M0,0 L24,0 C 18,2 14,6 12,12 C 10,18 8,22 8,24 L0,24 Z" opacity="0.4"/>
+                    <path d="M0,0 L16,0 C 12,2 8,6 6,10 C 4,14 2,16 0,16 Z" />
+                    <circle cx="5" cy="5" r="1.5" fill="#F5D77F"/>
+                  </svg>
+                </div>
+
+                {/* Radiant Core Hover */}
+                <div className="absolute inset-0 bg-[#F5D77F]/0 group-hover:bg-[#F5D77F]/10 transition-colors duration-500"></div>
+                <div className="absolute inset-0 bg-white/20 dark:bg-white/10 w-16 blur-2xl skew-x-12 -translate-x-32 group-hover:animate-[sweep_1.5s_ease-in-out_infinite]"></div>
+
+                <span className="relative z-10 flex items-center gap-2.5 font-serif text-[11px] lg:text-xs font-bold tracking-[0.2em]">
+                  <Plus size={16} className="text-[#F5D77F] group-hover:rotate-180 transition-transform duration-500 group-hover:scale-125" />
+                  <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#D4AF37] via-[#F5D77F] to-[#D4AF37] group-hover:brightness-125 transition-all">FORGE A QUEST</span>
+                </span>
               </button>
             </div>
           </div>
 
           {/* Quick Stats Pills */}
-          <div className="flex flex-wrap items-center gap-3 shrink-0">
+          <div className="flex flex-wrap items-center gap-4 shrink-0">
 
-            <div className="flex items-center gap-3 px-4 py-2.5 rounded-lg bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 shadow-lg">
-              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#D0F4F0] dark:from-[#2b0303] to-[#415A77] dark:to-[#120000] flex items-center justify-center border border-[#415A77] dark:border-[#D4AF37]/45 shadow-inner text-[#D4AF37] dark:text-[#F5D77F]">
-                <Flame size={20} />
+            {/* Stat 1: Unbroken Vow */}
+            <div className="group flex items-center gap-4 px-5 py-4 rounded-[12px] bg-[#110102] dark:bg-[radial-gradient(ellipse_at_center,_rgba(45,5,8,1)_0%,_rgba(15,2,4,1)_100%)] border border-[#D4AF37]/40 shadow-[0_4px_20px_rgba(0,0,0,0.5)] cursor-default transition-all duration-300 hover:border-[#D4AF37]/80 hover:shadow-[0_4px_25px_rgba(212,175,55,0.2)]">
+              <div className="w-10 h-10 rounded-[10px] flex items-center justify-center border border-[#D4AF37]/50 text-[#F5D77F] shadow-[inset_0_0_8px_rgba(212,175,55,0.1)] transition-all duration-300 group-hover:bg-[#D4AF37]/10 group-hover:border-[#F5D77F] group-hover:scale-110">
+                <Flame size={20} strokeWidth={1.5} className="transition-transform duration-500 group-hover:rotate-12 group-hover:scale-110" />
               </div>
-              <div className="flex flex-col">
-                <div className="flex items-baseline gap-1">
-                  <span className="font-serif text-xl font-bold text-[#D4AF37] dark:text-[#F5D77F]">4</span>
-                  <span className="font-mono text-xs text-[#F7F3E9]/70 dark:text-[#8d9685] uppercase">Days</span>
+              <div className="flex flex-col justify-center">
+                <div className="flex items-baseline gap-1.5 leading-none mb-1.5">
+                  <span className="font-serif text-2xl font-bold text-[#F5D77F] drop-shadow-[0_0_8px_rgba(245,215,127,0.2)]">
+                    <CountUp to={4} />
+                  </span>
+                  <span className="font-mono text-[11px] text-[#F7F3E9]/60 dark:text-[#F7F3E9]/50 uppercase tracking-wide">Days</span>
                 </div>
-                <span className="font-mono text-[10px] text-[#D4AF37] dark:text-[#C5A059] uppercase tracking-widest font-semibold">UNBROKEN VOW</span>
+                <span className="font-mono text-[9px] text-[#D4AF37] dark:text-[#D4AF37]/90 uppercase tracking-[0.15em] font-bold">UNBROKEN VOW</span>
               </div>
             </div>
 
-            <div className="flex items-center gap-3 px-4 py-2.5 rounded-lg bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 shadow-lg">
-              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#D0F4F0] dark:from-[#2b0303] to-[#415A77] dark:to-[#120000] flex items-center justify-center border border-[#415A77] dark:border-[#D4AF37]/45 shadow-inner text-[#D4AF37] dark:text-[#F5D77F]">
-                <Award size={20} />
+            {/* Stat 2: Sealed Vows */}
+            <div className="group flex items-center gap-4 px-5 py-4 rounded-[12px] bg-[#110102] dark:bg-[radial-gradient(ellipse_at_center,_rgba(45,5,8,1)_0%,_rgba(15,2,4,1)_100%)] border border-[#D4AF37]/40 shadow-[0_4px_20px_rgba(0,0,0,0.5)] cursor-default transition-all duration-300 hover:border-[#D4AF37]/80 hover:shadow-[0_4px_25px_rgba(212,175,55,0.2)]">
+              <div className="w-10 h-10 rounded-[10px] flex items-center justify-center border border-[#D4AF37]/50 text-[#F5D77F] shadow-[inset_0_0_8px_rgba(212,175,55,0.1)] transition-all duration-300 group-hover:bg-[#D4AF37]/10 group-hover:border-[#F5D77F] group-hover:scale-110">
+                <Award size={20} strokeWidth={1.5} className="transition-transform duration-500 group-hover:-rotate-12 group-hover:scale-110" />
               </div>
-              <div className="flex flex-col">
-                <div className="flex items-baseline gap-1">
-                  <span className="font-serif text-xl font-bold text-[#D4AF37] dark:text-[#F5D77F]">1</span>
+              <div className="flex flex-col justify-center">
+                <div className="flex items-baseline gap-1.5 leading-none mb-1.5">
+                  <span className="font-serif text-2xl font-bold text-[#F5D77F] drop-shadow-[0_0_8px_rgba(245,215,127,0.2)]">
+                    <CountUp to={1} />
+                  </span>
                 </div>
-                <span className="font-mono text-[10px] text-[#D4AF37] dark:text-[#C5A059] uppercase tracking-widest font-semibold">SEALED VOWS</span>
+                <span className="font-mono text-[9px] text-[#D4AF37] dark:text-[#D4AF37]/90 uppercase tracking-[0.15em] font-bold">SEALED VOWS</span>
               </div>
             </div>
 
-            <div className="flex items-center gap-3 px-4 py-2.5 rounded-lg bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 shadow-lg">
-              <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#D0F4F0] dark:from-[#2b0303] to-[#415A77] dark:to-[#120000] flex items-center justify-center border border-[#415A77] dark:border-[#D4AF37]/45 shadow-inner text-[#D4AF37] dark:text-[#F5D77F]">
-                <Target size={20} />
+            {/* Stat 3: XP & Crowns */}
+            <div className="group flex items-center gap-4 px-5 py-4 rounded-[12px] bg-[#110102] dark:bg-[radial-gradient(ellipse_at_center,_rgba(45,5,8,1)_0%,_rgba(15,2,4,1)_100%)] border border-[#D4AF37]/40 shadow-[0_4px_20px_rgba(0,0,0,0.5)] cursor-default transition-all duration-300 hover:border-[#D4AF37]/80 hover:shadow-[0_4px_25px_rgba(212,175,55,0.2)]">
+              <div className="w-10 h-10 rounded-[10px] flex items-center justify-center border border-[#D4AF37]/50 text-[#F5D77F] shadow-[inset_0_0_8px_rgba(212,175,55,0.1)] transition-all duration-300 group-hover:bg-[#D4AF37]/10 group-hover:border-[#F5D77F] group-hover:scale-110">
+                <Target size={20} strokeWidth={1.5} className="transition-transform duration-500 group-hover:rotate-45 group-hover:scale-110" />
               </div>
-              <div className="flex flex-col">
-                <div className="flex items-baseline gap-1">
-                  <span className="font-serif text-xl font-bold text-[#D4AF37] dark:text-[#F5D77F]">+310</span>
-                  <span className="font-mono text-xs text-[#D4AF37]/70 dark:text-[#F5D77F]/70 uppercase">XP</span>
+              <div className="flex flex-col justify-center">
+                <div className="flex items-baseline gap-1.5 leading-none mb-1.5">
+                  <span className="font-serif text-2xl font-bold text-[#F5D77F] drop-shadow-[0_0_8px_rgba(245,215,127,0.2)]">
+                    <CountUp to={310} prefix="+" />
+                  </span>
+                  <span className="font-mono text-[11px] text-[#F7F3E9]/60 dark:text-[#F7F3E9]/50 uppercase tracking-wide">XP</span>
                 </div>
-                <span className="font-mono text-[10px] text-[#D4AF37] dark:text-[#C5A059] uppercase tracking-widest font-semibold">+95 CROWNS</span>
+                <span className="font-mono text-[9px] text-[#D4AF37] dark:text-[#D4AF37]/90 uppercase tracking-[0.15em] font-bold">+95 CROWNS</span>
               </div>
             </div>
 
@@ -198,74 +311,93 @@ export default function Questbook() {
         {/* Tabs and Filters - Dual Ribbon Layout */}
         <div className="flex flex-col pt-4">
           
-          {/* Ribbon 1: Tabs (Left) & Search (Right) */}
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-4 pb-3 border-b border-[#415A77]/30 dark:border-[#D4AF37]/15">
-            {/* Tabs */}
-            <div className="flex flex-wrap items-center gap-6">
-              {['ACTIVE VOWS (4)', 'COMPLETED / SEALED (1)', 'RECURRING RITES (3)', 'ALL CODEX (5)'].map((tab) => (
-                <button 
-                  key={tab}
-                  onClick={() => setActiveTab(tab.split(' (')[0])}
-                  className={`px-4 py-2 rounded border font-mono text-[10px] uppercase tracking-widest font-bold transition-all ${
-                    activeTab === tab.split(' (')[0]
-                      ? 'bg-[#1B263B] dark:bg-[#4a1c02] border-[#D4AF37] text-[#D4AF37] dark:text-[#F5D77F] shadow-[0_0_12px_rgba(212,175,55,0.3)]' 
-                      : 'bg-[#1B263B]/40 dark:bg-[#2A0505] border-[#415A77]/50 dark:border-[#D4AF37]/25 text-[#F7F3E9]/60 dark:text-[#8d9685] hover:border-[#D4AF37]/50 hover:bg-[#1B263B]/60 dark:hover:bg-[#3A0A0A]'
-                  }`}
-                >
-                  {activeTab === tab.split(' (')[0] && <span className="mr-2 text-[8px] animate-pulse">✦</span>}
-                  {tab}
-                </button>
-              ))}
-            </div>
-
+          {/* Ribbon 1: Search (Left) & Tabs (Right) */}
+          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pb-3 border-b border-[#415A77]/30 dark:border-[#D4AF37]/15">
+            
             {/* Search Bar */}
-            <div className="relative w-full max-w-sm shrink-0">
-              <Search size={14} className="absolute left-3 top-2.5 text-[#D4AF37] dark:text-[#F5D77F]/60" />
+            <div className="relative w-full lg:w-1/2 shrink-0 lg:pr-8 group h-8 flex items-center">
+              
+              <div 
+                className="absolute inset-0 right-0 lg:right-8 bg-[#1B263B]/30 dark:bg-[radial-gradient(ellipse_at_center,_rgba(35,6,8,0.7)_0%,_rgba(15,2,4,0.9)_100%)] pointer-events-none"
+              >
+                {/* Stepped edge line top and bottom */}
+                <svg className="absolute top-0 left-0 w-full h-full pointer-events-none" preserveAspectRatio="none" viewBox="0 0 200 40" fill="none" stroke="#D4AF37">
+                  <path d="M 12,1 L 95,1 L 100,4 L 105,1 L 188,1" strokeWidth="0.5" opacity="0.6"/>
+                  <path d="M 12,39 L 95,39 L 100,36 L 105,39 L 188,39" strokeWidth="0.5" opacity="0.6"/>
+                  <path d="M 1,12 L 1,28" strokeWidth="0.5" opacity="0.6"/>
+                  <path d="M 199,12 L 199,28" strokeWidth="0.5" opacity="0.6"/>
+                </svg>
+
+                {/* Left Ornate Scroll */}
+                <svg className="absolute left-0 top-0 h-full w-4 text-[#D4AF37] opacity-80 pointer-events-none" viewBox="0 0 16 32" fill="currentColor">
+                  <path d="M 16,0 C 8,0 4,4 4,10 C 4,14 10,16 10,16 C 10,16 4,18 4,22 C 4,28 8,32 16,32 L 0,32 L 0,0 Z" opacity="0.4"/>
+                  <path d="M 16,0 C 10,0 8,4 8,10 C 8,14 12,16 12,16 C 12,16 8,18 8,22 C 8,28 10,32 16,32 L 0,32 L 0,0 Z"/>
+                  <circle cx="4" cy="16" r="1" fill="#F5D77F" />
+                </svg>
+
+                {/* Right Ornate Scroll */}
+                <svg className="absolute right-0 top-0 h-full w-4 text-[#D4AF37] opacity-80 pointer-events-none transform rotate-180" viewBox="0 0 16 32" fill="currentColor">
+                  <path d="M 16,0 C 8,0 4,4 4,10 C 4,14 10,16 10,16 C 10,16 4,18 4,22 C 4,28 8,32 16,32 L 0,32 L 0,0 Z" opacity="0.4"/>
+                  <path d="M 16,0 C 10,0 8,4 8,10 C 8,14 12,16 12,16 C 12,16 8,18 8,22 C 8,28 10,32 16,32 L 0,32 L 0,0 Z"/>
+                  <circle cx="4" cy="16" r="1" fill="#F5D77F" />
+                </svg>
+              </div>
+
+              <Search size={14} className="absolute left-4 text-[#D4AF37] dark:text-[#F5D77F]/60 z-10" />
+              
               <input 
                 type="text" 
                 placeholder="Search active vows or ancient rites..."
-                className="w-full bg-[#1B263B]/30 dark:bg-[#120000]/80 border border-[#415A77]/50 dark:border-[#D4AF37]/35 text-[#F7F3E9] dark:text-[#EEEAD7] text-sm pl-9 pr-3 py-2 rounded focus:outline-none focus:border-[#D4AF37]/70 placeholder-[#F7F3E9]/30 dark:placeholder-[#8d9685]/50 transition-all shadow-inner"
+                className="w-full h-full relative z-10 bg-transparent text-[#F7F3E9] dark:text-[#EEEAD7] text-[10px] pl-10 pr-8 focus:outline-none placeholder-[#F7F3E9]/40 dark:placeholder-[#8d9685]/50 transition-all font-mono tracking-wide"
               />
-              <div className="absolute right-2 top-1.5 p-1 bg-[#415A77]/20 dark:bg-[#3a0404] rounded border border-[#415A77]/30 dark:border-[#D4AF37]/30 cursor-pointer hover:bg-[#415A77]/40 dark:hover:bg-[#4a0505]">
-                <SlidersHorizontal size={12} className="text-[#D4AF37] dark:text-[#F5D77F]/80" />
+              <div className="absolute right-4 lg:right-12 p-1 z-10 cursor-pointer text-[#D4AF37] dark:text-[#F5D77F]/80 hover:text-[#F5D77F] hover:scale-110 transition-all flex items-center">
+                <SlidersHorizontal size={12} />
               </div>
+            </div>
+
+            {/* Tabs */}
+            <div className="flex flex-wrap items-center justify-start w-full lg:w-1/2 gap-1.5">
+              {['ACTIVE VOWS (4)', 'COMPLETED / SEALED (1)', 'RECURRING RITES (3)', 'ALL CODEX (5)'].map((tab) => (
+                <GothicButton 
+                  key={tab} 
+                  active={activeTab === tab.split(' (')[0]} 
+                  onClick={() => setActiveTab(tab.split(' (')[0])}
+                  pulse={true}
+                >
+                  {tab}
+                </GothicButton>
+              ))}
             </div>
           </div>
 
           {/* Ribbon 2: Disciplines (Left) & Tiers (Right) */}
-          <div className="flex flex-col lg:flex-row lg:items-center justify-between gap-4 pt-4 pb-2">
+          <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4 pt-3 pb-2">
             
             {/* Disciplines */}
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="font-mono text-[9px] uppercase tracking-widest text-[#D4AF37] dark:text-[#F5D77F] font-bold mr-2">✦ DISCIPLINES:</span>
+            <div className="flex flex-wrap items-center justify-start w-full xl:w-1/2 gap-1.5 xl:pr-8">
+              <span className="font-mono text-[9px] uppercase tracking-widest text-[#D4AF37] dark:text-[#F5D77F] font-bold mr-1">✦ DISCIPLINES:</span>
               {DISCIPLINES.map(d => (
-                <button 
-                  key={d} onClick={() => setSelectedDisc(d)}
-                  className={`px-3 py-1.5 rounded border font-mono text-[9px] uppercase tracking-widest transition-all ${
-                    selectedDisc === d 
-                      ? 'bg-[#1B263B] dark:bg-[#4a1c02] border-[#D4AF37] text-[#D4AF37] dark:text-[#F5D77F] font-bold shadow-[0_0_12px_rgba(212,175,55,0.3)]' 
-                      : 'bg-[#1B263B]/40 dark:bg-[#2A0505] border-[#415A77]/50 dark:border-[#D4AF37]/25 text-[#F7F3E9]/60 dark:text-[#8d9685] hover:border-[#D4AF37]/50 hover:bg-[#1B263B]/60 dark:hover:bg-[#3A0A0A]'
-                  }`}
+                <GothicButton 
+                  key={d} 
+                  active={selectedDisc === d} 
+                  onClick={() => setSelectedDisc(d)}
                 >
                   {d}
-                </button>
+                </GothicButton>
               ))}
             </div>
 
             {/* Tiers */}
-            <div className="flex flex-wrap items-center gap-2">
-              <span className="font-mono text-[9px] uppercase tracking-widest text-[#D4AF37] dark:text-[#F5D77F] font-bold mr-2">TIER:</span>
+            <div className="flex flex-wrap items-center justify-start w-full xl:w-1/2 gap-1.5">
+              <span className="font-mono text-[9px] uppercase tracking-widest text-[#D4AF37] dark:text-[#F5D77F] font-bold mr-1 xl:ml-0">TIER:</span>
               {TIERS.map(t => (
-                <button 
-                  key={t} onClick={() => setSelectedTier(t)}
-                  className={`px-3 py-1.5 rounded border font-mono text-[9px] uppercase tracking-widest transition-all ${
-                    selectedTier === t 
-                      ? 'bg-[#1B263B] dark:bg-[#4a1c02] border-[#D4AF37] text-[#D4AF37] dark:text-[#F5D77F] font-bold shadow-[0_0_12px_rgba(212,175,55,0.3)]' 
-                      : 'bg-[#1B263B]/40 dark:bg-[#2A0505] border-[#415A77]/50 dark:border-[#D4AF37]/25 text-[#F7F3E9]/60 dark:text-[#8d9685] hover:border-[#D4AF37]/50 hover:bg-[#1B263B]/60 dark:hover:bg-[#3A0A0A]'
-                  }`}
+                <GothicButton 
+                  key={t} 
+                  active={selectedTier === t} 
+                  onClick={() => setSelectedTier(t)}
                 >
                   {t}
-                </button>
+                </GothicButton>
               ))}
             </div>
 
