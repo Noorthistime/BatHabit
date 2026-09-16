@@ -74,24 +74,26 @@ export function Bloodline() {
           {/* Big Streak Counters */}
           <div className="flex gap-4 shrink-0">
             <div
-              className="px-6 py-4 text-center rounded-xl bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 shadow-[0_0_20px_rgba(109,8,8,0.4)]"
+              className="px-6 py-4 text-center rounded-xl relative group overflow-hidden"
+              style={{ background: 'radial-gradient(circle at center, rgba(109,8,8,0.6) 0%, rgba(15,2,4,0.9) 100%)', border: '1px solid rgba(212,175,55,0.5)', boxShadow: 'inset 0 0 40px rgba(0,0,0,0.8), 0 0 20px rgba(212,175,55,0.2)' }}
             >
-              <div className="flex items-center gap-2 justify-center mb-1">
-                <Flame size={16} className="text-orange-400" />
-                <span className="font-mono text-[9px] text-[#8d9685] uppercase tracking-widest">Current</span>
+              <div className="absolute inset-0 opacity-20 mix-blend-overlay" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg width=\\'60\\' height=\\'60\\' viewBox=\\'0 0 60 60\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cg fill=\\'none\\' fill-rule=\\'evenodd\\'%3E%3Cg fill=\\'%23d4af37\\' fill-opacity=\\'0.15\\'%3E%3Cpath d=\\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')" }}></div>
+              <div className="relative z-10 flex items-center gap-2 justify-center mb-1">
+                <Flame size={16} className="text-[#D4AF37] group-hover:scale-125 transition-transform" />
+                <span className="font-mono text-[9px] text-[#D4AF37] uppercase tracking-widest font-bold">Current</span>
               </div>
-              <div className="font-mono text-4xl font-bold text-[#D4AF37]">12</div>
-              <div className="font-mono text-[9px] text-[#8d9685] uppercase tracking-widest mt-0.5">Days</div>
+              <div className="relative z-10 font-serif text-4xl font-bold text-[#F5D77F] drop-shadow-[0_0_15px_rgba(212,175,55,0.8)]">12</div>
+              <div className="relative z-10 font-mono text-[9px] text-[#D4AF37]/80 uppercase tracking-widest mt-0.5">Days</div>
             </div>
             <div
-              className="px-6 py-4 text-center rounded-xl bg-[#1B263B] dark:bg-[rgba(35,6,8,0.5)] backdrop-blur-md border border-[#415A77]/50 dark:border-[#D4AF37]/25 shadow-md"
+              className="px-6 py-4 text-center rounded-xl bg-[#1B263B]/40 dark:bg-[rgba(35,6,8,0.5)] backdrop-blur-md border border-[#415A77]/50 dark:border-[#D4AF37]/25 shadow-md relative overflow-hidden"
             >
-              <div className="flex items-center gap-2 justify-center mb-1">
+              <div className="relative z-10 flex items-center gap-2 justify-center mb-1">
                 <Target size={14} className="text-[#D4AF37]" />
                 <span className="font-mono text-[9px] text-[#8d9685] uppercase tracking-widest">Longest</span>
               </div>
-              <div className="font-mono text-4xl font-bold text-[#EEEAD7]">34</div>
-              <div className="font-mono text-[9px] text-[#8d9685] uppercase tracking-widest mt-0.5">Days</div>
+              <div className="relative z-10 font-serif text-4xl font-bold text-[#EEEAD7]">34</div>
+              <div className="relative z-10 font-mono text-[9px] text-[#8d9685] uppercase tracking-widest mt-0.5">Days</div>
             </div>
           </div>
         </div>
@@ -99,17 +101,17 @@ export function Bloodline() {
         {/* Stats Row */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-3">
           {[
-            { icon: CheckCircle2, label: 'Total Completed', value: totalCompleted, sub: 'quests sealed', color: '#6ee7b7' },
-            { icon: TrendingUp, label: 'Consistency', value: `${consistency}%`, sub: 'last 365 days', color: '#D4AF37' },
-            { icon: Clock, label: 'Avg. Per Day', value: '2.4', sub: 'quests / day', color: '#818cf8' },
+            { icon: CheckCircle2, label: 'Total Completed', value: totalCompleted, sub: 'quests sealed', color: '#D4AF37' },
+            { icon: TrendingUp, label: 'Consistency', value: `${consistency}%`, sub: 'last 365 days', color: '#F5D77F' },
+            { icon: Clock, label: 'Avg. Per Day', value: '2.4', sub: 'quests / day', color: '#8d9685' },
             { icon: Flame, label: 'Streak Bonus', value: '×1.5', sub: 'XP multiplier', color: '#ff6b6b' },
           ].map(s => (
             <div
               key={s.label}
-              className="p-4 flex flex-col gap-2 rounded-xl bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-sm border border-[#415A77] dark:border-[#D4AF37]/25 shadow-md"
+              className="p-4 flex flex-col gap-2 relative rounded-xl bg-[#1B263B]/40 dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-sm border border-[#415A77]/60 dark:border-[#D4AF37]/35 shadow-[0_4px_20px_rgba(0,0,0,0.5)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(212,175,55,0.2)] hover:border-[#415A77] dark:hover:border-[#F5D77F] group"
             >
-              <s.icon size={14} style={{ color: s.color }} />
-              <div className="font-mono text-2xl font-bold" style={{ color: s.color }}>{s.value}</div>
+              <s.icon size={14} style={{ color: s.color }} className="group-hover:scale-110 transition-transform" />
+              <div className="font-mono text-2xl font-bold drop-shadow-[0_0_8px_currentColor]" style={{ color: s.color }}>{s.value}</div>
               <div>
                 <div className="font-mono text-[10px] uppercase tracking-widest text-[#EEEAD7]">{s.label}</div>
                 <div className="font-mono text-[9px] text-[#8d9685]">{s.sub}</div>
@@ -120,9 +122,15 @@ export function Bloodline() {
 
         {/* Activity Calendar */}
         <div
-          className="p-5 flex flex-col gap-4 rounded-xl bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 shadow-lg"
+          className="p-5 flex flex-col gap-4 relative rounded-xl bg-[#1B263B]/40 dark:bg-[rgba(35,6,8,0.85)] backdrop-blur-xl border border-[#415A77]/60 dark:border-[#D4AF37]/50 shadow-[inset_0_0_40px_rgba(0,0,0,0.8),_0_8px_30px_rgba(109,8,8,0.5)]"
         >
-          <div className="flex items-center justify-between">
+          {/* Corner Brackets */}
+          <div className="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-[#D4AF37]/80 rounded-tl-xl" />
+          <div className="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-[#D4AF37]/80 rounded-tr-xl" />
+          <div className="absolute bottom-0 left-0 w-6 h-6 border-b-2 border-l-2 border-[#D4AF37]/80 rounded-bl-xl" />
+          <div className="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-[#D4AF37]/80 rounded-br-xl" />
+
+          <div className="flex items-center justify-between relative z-10">
             <div>
               <p className="font-mono text-xs uppercase tracking-widest text-[#D4AF37]">Activity Codex</p>
               <p className="font-mono text-[9px] text-[#8d9685] mt-0.5">365-day vow chronicle</p>
@@ -163,29 +171,29 @@ export function Bloodline() {
 
         {/* Recent Activity */}
         <div
-          className="p-5 rounded-xl bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 shadow-lg"
+          className="p-5 relative rounded-xl bg-[#1B263B]/40 dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77]/60 dark:border-[#D4AF37]/35 shadow-lg"
         >
           <p className="font-mono text-xs uppercase tracking-widest text-[#D4AF37] mb-4">Recent Completions</p>
           <div className="flex flex-col">
             {RECENT_ACTIVITY.map((a, i) => (
               <div
                 key={i}
-                className="flex items-center justify-between py-3 border-b last:border-b-0"
+                className="flex items-center justify-between py-3 px-3 -mx-3 border-b last:border-b-0 group transition-colors hover:bg-[rgba(212,175,55,0.05)] rounded"
                 style={{ borderColor: 'rgba(212,175,55,0.12)' }}
               >
                 <div className="flex items-center gap-3">
                   <div
-                    className="w-1.5 h-8 shrink-0"
-                    style={{ background: DISCIPLINE_COLORS[a.discipline] || '#6D0808' }}
+                    className="w-1.5 h-8 shrink-0 group-hover:shadow-[0_0_10px_currentColor] transition-shadow"
+                    style={{ background: DISCIPLINE_COLORS[a.discipline] || '#6D0808', color: DISCIPLINE_COLORS[a.discipline] || '#6D0808' }}
                   />
                   <div>
-                    <p className="font-serif text-sm text-[#EEEAD7] font-semibold">{a.quest}</p>
+                    <p className="font-serif text-sm text-[#EEEAD7] font-semibold group-hover:text-[#F5D77F] transition-colors">{a.quest}</p>
                     <p className="font-mono text-[10px] text-[#8d9685]">{a.date}</p>
                   </div>
                 </div>
                 <div className="text-right shrink-0">
-                  <p className="font-mono text-xs text-[#D4AF37]">{a.xp}</p>
-                  <p className="font-mono text-[9px] text-[#8d9685]">{a.crowns}</p>
+                  <p className="font-mono text-xs text-[#D4AF37] font-bold group-hover:drop-shadow-[0_0_5px_rgba(212,175,55,0.8)] transition-all">{a.xp}</p>
+                  <p className="font-mono text-[9px] text-[#8d9685] group-hover:text-[#D4AF37]/80 transition-colors">{a.crowns}</p>
                 </div>
               </div>
             ))}
