@@ -71,12 +71,12 @@ export function Landing() {
                 </>
               )}
             </button>
-            <Link to="/auth">
+            <Link to="/">
               <button className="px-5 py-2 font-mono text-[10px] uppercase tracking-widest text-[#F7F3E9]/70 dark:text-[#8d9685] hover:text-[#F7F3E9] dark:text-[#EEEAD7] border border-transparent hover:border-[#415A77] dark:border-[#D4AF37]/30 rounded transition-all">
                 Threshold
               </button>
             </Link>
-            <Link to="/auth">
+            <Link to="/">
               <button className="px-6 py-2 bg-gradient-to-r from-[#415A77] dark:from-[#6D0808] to-[#1B263B] dark:to-[#3a0404] text-[#F5D77F] font-serif text-[11px] font-bold uppercase tracking-[0.2em] rounded shadow-[0_0_15px_rgba(65,90,119,0.5)] dark:shadow-[0_0_15px_rgba(109,8,8,0.5)] border border-[#415A77] dark:border-[#D4AF37]/50 hover:shadow-[0_0_25px_rgba(212,175,55,0.4)] transition-all flex items-center gap-2">
                 <span className="text-[#D4AF37]">✦</span> Enter Sanctum
               </button>
@@ -106,12 +106,12 @@ export function Landing() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-5 w-full sm:w-auto">
-            <Link to="/auth">
+            <Link to="/">
               <button className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-[#415A77] dark:from-[#6D0808] to-[#1B263B] dark:to-[#4a0202] text-[#F5D77F] font-serif text-sm font-bold uppercase tracking-[0.2em] rounded-lg shadow-[0_0_30px_rgba(65,90,119,0.7)] dark:shadow-[0_0_30px_rgba(109,8,8,0.7)] border border-[#415A77] dark:border-[#D4AF37]/60 hover:scale-105 transition-transform flex items-center justify-center gap-3">
                 <span className="text-[#D4AF37]">✦</span> Begin Your Awakening
               </button>
             </Link>
-            <Link to="/auth">
+            <Link to="/">
               <button className="w-full sm:w-auto px-8 py-4 bg-transparent text-[#D4AF37] font-serif text-sm font-bold uppercase tracking-[0.2em] rounded-lg border border-[#415A77] dark:border-[#D4AF37]/30 hover:bg-[#415A77]/40 dark:bg-[#1e0306] hover:border-[#415A77] dark:border-[#D4AF37]/60 transition-all flex items-center justify-center">
                 Enter The Threshold
               </button>
@@ -458,12 +458,12 @@ export function Landing() {
             Stop logging habits on lifeless corporate checklists. Inscribe your real vows into the Gothic Nocturnal Codex today and awaken the sovereign within.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto">
-            <Link to="/auth">
+            <Link to="/">
                <button className="w-full sm:w-auto px-8 py-4 bg-gradient-to-r from-[#415A77] dark:from-[#6D0808] to-[#1B263B] dark:to-[#4a0202] text-[#F5D77F] font-serif text-xs font-bold uppercase tracking-[0.2em] rounded border border-[#415A77] dark:border-[#D4AF37]/60 shadow-[0_0_30px_rgba(65,90,119,0.5)] dark:shadow-[0_0_30px_rgba(109,8,8,0.5)] hover:scale-105 transition-transform">
                  Begin Your Awakening
                </button>
             </Link>
-            <Link to="/auth">
+            <Link to="/">
                <button className="w-full sm:w-auto px-8 py-4 bg-transparent text-[#D4AF37] font-serif text-xs font-bold uppercase tracking-[0.2em] rounded border border-[#415A77] dark:border-[#D4AF37]/30 hover:bg-[#415A77]/40 dark:bg-[#1e0306] transition-colors">
                  Explore The Sanctum Demo
                </button>
