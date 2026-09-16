@@ -94,9 +94,7 @@ export function Grimoire() {
 
         {/* Character Card */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
-          <div
-            className="rounded-xl p-6 flex flex-col items-center text-center gap-4 relative col-span-1 self-start bg-[#1B263B]/40 dark:bg-[rgba(35,6,8,0.85)] backdrop-blur-xl border border-[#415A77]/60 dark:border-[#D4AF37]/50 shadow-[0_8px_30px_rgba(109,8,8,0.5)]"
-          >
+          <div className="rounded-xl p-4 flex flex-col items-center text-center gap-3 relative col-span-1 self-start bg-[#1B263B]/40 dark:bg-[rgba(35,6,8,0.85)] backdrop-blur-xl border border-[#415A77]/60 dark:border-[#D4AF37]/50 shadow-[0_8px_30px_rgba(109,8,8,0.5)]">
             {/* Background Watermark */}
             <div className="absolute bottom-0 left-0 right-0 h-56 overflow-hidden rounded-b-xl pointer-events-none flex items-end justify-center opacity-[0.06] text-[#D4AF37]">
               <GiDragonHead className="w-64 h-64 translate-y-4" />
@@ -134,7 +132,7 @@ export function Grimoire() {
             </div>
 
             {/* XP Bar */}
-            <div className="w-full space-y-2 mt-4">
+            <div className="w-full space-y-2 mt-2">
               <div className="flex justify-between font-mono text-[10px] text-[#8d9685] tracking-widest">
                 <span>XP PROGRESS</span>
                 <span className="text-[#D4AF37] drop-shadow-[0_0_3px_rgba(212,175,55,0.5)]">{currentXP.toLocaleString()} <span className="text-[#8d9685]">/ {nextXP.toLocaleString()}</span></span>
@@ -157,7 +155,7 @@ export function Grimoire() {
             </div>
 
             {/* Quick Stats */}
-            <div className="w-full grid grid-cols-3 gap-2 border-t border-[#D4AF37]/20 pt-5 mt-1 relative z-10">
+            <div className="w-full grid grid-cols-3 gap-2 border-t border-[#D4AF37]/20 pt-4 relative z-10">
               {[
                 { label: 'QUESTS', value: '147' },
                 { label: 'STREAK', value: '12d' },
@@ -171,12 +169,12 @@ export function Grimoire() {
             </div>
 
             {/* Gothic Oath */}
-            <div className="w-full mt-auto pt-6 pb-2 relative z-10 flex flex-col items-center justify-center">
-              <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent mx-auto mb-3"></div>
+            <div className="w-full mt-auto pt-4 relative z-10 flex flex-col items-center justify-center">
+              <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent mx-auto mb-2"></div>
               <p className="font-serif text-[#D4AF37]/70 italic text-xs leading-relaxed drop-shadow-md px-6">
                 "Through the darkest vigils, the flame endures."
               </p>
-              <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent mx-auto mt-3"></div>
+              <div className="w-12 h-[1px] bg-gradient-to-r from-transparent via-[#D4AF37]/40 to-transparent mx-auto mt-2"></div>
             </div>
           </div>
 
@@ -228,11 +226,11 @@ export function Grimoire() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-1">
                   {ATTRIBUTES.slice(0, 4).map(attr => (
                     <div
                       key={attr.key}
-                      className="p-5 flex flex-col gap-3 relative rounded-xl bg-[#1B263B]/40 dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-sm border border-[#415A77]/60 dark:border-[#D4AF37]/35 shadow-[0_4px_20px_rgba(0,0,0,0.5)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(212,175,55,0.2)] hover:border-[#415A77] dark:hover:border-[#F5D77F] group"
+                      className="p-3 flex flex-col gap-2 relative rounded-xl bg-[#1B263B]/40 dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-sm border border-[#415A77]/60 dark:border-[#D4AF37]/35 shadow-[0_4px_20px_rgba(0,0,0,0.5)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(212,175,55,0.2)] hover:border-[#415A77] dark:hover:border-[#F5D77F] group"
                     >
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-2">
@@ -262,7 +260,7 @@ export function Grimoire() {
                     {ATTRIBUTES.slice(4).map(attr => (
                       <div
                         key={attr.key}
-                        className="p-5 flex flex-col gap-3 relative rounded-xl bg-[#1B263B]/40 dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-sm border border-[#415A77]/60 dark:border-[#D4AF37]/35 shadow-[0_4px_20px_rgba(0,0,0,0.5)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(212,175,55,0.2)] hover:border-[#415A77] dark:hover:border-[#F5D77F] group"
+                        className="p-3 flex flex-col gap-2 relative rounded-xl bg-[#1B263B]/40 dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-sm border border-[#415A77]/60 dark:border-[#D4AF37]/35 shadow-[0_4px_20px_rgba(0,0,0,0.5)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(212,175,55,0.2)] hover:border-[#415A77] dark:hover:border-[#F5D77F] group"
                       >
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">

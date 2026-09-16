@@ -150,7 +150,7 @@ export default function DashboardLayout() {
         </header>
 
         {/* Scrollable Content */}
-        <main className="flex-1 overflow-y-auto custom-scrollbar relative z-10 p-8">
+        <main className="flex-1 overflow-y-auto custom-scrollbar relative z-10 px-8 pt-8 pb-0">
           <Outlet />
         </main>
       </div>
