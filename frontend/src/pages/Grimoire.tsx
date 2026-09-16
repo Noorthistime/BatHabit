@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Shield, Zap, Heart, Eye, BookOpen, Star, Award, TrendingUp, ChevronRight } from 'lucide-react';
+import { Shield, Zap, Heart, Eye, BookOpen, Star, Award, TrendingUp, ChevronRight, Crown, Swords, Scroll, Skull, Flame, Moon } from 'lucide-react';
 import { GiDragonHead } from 'react-icons/gi';
 import { motion } from 'framer-motion';
 
@@ -20,20 +20,23 @@ const EVOLUTION_STAGES = [
 ];
 
 const ACHIEVEMENTS = [
-  { icon: '🔥', title: 'Iron Resolve', desc: '7-day unbroken streak', rarity: 'Rare', earned: true },
-  { icon: '⚡', title: 'Mind Forge', desc: 'Completed 50 Intellect quests', rarity: 'Epic', earned: true },
-  { icon: '🌙', title: 'Nocturnal Rite', desc: 'Completed quest past midnight', rarity: 'Common', earned: true },
-  { icon: '👁', title: 'The Watcher', desc: '30-day login streak', rarity: 'Legendary', earned: false },
-  { icon: '💀', title: 'Obsidian Will', desc: '100-day streak', rarity: 'Mythic', earned: false },
-  { icon: '🏆', title: 'Relic Forged', desc: 'Reached Rank IV', rarity: 'Epic', earned: false },
+  { icon: Flame, title: 'Iron Resolve', desc: '7-day unbroken streak', rarity: 'Rare', earned: true },
+  { icon: Zap, title: 'Mind Forge', desc: 'Completed 50 Intellect quests', rarity: 'Epic', earned: true },
+  { icon: Moon, title: 'Nocturnal Rite', desc: 'Completed quest past midnight', rarity: 'Common', earned: true },
+  { icon: Eye, title: 'The Watcher', desc: '30-day login streak', rarity: 'Legendary', earned: false },
+  { icon: Skull, title: 'Obsidian Will', desc: '100-day streak', rarity: 'Mythic', earned: false },
+  { icon: Award, title: 'Relic Forged', desc: 'Reached Rank IV', rarity: 'Epic', earned: false },
+  { icon: Crown, title: 'Golden Sovereign', desc: 'Mastered all basic attributes', rarity: 'Legendary', earned: false },
+  { icon: Shield, title: 'Silent Guardian', desc: 'Maintained 100% focus for 10 days', rarity: 'Epic', earned: false },
+  { icon: Swords, title: 'Blood Ritual', desc: 'Sacrificed 500 XP to upgrade a relic', rarity: 'Mythic', earned: false },
 ];
 
-const RARITY_COLORS: Record<string, string> = {
-  Common: '#8d9685',
-  Rare: '#60a5fa',
-  Epic: '#a855f7',
-  Legendary: '#D4AF37',
-  Mythic: '#ff6b6b',
+const RARITY_COLORS: Record<string, { text: string, border: string, bg: string, frame: string }> = {
+  Common: { text: '#a69052', border: 'rgba(166,144,82,0.4)', bg: 'rgba(166,144,82,0.05)', frame: 'rgba(166,144,82,0.3)' },
+  Rare: { text: '#D4AF37', border: 'rgba(212,175,55,0.6)', bg: 'rgba(212,175,55,0.1)', frame: 'rgba(212,175,55,0.5)' },
+  Epic: { text: '#ff4d4d', border: 'rgba(255,77,77,0.5)', bg: 'rgba(255,77,77,0.1)', frame: 'rgba(255,77,77,0.4)' },
+  Legendary: { text: '#F5D77F', border: '#D4AF37', bg: 'rgba(245,215,127,0.15)', frame: '#D4AF37' },
+  Mythic: { text: '#F5D77F', border: '#D4AF37', bg: 'rgba(245,215,127,0.2)', frame: '#ff4d4d' },
 };
 
 const AnimatedNumber = ({ value, duration = 1000 }: { value: number, duration?: number }) => {
@@ -181,17 +184,56 @@ export function Grimoire() {
           {/* Right Panel — Tabs */}
           <div className="col-span-1 lg:col-span-2 flex flex-col gap-2">
             {/* Tab Selector */}
-            <div className="flex flex-wrap items-center gap-4 pb-2 border-b border-[#415A77]/30 dark:border-[#D4AF37]/15">
+            <div className="relative flex justify-center items-center gap-6 py-2 mb-4">
+              {/* Ornate Golden SVG Flourish Divider (Edges only) */}
+              <div className="absolute left-0 right-0 top-1/2 -translate-y-1/2 -z-10 flex justify-between items-center opacity-80 w-full px-2">
+                {/* Left Flourish */}
+                <svg width="60" height="24" viewBox="0 0 60 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
+                  <circle cx="4" cy="12" r="1.5" fill="#D4AF37" />
+                  <circle cx="10" cy="12" r="2" fill="#D4AF37" />
+                  <line x1="16" y1="12" x2="30" y2="12" stroke="#D4AF37" strokeWidth="1.5" />
+                  <path d="M 30 12 Q 40 0, 50 12 T 60 12" fill="none" stroke="#D4AF37" strokeWidth="1.5" />
+                  <path d="M 40 12 Q 45 20, 50 15 T 55 12" fill="none" stroke="#D4AF37" strokeWidth="1" />
+                  <circle cx="50" cy="12" r="2" fill="#D4AF37" />
+                </svg>
+                
+                {/* Straight connecting line */}
+                <div className="h-[1px] flex-1 bg-gradient-to-r from-[#D4AF37]/50 via-[#D4AF37]/30 to-[#D4AF37]/50" />
+                
+                {/* Right Flourish */}
+                <svg width="60" height="24" viewBox="0 0 60 24" fill="none" xmlns="http://www.w3.org/2000/svg" className="shrink-0">
+                  <path d="M 30 12 Q 20 0, 10 12 T 0 12" fill="none" stroke="#D4AF37" strokeWidth="1.5" />
+                  <path d="M 20 12 Q 15 20, 10 15 T 5 12" fill="none" stroke="#D4AF37" strokeWidth="1" />
+                  <circle cx="10" cy="12" r="2" fill="#D4AF37" />
+                  <line x1="30" y1="12" x2="44" y2="12" stroke="#D4AF37" strokeWidth="1.5" />
+                  <circle cx="50" cy="12" r="2" fill="#D4AF37" />
+                  <circle cx="56" cy="12" r="1.5" fill="#D4AF37" />
+                </svg>
+              </div>
+              
               {(['attributes', 'evolution', 'achievements'] as const).map(tab => (
                 <button
                   key={tab}
                   onClick={() => setActiveTab(tab)}
-                  className={`px-4 py-2 rounded border font-mono text-[10px] uppercase tracking-widest font-bold transition-all ${activeTab === tab
-                    ? 'bg-[#1B263B] dark:bg-[#4a1c02] border-[#D4AF37] text-[#D4AF37] dark:text-[#F5D77F] shadow-[0_0_12px_rgba(212,175,55,0.3)]'
-                    : 'bg-[#1B263B]/40 dark:bg-[#2A0505] border-[#415A77]/50 dark:border-[#D4AF37]/25 text-[#F7F3E9]/60 dark:text-[#8d9685] hover:border-[#D4AF37]/50 hover:bg-[#1B263B]/60 dark:hover:bg-[#3A0A0A]'
+                  className={`px-8 py-3.5 font-mono text-[10.5px] uppercase tracking-widest font-bold transition-all relative z-10 flex items-center justify-center group
+                    ${activeTab === tab
+                    ? 'text-[#F5D77F] drop-shadow-[0_0_8px_rgba(212,175,55,0.8)]'
+                    : 'text-[#8d9685] hover:text-[#D4AF37]'
                     }`}
                 >
-                  {activeTab === tab && <span className="mr-2 text-[8px] animate-pulse">✦</span>}
+                  {/* Absolute positioning keeps the background decoupled from button sizing */}
+                  <svg 
+                    className={`absolute inset-0 w-full h-full -z-10 transition-all duration-300 ${activeTab === tab ? 'drop-shadow-[0_0_12px_rgba(212,175,55,0.4)]' : ''}`} 
+                    preserveAspectRatio="none" 
+                    viewBox="0 0 100 40" 
+                    fill="none" 
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    {/* Gothic Scalloped Plaque Shape */}
+                    <path d="M 12 2 L 88 2 A 6 6 0 0 0 94 8 L 98 20 L 94 32 A 6 6 0 0 0 88 38 L 12 38 A 6 6 0 0 0 6 32 L 2 20 L 6 8 A 6 6 0 0 0 12 2 Z" fill="#230608" stroke={activeTab === tab ? "#D4AF37" : "rgba(212,175,55,0.5)"} strokeWidth={activeTab === tab ? "1.5" : "1"} vectorEffect="non-scaling-stroke" />
+                    {/* Inner detailed ring for active tab */}
+                    {activeTab === tab && <path d="M 14 5 L 86 5 A 4 4 0 0 0 91 9 L 94 20 L 91 31 A 4 4 0 0 0 86 35 L 14 35 A 4 4 0 0 0 9 31 L 6 20 L 9 9 A 4 4 0 0 0 14 5 Z" stroke="rgba(212,175,55,0.3)" strokeWidth="1" vectorEffect="non-scaling-stroke" />}
+                  </svg>
                   {tab}
                 </button>
               ))}
@@ -289,77 +331,111 @@ export function Grimoire() {
 
             {/* Evolution Tab */}
             {activeTab === 'evolution' && (
-              <div className="flex flex-col gap-3">
+              <div className="flex flex-col gap-1.5">
                 {EVOLUTION_STAGES.map((stage, i) => {
                   let animationProps = {};
                   let glowEffect = null;
+                  
+                  // Progressive Styling Variables
+                  let bgStyle = '';
+                  let borderStyle = '';
+                  let iconBg = '';
+                  let iconColor = '';
+                  let iconBorder = '';
+                  let iconShadow = 'none';
 
                   if (stage.rank === 'I') {
-                    animationProps = { animate: { opacity: [0.7, 1, 0.7] }, transition: { duration: 4, repeat: Infinity, ease: "easeInOut" } };
+                    // Rank I - Basic
+                    animationProps = { animate: { opacity: [0.8, 1, 0.8] }, transition: { duration: 4, repeat: Infinity, ease: "easeInOut" } };
+                    bgStyle = 'rgba(20,5,5,0.8)';
+                    borderStyle = '1px solid rgba(212,175,55,0.15)';
+                    iconBg = '#2A0505';
+                    iconColor = '#D4AF37';
+                    iconBorder = '1px solid rgba(212,175,55,0.3)';
                   } else if (stage.rank === 'II') {
-                    animationProps = { animate: { boxShadow: ['0 0 0px rgba(109,8,8,0)', '0 0 15px rgba(109,8,8,0.4)', '0 0 0px rgba(109,8,8,0)'] }, transition: { duration: 3, repeat: Infinity, ease: "easeInOut" } };
+                    // Rank II - Richer
+                    animationProps = { animate: { boxShadow: ['0 0 0px rgba(109,8,8,0)', '0 0 10px rgba(109,8,8,0.2)', '0 0 0px rgba(109,8,8,0)'] }, transition: { duration: 3, repeat: Infinity, ease: "easeInOut" } };
+                    bgStyle = 'rgba(35,6,8,0.85)';
+                    borderStyle = '1px solid rgba(212,175,55,0.35)';
+                    iconBg = '#4A0A0A';
+                    iconColor = '#F5D77F';
+                    iconBorder = '1px solid rgba(212,175,55,0.6)';
                   } else if (stage.rank === 'III') {
-                    animationProps = { animate: { boxShadow: ['0 0 5px rgba(212,175,55,0.1)', '0 0 20px rgba(212,175,55,0.4)', '0 0 5px rgba(212,175,55,0.1)'] }, transition: { duration: 2, repeat: Infinity, ease: "easeInOut" } };
+                    // Rank III - Bright & Imposing
+                    animationProps = { animate: { boxShadow: ['0 0 5px rgba(212,175,55,0.1)', '0 0 20px rgba(212,175,55,0.3)', '0 0 5px rgba(212,175,55,0.1)'] }, transition: { duration: 2, repeat: Infinity, ease: "easeInOut" } };
+                    bgStyle = 'rgba(50,8,12,0.9)';
+                    borderStyle = '1px solid rgba(212,175,55,0.6)';
+                    iconBg = '#6D0808';
+                    iconColor = '#F5D77F';
+                    iconBorder = '1px solid #D4AF37';
+                    iconShadow = '0 0 10px rgba(212,175,55,0.5)';
                   } else if (stage.rank === 'IV') {
+                    // Rank IV (CURRENT) - Blazing Gold
                     animationProps = {
                       animate: {
-                        boxShadow: ['0 0 10px rgba(212,175,55,0.4), inset 0 0 10px rgba(212,175,55,0.1)', '0 0 30px rgba(212,175,55,0.8), inset 0 0 20px rgba(109,8,8,0.4)', '0 0 10px rgba(212,175,55,0.4), inset 0 0 10px rgba(212,175,55,0.1)'],
+                        boxShadow: ['0 0 15px rgba(212,175,55,0.4), inset 0 0 15px rgba(212,175,55,0.2)', '0 0 30px rgba(212,175,55,0.8), inset 0 0 20px rgba(109,8,8,0.4)', '0 0 15px rgba(212,175,55,0.4), inset 0 0 15px rgba(212,175,55,0.2)'],
                         scale: [1, 1.015, 1]
                       },
                       transition: { duration: 1.5, repeat: Infinity, ease: "easeInOut" }
                     };
                     glowEffect = (
                       <>
-                        <motion.div className="absolute inset-0 rounded-lg bg-gradient-to-t from-[#6D0808]/30 to-transparent mix-blend-overlay" animate={{ opacity: [0, 1, 0] }} transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }} />
-                        <motion.div className="absolute inset-0 rounded-lg border border-[#D4AF37]/50" animate={{ opacity: [0.2, 1, 0.2] }} transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }} />
+                        <motion.div className="absolute inset-0 rounded-lg bg-gradient-to-t from-[#6D0808]/40 to-transparent mix-blend-overlay" animate={{ opacity: [0, 1, 0] }} transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }} />
+                        <motion.div className="absolute inset-0 rounded-lg border border-[#D4AF37]/60" animate={{ opacity: [0.3, 1, 0.3] }} transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }} />
                       </>
                     );
+                    bgStyle = 'rgba(35,6,8,0.95)';
+                    borderStyle = '1px solid rgba(212,175,55,0.8)';
+                    iconBg = 'linear-gradient(135deg, #F5D77F 0%, #D4AF37 100%)';
+                    iconColor = '#0c0608';
+                    iconBorder = '2px solid #FFF';
+                    iconShadow = '0 0 20px rgba(212,175,55,0.8)';
                   } else if (stage.rank === 'V') {
+                    // Rank V - Locked
                     animationProps = { animate: { opacity: [0.3, 0.5, 0.3] }, transition: { duration: 5, repeat: Infinity, ease: "easeInOut" } };
+                    bgStyle = 'rgba(15,2,4,0.3)';
+                    borderStyle = '1px solid rgba(212,175,55,0.05)';
+                    iconBg = '#0f0204';
+                    iconColor = '#4a3c20';
+                    iconBorder = '1px solid rgba(212,175,55,0.1)';
                   }
 
                   return (
                     <motion.div
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      viewport={{ once: true }}
-                      transition={{ duration: 0.5, delay: i * 0.1 }}
+                      initial={{ opacity: 0 }}
+                      animate={{ opacity: 1 }}
+                      transition={{ duration: 0.6, delay: i * 0.15 }}
                       key={stage.rank}
                     >
                       <motion.div
                         {...animationProps}
-                        className={`p-4 flex items-center gap-4 relative rounded-lg overflow-hidden ${stage.current ? 'ring-1 ring-[#D4AF37]' : ''}`}
-                        style={{
-                          background: stage.achieved
-                            ? 'rgba(109,8,8,0.25)'
-                            : stage.current
-                              ? 'rgba(35,6,8,0.95)'
-                              : 'rgba(15,2,4,0.5)',
-                          border: `1px solid ${stage.achieved ? 'rgba(212,175,55,0.3)' : stage.current ? 'rgba(212,175,55,0.8)' : 'rgba(212,175,55,0.1)'}`,
-                        }}
+                        className={`px-3 py-3 sm:px-4 sm:py-3.5 flex items-center gap-4 relative rounded-lg overflow-hidden ${stage.current ? 'ring-1 ring-[#D4AF37]' : ''}`}
+                        style={{ background: bgStyle, border: borderStyle }}
                       >
                         {glowEffect}
                         <div
                           className="w-10 h-10 rounded-full flex items-center justify-center font-mono text-sm font-bold shrink-0 relative z-10"
                           style={{
-                            background: stage.achieved ? '#6D0808' : stage.current ? 'linear-gradient(135deg, #D4AF37 0%, #a67c00 100%)' : '#1a0204',
-                            color: stage.achieved ? '#D4AF37' : stage.current ? '#0c0608' : '#8d9685',
-                            border: `2px solid ${stage.achieved ? '#D4AF37' : stage.current ? '#FFF' : 'rgba(212,175,55,0.2)'}`,
-                            boxShadow: stage.current ? '0 0 15px rgba(212,175,55,0.8)' : 'none'
+                            background: iconBg,
+                            color: iconColor,
+                            border: iconBorder,
+                            boxShadow: iconShadow
                           }}
                         >
                           {stage.rank}
                         </div>
                         <div className="flex-1 relative z-10">
                           <div className="flex items-center gap-2">
-                            <span className={`font-serif text-sm font-bold ${stage.current ? 'text-[#F5D77F] drop-shadow-[0_0_5px_rgba(212,175,55,0.8)]' : 'text-[#EEEAD7]'}`}>{stage.title}</span>
+                            <span className={`font-serif text-sm font-bold ${stage.current ? 'text-[#F5D77F] drop-shadow-[0_0_5px_rgba(212,175,55,0.8)]' : stage.achieved ? 'text-[#F5D77F]' : 'text-[#EEEAD7]'}`}>{stage.title}</span>
                             {stage.current && <span className="font-mono text-[9px] px-1.5 py-0.5 bg-[#D4AF37]/20 text-[#D4AF37] border border-[#D4AF37]/60 uppercase tracking-wider font-bold shadow-[0_0_8px_rgba(212,175,55,0.4)]">CURRENT</span>}
                             {stage.achieved && !stage.current && <span className="font-mono text-[9px] px-1.5 py-0.5 bg-[#6D0808]/40 text-[#D4AF37]/60 border border-[#6D0808]/40 uppercase tracking-wider">ACHIEVED</span>}
                           </div>
-                          <p className={`font-mono text-[10px] mt-0.5 ${stage.current ? 'text-[#D4AF37] drop-shadow-[0_0_2px_rgba(212,175,55,0.5)]' : 'text-[#8d9685]'}`}>{stage.class}</p>
+                          <p className={`font-mono text-[10px] mt-0.5 ${stage.current ? 'text-[#D4AF37] drop-shadow-[0_0_2px_rgba(212,175,55,0.5)]' : stage.achieved ? 'text-[#EEEAD7]' : 'text-[#8d9685]'}`}>{stage.class}</p>
                         </div>
                         <div className="text-right shrink-0 relative z-10">
-                          <p className={`font-mono text-xs ${stage.current ? 'text-[#F5D77F] font-bold drop-shadow-[0_0_8px_rgba(212,175,55,0.8)]' : 'text-[#D4AF37]'}`}>{stage.xpRequired.toLocaleString()}</p>
+                          <p className={`font-mono text-xs ${stage.current ? 'text-[#F5D77F] font-bold drop-shadow-[0_0_8px_rgba(212,175,55,0.8)]' : 'text-[#D4AF37]'}`}>
+                            {stage.xpRequired > 0 ? <AnimatedNumber value={stage.xpRequired} /> : '0'}
+                          </p>
                           <p className={`font-mono text-[9px] ${stage.current ? 'text-[#D4AF37]' : 'text-[#8d9685]'}`}>XP REQ</p>
                         </div>
                       </motion.div>
@@ -372,24 +448,49 @@ export function Grimoire() {
             {/* Achievements Tab */}
             {activeTab === 'achievements' && (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-                {ACHIEVEMENTS.map(a => (
-                  <div
-                    key={a.title}
-                    className={`p-4 flex flex-col gap-2 rounded-xl bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-sm shadow-md ${!a.earned ? 'opacity-40 grayscale border border-[#415A77]/50 dark:border-[#D4AF37]/20' : 'border border-[#415A77] dark:border-[#D4AF37]/45'}`}
-                  >
-                    <div className="text-2xl">{a.icon}</div>
-                    <div>
-                      <p className="font-serif text-sm font-bold text-[#EEEAD7]">{a.title}</p>
-                      <p className="font-sans text-[11px] text-[#8d9685] mt-0.5">{a.desc}</p>
-                    </div>
-                    <span
-                      className="font-mono text-[9px] uppercase tracking-widest px-1.5 py-0.5 self-start"
-                      style={{ color: RARITY_COLORS[a.rarity], border: `1px solid ${RARITY_COLORS[a.rarity]}40`, background: RARITY_COLORS[a.rarity] + '15' }}
+                {ACHIEVEMENTS.map(a => {
+                  const rStyle = RARITY_COLORS[a.rarity];
+                  const Icon = a.icon;
+                  return (
+                    <motion.div
+                      key={a.title}
+                      whileHover={{ scale: 1.02 }}
+                      className={`relative p-2 sm:p-2.5 flex flex-col gap-1.5 rounded-none bg-[radial-gradient(ellipse_at_center,_rgba(35,6,8,0.9)_0%,_rgba(15,2,4,0.95)_100%)] overflow-hidden group ${!a.earned ? 'opacity-40 grayscale' : ''}`}
+                      style={{ border: `1px solid ${rStyle.frame}`, boxShadow: a.rarity === 'Mythic' || a.rarity === 'Legendary' ? `inset 0 0 15px ${rStyle.bg}, 0 0 10px rgba(0,0,0,0.5)` : '0 0 10px rgba(0,0,0,0.5)' }}
                     >
-                      {a.rarity}
-                    </span>
-                  </div>
-                ))}
+                      {/* Gothic cut corners (pseudo-elements via span) */}
+                      <span className="absolute top-0 left-0 w-2 h-2 border-t border-l" style={{ borderColor: rStyle.frame }} />
+                      <span className="absolute top-0 right-0 w-2 h-2 border-t border-r" style={{ borderColor: rStyle.frame }} />
+                      <span className="absolute bottom-0 left-0 w-2 h-2 border-b border-l" style={{ borderColor: rStyle.frame }} />
+                      <span className="absolute bottom-0 right-0 w-2 h-2 border-b border-r" style={{ borderColor: rStyle.frame }} />
+                      
+                      {/* Golden Sweep Hover Animation */}
+                      <motion.div 
+                        className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D4AF37]/10 to-transparent -translate-x-full group-hover:translate-x-full transition-all duration-700 ease-in-out" 
+                      />
+
+                      {/* Icon inside a metallic frame */}
+                      <div className="w-8 h-8 mx-auto flex items-center justify-center relative shrink-0">
+                        <svg className="absolute inset-0 w-full h-full opacity-60" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M 20 2 L 38 20 L 20 38 L 2 20 Z" stroke={rStyle.frame} strokeWidth="2" fill={rStyle.bg} />
+                        </svg>
+                        <Icon size={14} color={a.earned ? (a.rarity === 'Epic' || a.rarity === 'Mythic' ? '#ff4d4d' : '#D4AF37') : '#8d9685'} className="relative z-10 drop-shadow-[0_0_5px_rgba(212,175,55,0.8)]" />
+                      </div>
+
+                      <div className="text-center">
+                        <p className={`font-serif text-[12px] font-bold ${a.rarity === 'Mythic' && a.earned ? 'text-[#F5D77F] drop-shadow-[0_0_8px_rgba(212,175,55,0.8)]' : 'text-[#EEEAD7]'}`}>{a.title}</p>
+                        <p className="font-sans text-[9px] text-[#8d9685] mt-0.5 leading-tight">{a.desc}</p>
+                      </div>
+                      
+                      <span
+                        className={`font-mono text-[8px] uppercase tracking-widest px-1.5 py-0.5 self-start mt-auto ${a.rarity === 'Mythic' ? 'animate-pulse font-bold drop-shadow-[0_0_5px_rgba(212,175,55,0.8)]' : ''}`}
+                        style={{ color: rStyle.text, border: `1px solid ${rStyle.border}`, background: rStyle.bg }}
+                      >
+                        {a.rarity}
+                      </span>
+                    </motion.div>
+                  );
+                })}
               </div>
             )}
           </div>
