@@ -19,11 +19,11 @@ function generateCalendarData() {
 const calendarData = generateCalendarData();
 
 function getColor(count: number) {
-  if (count === 0) return 'rgba(212,175,55,0.06)';
-  if (count === 1) return 'rgba(109,8,8,0.5)';
-  if (count === 2) return 'rgba(109,8,8,0.7)';
-  if (count === 3) return 'rgba(109,8,8,0.9)';
-  return '#6D0808';
+  if (count === 0) return 'rgba(212, 175, 55, 0.15)';
+  if (count === 1) return 'rgba(212, 175, 55, 0.4)';
+  if (count === 2) return 'rgba(212, 175, 55, 0.75)';
+  if (count === 3) return '#D4AF37';
+  return '#FFDF73';
 }
 
 const RECENT_ACTIVITY = [
@@ -161,37 +161,76 @@ export function Bloodline() {
           <div className="absolute bottom-0 left-0 w-6 h-6 border-b-2 border-l-2 border-[#D4AF37]/80 rounded-bl-xl" />
           <div className="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-[#D4AF37]/80 rounded-br-xl" />
 
-          <div className="flex items-center justify-between relative z-10">
-            <div>
-              <p className="font-mono text-xs uppercase tracking-widest text-[#D4AF37]">Activity Codex</p>
-              <p className="font-mono text-[9px] text-[#8d9685] mt-0.5">365-day vow chronicle</p>
+          <div className="flex items-center justify-between relative z-10 min-h-[24px]">
+            <div className="w-full text-center">
+              <span className="font-mono text-xs uppercase tracking-widest text-[#D4AF37]">Activity Codex</span>
+              <span className="font-mono text-[10px] text-[#8d9685] mx-2">-</span>
+              <span className="font-mono text-[10px] text-[#8d9685]">365-day vow chronicle</span>
             </div>
             {hoverDay && (
-              <div className="font-mono text-[10px] text-[#EEEAD7] bg-[#1a0204] border border-[#D4AF37]/30 px-2 py-1">
+              <div className="absolute right-0 top-0 font-mono text-[10px] text-[#EEEAD7] bg-[#1a0204] border border-[#D4AF37]/30 px-2 py-1 z-20 whitespace-nowrap">
                 {hoverDay.date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' })} — {hoverDay.count} quest{hoverDay.count !== 1 ? 's' : ''}
               </div>
             )}
           </div>
 
-          <div className="overflow-x-auto">
-            <div className="flex gap-1 min-w-max">
-              {weeks.map((week, wi) => (
-                <div key={wi} className="flex flex-col gap-1">
-                  {week.map((day, di) => (
-                    <div
-                      key={di}
-                      className="w-3 h-3 cursor-pointer transition-all hover:ring-1 hover:ring-[#D4AF37]/60"
-                      style={{ background: getColor(day.count) }}
-                      onMouseEnter={() => setHoverDay(day)}
-                      onMouseLeave={() => setHoverDay(null)}
-                    />
-                  ))}
+          <div className="overflow-x-auto flex justify-center mt-4">
+            <div className="flex flex-col gap-1">
+              {/* Month Labels */}
+              <div className="flex text-[#8d9685] font-mono text-[9px] h-4">
+                {weeks.map((week, wi) => {
+                  const currentMonth = week[0].date.getMonth();
+                  const prevMonth = wi > 0 ? weeks[wi - 1][0].date.getMonth() : -1;
+                  const isNewMonth = currentMonth !== prevMonth;
+                  
+                  return (
+                    <div key={wi} className={`w-4 shrink-0 ${isNewMonth && wi > 0 ? 'ml-2' : ''}`}>
+                      {isNewMonth ? <span className="-ml-1">{MONTHS[currentMonth]}</span> : null}
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="flex gap-2">
+                {/* Grid */}
+                <div className="flex gap-1 min-w-max pb-2">
+                  {weeks.map((week, wi) => {
+                    const currentMonth = week[0].date.getMonth();
+                    const prevMonth = wi > 0 ? weeks[wi - 1][0].date.getMonth() : -1;
+                    const isNewMonth = wi > 0 && currentMonth !== prevMonth;
+                    
+                    return (
+                      <div 
+                        key={wi} 
+                        className={`flex flex-col gap-1 ${isNewMonth ? 'ml-2' : ''}`}
+                      >
+                        {week.map((day, di) => {
+                          const horizontalDelay = wi * 15;
+                          const intensityDelay = day.count * 200;
+                          const totalDelay = horizontalDelay + intensityDelay;
+
+                          return (
+                            <div
+                              key={di}
+                              className="w-3 h-3 cursor-pointer transition-all hover:ring-1 hover:ring-[#D4AF37]/60 rounded-sm opacity-0 custom-fade-in-anim"
+                              style={{ 
+                                background: getColor(day.count), 
+                                border: day.count === 0 ? '1px solid rgba(212,175,55,0.15)' : 'none',
+                                animationDelay: `${totalDelay}ms`
+                              }}
+                              onMouseEnter={() => setHoverDay(day)}
+                              onMouseLeave={() => setHoverDay(null)}
+                            />
+                          );
+                        })}
+                      </div>
+                    );
+                  })}
                 </div>
-              ))}
+              </div>
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center justify-end gap-2 mt-2 w-full">
             <span className="font-mono text-[9px] text-[#8d9685]">Less</span>
             {[0, 1, 2, 3, 4].map(c => (
               <div key={c} className="w-3 h-3" style={{ background: getColor(c) }} />
