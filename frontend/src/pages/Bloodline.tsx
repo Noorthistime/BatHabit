@@ -27,21 +27,23 @@ function getColor(count: number) {
 }
 
 const RECENT_ACTIVITY = [
-  { date: 'Today', quest: 'Deep Focus: 5km Dawn Run', xp: '+80 XP', crowns: '+25 Crowns', discipline: 'VIT' },
-  { date: 'Yesterday', quest: '10 Minutes of React Architecture', xp: '+40 XP', crowns: '+12 Crowns', discipline: 'INT' },
-  { date: 'Sep 11', quest: 'Cold Shower Protocol', xp: '+30 XP', crowns: '+10 Crowns', discipline: 'STR' },
-  { date: 'Sep 10', quest: 'Meditation at Dusk', xp: '+50 XP', crowns: '+15 Crowns', discipline: 'FOC' },
-  { date: 'Sep 9', quest: 'Journal of Shadows', xp: '+35 XP', crowns: '+12 Crowns', discipline: 'WIS' },
+  { date: 'Today', quest: 'Deep Focus: 5km Dawn Run', xp: 80, crowns: 25, discipline: 'VIT' },
+  { date: 'Yesterday', quest: '10 Minutes of React Architecture', xp: 40, crowns: 12, discipline: 'INT' },
+  { date: 'Sep 11', quest: 'Cold Shower Protocol', xp: 30, crowns: 10, discipline: 'STR' },
+  { date: 'Sep 10', quest: 'Meditation at Dusk', xp: 50, crowns: 15, discipline: 'FOC' },
+  { date: 'Sep 9', quest: 'Journal of Shadows', xp: 35, crowns: 12, discipline: 'WIS' },
 ];
 
 const DISCIPLINE_COLORS: Record<string, string> = {
   STR: '#ff6b6b', INT: '#D4AF37', VIT: '#6ee7b7', FOC: '#818cf8', WIS: '#fbbf24',
 };
 
-const AnimatedNumber = ({ value, duration = 1000, decimals = 0, prefix = '', suffix = '' }: { value: number, duration?: number, decimals?: number, prefix?: string, suffix?: string }) => {
+const AnimatedNumber = ({ value, duration = 1000, decimals = 0, prefix = '', suffix = '', start = true }: { value: number, duration?: number, decimals?: number, prefix?: string, suffix?: string, start?: boolean }) => {
   const [count, setCount] = React.useState(0);
 
   React.useEffect(() => {
+    if (!start) return;
+    
     let startTime: number | null = null;
     let animationFrameId: number;
     const animate = (timestamp: number) => {
@@ -60,7 +62,7 @@ const AnimatedNumber = ({ value, duration = 1000, decimals = 0, prefix = '', suf
     
     animationFrameId = requestAnimationFrame(animate);
     return () => cancelAnimationFrame(animationFrameId);
-  }, [value, duration]);
+  }, [value, duration, start]);
 
   return <>{prefix}{count.toFixed(decimals)}{suffix}</>;
 };
@@ -68,6 +70,29 @@ const AnimatedNumber = ({ value, duration = 1000, decimals = 0, prefix = '', suf
 export function Bloodline() {
   const [hoverDay, setHoverDay] = useState<{ date: Date; count: number } | null>(null);
   const totalCompleted = calendarData.filter(d => d.count > 0).length;
+  
+  const recentCompletionsRef = React.useRef<HTMLDivElement>(null);
+  const [isRecentVisible, setIsRecentVisible] = React.useState(false);
+
+  React.useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setIsRecentVisible(true);
+          if (recentCompletionsRef.current) {
+            observer.unobserve(recentCompletionsRef.current);
+          }
+        }
+      },
+      { threshold: 0.2 }
+    );
+
+    if (recentCompletionsRef.current) {
+      observer.observe(recentCompletionsRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
   const consistency = Math.round((totalCompleted / 365) * 100);
 
   // Group calendar by weeks
@@ -241,15 +266,16 @@ export function Bloodline() {
 
         {/* Recent Activity */}
         <div
-          className="p-5 relative rounded-xl bg-[#1B263B]/40 dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77]/60 dark:border-[#D4AF37]/35 shadow-lg"
+          ref={recentCompletionsRef}
+          className="p-5 relative rounded-xl bg-[#1B263B]/40 dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77]/60 dark:border-[#D4AF37]/35 shadow-lg mb-10"
         >
           <p className="font-mono text-xs uppercase tracking-widest text-[#D4AF37] mb-4">Recent Completions</p>
           <div className="flex flex-col">
             {RECENT_ACTIVITY.map((a, i) => (
               <div
                 key={i}
-                className="flex items-center justify-between py-3 px-3 -mx-3 border-b last:border-b-0 group transition-colors hover:bg-[rgba(212,175,55,0.05)] rounded"
-                style={{ borderColor: 'rgba(212,175,55,0.12)' }}
+                className={`flex items-center justify-between py-3 px-3 -mx-3 border-b last:border-b-0 group transition-colors hover:bg-[rgba(212,175,55,0.05)] rounded opacity-0 ${isRecentVisible ? 'custom-slide-in-left' : ''}`}
+                style={{ borderColor: 'rgba(212,175,55,0.12)', animationDelay: isRecentVisible ? `${i * 150}ms` : '0ms' }}
               >
                 <div className="flex items-center gap-3">
                   <div
@@ -262,8 +288,11 @@ export function Bloodline() {
                   </div>
                 </div>
                 <div className="text-right shrink-0">
-                  <p className="font-mono text-xs text-[#D4AF37] font-bold group-hover:drop-shadow-[0_0_5px_rgba(212,175,55,0.8)] transition-all">{a.xp}</p>
-                  <p className="font-mono text-[9px] text-[#8d9685] group-hover:text-[#D4AF37]/80 transition-colors">{a.crowns}</p>
+                  <p className="font-mono text-xs text-[#D4AF37] font-bold group-hover:drop-shadow-[0_0_5px_rgba(212,175,55,0.8)] transition-all flex items-center justify-end gap-2">
+                    <span>+<AnimatedNumber value={a.xp} start={isRecentVisible} /> XP</span>
+                    <span className="text-[#8d9685] font-light">-</span>
+                    <span className="text-[#8d9685] group-hover:text-[#D4AF37]/80 transition-colors">+<AnimatedNumber value={a.crowns} start={isRecentVisible} /> Crowns</span>
+                  </p>
                 </div>
               </div>
             ))}
