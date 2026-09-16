@@ -1,5 +1,67 @@
 import React, { useState } from 'react';
 import { Flame, Calendar, CheckCircle2, TrendingUp, Target, Clock } from 'lucide-react';
+import { motion } from 'framer-motion';
+
+const AnimatedFiligree = () => {
+  return (
+    <div className="absolute -top-[12px] left-1/2 -translate-x-1/2 w-[120px] h-[24px] pointer-events-none flex items-center justify-center z-20">
+      <motion.svg 
+        viewBox="0 0 160 32" 
+        fill="none" 
+        className="w-full h-full text-[#D4AF37] drop-shadow-[0_0_6px_rgba(212,175,55,0.7)]"
+      >
+        {/* Left primary sweeping vine */}
+        <motion.path 
+          d="M80,20 C 65,20 55,6 35,12 C 20,16 10,8 2,14" 
+          stroke="currentColor" 
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ duration: 1.8, ease: "easeInOut" }}
+        />
+        {/* Right primary sweeping vine */}
+        <motion.path 
+          d="M80,20 C 95,20 105,6 125,12 C 140,16 150,8 158,14" 
+          stroke="currentColor" 
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ duration: 1.8, ease: "easeInOut" }}
+        />
+        {/* Center Crest */}
+        <motion.path
+          d="M80,6 L84,18 L80,28 L76,18 Z"
+          fill="#F5D77F"
+          initial={{ scale: 0, opacity: 0, y: -10 }}
+          animate={{ scale: 1, opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1.4, type: "spring", bounce: 0.6 }}
+        />
+        {/* Inner flourish left */}
+        <motion.path 
+          d="M74,20 Q 65,28 50,22" 
+          stroke="currentColor" 
+          strokeWidth="1"
+          strokeLinecap="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 0.5 }}
+          transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
+        />
+        {/* Inner flourish right */}
+        <motion.path 
+          d="M86,20 Q 95,28 110,22" 
+          stroke="currentColor" 
+          strokeWidth="1"
+          strokeLinecap="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 0.5 }}
+          transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
+        />
+      </motion.svg>
+    </div>
+  );
+};
 
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
@@ -126,10 +188,11 @@ export function Bloodline() {
           {/* Big Streak Counters */}
           <div className="flex gap-4 shrink-0">
             <div
-              className="px-6 py-4 text-center rounded-xl relative group overflow-hidden"
+              className="px-6 py-4 text-center rounded-xl relative group"
               style={{ background: 'radial-gradient(circle at center, rgba(109,8,8,0.6) 0%, rgba(15,2,4,0.9) 100%)', border: '1px solid rgba(212,175,55,0.5)', boxShadow: 'inset 0 0 40px rgba(0,0,0,0.8), 0 0 20px rgba(212,175,55,0.2)' }}
             >
-              <div className="absolute inset-0 opacity-20 mix-blend-overlay" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg width=\\'60\\' height=\\'60\\' viewBox=\\'0 0 60 60\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cg fill=\\'none\\' fill-rule=\\'evenodd\\'%3E%3Cg fill=\\'%23d4af37\\' fill-opacity=\\'0.15\\'%3E%3Cpath d=\\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')" }}></div>
+              <AnimatedFiligree />
+              <div className="absolute inset-0 opacity-20 mix-blend-overlay overflow-hidden rounded-xl" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg width=\\'60\\' height=\\'60\\' viewBox=\\'0 0 60 60\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cg fill=\\'none\\' fill-rule=\\'evenodd\\'%3E%3Cg fill=\\'%23d4af37\\' fill-opacity=\\'0.15\\'%3E%3Cpath d=\\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')" }}></div>
               <div className="relative z-10 flex items-center gap-2 justify-center mb-1">
                 <Flame size={16} className="text-[#D4AF37] group-hover:scale-125 transition-transform" />
                 <span className="font-mono text-[9px] text-[#D4AF37] uppercase tracking-widest font-bold">Current</span>
@@ -138,10 +201,11 @@ export function Bloodline() {
               <div className="relative z-10 font-mono text-[9px] text-[#D4AF37]/80 uppercase tracking-widest mt-0.5">Days</div>
             </div>
             <div
-              className="px-6 py-4 text-center rounded-xl relative group overflow-hidden"
+              className="px-6 py-4 text-center rounded-xl relative group"
               style={{ background: 'radial-gradient(circle at center, rgba(109,8,8,0.6) 0%, rgba(15,2,4,0.9) 100%)', border: '1px solid rgba(212,175,55,0.5)', boxShadow: 'inset 0 0 40px rgba(0,0,0,0.8), 0 0 20px rgba(212,175,55,0.2)' }}
             >
-              <div className="absolute inset-0 opacity-20 mix-blend-overlay" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg width=\\'60\\' height=\\'60\\' viewBox=\\'0 0 60 60\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cg fill=\\'none\\' fill-rule=\\'evenodd\\'%3E%3Cg fill=\\'%23d4af37\\' fill-opacity=\\'0.15\\'%3E%3Cpath d=\\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')" }}></div>
+              <AnimatedFiligree />
+              <div className="absolute inset-0 opacity-20 mix-blend-overlay overflow-hidden rounded-xl" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg width=\\'60\\' height=\\'60\\' viewBox=\\'0 0 60 60\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cg fill=\\'none\\' fill-rule=\\'evenodd\\'%3E%3Cg fill=\\'%23d4af37\\' fill-opacity=\\'0.15\\'%3E%3Cpath d=\\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')" }}></div>
               <div className="relative z-10 flex items-center gap-2 justify-center mb-1">
                 <Target size={16} className="text-[#D4AF37] group-hover:scale-125 transition-transform" />
                 <span className="font-mono text-[9px] text-[#D4AF37] uppercase tracking-widest font-bold">Longest</span>
