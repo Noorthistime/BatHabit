@@ -63,6 +63,130 @@ const AnimatedFiligree = () => {
   );
 };
 
+const AnimatedCornerFiligree = ({ className = "" }: { className?: string }) => {
+  return (
+    <div className={`absolute w-[180px] h-[180px] pointer-events-none z-0 overflow-visible ${className}`}>
+      <motion.svg 
+        viewBox="0 0 200 200" 
+        fill="none" 
+        className="w-full h-full text-[#D4AF37] drop-shadow-[0_0_8px_rgba(212,175,55,0.7)]"
+      >
+        {/* Top Edge Main Vine */}
+        <motion.path 
+          d="M 10,10 C 40,5 80,15 120,5 C 150,0 180,10 190,15" 
+          stroke="currentColor" 
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ duration: 2.5, ease: "easeInOut" }}
+        />
+        {/* Left Edge Main Vine */}
+        <motion.path 
+          d="M 10,10 C 5,40 15,80 5,120 C 0,150 10,180 15,190" 
+          stroke="currentColor" 
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ duration: 2.5, ease: "easeInOut" }}
+        />
+        
+        {/* Top Edge Leaves */}
+        <motion.path
+          d="M 40,5 C 45,15 55,20 60,10 C 55,5 45,0 40,5 Z"
+          fill="currentColor"
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 0.9 }}
+          transition={{ duration: 0.8, delay: 0.6, type: "spring" }}
+          style={{ originX: "40px", originY: "5px" }}
+        />
+        <motion.path
+          d="M 80,15 C 85,25 100,30 110,15 C 100,5 85,5 80,15 Z"
+          fill="currentColor"
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 0.8 }}
+          transition={{ duration: 0.8, delay: 1.0, type: "spring" }}
+          style={{ originX: "80px", originY: "15px" }}
+        />
+        <motion.path
+          d="M 120,5 C 130,0 140,5 145,15 C 135,15 125,10 120,5 Z"
+          fill="currentColor"
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 0.8 }}
+          transition={{ duration: 0.8, delay: 1.4, type: "spring" }}
+          style={{ originX: "120px", originY: "5px" }}
+        />
+        <motion.path
+          d="M 120,5 C 130,20 120,30 110,25"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 0.8 }}
+          transition={{ duration: 1, delay: 1.4, ease: "easeOut" }}
+        />
+
+        {/* Left Edge Leaves */}
+        <motion.path
+          d="M 5,40 C 15,45 20,55 10,60 C 5,55 0,45 5,40 Z"
+          fill="currentColor"
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 0.9 }}
+          transition={{ duration: 0.8, delay: 0.6, type: "spring" }}
+          style={{ originX: "5px", originY: "40px" }}
+        />
+        <motion.path
+          d="M 15,80 C 25,85 30,100 15,110 C 5,100 5,85 15,80 Z"
+          fill="currentColor"
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 0.8 }}
+          transition={{ duration: 0.8, delay: 1.0, type: "spring" }}
+          style={{ originX: "15px", originY: "80px" }}
+        />
+        <motion.path
+          d="M 5,120 C 0,130 5,140 15,145 C 15,135 10,125 5,120 Z"
+          fill="currentColor"
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 0.8 }}
+          transition={{ duration: 0.8, delay: 1.4, type: "spring" }}
+          style={{ originX: "5px", originY: "120px" }}
+        />
+        <motion.path
+          d="M 5,120 C 20,130 30,120 25,110"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 0.8 }}
+          transition={{ duration: 1, delay: 1.4, ease: "easeOut" }}
+        />
+
+        {/* Corner Base Floral Crest */}
+        <motion.g
+          initial={{ scale: 0, opacity: 0, rotate: -45 }}
+          animate={{ scale: 1, opacity: 1, rotate: 0 }}
+          transition={{ duration: 1, delay: 1.8, type: "spring", bounce: 0.5 }}
+          style={{ originX: "15px", originY: "15px" }}
+        >
+          <path d="M 15,15 C 25,-5 45,-5 30,15 Z" fill="#F5D77F" />
+          <path d="M 15,15 C -5,25 -5,45 15,30 Z" fill="#F5D77F" />
+          <path d="M 15,15 C 35,25 45,45 25,35 Z" fill="#F5D77F" />
+          <path d="M 15,15 C -5,-5 -15,15 5,20 Z" fill="#F5D77F" />
+          <circle cx="15" cy="15" r="4" fill="#110102" />
+          <circle cx="15" cy="15" r="2.5" fill="#D4AF37" />
+        </motion.g>
+        
+        {/* Corner Accents */}
+        <motion.circle cx="35" cy="15" r="1.5" fill="#F5D77F" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 2.2 }} />
+        <motion.circle cx="15" cy="35" r="1.5" fill="#F5D77F" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 2.2 }} />
+        <motion.circle cx="25" cy="25" r="2" fill="#F5D77F" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 2.4 }} />
+
+      </motion.svg>
+    </div>
+  );
+};
+
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 // Generate mock calendar data (last 365 days)
@@ -244,11 +368,11 @@ export function Bloodline() {
         <div
           className="p-5 flex flex-col gap-4 relative rounded-xl bg-[#1B263B]/40 dark:bg-[rgba(35,6,8,0.85)] backdrop-blur-xl border border-[#415A77]/60 dark:border-[#D4AF37]/50 shadow-[inset_0_0_40px_rgba(0,0,0,0.8),_0_8px_30px_rgba(109,8,8,0.5)]"
         >
-          {/* Corner Brackets */}
-          <div className="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-[#D4AF37]/80 rounded-tl-xl" />
-          <div className="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-[#D4AF37]/80 rounded-tr-xl" />
-          <div className="absolute bottom-0 left-0 w-6 h-6 border-b-2 border-l-2 border-[#D4AF37]/80 rounded-bl-xl" />
-          <div className="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-[#D4AF37]/80 rounded-br-xl" />
+          {/* Corner Filigrees */}
+          <AnimatedCornerFiligree className="-top-[10px] -left-[10px]" />
+          <AnimatedCornerFiligree className="-top-[10px] -right-[10px] scale-x-[-1]" />
+          <AnimatedCornerFiligree className="-bottom-[10px] -left-[10px] scale-y-[-1]" />
+          <AnimatedCornerFiligree className="-bottom-[10px] -right-[10px] scale-x-[-1] scale-y-[-1]" />
 
           <div className="flex items-center justify-between relative z-10 min-h-[24px]">
             <div className="w-full text-center">
