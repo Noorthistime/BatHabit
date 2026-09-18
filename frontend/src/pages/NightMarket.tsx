@@ -60,37 +60,107 @@ const AnimatedFiligree = () => {
 
 const AnimatedNavFiligree = ({ flip }: { flip?: boolean }) => {
   return (
-    <div className={`w-[60px] sm:w-[100px] h-[40px] flex items-center justify-center text-[#D4AF37] ${flip ? 'scale-x-[-1]' : ''}`}>
-      <motion.svg viewBox="0 0 120 40" fill="none" className="w-full h-full drop-shadow-[0_0_8px_rgba(212,175,55,0.6)]">
+    <div className={`w-[120px] sm:w-[220px] h-[50px] flex items-center justify-center text-[#D4AF37] ${flip ? 'scale-x-[-1]' : ''}`}>
+      <motion.svg viewBox="0 0 200 50" fill="none" className="w-full h-full drop-shadow-[0_0_8px_rgba(212,175,55,0.6)]">
+        {/* Central connecting line flowing outward */}
         <motion.path
-          d="M 120 20 L 70 20 C 60 20 50 35 35 25 C 20 15 15 5 5 20"
-          stroke="currentColor"
-          strokeWidth="1.5"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
+          d="M 200 25 L 40 25"
+          stroke="currentColor" strokeWidth="1.5"
+          initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 1 }} transition={{ duration: 1.5, ease: "easeOut" }}
         />
+        
+        {/* Main upper sweeping royal curl */}
         <motion.path
-          d="M 50 20 C 55 10 70 5 75 15 C 80 25 70 30 60 25"
-          stroke="currentColor"
-          strokeWidth="1"
-          initial={{ pathLength: 0, opacity: 0 }}
-          animate={{ pathLength: 1, opacity: 0.7 }}
-          transition={{ duration: 1.2, delay: 0.5, ease: "easeOut" }}
+          d="M 160 25 C 150 10 130 5 110 20 C 100 28 90 25 80 15 C 60 -5 30 5 15 25"
+          stroke="currentColor" strokeWidth="1.5"
+          initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 1 }} transition={{ duration: 1.8, delay: 0.2, ease: "easeOut" }}
         />
+
+        {/* Main lower sweeping royal curl */}
         <motion.path
-          d="M 5 16 L 8 20 L 5 24 L 2 20 Z"
-          fill="#F5D77F"
-          initial={{ scale: 0, opacity: 0 }}
-          animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 1.2, type: "spring", bounce: 0.5 }}
+          d="M 160 25 C 150 40 130 45 110 30 C 100 22 90 25 80 35 C 60 55 30 45 15 25"
+          stroke="currentColor" strokeWidth="1.5"
+          initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 1 }} transition={{ duration: 1.8, delay: 0.2, ease: "easeOut" }}
         />
-        <motion.circle cx="15" cy="20" r="1.5" fill="#F5D77F"
-          initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.5, delay: 1.4, type: "spring" }} />
-        <motion.circle cx="22" cy="20" r="1" fill="#F5D77F"
-          initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 0.6 }} transition={{ duration: 0.5, delay: 1.5, type: "spring" }} />
+        
+        {/* Inner flourish loop */}
+        <motion.path
+          d="M 110 20 C 115 15 125 15 125 25 C 125 35 115 35 110 30"
+          stroke="currentColor" strokeWidth="1"
+          initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 0.6 }} transition={{ duration: 1.2, delay: 0.8, ease: "easeInOut" }}
+        />
+
+        {/* Leaf accents top */}
+        <motion.path
+          d="M 80 15 C 75 10 65 10 60 15 Z" fill="currentColor"
+          initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 0.8 }} transition={{ duration: 0.5, delay: 1.5, type: "spring" }}
+        />
+        
+        {/* Leaf accents bottom */}
+        <motion.path
+          d="M 80 35 C 75 40 65 40 60 35 Z" fill="currentColor"
+          initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 0.8 }} transition={{ duration: 0.5, delay: 1.5, type: "spring" }}
+        />
+
+        {/* Outer large diamond */}
+        <motion.path
+          d="M 30 25 L 35 30 L 40 25 L 35 20 Z" fill="#F5D77F"
+          initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.5, delay: 1.7, type: "spring" }}
+        />
+
+        {/* Far end small diamond */}
+        <motion.path
+          d="M 10 25 L 13 28 L 16 25 L 13 22 Z" fill="#F5D77F"
+          initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.5, delay: 1.9, type: "spring" }}
+        />
+        
+        {/* Accent dots */}
+        <motion.circle cx="130" cy="18" r="1.5" fill="#F5D77F" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 2.0 }} />
+        <motion.circle cx="130" cy="32" r="1.5" fill="#F5D77F" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 2.0 }} />
+        <motion.circle cx="5" cy="25" r="1.5" fill="#F5D77F" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 2.1 }} />
+
       </motion.svg>
     </div>
+  );
+};
+
+const NightMarketTabButton = ({ active, onClick, children }: any) => {
+  return (
+    <button
+      onClick={onClick}
+      className="relative group px-8 py-2.5 sm:px-12 sm:py-3 mx-1 transition-all flex-shrink-0 outline-none"
+    >
+      <div 
+        className={`absolute inset-0 transition-colors duration-500 ${
+          active ? 'bg-[radial-gradient(ellipse_at_center,_rgba(35,6,8,1)_0%,_rgba(15,2,4,1)_100%)]' : 'bg-[rgba(15,2,4,0.7)] group-hover:bg-[#2A0505]'
+        }`}
+        style={{
+          clipPath: 'polygon(15px 0, calc(100% - 15px) 0, 100% 15px, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0 calc(100% - 15px), 0 15px)'
+        }}
+      />
+      
+      <svg 
+        className={`absolute inset-0 w-full h-full pointer-events-none transition-all duration-300 ${active ? 'opacity-100 scale-100' : 'opacity-40 scale-[0.98] group-hover:scale-100 group-hover:opacity-70'}`}
+        preserveAspectRatio="none"
+        viewBox="0 0 200 60"
+        fill="none"
+      >
+        <path d="M 20 4 L 180 4" stroke="#D4AF37" strokeWidth="3.5" />
+        <path d="M 20 56 L 180 56" stroke="#D4AF37" strokeWidth="3.5" />
+        
+        <path d="M 20 4 C 10 4 4 10 4 20 C 8 25 8 35 4 40 C 4 50 10 56 20 56 L 20 4 Z" fill="#D4AF37" />
+        <path d="M 180 4 C 190 4 196 10 196 20 C 192 25 192 35 196 40 C 196 50 190 56 180 56 L 180 4 Z" fill="#D4AF37" />
+
+        <circle cx="10" cy="12" r="1.5" fill="#F5D77F" />
+        <circle cx="10" cy="48" r="1.5" fill="#F5D77F" />
+        <circle cx="190" cy="12" r="1.5" fill="#F5D77F" />
+        <circle cx="190" cy="48" r="1.5" fill="#F5D77F" />
+      </svg>
+
+      <span className={`relative z-10 font-mono text-[10px] sm:text-xs uppercase tracking-[0.2em] font-bold transition-colors ${active ? 'text-[#F5D77F] drop-shadow-[0_0_8px_rgba(212,175,55,0.8)]' : 'text-[#8d9685] group-hover:text-[#D4AF37]'}`}>
+        {children}
+      </span>
+    </button>
   );
 };
 
@@ -199,19 +269,18 @@ export function NightMarket() {
         </div>
 
         {/* Category Tabs */}
-        <div className="flex items-center justify-center w-full my-10 max-w-[900px] mx-auto overflow-hidden">
+        <div className="flex items-center justify-center w-full my-4 max-w-[1100px] mx-auto overflow-hidden">
           <AnimatedNavFiligree />
           <div className="flex-1 h-[1.5px] bg-gradient-to-r from-transparent to-[#D4AF37]/50 max-w-[20px] sm:max-w-[40px]" />
           
           {CATEGORIES.map((cat, index) => (
             <React.Fragment key={cat}>
-              <GothicButton
+              <NightMarketTabButton
                 active={activeCategory === cat}
                 onClick={() => setActiveCategory(cat)}
-                className="px-6 py-2 sm:px-10 sm:py-2.5 mx-1"
               >
                 {cat}
-              </GothicButton>
+              </NightMarketTabButton>
               {index < CATEGORIES.length - 1 && (
                 <div className="flex-1 h-[1.5px] bg-[#D4AF37]/40 max-w-[15px] sm:max-w-[30px]" />
               )}
