@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { ShoppingBag, Coins, Check, Star } from 'lucide-react';
+import { ShoppingBag, Coins, Check, Star, Shield, Skull, Swords, Scroll, Feather, MoonStar, Crown, Wind, Ghost } from 'lucide-react';
 import { motion } from 'framer-motion';
 
 const AnimatedFiligree = () => {
   return (
-    <div className="absolute -top-[12px] left-1/2 -translate-x-1/2 w-[120px] h-[24px] pointer-events-none flex items-center justify-center z-20">
+    <div className="absolute -top-[15px] left-1/2 -translate-x-1/2 w-[150px] h-[30px] pointer-events-none flex items-center justify-center z-20">
       <motion.svg 
         viewBox="0 0 160 32" 
         fill="none" 
@@ -54,6 +54,48 @@ const AnimatedFiligree = () => {
           transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
         />
       </motion.svg>
+    </div>
+  );
+};
+
+const AnimatedCornerFiligree = () => {
+  const draw = {
+    hidden: { pathLength: 0, opacity: 0 },
+    visible: { pathLength: 1, opacity: 0.9, transition: { duration: 2.2, ease: "easeInOut", delay: 0.1 } }
+  };
+  
+  return (
+    <div className="absolute inset-0 pointer-events-none z-10 opacity-90">
+      {[
+        "top-0 left-0", 
+        "top-0 right-0 scale-x-[-1]", 
+        "bottom-0 left-0 scale-y-[-1]", 
+        "bottom-0 right-0 scale-[-1]"
+      ].map((pos, i) => (
+        <motion.svg key={i} viewBox="0 0 120 120" fill="none" className={`absolute w-[70px] h-[70px] text-[#D4AF37] drop-shadow-[0_0_6px_rgba(212,175,55,0.6)] ${pos}`}>
+          {/* Outer sharp corner */}
+          <motion.path d="M 5 110 L 5 5 L 110 5" stroke="currentColor" strokeWidth="2.5" strokeLinecap="square" variants={draw} initial="hidden" animate="visible" />
+          
+          {/* Inner offset corner */}
+          <motion.path d="M 16 95 L 16 16 L 95 16" stroke="currentColor" strokeWidth="1" strokeLinecap="square" variants={draw} initial="hidden" animate="visible" />
+          
+          {/* Floral / Victorian Swirl */}
+          <motion.path d="M 28 28 C 60 15, 95 50, 70 85 C 50 110, 20 80, 40 55 C 55 40, 70 55, 60 65" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" variants={draw} initial="hidden" animate="visible" />
+          
+          {/* Secondary smaller swirl */}
+          <motion.path d="M 16 45 C 30 45, 45 30, 45 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" variants={draw} initial="hidden" animate="visible" />
+          
+          {/* Outer diamonds */}
+          <motion.path d="M 110 5 L 115 1 L 119 5 L 115 9 Z" fill="currentColor" initial={{scale:0}} animate={{scale:1}} transition={{delay:2.0, type:"spring"}} />
+          <motion.path d="M 5 110 L 9 115 L 5 119 L 1 115 Z" fill="currentColor" initial={{scale:0}} animate={{scale:1}} transition={{delay:2.0, type:"spring"}} />
+          
+          {/* Corner accent diamond */}
+          <motion.path d="M 5 5 L 9 1 L 13 5 L 9 9 Z" fill="currentColor" initial={{scale:0}} animate={{scale:1}} transition={{delay:1.5, type:"spring"}} />
+
+          {/* Swirl center dot */}
+          <motion.circle cx="60" cy="65" r="2" fill="currentColor" initial={{scale:0}} animate={{scale:1}} transition={{delay:2.3}} />
+        </motion.svg>
+      ))}
     </div>
   );
 };
@@ -222,15 +264,15 @@ type Category = 'All' | 'Frames' | 'Themes' | 'Badges' | 'Cosmetics';
 const CATEGORIES: Category[] = ['All', 'Frames', 'Themes', 'Badges', 'Cosmetics'];
 
 const ITEMS = [
-  { id: 1, name: 'Obsidian Sovereign', category: 'Frames', price: 850, icon: '🔲', rarity: 'Legendary', owned: false, desc: 'A dark frame forged from void-glass' },
-  { id: 2, name: 'Crimson Pact', category: 'Themes', price: 1200, icon: '🌑', rarity: 'Mythic', owned: false, desc: 'Blood-red interface theme of the ancients' },
-  { id: 3, name: 'Iron Vow Badge', category: 'Badges', price: 250, icon: '⚔️', rarity: 'Rare', owned: true, desc: 'Awarded to those who never break a vow' },
-  { id: 4, name: 'Rune Sigil Frame', category: 'Frames', price: 600, icon: '🔯', rarity: 'Epic', owned: false, desc: 'Ancient runic frame inscribed with power' },
-  { id: 5, name: 'Lunar Scholar', category: 'Badges', price: 400, icon: '🌙', rarity: 'Rare', owned: false, desc: 'For those who quest beneath the moon' },
-  { id: 6, name: 'Twilight Veil', category: 'Themes', price: 950, icon: '🌒', rarity: 'Epic', owned: false, desc: 'A theme born from the space between night and dawn' },
-  { id: 7, name: 'Ember Crown', category: 'Cosmetics', price: 300, icon: '👑', rarity: 'Common', owned: true, desc: 'Fiery crown for devoted servants of the flame' },
-  { id: 8, name: 'Void Mantle', category: 'Cosmetics', price: 750, icon: '🪬', rarity: 'Epic', owned: false, desc: 'Cloak woven from shadow-silk' },
-  { id: 9, name: 'Phantom Sigil', category: 'Frames', price: 500, icon: '👁', rarity: 'Rare', owned: false, desc: 'The all-seeing eye watches over your progress' },
+  { id: 1, name: 'Obsidian Sovereign', category: 'Frames', price: 850, icon: <Shield size={48} strokeWidth={1.5} />, rarity: 'Legendary', owned: false, desc: 'A dark frame forged from void-glass' },
+  { id: 2, name: 'Crimson Pact', category: 'Themes', price: 1200, icon: <Skull size={48} strokeWidth={1.5} />, rarity: 'Mythic', owned: false, desc: 'Blood-red interface theme of the ancients' },
+  { id: 3, name: 'Iron Vow Badge', category: 'Badges', price: 250, icon: <Swords size={48} strokeWidth={1.5} />, rarity: 'Rare', owned: true, desc: 'Awarded to those who never break a vow' },
+  { id: 4, name: 'Rune Sigil Frame', category: 'Frames', price: 600, icon: <Scroll size={48} strokeWidth={1.5} />, rarity: 'Epic', owned: false, desc: 'Ancient runic frame inscribed with power' },
+  { id: 5, name: 'Lunar Scholar', category: 'Badges', price: 400, icon: <Feather size={48} strokeWidth={1.5} />, rarity: 'Rare', owned: false, desc: 'For those who quest beneath the moon' },
+  { id: 6, name: 'Twilight Veil', category: 'Themes', price: 950, icon: <MoonStar size={48} strokeWidth={1.5} />, rarity: 'Epic', owned: false, desc: 'A theme born from the space between night and dawn' },
+  { id: 7, name: 'Ember Crown', category: 'Cosmetics', price: 300, icon: <Crown size={48} strokeWidth={1.5} />, rarity: 'Common', owned: true, desc: 'Fiery crown for devoted servants of the flame' },
+  { id: 8, name: 'Void Mantle', category: 'Cosmetics', price: 750, icon: <Wind size={48} strokeWidth={1.5} />, rarity: 'Epic', owned: false, desc: 'Cloak woven from shadow-silk' },
+  { id: 9, name: 'Phantom Sigil', category: 'Frames', price: 500, icon: <Ghost size={48} strokeWidth={1.5} />, rarity: 'Rare', owned: false, desc: 'The all-seeing eye watches over your progress' },
 ];
 
 const RARITY_COLORS: Record<string, string> = {
@@ -324,16 +366,19 @@ export function NightMarket() {
                 boxShadow: item.owned ? 'inset 0 0 40px rgba(0,0,0,0.8), 0 0 15px rgba(212,175,55,0.2)' : 'inset 0 0 40px rgba(0,0,0,0.8)' 
               }}
             >
-              <AnimatedFiligree />
+              <AnimatedCornerFiligree />
               <div className="absolute inset-0 opacity-20 mix-blend-overlay overflow-hidden rounded-xl pointer-events-none" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg width=\\'60\\' height=\\'60\\' viewBox=\\'0 0 60 60\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cg fill=\\'none\\' fill-rule=\\'evenodd\\'%3E%3Cg fill=\\'%23d4af37\\' fill-opacity=\\'0.15\\'%3E%3Cpath d=\\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')" }}></div>
               
               {item.owned && (
-                <div className="absolute top-2 right-2 flex items-center gap-1 font-mono text-[9px] text-[#D4AF37] bg-[#D4AF37]/10 border border-[#D4AF37]/30 px-1.5 py-0.5 uppercase tracking-wider z-10">
+                <div className="absolute top-4 right-4 flex items-center gap-1 font-mono text-[9px] text-[#D4AF37] bg-[#D4AF37]/10 border border-[#D4AF37]/30 px-1.5 py-0.5 uppercase tracking-wider z-10">
                   <Check size={8} /> Owned
                 </div>
               )}
 
-              <div className="text-5xl relative z-10 text-center py-4 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] group-hover:scale-110 transition-transform duration-500">
+              <div 
+                className="relative z-10 flex justify-center py-4 group-hover:scale-110 transition-transform duration-500"
+                style={{ color: RARITY_COLORS[item.rarity], filter: `drop-shadow(0 0 12px ${RARITY_COLORS[item.rarity]}90)` }}
+              >
                 {item.icon}
               </div>
 
@@ -351,7 +396,7 @@ export function NightMarket() {
                 <p className="font-sans text-xs text-[#8d9685] mt-1">{item.desc}</p>
               </div>
 
-              <div className="flex items-center justify-between mt-auto pt-4 border-t border-[#D4AF37]/10 relative z-10">
+              <div className="flex items-center justify-center gap-6 mt-auto pt-4 border-t border-[#D4AF37]/10 relative z-10">
                 <div className="flex items-center gap-1.5">
                   <Coins size={14} className="text-[#D4AF37] drop-shadow-[0_0_5px_currentColor]" />
                   <span className="font-serif text-lg font-bold text-[#D4AF37] drop-shadow-[0_0_5px_currentColor]">{item.price.toLocaleString()}</span>
