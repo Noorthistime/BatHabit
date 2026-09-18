@@ -295,7 +295,7 @@ export function NightMarket() {
     <>
 
 
-      <div className="w-full max-w-[1200px] mx-auto flex flex-col gap-6">
+      <div className="w-full max-w-[1200px] mx-auto flex flex-col gap-6 pb-20">
 
         {/* Header */}
         <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-5 pb-4 border-b border-[#415A77]/50 dark:border-[#D4AF37]/25">
@@ -356,18 +356,26 @@ export function NightMarket() {
 
         {/* Items Grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
-          {filtered.map(item => (
-            <div
+          {filtered.map((item, index) => (
+            <motion.div
               key={item.id}
-              className="p-5 flex flex-col gap-3 relative transition-all group rounded-xl hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(212,175,55,0.2)]"
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1, ease: "easeOut" }}
+              className="p-5 flex flex-col gap-3 relative transition-all group rounded-xl overflow-hidden hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(212,175,55,0.2)]"
               style={{ 
                 background: 'radial-gradient(circle at center, rgba(109,8,8,0.6) 0%, rgba(15,2,4,0.9) 100%)', 
                 border: item.owned ? '1px solid rgba(212,175,55,0.7)' : '1px solid rgba(212,175,55,0.3)', 
                 boxShadow: item.owned ? 'inset 0 0 40px rgba(0,0,0,0.8), 0 0 15px rgba(212,175,55,0.2)' : 'inset 0 0 40px rgba(0,0,0,0.8)' 
               }}
             >
+              {/* Golden Sweep Hover Animation */}
+              <motion.div 
+                className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D4AF37]/10 to-transparent -translate-x-full group-hover:translate-x-full transition-all duration-700 ease-in-out z-10 pointer-events-none" 
+              />
+
               <AnimatedCornerFiligree />
-              <div className="absolute inset-0 opacity-20 mix-blend-overlay overflow-hidden rounded-xl pointer-events-none" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg width=\\'60\\' height=\\'60\\' viewBox=\\'0 0 60 60\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cg fill=\\'none\\' fill-rule=\\'evenodd\\'%3E%3Cg fill=\\'%23d4af37\\' fill-opacity=\\'0.15\\'%3E%3Cpath d=\\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')" }}></div>
+              <div className="absolute inset-0 opacity-20 mix-blend-overlay pointer-events-none" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg width=\\'60\\' height=\\'60\\' viewBox=\\'0 0 60 60\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cg fill=\\'none\\' fill-rule=\\'evenodd\\'%3E%3Cg fill=\\'%23d4af37\\' fill-opacity=\\'0.15\\'%3E%3Cpath d=\\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')" }}></div>
               
               {item.owned && (
                 <div className="absolute top-4 right-4 flex items-center gap-1 font-mono text-[9px] text-[#D4AF37] bg-[#D4AF37]/10 border border-[#D4AF37]/30 px-1.5 py-0.5 uppercase tracking-wider z-10">
@@ -413,7 +421,7 @@ export function NightMarket() {
                   </GothicButton>
                 )}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
