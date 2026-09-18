@@ -1,5 +1,101 @@
 import React, { useState } from 'react';
 import { ShoppingBag, Coins, Check, Star } from 'lucide-react';
+import { motion } from 'framer-motion';
+
+const AnimatedFiligree = () => {
+  return (
+    <div className="absolute -top-[12px] left-1/2 -translate-x-1/2 w-[120px] h-[24px] pointer-events-none flex items-center justify-center z-20">
+      <motion.svg 
+        viewBox="0 0 160 32" 
+        fill="none" 
+        className="w-full h-full text-[#D4AF37] drop-shadow-[0_0_6px_rgba(212,175,55,0.7)]"
+      >
+        <motion.path 
+          d="M80,20 C 65,20 55,6 35,12 C 20,16 10,8 2,14" 
+          stroke="currentColor" 
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ duration: 1.8, ease: "easeInOut" }}
+        />
+        <motion.path 
+          d="M80,20 C 95,20 105,6 125,12 C 140,16 150,8 158,14" 
+          stroke="currentColor" 
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ duration: 1.8, ease: "easeInOut" }}
+        />
+        <motion.path
+          d="M80,6 L84,18 L80,28 L76,18 Z"
+          fill="#F5D77F"
+          initial={{ scale: 0, opacity: 0, y: -10 }}
+          animate={{ scale: 1, opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1.4, type: "spring", bounce: 0.6 }}
+        />
+        <motion.path 
+          d="M74,20 Q 65,28 50,22" 
+          stroke="currentColor" 
+          strokeWidth="1"
+          strokeLinecap="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 0.5 }}
+          transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
+        />
+        <motion.path 
+          d="M86,20 Q 95,28 110,22" 
+          stroke="currentColor" 
+          strokeWidth="1"
+          strokeLinecap="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 0.5 }}
+          transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
+        />
+      </motion.svg>
+    </div>
+  );
+};
+
+const GothicButton = ({ active, onClick, children, disabled = false }: any) => (
+  <button
+    onClick={onClick}
+    disabled={disabled}
+    className={`relative group px-3 py-1.5 border-none transition-all whitespace-nowrap overflow-hidden flex-shrink-0 ${
+      active 
+        ? 'bg-[radial-gradient(ellipse_at_center,_rgba(35,6,8,1)_0%,_rgba(15,2,4,1)_100%)] text-[#F5D77F] shadow-[0_0_12px_rgba(212,175,55,0.4)]' 
+        : 'bg-[rgba(15,2,4,0.6)] text-[#8d9685] hover:bg-[#2A0505]'
+    } ${disabled ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
+    style={{ clipPath: 'polygon(6px 0, calc(100% - 6px) 0, 100% 6px, 100% calc(100% - 6px), calc(100% - 6px) 100%, 6px 100%, 0 calc(100% - 6px), 0 6px)' }}
+  >
+    <div className={`absolute inset-0 pointer-events-none transition-all duration-300 ${active ? 'opacity-100' : 'opacity-20 group-hover:opacity-40'}`}>
+      <div className={`absolute top-0 left-3 right-3 h-[1.5px] ${active ? 'bg-[#D4AF37]' : 'bg-[#D4AF37]/50'}`}></div>
+      <div className={`absolute bottom-0 left-3 right-3 h-[1.5px] ${active ? 'bg-[#D4AF37]' : 'bg-[#D4AF37]/50'}`}></div>
+      <div className={`absolute left-0 top-3 bottom-3 w-[1.5px] ${active ? 'bg-[#D4AF37]' : 'bg-[#D4AF37]/50'}`}></div>
+      <div className={`absolute right-0 top-3 bottom-3 w-[1.5px] ${active ? 'bg-[#D4AF37]' : 'bg-[#D4AF37]/50'}`}></div>
+      {active && (
+        <>
+          <svg className="absolute top-0 left-0 w-4 h-4 text-[#D4AF37]" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M0,0 L24,0 C 18,2 14,6 12,12 C 10,18 8,22 8,24 L0,24 Z" opacity="0.4"/><path d="M0,0 L16,0 C 12,2 8,6 6,10 C 4,14 2,16 0,16 Z" /><circle cx="5" cy="5" r="1.5" fill="#F5D77F"/>
+          </svg>
+          <svg className="absolute top-0 right-0 w-4 h-4 text-[#D4AF37] transform rotate-90" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M0,0 L24,0 C 18,2 14,6 12,12 C 10,18 8,22 8,24 L0,24 Z" opacity="0.4"/><path d="M0,0 L16,0 C 12,2 8,6 6,10 C 4,14 2,16 0,16 Z" /><circle cx="5" cy="5" r="1.5" fill="#F5D77F"/>
+          </svg>
+          <svg className="absolute bottom-0 right-0 w-4 h-4 text-[#D4AF37] transform rotate-180" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M0,0 L24,0 C 18,2 14,6 12,12 C 10,18 8,22 8,24 L0,24 Z" opacity="0.4"/><path d="M0,0 L16,0 C 12,2 8,6 6,10 C 4,14 2,16 0,16 Z" /><circle cx="5" cy="5" r="1.5" fill="#F5D77F"/>
+          </svg>
+          <svg className="absolute bottom-0 left-0 w-4 h-4 text-[#D4AF37] transform -rotate-90" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M0,0 L24,0 C 18,2 14,6 12,12 C 10,18 8,22 8,24 L0,24 Z" opacity="0.4"/><path d="M0,0 L16,0 C 12,2 8,6 6,10 C 4,14 2,16 0,16 Z" /><circle cx="5" cy="5" r="1.5" fill="#F5D77F"/>
+          </svg>
+        </>
+      )}
+    </div>
+    <span className="relative z-10 flex items-center justify-center font-mono text-[9px] uppercase tracking-wider font-bold">
+      {children}
+    </span>
+  </button>
+);
 
 type Category = 'All' | 'Frames' | 'Themes' | 'Badges' | 'Cosmetics';
 
@@ -53,62 +149,59 @@ export function NightMarket() {
 
           {/* Wallet */}
           <div
-            className="flex items-center gap-3 px-5 py-3 shrink-0 rounded-xl bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 shadow-lg"
+            className="flex items-center gap-4 px-6 py-4 shrink-0 rounded-xl relative group"
+            style={{ background: 'radial-gradient(circle at center, rgba(109,8,8,0.6) 0%, rgba(15,2,4,0.9) 100%)', border: '1px solid rgba(212,175,55,0.5)', boxShadow: 'inset 0 0 40px rgba(0,0,0,0.8), 0 0 20px rgba(212,175,55,0.2)' }}
           >
-            <Coins size={18} className="text-[#D4AF37]" />
-            <div>
-              <p className="font-mono text-[9px] uppercase tracking-widest text-[#8d9685]">Crown Balance</p>
-              <p className="font-mono text-xl font-bold text-[#D4AF37]">{walletBalance.toLocaleString()}</p>
+            <AnimatedFiligree />
+            <div className="absolute inset-0 opacity-20 mix-blend-overlay overflow-hidden rounded-xl" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg width=\\'60\\' height=\\'60\\' viewBox=\\'0 0 60 60\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cg fill=\\'none\\' fill-rule=\\'evenodd\\'%3E%3Cg fill=\\'%23d4af37\\' fill-opacity=\\'0.15\\'%3E%3Cpath d=\\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')" }}></div>
+            <Coins size={20} className="relative z-10 text-[#D4AF37] drop-shadow-[0_0_8px_currentColor] group-hover:scale-110 transition-transform" />
+            <div className="relative z-10">
+              <p className="font-mono text-[9px] uppercase tracking-widest text-[#D4AF37]">Crown Balance</p>
+              <p className="font-serif text-2xl font-bold text-[#F5D77F] drop-shadow-[0_0_15px_rgba(212,175,55,0.8)]">{walletBalance.toLocaleString()}</p>
             </div>
           </div>
         </div>
 
         {/* Category Tabs */}
-        <div className="flex gap-1 flex-wrap">
+        <div className="flex gap-1.5 flex-wrap">
           {CATEGORIES.map(cat => (
-            <button
+            <GothicButton
               key={cat}
+              active={activeCategory === cat}
               onClick={() => setActiveCategory(cat)}
-              className="px-4 py-2 font-mono text-xs uppercase tracking-widest transition-all"
-              style={{
-                background: activeCategory === cat ? '#6D0808' : 'rgba(35,6,8,0.6)',
-                border: `1px solid ${activeCategory === cat ? 'rgba(212,175,55,0.5)' : 'rgba(212,175,55,0.15)'}`,
-                color: activeCategory === cat ? '#D4AF37' : '#8d9685',
-                boxShadow: activeCategory === cat ? '0 0 12px rgba(109,8,8,0.5)' : 'none',
-              }}
             >
               {cat}
-            </button>
+            </GothicButton>
           ))}
         </div>
 
         {/* Items Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5">
           {filtered.map(item => (
             <div
               key={item.id}
-              className={`p-5 flex flex-col gap-3 relative transition-all group rounded-xl bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md shadow-lg ${
-                item.owned 
-                  ? 'border border-[#415A77] dark:border-[#D4AF37]/45 dark:shadow-[0_0_15px_rgba(212,175,55,0.1)]' 
-                  : 'border border-[#415A77]/50 dark:border-[#D4AF37]/25'
-              }`}
+              className="p-5 flex flex-col gap-3 relative transition-all group rounded-xl hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(212,175,55,0.2)]"
+              style={{ 
+                background: 'radial-gradient(circle at center, rgba(109,8,8,0.6) 0%, rgba(15,2,4,0.9) 100%)', 
+                border: item.owned ? '1px solid rgba(212,175,55,0.7)' : '1px solid rgba(212,175,55,0.3)', 
+                boxShadow: item.owned ? 'inset 0 0 40px rgba(0,0,0,0.8), 0 0 15px rgba(212,175,55,0.2)' : 'inset 0 0 40px rgba(0,0,0,0.8)' 
+              }}
             >
-              {/* Corner brackets on hover */}
-              <div className="absolute top-0 left-0 w-3 h-3 border-t border-l border-[#D4AF37]/0 group-hover:border-[#D4AF37]/70 transition-all" />
-              <div className="absolute top-0 right-0 w-3 h-3 border-t border-r border-[#D4AF37]/0 group-hover:border-[#D4AF37]/70 transition-all" />
-              <div className="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-[#D4AF37]/0 group-hover:border-[#D4AF37]/70 transition-all" />
-              <div className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-[#D4AF37]/0 group-hover:border-[#D4AF37]/70 transition-all" />
-
+              <AnimatedFiligree />
+              <div className="absolute inset-0 opacity-20 mix-blend-overlay overflow-hidden rounded-xl pointer-events-none" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg width=\\'60\\' height=\\'60\\' viewBox=\\'0 0 60 60\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cg fill=\\'none\\' fill-rule=\\'evenodd\\'%3E%3Cg fill=\\'%23d4af37\\' fill-opacity=\\'0.15\\'%3E%3Cpath d=\\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')" }}></div>
+              
               {item.owned && (
-                <div className="absolute top-2 right-2 flex items-center gap-1 font-mono text-[9px] text-[#D4AF37] bg-[#D4AF37]/10 border border-[#D4AF37]/30 px-1.5 py-0.5 uppercase tracking-wider">
+                <div className="absolute top-2 right-2 flex items-center gap-1 font-mono text-[9px] text-[#D4AF37] bg-[#D4AF37]/10 border border-[#D4AF37]/30 px-1.5 py-0.5 uppercase tracking-wider z-10">
                   <Check size={8} /> Owned
                 </div>
               )}
 
-              <div className="text-4xl">{item.icon}</div>
+              <div className="text-5xl relative z-10 text-center py-4 drop-shadow-[0_0_15px_rgba(255,255,255,0.1)] group-hover:scale-110 transition-transform duration-500">
+                {item.icon}
+              </div>
 
-              <div>
-                <div className="flex items-center gap-2 mb-0.5">
+              <div className="relative z-10">
+                <div className="flex items-center gap-2 mb-1">
                   <span
                     className="font-mono text-[8px] uppercase tracking-widest px-1.5 py-0.5"
                     style={{ color: RARITY_COLORS[item.rarity], background: RARITY_COLORS[item.rarity] + '15', border: `1px solid ${RARITY_COLORS[item.rarity]}30` }}
@@ -117,32 +210,25 @@ export function NightMarket() {
                   </span>
                   <span className="font-mono text-[9px] text-[#8d9685]">{item.category}</span>
                 </div>
-                <h3 className="font-serif text-base font-bold text-[#EEEAD7]">{item.name}</h3>
-                <p className="font-sans text-xs text-[#8d9685] mt-0.5">{item.desc}</p>
+                <h3 className="font-serif text-lg font-bold text-[#EEEAD7] drop-shadow-md">{item.name}</h3>
+                <p className="font-sans text-xs text-[#8d9685] mt-1">{item.desc}</p>
               </div>
 
-              <div className="flex items-center justify-between mt-auto pt-3 border-t border-[#D4AF37]/10">
+              <div className="flex items-center justify-between mt-auto pt-4 border-t border-[#D4AF37]/10 relative z-10">
                 <div className="flex items-center gap-1.5">
-                  <Coins size={12} className="text-[#D4AF37]" />
-                  <span className="font-mono text-sm font-bold text-[#D4AF37]">{item.price.toLocaleString()}</span>
+                  <Coins size={14} className="text-[#D4AF37] drop-shadow-[0_0_5px_currentColor]" />
+                  <span className="font-serif text-lg font-bold text-[#D4AF37] drop-shadow-[0_0_5px_currentColor]">{item.price.toLocaleString()}</span>
                 </div>
                 {item.owned ? (
                   <span className="font-mono text-[10px] text-[#8d9685] uppercase tracking-wider">In Collection</span>
                 ) : (
-                  <button
-                    onClick={() => handlePurchase(item.id)}
+                  <GothicButton
+                    active={purchasing === item.id}
                     disabled={purchasing === item.id || walletBalance < item.price}
-                    className="px-3 py-1.5 font-mono text-xs uppercase tracking-widest transition-all"
-                    style={{
-                      background: purchasing === item.id ? '#D4AF37' : '#6D0808',
-                      border: '1px solid rgba(212,175,55,0.4)',
-                      color: purchasing === item.id ? '#0c0608' : '#EEEAD7',
-                      opacity: walletBalance < item.price ? 0.4 : 1,
-                      cursor: walletBalance < item.price ? 'not-allowed' : 'pointer',
-                    }}
+                    onClick={() => handlePurchase(item.id)}
                   >
                     {purchasing === item.id ? 'Sealing...' : 'Purchase'}
-                  </button>
+                  </GothicButton>
                 )}
               </div>
             </div>
