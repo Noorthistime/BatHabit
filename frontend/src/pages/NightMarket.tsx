@@ -60,64 +60,64 @@ const AnimatedFiligree = () => {
 
 const AnimatedNavFiligree = ({ flip }: { flip?: boolean }) => {
   return (
-    <div className={`w-[120px] sm:w-[220px] h-[50px] flex items-center justify-center text-[#D4AF37] ${flip ? 'scale-x-[-1]' : ''}`}>
+    <div className={`w-[70px] sm:w-[150px] h-[40px] sm:h-[55px] shrink-0 flex items-center justify-center text-[#D4AF37] ${flip ? 'scale-x-[-1]' : ''}`}>
       <motion.svg viewBox="0 0 200 50" fill="none" className="w-full h-full drop-shadow-[0_0_8px_rgba(212,175,55,0.6)]">
         {/* Central connecting line flowing outward */}
         <motion.path
           d="M 200 25 L 40 25"
           stroke="currentColor" strokeWidth="1.5"
-          initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 1 }} transition={{ duration: 1.5, ease: "easeOut" }}
+          initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 1 }} transition={{ duration: 1.5, delay: 0.5, ease: "easeOut" }}
         />
         
         {/* Main upper sweeping royal curl */}
         <motion.path
           d="M 160 25 C 150 10 130 5 110 20 C 100 28 90 25 80 15 C 60 -5 30 5 15 25"
           stroke="currentColor" strokeWidth="1.5"
-          initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 1 }} transition={{ duration: 1.8, delay: 0.2, ease: "easeOut" }}
+          initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 1 }} transition={{ duration: 1.8, delay: 0.7, ease: "easeOut" }}
         />
 
         {/* Main lower sweeping royal curl */}
         <motion.path
           d="M 160 25 C 150 40 130 45 110 30 C 100 22 90 25 80 35 C 60 55 30 45 15 25"
           stroke="currentColor" strokeWidth="1.5"
-          initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 1 }} transition={{ duration: 1.8, delay: 0.2, ease: "easeOut" }}
+          initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 1 }} transition={{ duration: 1.8, delay: 0.7, ease: "easeOut" }}
         />
         
         {/* Inner flourish loop */}
         <motion.path
           d="M 110 20 C 115 15 125 15 125 25 C 125 35 115 35 110 30"
           stroke="currentColor" strokeWidth="1"
-          initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 0.6 }} transition={{ duration: 1.2, delay: 0.8, ease: "easeInOut" }}
+          initial={{ pathLength: 0, opacity: 0 }} animate={{ pathLength: 1, opacity: 0.6 }} transition={{ duration: 1.2, delay: 1.3, ease: "easeInOut" }}
         />
 
         {/* Leaf accents top */}
         <motion.path
           d="M 80 15 C 75 10 65 10 60 15 Z" fill="currentColor"
-          initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 0.8 }} transition={{ duration: 0.5, delay: 1.5, type: "spring" }}
+          initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 0.8 }} transition={{ duration: 0.5, delay: 2.0, type: "spring" }}
         />
         
         {/* Leaf accents bottom */}
         <motion.path
           d="M 80 35 C 75 40 65 40 60 35 Z" fill="currentColor"
-          initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 0.8 }} transition={{ duration: 0.5, delay: 1.5, type: "spring" }}
+          initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 0.8 }} transition={{ duration: 0.5, delay: 2.0, type: "spring" }}
         />
 
         {/* Outer large diamond */}
         <motion.path
           d="M 30 25 L 35 30 L 40 25 L 35 20 Z" fill="#F5D77F"
-          initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.5, delay: 1.7, type: "spring" }}
+          initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.5, delay: 2.2, type: "spring" }}
         />
 
         {/* Far end small diamond */}
         <motion.path
           d="M 10 25 L 13 28 L 16 25 L 13 22 Z" fill="#F5D77F"
-          initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.5, delay: 1.9, type: "spring" }}
+          initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.5, delay: 2.4, type: "spring" }}
         />
         
         {/* Accent dots */}
-        <motion.circle cx="130" cy="18" r="1.5" fill="#F5D77F" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 2.0 }} />
-        <motion.circle cx="130" cy="32" r="1.5" fill="#F5D77F" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 2.0 }} />
-        <motion.circle cx="5" cy="25" r="1.5" fill="#F5D77F" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 2.1 }} />
+        <motion.circle cx="130" cy="18" r="1.5" fill="#F5D77F" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 2.5 }} />
+        <motion.circle cx="130" cy="32" r="1.5" fill="#F5D77F" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 2.5 }} />
+        <motion.circle cx="5" cy="25" r="1.5" fill="#F5D77F" initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ delay: 2.6 }} />
 
       </motion.svg>
     </div>
@@ -128,15 +128,12 @@ const NightMarketTabButton = ({ active, onClick, children }: any) => {
   return (
     <button
       onClick={onClick}
-      className="relative group px-8 py-2.5 sm:px-12 sm:py-3 mx-1 transition-all flex-shrink-0 outline-none"
+      className="relative group px-4 py-2 sm:px-8 sm:py-3 transition-all flex-shrink-0 outline-none"
     >
       <div 
-        className={`absolute inset-0 transition-colors duration-500 ${
+        className={`absolute top-[3px] bottom-[3px] left-[10px] right-[10px] transition-colors duration-500 ${
           active ? 'bg-[radial-gradient(ellipse_at_center,_rgba(35,6,8,1)_0%,_rgba(15,2,4,1)_100%)]' : 'bg-[rgba(15,2,4,0.7)] group-hover:bg-[#2A0505]'
         }`}
-        style={{
-          clipPath: 'polygon(15px 0, calc(100% - 15px) 0, 100% 15px, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0 calc(100% - 15px), 0 15px)'
-        }}
       />
       
       <svg 
@@ -145,21 +142,38 @@ const NightMarketTabButton = ({ active, onClick, children }: any) => {
         viewBox="0 0 200 60"
         fill="none"
       >
-        <path d="M 20 4 L 180 4" stroke="#D4AF37" strokeWidth="3.5" />
-        <path d="M 20 56 L 180 56" stroke="#D4AF37" strokeWidth="3.5" />
+        <path d="M 25 4 L 175 4" stroke="#D4AF37" strokeWidth="3.5" />
+        <path d="M 25 56 L 175 56" stroke="#D4AF37" strokeWidth="3.5" />
         
-        <path d="M 20 4 C 10 4 4 10 4 20 C 8 25 8 35 4 40 C 4 50 10 56 20 56 L 20 4 Z" fill="#D4AF37" />
-        <path d="M 180 4 C 190 4 196 10 196 20 C 192 25 192 35 196 40 C 196 50 190 56 180 56 L 180 4 Z" fill="#D4AF37" />
+        {/* Left Royal Crest Silhouette */}
+        <path d="M 25 4 L 15 4 L 10 12 L 15 20 L 5 30 L 15 40 L 10 48 L 15 56 L 25 56 Z" fill="#D4AF37" />
+        <path d="M 25 8 L 17 8 L 13 14 L 17 20 L 9 30 L 17 40 L 13 46 L 17 52 L 25 52" stroke="rgba(15,2,4,0.6)" strokeWidth="1.5" fill="none" />
+        
+        {/* Right Royal Crest Silhouette */}
+        <path d="M 175 4 L 185 4 L 190 12 L 185 20 L 195 30 L 185 40 L 190 48 L 185 56 L 175 56 Z" fill="#D4AF37" />
+        <path d="M 175 8 L 183 8 L 187 14 L 183 20 L 191 30 L 183 40 L 187 46 L 183 52 L 175 52" stroke="rgba(15,2,4,0.6)" strokeWidth="1.5" fill="none" />
 
-        <circle cx="10" cy="12" r="1.5" fill="#F5D77F" />
-        <circle cx="10" cy="48" r="1.5" fill="#F5D77F" />
-        <circle cx="190" cy="12" r="1.5" fill="#F5D77F" />
-        <circle cx="190" cy="48" r="1.5" fill="#F5D77F" />
+        {/* 3D Rivet Highlights - Left */}
+        <circle cx="18" cy="10" r="1.5" fill="rgba(15,2,4,0.6)" />
+        <circle cx="18" cy="9" r="1" fill="#F5D77F" />
+        <circle cx="18" cy="50" r="1.5" fill="rgba(15,2,4,0.6)" />
+        <circle cx="18" cy="49" r="1" fill="#F5D77F" />
+        
+        {/* 3D Rivet Highlights - Right */}
+        <circle cx="182" cy="10" r="1.5" fill="rgba(15,2,4,0.6)" />
+        <circle cx="182" cy="9" r="1" fill="#F5D77F" />
+        <circle cx="182" cy="50" r="1.5" fill="rgba(15,2,4,0.6)" />
+        <circle cx="182" cy="49" r="1" fill="#F5D77F" />
       </svg>
 
-      <span className={`relative z-10 font-mono text-[10px] sm:text-xs uppercase tracking-[0.2em] font-bold transition-colors ${active ? 'text-[#F5D77F] drop-shadow-[0_0_8px_rgba(212,175,55,0.8)]' : 'text-[#8d9685] group-hover:text-[#D4AF37]'}`}>
+      <motion.span 
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 0.5, delay: 0.5, ease: "easeOut" }}
+        className={`relative z-10 font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.15em] sm:tracking-[0.2em] font-bold transition-colors ${active ? 'text-[#F5D77F] drop-shadow-[0_0_8px_rgba(212,175,55,0.8)]' : 'text-[#8d9685] group-hover:text-[#D4AF37]'}`}
+      >
         {children}
-      </span>
+      </motion.span>
     </button>
   );
 };
@@ -269,9 +283,8 @@ export function NightMarket() {
         </div>
 
         {/* Category Tabs */}
-        <div className="flex items-center justify-center w-full my-4 max-w-[1100px] mx-auto overflow-hidden">
+        <div className="flex items-center justify-center w-full my-4 max-w-[1100px] mx-auto overflow-x-auto scrollbar-hide px-2">
           <AnimatedNavFiligree />
-          <div className="flex-1 h-[1.5px] bg-gradient-to-r from-transparent to-[#D4AF37]/50 max-w-[20px] sm:max-w-[40px]" />
           
           {CATEGORIES.map((cat, index) => (
             <React.Fragment key={cat}>
@@ -282,12 +295,20 @@ export function NightMarket() {
                 {cat}
               </NightMarketTabButton>
               {index < CATEGORIES.length - 1 && (
-                <div className="flex-1 h-[1.5px] bg-[#D4AF37]/40 max-w-[15px] sm:max-w-[30px]" />
+                <motion.div 
+                  initial={{ opacity: 0, scaleX: 0 }}
+                  animate={{ opacity: 0.8, scaleX: 1 }}
+                  transition={{ duration: 1.5, delay: 0.5, ease: "easeOut" }}
+                  className="w-[18px] sm:w-[36px] shrink-0 flex items-center justify-center origin-center"
+                >
+                  <div className="flex-1 h-[1px] sm:h-[1.5px] bg-[#D4AF37]" />
+                  <div className="w-[3px] h-[3px] sm:w-[4px] sm:h-[4px] bg-[#F5D77F] rotate-45 mx-[1px] sm:mx-[2px] shadow-[0_0_4px_#D4AF37]" />
+                  <div className="flex-1 h-[1px] sm:h-[1.5px] bg-[#D4AF37]" />
+                </motion.div>
               )}
             </React.Fragment>
           ))}
 
-          <div className="flex-1 h-[1.5px] bg-gradient-to-l from-transparent to-[#D4AF37]/50 max-w-[20px] sm:max-w-[40px]" />
           <AnimatedNavFiligree flip />
         </div>
 
