@@ -58,11 +58,47 @@ const AnimatedFiligree = () => {
   );
 };
 
-const GothicButton = ({ active, onClick, children, disabled = false }: any) => (
+const AnimatedNavFiligree = ({ flip }: { flip?: boolean }) => {
+  return (
+    <div className={`w-[60px] sm:w-[100px] h-[40px] flex items-center justify-center text-[#D4AF37] ${flip ? 'scale-x-[-1]' : ''}`}>
+      <motion.svg viewBox="0 0 120 40" fill="none" className="w-full h-full drop-shadow-[0_0_8px_rgba(212,175,55,0.6)]">
+        <motion.path
+          d="M 120 20 L 70 20 C 60 20 50 35 35 25 C 20 15 15 5 5 20"
+          stroke="currentColor"
+          strokeWidth="1.5"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+        />
+        <motion.path
+          d="M 50 20 C 55 10 70 5 75 15 C 80 25 70 30 60 25"
+          stroke="currentColor"
+          strokeWidth="1"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 0.7 }}
+          transition={{ duration: 1.2, delay: 0.5, ease: "easeOut" }}
+        />
+        <motion.path
+          d="M 5 16 L 8 20 L 5 24 L 2 20 Z"
+          fill="#F5D77F"
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 1.2, type: "spring", bounce: 0.5 }}
+        />
+        <motion.circle cx="15" cy="20" r="1.5" fill="#F5D77F"
+          initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 1 }} transition={{ duration: 0.5, delay: 1.4, type: "spring" }} />
+        <motion.circle cx="22" cy="20" r="1" fill="#F5D77F"
+          initial={{ scale: 0, opacity: 0 }} animate={{ scale: 1, opacity: 0.6 }} transition={{ duration: 0.5, delay: 1.5, type: "spring" }} />
+      </motion.svg>
+    </div>
+  );
+};
+
+const GothicButton = ({ active, onClick, children, disabled = false, className = "px-3 py-1.5" }: any) => (
   <button
     onClick={onClick}
     disabled={disabled}
-    className={`relative group px-3 py-1.5 border-none transition-all whitespace-nowrap overflow-hidden flex-shrink-0 ${
+    className={`relative group ${className} border-none transition-all whitespace-nowrap overflow-hidden flex-shrink-0 ${
       active 
         ? 'bg-[radial-gradient(ellipse_at_center,_rgba(35,6,8,1)_0%,_rgba(15,2,4,1)_100%)] text-[#F5D77F] shadow-[0_0_12px_rgba(212,175,55,0.4)]' 
         : 'bg-[rgba(15,2,4,0.6)] text-[#8d9685] hover:bg-[#2A0505]'
@@ -163,16 +199,27 @@ export function NightMarket() {
         </div>
 
         {/* Category Tabs */}
-        <div className="flex gap-1.5 flex-wrap">
-          {CATEGORIES.map(cat => (
-            <GothicButton
-              key={cat}
-              active={activeCategory === cat}
-              onClick={() => setActiveCategory(cat)}
-            >
-              {cat}
-            </GothicButton>
+        <div className="flex items-center justify-center w-full my-10 max-w-[900px] mx-auto overflow-hidden">
+          <AnimatedNavFiligree />
+          <div className="flex-1 h-[1.5px] bg-gradient-to-r from-transparent to-[#D4AF37]/50 max-w-[20px] sm:max-w-[40px]" />
+          
+          {CATEGORIES.map((cat, index) => (
+            <React.Fragment key={cat}>
+              <GothicButton
+                active={activeCategory === cat}
+                onClick={() => setActiveCategory(cat)}
+                className="px-6 py-2 sm:px-10 sm:py-2.5 mx-1"
+              >
+                {cat}
+              </GothicButton>
+              {index < CATEGORIES.length - 1 && (
+                <div className="flex-1 h-[1.5px] bg-[#D4AF37]/40 max-w-[15px] sm:max-w-[30px]" />
+              )}
+            </React.Fragment>
           ))}
+
+          <div className="flex-1 h-[1.5px] bg-gradient-to-l from-transparent to-[#D4AF37]/50 max-w-[20px] sm:max-w-[40px]" />
+          <AnimatedNavFiligree flip />
         </div>
 
         {/* Items Grid */}
