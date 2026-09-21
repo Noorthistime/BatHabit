@@ -46,19 +46,19 @@ export default function DashboardLayout() {
           </div>
         </div>
 
-        <div className="flex-1 px-3 py-2">
+        <div className="flex-1 px-3 py-2 flex flex-col">
           <div className="px-3 py-3 mb-3 font-serif text-sm font-bold text-[#D4AF37] dark:text-[#C5A059] uppercase tracking-[0.2em] flex items-center justify-center gap-2 border-b border-[#415A77]/50 dark:border-[#D4AF37]/30 bg-[#0D1B2A]/30 dark:bg-[#060102]/30 shadow-sm rounded-t">
             <span>Sanctuaries</span>
             <span className="text-sm text-[#D4AF37] dark:text-[#D4AF37]/70">✦</span>
           </div>
-          <nav className="space-y-1">
+          <nav className="space-y-1 flex-1 flex flex-col">
             {SANCTUARIES.map((item) => (
               <NavLink
                 key={item.name}
                 to={item.path}
                 end={item.path === '/dashboard'}
                 className={({ isActive }) =>
-                  `group flex flex-col items-center justify-center gap-1 px-2 py-1.5 rounded transition-all relative ${isActive ? "border border-[#415A77] dark:border-[#D4AF37]/70 bg-gradient-to-b from-[#1B263B] to-[#415A77] dark:from-[#6D0808] dark:to-[#3a0404] text-[#F7F3E9] dark:text-[#EEEAD7] font-semibold shadow-[0_0_20px_rgba(109,8,8,0.75)]" : "text-[#F7F3E9]/70 dark:text-[#8d9685] hover:text-[#D4AF37] dark:hover:text-[#F5D77F] hover:bg-[#1B263B] dark:hover:bg-[#260303] hover:border hover:border-[#415A77] dark:hover:border-[#D4AF37]/30"}`
+                  `group flex-1 flex flex-col items-center justify-center gap-1 px-2 py-1.5 rounded transition-all relative ${isActive ? "border border-[#415A77] dark:border-[#D4AF37]/70 bg-gradient-to-b from-[#1B263B] to-[#415A77] dark:from-[#6D0808] dark:to-[#3a0404] text-[#F7F3E9] dark:text-[#EEEAD7] font-semibold shadow-[0_0_20px_rgba(109,8,8,0.75)]" : "text-[#F7F3E9]/70 dark:text-[#8d9685] hover:text-[#D4AF37] dark:hover:text-[#F5D77F] hover:bg-[#1B263B] dark:hover:bg-[#260303] hover:border hover:border-[#415A77] dark:hover:border-[#D4AF37]/30"}`
                 }
               >
                 {({ isActive }) => (

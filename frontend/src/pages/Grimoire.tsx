@@ -286,12 +286,15 @@ export function Grimoire() {
 
                         {/* Glowing RPG Energy Meter */}
                         <div className="h-1.5 w-full bg-[#1a0204] rounded-full overflow-hidden border border-white/5 relative mt-auto">
-                          <div
-                            className="h-full relative transition-all duration-1000 ease-out rounded-full"
-                            style={{ width: `${attr.value}%`, background: `linear-gradient(90deg, transparent, ${attr.color})`, boxShadow: `0 0 10px ${attr.color}` }}
+                          <motion.div
+                            className="h-full relative rounded-full"
+                            initial={{ width: 0 }}
+                            animate={{ width: `${attr.value}%` }}
+                            transition={{ duration: 1.2, ease: "easeOut", delay: index * 0.15 }}
+                            style={{ background: `linear-gradient(90deg, transparent, ${attr.color})`, boxShadow: `0 0 10px ${attr.color}` }}
                           >
                             <div className="absolute top-0 right-0 bottom-0 w-4 bg-white/40 blur-[2px]"></div>
-                          </div>
+                          </motion.div>
                         </div>
                       </div>
                     </div>
