@@ -76,7 +76,7 @@ export function Grimoire() {
     <>
 
 
-      <div className="w-full max-w-[1200px] mx-auto flex flex-col gap-2">
+      <div className="w-full max-w-[1200px] mx-auto flex flex-col gap-2 min-h-[calc(100vh-120px)]">
 
         {/* Page Header */}
         <div className="flex flex-col xl:flex-row xl:items-end justify-between gap-5 pb-2 border-b border-[#415A77]/50 dark:border-[#D4AF37]/25 relative mb-0">
@@ -96,8 +96,8 @@ export function Grimoire() {
         </div>
 
         {/* Character Card */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
-          <div className="rounded-xl p-4 flex flex-col items-center text-center gap-3 relative col-span-1 self-start bg-[#1B263B]/40 dark:bg-[rgba(35,6,8,0.85)] backdrop-blur-xl border border-[#415A77]/60 dark:border-[#D4AF37]/50 shadow-[0_8px_30px_rgba(109,8,8,0.5)]">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 flex-1">
+          <div className="rounded-xl p-4 flex flex-col items-center text-center gap-3 justify-between relative col-span-1 h-full bg-[#1B263B]/40 dark:bg-[rgba(35,6,8,0.85)] backdrop-blur-xl border border-[#415A77]/60 dark:border-[#D4AF37]/50 shadow-[0_8px_30px_rgba(109,8,8,0.5)]">
             {/* Background Watermark */}
             <div className="absolute bottom-0 left-0 right-0 h-56 overflow-hidden rounded-b-xl pointer-events-none flex items-end justify-center opacity-[0.06] text-[#D4AF37]">
               <GiDragonHead className="w-64 h-64 translate-y-4" />
@@ -182,7 +182,7 @@ export function Grimoire() {
           </div>
 
           {/* Right Panel — Tabs */}
-          <div className="col-span-1 lg:col-span-2 flex flex-col gap-2">
+          <div className="col-span-1 lg:col-span-2 flex flex-col gap-2 h-full overflow-hidden">
             {/* Tab Selector */}
             <div className="relative flex justify-center items-center gap-6 py-2 mb-4">
               {/* Ornate Golden SVG Flourish Divider (Edges only) */}
@@ -241,7 +241,7 @@ export function Grimoire() {
 
             {/* Attributes Tab */}
             {activeTab === 'attributes' && (
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2 flex-1 min-h-0">
                 {/* Total Power (Moved to top) */}
                 <div
                   className="px-4 py-3 flex flex-col sm:flex-row items-center justify-between rounded-xl relative overflow-hidden group gap-2 mt-1"
@@ -268,42 +268,13 @@ export function Grimoire() {
                   </div>
                 </div>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-1">
-                  {ATTRIBUTES.slice(0, 4).map(attr => (
-                    <div
-                      key={attr.key}
-                      className="p-3 flex flex-col gap-2 relative rounded-xl bg-[#1B263B]/40 dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-sm border border-[#415A77]/60 dark:border-[#D4AF37]/35 shadow-[0_4px_20px_rgba(0,0,0,0.5)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(212,175,55,0.2)] hover:border-[#415A77] dark:hover:border-[#F5D77F] group"
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2 mt-1 flex-1 min-h-0">
+                  {ATTRIBUTES.map((attr, index) => (
+                    <div 
+                      key={attr.key} 
+                      className={index === 4 ? "col-span-1 sm:col-span-2 flex justify-center" : ""}
                     >
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-2">
-                          <attr.icon size={14} style={{ color: attr.color }} className="group-hover:scale-110 transition-transform" />
-                          <span className="font-mono text-xs uppercase tracking-widest text-[#EEEAD7]">{attr.label}</span>
-                        </div>
-                        <span className="font-mono text-xl font-bold drop-shadow-[0_0_8px_currentColor]" style={{ color: attr.color }}>{attr.value}</span>
-                      </div>
-                      <p className="font-sans text-[11px] text-[#8d9685] leading-relaxed">{attr.desc}</p>
-
-                      {/* Glowing RPG Energy Meter */}
-                      <div className="h-1.5 w-full bg-[#1a0204] rounded-full overflow-hidden border border-white/5 relative mt-auto">
-                        <div
-                          className="h-full relative transition-all duration-1000 ease-out rounded-full"
-                          style={{ width: `${attr.value}%`, background: `linear-gradient(90deg, transparent, ${attr.color})`, boxShadow: `0 0 10px ${attr.color}` }}
-                        >
-                          <div className="absolute top-0 right-0 bottom-0 w-4 bg-white/40 blur-[2px]"></div>
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-                </div>
-
-                {/* 5th Centered Item */}
-                <div className="flex justify-center">
-                  <div className="w-full sm:w-[calc(50%-0.5rem)]">
-                    {ATTRIBUTES.slice(4).map(attr => (
-                      <div
-                        key={attr.key}
-                        className="p-3 flex flex-col gap-2 relative rounded-xl bg-[#1B263B]/40 dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-sm border border-[#415A77]/60 dark:border-[#D4AF37]/35 shadow-[0_4px_20px_rgba(0,0,0,0.5)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(212,175,55,0.2)] hover:border-[#415A77] dark:hover:border-[#F5D77F] group"
-                      >
+                      <div className={`p-3 flex flex-col gap-2 justify-between h-full relative rounded-xl bg-[#1B263B]/40 dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-sm border border-[#415A77]/60 dark:border-[#D4AF37]/35 shadow-[0_4px_20px_rgba(0,0,0,0.5)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(212,175,55,0.2)] hover:border-[#415A77] dark:hover:border-[#F5D77F] group ${index === 4 ? 'w-full sm:w-[calc(50%-0.25rem)]' : 'w-full'}`}>
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-2">
                             <attr.icon size={14} style={{ color: attr.color }} className="group-hover:scale-110 transition-transform" />
@@ -323,15 +294,15 @@ export function Grimoire() {
                           </div>
                         </div>
                       </div>
-                    ))}
-                  </div>
+                    </div>
+                  ))}
                 </div>
               </div>
             )}
 
             {/* Evolution Tab */}
             {activeTab === 'evolution' && (
-              <div className="flex flex-col gap-1.5">
+              <div className="flex flex-col gap-1.5 flex-1 min-h-0">
                 {EVOLUTION_STAGES.map((stage, i) => {
                   let animationProps = {};
                   let glowEffect = null;
@@ -406,10 +377,11 @@ export function Grimoire() {
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.6, delay: i * 0.15 }}
                       key={stage.rank}
+                      className="flex-1 min-h-0 flex"
                     >
                       <motion.div
                         {...animationProps}
-                        className={`px-3 py-3 sm:px-4 sm:py-3.5 flex items-center gap-4 relative rounded-lg overflow-hidden ${stage.current ? 'ring-1 ring-[#D4AF37]' : ''}`}
+                        className={`w-full h-full px-3 py-3 sm:px-4 sm:py-3.5 flex items-center gap-4 relative rounded-lg overflow-hidden ${stage.current ? 'ring-1 ring-[#D4AF37]' : ''}`}
                         style={{ background: bgStyle, border: borderStyle }}
                       >
                         {glowEffect}
@@ -447,7 +419,7 @@ export function Grimoire() {
 
             {/* Achievements Tab */}
             {activeTab === 'achievements' && (
-              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 flex-1 min-h-0">
                 {ACHIEVEMENTS.map((a, i) => {
                   const rStyle = RARITY_COLORS[a.rarity];
                   const Icon = a.icon;
@@ -458,7 +430,7 @@ export function Grimoire() {
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.5, delay: i * 0.08 }}
                       whileHover={{ scale: 1.02, transition: { duration: 0.2, delay: 0 } }}
-                      className={`relative p-2 sm:p-2.5 flex flex-col gap-1.5 rounded-none bg-[radial-gradient(ellipse_at_center,_rgba(35,6,8,0.9)_0%,_rgba(15,2,4,0.95)_100%)] overflow-hidden group ${!a.earned ? 'opacity-40 grayscale' : ''}`}
+                      className={`relative p-2 sm:p-2.5 flex flex-col gap-1.5 justify-between h-full rounded-none bg-[radial-gradient(ellipse_at_center,_rgba(35,6,8,0.9)_0%,_rgba(15,2,4,0.95)_100%)] overflow-hidden group ${!a.earned ? 'opacity-40 grayscale' : ''}`}
                       style={{ border: `1px solid ${rStyle.frame}`, boxShadow: a.rarity === 'Mythic' || a.rarity === 'Legendary' ? `inset 0 0 15px ${rStyle.bg}, 0 0 10px rgba(0,0,0,0.5)` : '0 0 10px rgba(0,0,0,0.5)' }}
                     >
                       {/* Gothic cut corners (pseudo-elements via span) */}
