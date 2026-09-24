@@ -71,10 +71,16 @@ export function Oracle() {
   };
 
   return (
-    <div className="flex flex-col h-[calc(100vh-80px)] max-w-5xl mx-auto p-4 md:p-8">
+    <div className="flex flex-col h-[calc(100vh-80px)] max-w-5xl mx-auto p-4 md:p-8 relative">
       
-      {/* Header */}
-      <div className="flex items-center gap-4 border-b border-[#415A77] dark:border-[#3a0404] pb-6 shrink-0">
+      {/* Background Watermark */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.02] pointer-events-none flex items-center justify-center text-[#D4AF37] z-0 overflow-hidden">
+        <Sparkles className="w-[600px] h-[600px] transform rotate-12" />
+      </div>
+
+      <div className="relative z-10 flex flex-col h-full">
+        {/* Header */}
+        <div className="flex items-center gap-4 border-b border-[#415A77] dark:border-[#3a0404] pb-6 shrink-0">
         <div className="relative">
           <div className="w-12 h-12 rounded-full bg-[#0D1B2A] dark:bg-[#060102] flex items-center justify-center border-2 border-[#415A77] dark:border-[#D4AF37] shadow-[0_0_15px_rgba(212,175,55,0.4)] text-[#D4AF37]">
             <Sparkles size={24} />
@@ -103,11 +109,11 @@ export function Oracle() {
               {/* Avatar */}
               <div className="shrink-0 mt-auto mb-2">
                 {msg.sender === 'oracle' ? (
-                  <div className="w-8 h-8 rounded-full bg-[#0D1B2A] dark:bg-[#060102] flex items-center justify-center border border-[#415A77] dark:border-[#D4AF37] text-[#D4AF37]">
+                  <div className="w-8 h-8 rounded-full bg-[#0D1B2A] dark:bg-[#060102] flex items-center justify-center border border-[#415A77] dark:border-[#D4AF37] text-[#D4AF37] drop-shadow-[0_0_8px_rgba(212,175,55,0.8)]">
                     <Sparkles size={14} />
                   </div>
                 ) : (
-                  <div className="w-8 h-8 rounded-full bg-[#1B263B] dark:bg-[#3a0404] flex items-center justify-center border border-[#415A77] dark:border-[#6D0808] text-[#F7F3E9] font-serif font-bold text-sm">
+                  <div className="w-8 h-8 rounded-full bg-[#1B263B] dark:bg-[#3a0404] flex items-center justify-center border border-[#415A77] dark:border-[#D4AF37]/50 text-[#F7F3E9] font-serif font-bold text-sm drop-shadow-[0_0_5px_rgba(212,175,55,0.4)]">
                     V
                   </div>
                 )}
@@ -186,6 +192,7 @@ export function Oracle() {
         </div>
       </div>
 
+      </div>
     </div>
   );
 }
