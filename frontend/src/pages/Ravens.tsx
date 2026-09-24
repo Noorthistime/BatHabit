@@ -164,7 +164,18 @@ function NotificationCard({ notification, onRead }: { notification: Notification
           ? 'bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border-[#415A77] dark:border-[#D4AF37]/45 shadow-lg dark:shadow-[0_10px_30px_rgba(0,0,0,0.8)]' 
           : 'bg-[#1B263B]/50 dark:bg-[rgba(35,6,8,0.4)] backdrop-blur-sm border-[#415A77]/50 dark:border-[#D4AF37]/20 opacity-75 hover:opacity-100 hover:bg-[#1B263B] dark:hover:bg-[rgba(35,6,8,0.78)] dark:hover:border-[#D4AF37]/45 shadow-sm'
       }`}
+      style={!notification.read ? { background: 'radial-gradient(circle at left, rgba(109,8,8,0.3) 0%, rgba(35,6,8,0.78) 100%)' } : {}}
     >
+      {/* Gothic Cut Corners for Unread */}
+      {!notification.read && (
+        <>
+          <span className="absolute top-0 left-0 w-3 h-3 border-t border-l border-[#D4AF37]/40 pointer-events-none" />
+          <span className="absolute top-0 right-0 w-3 h-3 border-t border-r border-[#D4AF37]/40 pointer-events-none" />
+          <span className="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-[#D4AF37]/40 pointer-events-none" />
+          <span className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-[#D4AF37]/40 pointer-events-none" />
+        </>
+      )}
+
       {/* Unread Dot */}
       {!notification.read && (
         <div className="absolute top-5 right-5 w-2.5 h-2.5 rounded-full bg-[#D4AF37] shadow-[0_0_8px_#D4AF37]"></div>
