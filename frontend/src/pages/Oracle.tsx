@@ -116,13 +116,18 @@ export function Oracle() {
               {/* Message Bubble */}
               <div className="flex flex-col">
                 <div 
-                  className={`relative p-4 rounded-2xl overflow-hidden ${
+                  className={`relative p-4 rounded-2xl overflow-hidden group ${
                     msg.sender === 'user' 
                       ? 'bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md text-[#F7F3E9] dark:text-[#EEEAD7] rounded-br-sm border border-[#415A77] dark:border-[#D4AF37]/45 shadow-lg' 
                       : 'bg-[#0D1B2A] dark:bg-[rgba(20,2,4,0.85)] backdrop-blur-xl text-[#F7F3E9] dark:text-[#EEEAD7] rounded-bl-sm border border-[#415A77]/50 dark:border-[#D4AF37]/60 font-serif italic shadow-[0_0_20px_rgba(212,175,55,0.2)]'
                   }`}
                   style={msg.sender === 'oracle' ? { background: 'radial-gradient(circle at top left, rgba(109,8,8,0.4) 0%, rgba(20,2,4,0.9) 100%)' } : {}}
                 >
+                  {/* Golden Sweep Hover Effect */}
+                  <motion.div 
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D4AF37]/10 to-transparent -translate-x-full group-hover:translate-x-full transition-all duration-700 ease-in-out pointer-events-none" 
+                  />
+                  
                   {/* Gothic Cut Corners for Oracle Messages */}
                   {msg.sender === 'oracle' && (
                     <>
