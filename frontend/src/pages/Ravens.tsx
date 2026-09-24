@@ -84,70 +84,77 @@ export function Ravens() {
   const earlierNotifications = notifications.filter(n => !n.isNew);
 
   return (
-    <div className="max-w-4xl mx-auto space-y-8 pb-20 pt-8">
+    <div className="max-w-4xl mx-auto space-y-8 pb-20 pt-8 relative">
       
-      {/* Header */}
-      <div className="flex items-center justify-between border-b border-[#415A77] dark:border-[#3a0404] pb-6">
-        <div className="flex items-center gap-4">
-          <div className="w-12 h-12 rounded-full bg-[#1B263B] dark:bg-[#3a0404] flex items-center justify-center border-2 border-[#415A77] dark:border-[#D4AF37]/70 shadow-[0_0_15px_rgba(212,175,55,0.2)] text-[#D4AF37]">
-            <Bell size={24} />
-          </div>
-          <div>
-            <h1 className="font-serif text-3xl text-[#F7F3E9] dark:text-[#EEEAD7] font-bold tracking-wider uppercase">Ravens</h1>
-            <p className="font-mono text-xs text-[#D4AF37] dark:text-[#C5A059] tracking-widest uppercase">Your Notifications</p>
-          </div>
-        </div>
-        
-        <button 
-          onClick={markAllAsRead}
-          className="flex items-center gap-2 px-4 py-2 rounded transition-all font-sans text-sm shadow-[0_0_12px_rgba(109,8,8,0.4)] hover:brightness-110 active:scale-95 text-[#EEEAD7]"
-          style={{ background: 'linear-gradient(90deg, #6D0808, #3d0303)', border: '1px solid rgba(212,175,55,0.6)' }}
-        >
-          <CheckCheck size={16} className="text-[#F5D77F]" />
-          Mark all as read
-        </button>
+      {/* Background Watermark */}
+      <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 opacity-[0.03] pointer-events-none flex items-center justify-center text-[#D4AF37] z-0 overflow-hidden">
+        <Feather className="w-[800px] h-[800px] transform -rotate-12" />
       </div>
 
-      {/* Notifications List */}
-      <div className="space-y-10">
-        
-        {/* New Section */}
-        {newNotifications.length > 0 && (
-          <div className="space-y-4">
-            <h2 className="font-serif text-xl text-[#F7F3E9]/80 dark:text-[#EEEAD7]/80 flex items-center gap-3">
-              <span className="w-2 h-2 rounded-full bg-[#D4AF37] animate-pulse"></span>
-              New Arrivals
-            </h2>
-            <div className="space-y-3">
-              {newNotifications.map(notification => (
-                <NotificationCard 
-                  key={notification.id} 
-                  notification={notification} 
-                  onRead={() => markAsRead(notification.id)} 
-                />
-              ))}
+      <div className="relative z-10">
+        {/* Header */}
+        <div className="flex items-center justify-between border-b border-[#415A77] dark:border-[#3a0404] pb-6">
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 rounded-full bg-[#1B263B] dark:bg-[#3a0404] flex items-center justify-center border-2 border-[#415A77] dark:border-[#D4AF37]/70 shadow-[0_0_15px_rgba(212,175,55,0.2)] text-[#D4AF37]">
+              <Bell size={24} />
+            </div>
+            <div>
+              <h1 className="font-serif text-3xl text-[#F7F3E9] dark:text-[#EEEAD7] font-bold tracking-wider uppercase">Ravens</h1>
+              <p className="font-mono text-xs text-[#D4AF37] dark:text-[#C5A059] tracking-widest uppercase">Your Notifications</p>
             </div>
           </div>
-        )}
+          
+          <button 
+            onClick={markAllAsRead}
+            className="flex items-center gap-2 px-4 py-2 rounded transition-all font-sans text-sm shadow-[0_0_12px_rgba(109,8,8,0.4)] hover:brightness-110 active:scale-95 text-[#EEEAD7]"
+            style={{ background: 'linear-gradient(90deg, #6D0808, #3d0303)', border: '1px solid rgba(212,175,55,0.6)' }}
+          >
+            <CheckCheck size={16} className="text-[#F5D77F]" />
+            Mark all as read
+          </button>
+        </div>
 
-        {/* Earlier Section */}
-        {earlierNotifications.length > 0 && (
-          <div className="space-y-4">
-            <h2 className="font-serif text-xl text-[#F7F3E9]/60 dark:text-[#EEEAD7]/60">
-              Earlier
-            </h2>
-            <div className="space-y-3">
-              {earlierNotifications.map(notification => (
-                <NotificationCard 
-                  key={notification.id} 
-                  notification={notification} 
-                  onRead={() => markAsRead(notification.id)} 
-                />
-              ))}
+        {/* Notifications List */}
+        <div className="space-y-10 mt-8">
+          
+          {/* New Section */}
+          {newNotifications.length > 0 && (
+            <div className="space-y-4">
+              <h2 className="font-serif text-xl text-[#F7F3E9]/80 dark:text-[#EEEAD7]/80 flex items-center gap-3">
+                <span className="w-2 h-2 rounded-full bg-[#D4AF37] animate-pulse shadow-[0_0_8px_#D4AF37]"></span>
+                New Arrivals
+              </h2>
+              <div className="space-y-3">
+                {newNotifications.map(notification => (
+                  <NotificationCard 
+                    key={notification.id} 
+                    notification={notification} 
+                    onRead={() => markAsRead(notification.id)} 
+                  />
+                ))}
+              </div>
             </div>
-          </div>
-        )}
+          )}
 
+          {/* Earlier Section */}
+          {earlierNotifications.length > 0 && (
+            <div className="space-y-4">
+              <h2 className="font-serif text-xl text-[#F7F3E9]/60 dark:text-[#EEEAD7]/60">
+                Earlier
+              </h2>
+              <div className="space-y-3">
+                {earlierNotifications.map(notification => (
+                  <NotificationCard 
+                    key={notification.id} 
+                    notification={notification} 
+                    onRead={() => markAsRead(notification.id)} 
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+
+        </div>
       </div>
     </div>
   );
@@ -183,27 +190,27 @@ function NotificationCard({ notification, onRead }: { notification: Notification
 
       {/* Unread Dot */}
       {!notification.read && (
-        <div className="absolute top-5 right-5 w-2.5 h-2.5 rounded-full bg-[#D4AF37] shadow-[0_0_8px_#D4AF37]"></div>
+        <div className="absolute top-5 right-5 w-2.5 h-2.5 rounded-full bg-[#D4AF37] shadow-[0_0_12px_#D4AF37]"></div>
       )}
       
       {/* Icon */}
-      <div className={`w-10 h-10 shrink-0 rounded-full flex items-center justify-center border ${
+      <div className={`relative z-10 w-10 h-10 shrink-0 rounded-full flex items-center justify-center border ${
         !notification.read 
-          ? 'bg-[#0D1B2A] dark:bg-[#3a0404] border-[#415A77] dark:border-[#D4AF37] text-[#D4AF37]' 
+          ? 'bg-[#0D1B2A] dark:bg-[#3a0404] border-[#415A77] dark:border-[#D4AF37] text-[#D4AF37] drop-shadow-[0_0_8px_rgba(212,175,55,0.8)]' 
           : 'bg-[#0D1B2A]/50 dark:bg-[#060102] border-[#415A77]/50 dark:border-[#3a0404] text-[#D4AF37]/50'
       }`}>
         {iconMap[notification.type]}
       </div>
 
       {/* Content */}
-      <div className="flex-1 pr-8">
+      <div className="flex-1 pr-8 relative z-10">
         <div className="flex items-center gap-3 mb-1">
-          <h3 className={`font-serif text-lg ${!notification.read ? 'text-[#F7F3E9] dark:text-[#EEEAD7]' : 'text-[#F7F3E9]/80 dark:text-[#EEEAD7]/80'}`}>
+          <h3 className={`font-serif text-lg ${!notification.read ? 'text-[#F7F3E9] dark:text-[#F5D77F] drop-shadow-[0_0_5px_rgba(212,175,55,0.3)]' : 'text-[#F7F3E9]/80 dark:text-[#EEEAD7]/80'}`}>
             {notification.title}
           </h3>
           <span className="font-mono text-xs text-[#D4AF37]/70 dark:text-[#C5A059]/70">{notification.timestamp}</span>
         </div>
-        <p className={`font-sans text-sm leading-relaxed ${!notification.read ? 'text-[#F7F3E9]/90 dark:text-[#8d9685]' : 'text-[#F7F3E9]/60 dark:text-[#8d9685]/70'}`}>
+        <p className={`font-sans text-sm leading-relaxed ${!notification.read ? 'text-[#F7F3E9]/90 dark:text-[#EEEAD7]/90' : 'text-[#F7F3E9]/60 dark:text-[#8d9685]/70'}`}>
           {notification.message}
         </p>
       </div>
