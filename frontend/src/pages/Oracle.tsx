@@ -159,8 +159,8 @@ export function Oracle() {
       {/* Input Area */}
       <div className="shrink-0 pt-4 border-t border-[#415A77] dark:border-[#3a0404]">
         <form onSubmit={handleSend} className="relative flex items-end gap-2">
-          <div className="relative flex-1">
-            <div className="absolute top-3.5 left-4 text-[#D4AF37]/70">
+          <div className="relative flex-1 group">
+            <div className="absolute top-3.5 left-4 text-[#D4AF37]/70 group-focus-within:text-[#D4AF37] transition-colors">
               <MessageSquare size={20} />
             </div>
             <textarea 
@@ -173,14 +173,15 @@ export function Oracle() {
                 }
               }}
               placeholder="Seek guidance..."
-              className="w-full bg-[#1B263B]/50 dark:bg-[rgba(35,6,8,0.78)] border border-[#415A77] dark:border-[#D4AF37]/45 focus:border-[#D4AF37] dark:focus:border-[#D4AF37]/70 text-[#F7F3E9] dark:text-[#EEEAD7] rounded-xl pl-12 pr-4 py-3.5 outline-none resize-none overflow-hidden min-h-[52px] max-h-[120px] shadow-inner transition-colors font-sans"
+              className="w-full bg-[#1B263B]/50 dark:bg-[rgba(35,6,8,0.6)] backdrop-blur-sm border border-[#415A77] dark:border-[#D4AF37]/45 focus:border-[#D4AF37] dark:focus:border-[#D4AF37] text-[#F7F3E9] dark:text-[#EEEAD7] rounded-xl pl-12 pr-4 py-3.5 outline-none resize-none overflow-hidden min-h-[52px] max-h-[120px] shadow-[inset_0_2px_4px_rgba(0,0,0,0.4)] focus:shadow-[0_0_15px_rgba(212,175,55,0.2),inset_0_2px_4px_rgba(0,0,0,0.4)] transition-all font-sans"
               rows={1}
             />
           </div>
           <button 
             type="submit"
             disabled={!input.trim()}
-            className="w-[52px] h-[52px] shrink-0 rounded-xl bg-gradient-to-br from-[#1B263B] to-[#415A77] dark:from-[#3a0404] dark:to-[#6D0808] border border-[#415A77] dark:border-[#D4AF37]/50 flex items-center justify-center text-[#F7F3E9] dark:text-[#F5D77F] disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-[0_0_15px_rgba(212,175,55,0.3)] transition-all"
+            className="w-[52px] h-[52px] shrink-0 rounded-xl border flex items-center justify-center text-[#F7F3E9] dark:text-[#F5D77F] disabled:opacity-50 disabled:cursor-not-allowed hover:brightness-110 active:scale-95 transition-all"
+            style={{ background: 'linear-gradient(135deg, #6D0808, #3d0303)', border: '1px solid rgba(212,175,55,0.5)', boxShadow: '0 0 10px rgba(109,8,8,0.5)' }}
           >
             <Wand2 size={20} className={input.trim() ? "animate-pulse" : ""} />
           </button>
