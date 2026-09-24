@@ -100,9 +100,10 @@ export function Ravens() {
         
         <button 
           onClick={markAllAsRead}
-          className="flex items-center gap-2 bg-[#1B263B]/50 hover:bg-[#1B263B] dark:bg-[#1a0101]/50 dark:hover:bg-[#3a0404] border border-[#415A77] dark:border-[#D4AF37]/50 text-[#F7F3E9] dark:text-[#EEEAD7] px-4 py-2 rounded transition-colors font-sans text-sm shadow-md"
+          className="flex items-center gap-2 px-4 py-2 rounded transition-all font-sans text-sm shadow-[0_0_12px_rgba(109,8,8,0.4)] hover:brightness-110 active:scale-95 text-[#EEEAD7]"
+          style={{ background: 'linear-gradient(90deg, #6D0808, #3d0303)', border: '1px solid rgba(212,175,55,0.6)' }}
         >
-          <CheckCheck size={16} className="text-[#D4AF37]" />
+          <CheckCheck size={16} className="text-[#F5D77F]" />
           Mark all as read
         </button>
       </div>
