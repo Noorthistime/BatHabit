@@ -116,13 +116,23 @@ export function Oracle() {
               {/* Message Bubble */}
               <div className="flex flex-col">
                 <div 
-                  className={`p-4 rounded-2xl ${
+                  className={`relative p-4 rounded-2xl overflow-hidden ${
                     msg.sender === 'user' 
                       ? 'bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md text-[#F7F3E9] dark:text-[#EEEAD7] rounded-br-sm border border-[#415A77] dark:border-[#D4AF37]/45 shadow-lg' 
-                      : 'bg-[#0D1B2A] dark:bg-[rgba(20,2,4,0.85)] backdrop-blur-md text-[#F7F3E9] dark:text-[#EEEAD7] rounded-bl-sm border border-[#415A77]/50 dark:border-[#D4AF37]/60 font-serif italic shadow-[0_0_20px_rgba(212,175,55,0.2)]'
+                      : 'bg-[#0D1B2A] dark:bg-[rgba(20,2,4,0.85)] backdrop-blur-xl text-[#F7F3E9] dark:text-[#EEEAD7] rounded-bl-sm border border-[#415A77]/50 dark:border-[#D4AF37]/60 font-serif italic shadow-[0_0_20px_rgba(212,175,55,0.2)]'
                   }`}
+                  style={msg.sender === 'oracle' ? { background: 'radial-gradient(circle at top left, rgba(109,8,8,0.4) 0%, rgba(20,2,4,0.9) 100%)' } : {}}
                 >
-                  <p className="text-sm leading-relaxed whitespace-pre-wrap">{msg.text}</p>
+                  {/* Gothic Cut Corners for Oracle Messages */}
+                  {msg.sender === 'oracle' && (
+                    <>
+                      <span className="absolute top-0 left-0 w-3 h-3 border-t border-l border-[#D4AF37]/40 pointer-events-none" />
+                      <span className="absolute top-0 right-0 w-3 h-3 border-t border-r border-[#D4AF37]/40 pointer-events-none" />
+                      <span className="absolute bottom-0 left-0 w-3 h-3 border-b border-l border-[#D4AF37]/40 pointer-events-none" />
+                      <span className="absolute bottom-0 right-0 w-3 h-3 border-b border-r border-[#D4AF37]/40 pointer-events-none" />
+                    </>
+                  )}
+                  <p className="relative z-10 text-sm leading-relaxed whitespace-pre-wrap">{msg.text}</p>
                 </div>
                 <span className={`font-mono text-[10px] text-[#F7F3E9]/50 dark:text-[#8d9685] mt-1.5 px-2 ${msg.sender === 'user' ? 'text-right' : 'text-left'}`}>
                   {msg.timestamp}
