@@ -140,7 +140,7 @@ export function Sanctum() {
                   </div>
                   
                   <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded bg-[#6D0808] text-[#EEEAD7] flex items-center whitespace-nowrap border border-[#D4AF37] shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
-                    <span className="font-serif text-xs font-bold tracking-widest uppercase">LEVEL {char.level || 1} • {char.currentTitle || 'INITIATE'}</span>
+                    <span className="font-serif text-xs font-bold tracking-widest uppercase">LEVEL {char.level || 1} • {char.currentTitle || 'Novice'}</span>
                   </div>
                 </div>
               </div>
@@ -148,8 +148,8 @@ export function Sanctum() {
               <div className="lg:col-span-8 xl:col-span-9 flex flex-col justify-center space-y-4">
                 <div className="space-y-3 bg-[#0a0000] p-5 rounded border border-[#D4AF37]/30 shadow-inner relative overflow-hidden">
                   <div className="flex justify-between items-baseline font-mono text-xs">
-                    <span className="text-[#8d9685] flex items-center gap-2 uppercase tracking-[0.2em] font-bold">
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#1a0202] border border-[#D4AF37]/50"></span>
+                    <span className="text-[#D4AF37] flex items-center gap-2 uppercase tracking-[0.2em] font-bold">
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#D4AF37] border border-[#D4AF37]/50"></span>
                       Arcane Essence XP Gauge
                     </span>
                     <div className="flex items-center gap-2">
@@ -203,21 +203,19 @@ export function Sanctum() {
                 { label: 'Focus', val: attr.focusXp, icon: Eye, desc: 'Deep continuous work sessions' },
                 { label: 'Vitality', val: attr.vitalityXp, icon: Heart, desc: 'Cardio & nocturnal nutrition' },
               ].map((a, i) => (
-                <div key={i} className="group bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md rounded-xl p-4 border border-[#415A77] dark:border-[#D4AF37]/35 shadow-lg flex flex-col justify-between space-y-3 cursor-pointer hover:border-[#415A77] dark:border-[#F5D77F] transition-all">
+                <div key={i} className="group bg-[#1a0202] rounded-lg p-5 border border-[#D4AF37]/60 shadow-[0_4px_12px_rgba(0,0,0,0.8)] flex flex-col justify-between space-y-4 cursor-pointer hover:border-[#D4AF37] transition-all relative overflow-hidden">
                   <div className="flex items-start justify-between">
-                    <div className="w-10 h-10 rounded-lg bg-gradient-to-br from-[#D0F4F0] dark:from-[#2b0303] to-[#415A77] dark:to-[#120000] border border-[#415A77] dark:border-[#D4AF37]/45 flex items-center justify-center text-[#D4AF37] dark:text-[#F5D77F] shadow-inner group-hover:scale-110 transition-transform">
+                    <div className="w-10 h-10 rounded-md border border-[#D4AF37] flex items-center justify-center text-[#D4AF37] shadow-inner">
                       <a.icon size={20} />
                     </div>
-                    <span className="font-serif text-2xl text-[#F7F3E9] dark:text-[#EEEAD7] font-bold group-hover:text-[#D4AF37] dark:text-[#F5D77F] transition-colors">{a.val || 0}</span>
+                    <span className="font-serif text-2xl text-[#D4AF37] font-bold">{a.val || 0}</span>
                   </div>
                   <div>
-                    <h3 className="font-serif text-lg text-[#F7F3E9] dark:text-[#EEEAD7] font-bold mt-0.5">{a.label}</h3>
-                    <p className="font-sans text-xs text-[#F7F3E9]/70 dark:text-[#8d9685] line-clamp-2 mt-0.5">{a.desc}</p>
+                    <h3 className="font-serif text-lg text-[#EEEAD7] font-bold">{a.label}</h3>
+                    <p className="font-sans text-[11px] text-[#8d9685] line-clamp-2 mt-1">{a.desc}</p>
                   </div>
-                  <div className="space-y-1 pt-1">
-                    <div className="w-full bg-[#100000] h-2 rounded-full overflow-hidden border border-[#415A77] dark:border-[#D4AF37]/35">
-                      <div className="bg-gradient-to-r from-[#6D0808] to-[#F5D77F] h-full rounded-full" style={{width: Math.min(100, Math.max(10, (a.val || 0) * 10)) + "%" }}></div>
-                    </div>
+                  <div className="w-full bg-[#0a0000] h-1.5 rounded-full overflow-hidden border border-[#D4AF37]/30 mt-1">
+                    <div className="bg-[#D4AF37] h-full rounded-full" style={{width: Math.min(100, Math.max(10, (a.val || 0) * 10)) + "%" }}></div>
                   </div>
                 </div>
               ))}
@@ -229,17 +227,17 @@ export function Sanctum() {
             
             {/* Left Col: Quests */}
             <div className="lg:col-span-8 flex flex-col space-y-4">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md p-4 rounded-xl border border-[#415A77] dark:border-[#D4AF37]/35 shadow-md">
-                <div className="flex items-center gap-3">
-                  <div className="w-10 h-10 rounded bg-[#415A77] dark:bg-[#2a0303] border border-[#415A77] dark:border-[#D4AF37]/40 flex items-center justify-center text-[#D4AF37] dark:text-[#F5D77F] shadow-inner">
+              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-[#1a0202] p-5 rounded-lg border border-[#D4AF37]/60 shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
+                <div className="flex items-center gap-4">
+                  <div className="w-10 h-10 rounded border border-[#D4AF37] flex items-center justify-center text-[#D4AF37]">
                     <Book size={20} />
                   </div>
                   <div>
-                    <h2 className="font-serif text-xl font-bold text-[#F7F3E9] dark:text-[#EEEAD7]">Codex of Active Quests</h2>
-                    <span className="font-mono text-[11px] text-[#D4AF37] dark:text-[#C5A059] uppercase tracking-wider">3 Pending Rites • 1 Sealed</span>
+                    <h2 className="font-serif text-xl font-bold text-[#EEEAD7]">Codex of Active Quests</h2>
+                    <span className="font-mono text-[10px] text-[#8d9685] uppercase tracking-widest">3 Pending Rites • 1 Sealed</span>
                   </div>
                 </div>
-                <button className="px-4 py-2 rounded-lg bg-gradient-to-r from-[#1B263B] to-[#415A77] dark:from-[#6D0808] dark:to-[#8e0c0c] text-[#D4AF37] dark:text-[#F5D77F] font-serif text-xs font-bold tracking-widest hover:brightness-125 border border-[#415A77] dark:border-[#F5D77F] flex items-center gap-2 shadow-[0_0_15px_rgba(212,175,55,0.35)]">
+                <button className="px-4 py-2 rounded border border-[#D4AF37] bg-[#6D0808] text-[#D4AF37] font-serif text-xs font-bold tracking-widest hover:brightness-125 flex items-center gap-2 shadow-[0_0_12px_rgba(109,8,8,0.8)]">
                   <Plus size={16} /> FORGE QUEST
                 </button>
               </div>
@@ -250,28 +248,30 @@ export function Sanctum() {
                 { title: "Deep Focus: 5 km Dawn Run", icon: Activity, tag: "Vitality • Daily Ritual", xp: 80, crowns: 25, stat: "Vitality +3" },
                 { title: "Review 3 Algorithmic Systems", icon: Focus, tag: "Focus • Essential", xp: 68, crowns: 20, stat: "Focus +1" }
               ].map((q, i) => (
-                <article key={i} className="relative bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md rounded-xl p-5 border border-[#415A77] dark:border-[#D4AF37]/35 shadow-md hover:border-[#415A77] dark:border-[#F5D77F] transition-all flex flex-col md:flex-row justify-between gap-4">
+                <article key={i} className="relative bg-[#0a0000] rounded-lg p-5 border border-[#D4AF37]/60 shadow-[0_4px_12px_rgba(0,0,0,0.8)] hover:border-[#D4AF37] transition-all flex flex-col md:flex-row justify-between items-center gap-4 overflow-hidden">
                   <div className="absolute left-0 inset-y-0 w-1.5 bg-gradient-to-b from-[#F5D77F] to-[#6D0808]"></div>
-                  <div className="flex items-start gap-4 pl-2">
-                    <div className="w-12 h-12 rounded-lg bg-[#1B263B] dark:bg-[#200000] border border-[#415A77] dark:border-[#D4AF37]/45 flex items-center justify-center text-[#D4AF37] dark:text-[#F5D77F] shadow-inner">
+                  
+                  <div className="flex flex-1 items-center gap-5 pl-2">
+                    <div className="w-12 h-12 rounded border border-[#D4AF37] flex items-center justify-center text-[#D4AF37]">
                       <q.icon size={24} />
                     </div>
-                    <div className="space-y-1.5">
-                      <span className="px-2.5 py-0.5 rounded bg-[#415A77] dark:bg-[#180000] border border-[#415A77] dark:border-[#D4AF37]/45 font-mono text-[10px] text-[#D4AF37] dark:text-[#F5D77F] uppercase tracking-widest font-semibold">{q.tag}</span>
-                      <h3 className="font-serif text-lg font-bold text-[#F7F3E9] dark:text-[#EEEAD7]">{q.title}</h3>
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span className="px-2.5 py-0.5 rounded bg-[#D4AF37] dark:bg-[#6D0808] text-[#D4AF37] dark:text-[#F5D77F] font-mono text-xs font-semibold flex items-center gap-1 border border-[#415A77] dark:border-[#D4AF37]/40 shadow-sm">
+                    <div className="flex flex-col space-y-2">
+                      <span className="font-mono text-[10px] text-[#D4AF37] uppercase tracking-widest font-bold bg-[#1a0202] px-2 py-0.5 rounded border border-[#D4AF37]/40 w-fit">{q.tag}</span>
+                      <h3 className="font-serif text-lg font-bold text-[#EEEAD7]">{q.title}</h3>
+                      <div className="flex flex-wrap items-center gap-3">
+                        <span className="px-2 py-0.5 rounded bg-[#6D0808] text-[#EEEAD7] font-mono text-[10px] font-bold border border-[#ff4444]/40">
                            +{q.xp} XP
                         </span>
-                        <span className="px-2.5 py-0.5 rounded bg-[#415A77] dark:bg-[#1c0000] text-[#D4AF37] dark:text-[#F5D77F] font-mono text-xs flex items-center gap-1 border border-[#415A77] dark:border-[#D4AF37]/40 shadow-sm">
+                        <span className="px-2 py-0.5 rounded bg-[#1a0202] text-[#D4AF37] font-mono text-[10px] font-bold border border-[#D4AF37]/40">
                            +{q.crowns} Crowns
                         </span>
-                        <span className="font-mono text-xs text-[#F7F3E9]/70 dark:text-[#8d9685] font-medium">{q.stat}</span>
+                        <span className="font-mono text-[10px] text-[#8d9685]">{q.stat}</span>
                       </div>
                     </div>
                   </div>
-                  <div className="flex items-center pl-2 md:pl-0">
-                    <button className="px-5 py-2.5 rounded-lg bg-gradient-to-r from-[#1B263B] to-[#415A77] dark:from-[#6D0808] dark:to-[#8b0e0e] text-[#D4AF37] dark:text-[#F5D77F] font-serif text-xs font-bold uppercase tracking-widest shadow-[0_0_15px_rgba(65,90,119,0.6)] dark:shadow-[0_0_15px_rgba(109,8,8,0.6)] border border-[#415A77] dark:border-[#F5D77F] flex items-center gap-2">
+                  
+                  <div className="flex items-center">
+                    <button className="px-5 py-2.5 rounded border border-[#D4AF37] bg-transparent text-[#D4AF37] font-serif text-xs font-bold uppercase tracking-widest hover:bg-[#6D0808] hover:text-[#EEEAD7] hover:border-[#ff4444] transition-all flex items-center gap-2">
                       <CheckCircle size={16} /> COMPLETE QUEST
                     </button>
                   </div>
@@ -284,50 +284,53 @@ export function Sanctum() {
             <div className="lg:col-span-4 flex flex-col space-y-4">
               
               {/* The Treasury */}
-              <div className="bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md rounded-xl p-5 border border-[#415A77] dark:border-[#D4AF37]/35 shadow-md flex flex-col items-center">
-                <div className="flex items-center justify-between w-full mb-4">
-                  <h3 className="font-serif text-lg font-bold text-[#F7F3E9] dark:text-[#EEEAD7] flex items-center gap-2">
-                    <Shield size={18} className="text-[#D4AF37] dark:text-[#F5D77F]" /> THE TREASURY
+              <div className="bg-[#1a0202] rounded-lg p-6 border border-[#D4AF37]/60 shadow-[0_4px_12px_rgba(0,0,0,0.8)] flex flex-col items-center relative overflow-hidden">
+                <div className="flex items-center justify-between w-full mb-6 relative z-10">
+                  <h3 className="font-serif text-lg font-bold text-[#EEEAD7] flex items-center gap-2">
+                    <Shield size={18} className="text-[#D4AF37]" /> THE TREASURY
                   </h3>
-                  <span className="font-mono text-[10px] text-[#D4AF37] dark:text-[#C5A059] uppercase border border-[#415A77] dark:border-[#D4AF37]/40 px-2 py-0.5 rounded">Vault Secure</span>
+                  <span className="font-mono text-[9px] text-[#8d9685] uppercase border border-[#D4AF37]/40 px-2 py-1 rounded">Vault Secure</span>
                 </div>
-                <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-[#947014] via-[#F5D77F] to-[#D4AF37] flex items-center justify-center text-[#0c0608] shadow-[0_0_20px_rgba(212,175,55,0.6)] mb-2">
-                  <span className="font-serif text-2xl font-bold">✦</span>
-                </div>
-                <span className="font-serif text-3xl font-bold text-[#D4AF37] dark:text-[#F5D77F]">{currency?.balance || 0}</span>
-                <span className="font-mono text-[11px] text-[#D4AF37] dark:text-[#C5A059] uppercase text-center mt-1">Gilded Crowns • Obsidian Gold</span>
                 
-                <div className="w-full mt-5 space-y-2 border-t border-[#415A77] dark:border-[#D4AF37]/25 pt-3">
-                  <span className="font-mono text-[10px] text-[#F7F3E9]/70 dark:text-[#8d9685] uppercase tracking-wider block">Recent Vault Influx</span>
-                  <div className="flex justify-between items-center bg-[#415A77] dark:bg-[#1c0000] p-2 rounded border border-[#415A77] dark:border-[#D4AF37]/20">
-                    <span className="font-mono text-xs text-[#F7F3E9] dark:text-[#EEEAD7]">+ Solitude Rite</span>
-                    <span className="font-mono text-xs font-bold text-[#D4AF37] dark:text-[#F5D77F]">+15 Crowns</span>
+                <div className="w-20 h-20 rounded-full bg-[radial-gradient(ellipse_at_center,_#F5D77F_0%,_#D4AF37_50%,_#947014_100%)] flex items-center justify-center text-[#1a0202] shadow-[0_0_30px_rgba(212,175,55,0.8)] mb-4 relative z-10">
+                  <span className="font-serif text-4xl font-bold">✦</span>
+                </div>
+                
+                <span className="font-serif text-3xl font-bold text-[#D4AF37] relative z-10">{currency?.balance || 0}</span>
+                <span className="font-mono text-[10px] text-[#8d9685] uppercase text-center mt-2 relative z-10">Gilded Crowns • Obsidian Gold</span>
+                
+                <div className="w-full mt-6 space-y-2 border-t border-[#D4AF37]/20 pt-4 relative z-10">
+                  <span className="font-mono text-[9px] text-[#8d9685] uppercase tracking-widest block mb-3">Recent Vault Influx</span>
+                  <div className="flex justify-between items-center bg-[#6D0808]/20 p-2 rounded border border-[#6D0808]">
+                    <span className="font-mono text-[11px] text-[#EEEAD7]">+ Solitude Rite</span>
+                    <span className="font-mono text-[11px] font-bold text-[#D4AF37]">+15 Crowns</span>
                   </div>
-                  <div className="flex justify-between items-center bg-[#415A77] dark:bg-[#1c0000] p-2 rounded border border-[#415A77] dark:border-[#D4AF37]/20">
-                    <span className="font-mono text-xs text-[#F7F3E9]/70 dark:text-[#8d9685]">- Raven Brooch</span>
-                    <span className="font-mono text-xs font-bold text-[#6D0808]">-450 Crowns</span>
+                  <div className="flex justify-between items-center bg-[#6D0808]/20 p-2 rounded border border-[#6D0808]">
+                    <span className="font-mono text-[11px] text-[#8d9685]">- Raven Brooch</span>
+                    <span className="font-mono text-[11px] font-bold text-[#ff4444]">-450 Crowns</span>
                   </div>
                 </div>
               </div>
 
               {/* Chronicle of Deeds */}
-              <div className="bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md rounded-xl p-5 border border-[#415A77] dark:border-[#D4AF37]/35 shadow-md">
-                <div className="flex items-center justify-between mb-4">
-                  <h3 className="font-serif text-lg font-bold text-[#F7F3E9] dark:text-[#EEEAD7] flex items-center gap-2">
-                    <Archive size={18} className="text-[#D4AF37] dark:text-[#C5A059]" /> CHRONICLE
+              <div className="bg-[#1a0202] rounded-lg p-6 border border-[#D4AF37]/60 shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
+                <div className="flex items-center justify-between mb-6">
+                  <h3 className="font-serif text-lg font-bold text-[#EEEAD7] flex items-center gap-2">
+                    <Archive size={18} className="text-[#D4AF37]" /> CHRONICLE
                   </h3>
-                  <span className="font-mono text-[10px] text-[#F7F3E9]/70 dark:text-[#8d9685] uppercase hover:text-[#D4AF37] dark:text-[#F5D77F] cursor-pointer">Full Archive</span>
+                  <span className="font-mono text-[9px] text-[#8d9685] uppercase hover:text-[#D4AF37] cursor-pointer">Full Archive</span>
                 </div>
-                <div className="space-y-4 relative before:absolute before:inset-y-0 before:left-2 before:w-[1px] before:bg-[#D4AF37]/20">
-                  <div className="relative pl-6">
-                    <span className="absolute left-[3px] top-1 w-2.5 h-2.5 rounded-full bg-[#D4AF37] dark:bg-[#6D0808] border border-[#415A77] dark:border-[#F5D77F] shadow-[0_0_8px_#6D0808]"></span>
-                    <p className="font-serif text-sm font-bold text-[#F7F3E9] dark:text-[#EEEAD7]">QUEST SEALED: Solitude</p>
-                    <p className="font-sans text-[11px] text-[#F7F3E9]/70 dark:text-[#8d9685] mt-0.5">Yielded +50 XP and +15 Crowns.</p>
+                
+                <div className="space-y-6 relative before:absolute before:inset-y-0 before:left-[9px] before:w-px before:bg-[#D4AF37]/30">
+                  <div className="relative pl-8">
+                    <span className="absolute left-[3px] top-1 w-3.5 h-3.5 rounded-full bg-[#1a0202] border-2 border-[#D4AF37] shadow-[0_0_8px_rgba(212,175,55,0.8)]"></span>
+                    <p className="font-serif text-[15px] font-bold text-[#EEEAD7] tracking-wide">QUEST SEALED: Solitude</p>
+                    <p className="font-mono text-[10px] text-[#8d9685] mt-1.5 leading-relaxed">Yielded +50 XP and +15 Crowns.</p>
                   </div>
-                  <div className="relative pl-6">
-                    <span className="absolute left-[3px] top-1 w-2.5 h-2.5 rounded-full bg-[#3d0303] border border-[#C5A059]"></span>
-                    <p className="font-serif text-sm font-bold text-[#F7F3E9] dark:text-[#EEEAD7]">ASCENSION: Level 7</p>
-                    <p className="font-sans text-[11px] text-[#F7F3E9]/70 dark:text-[#8d9685] mt-0.5">Unlocked title Nightwalker.</p>
+                  <div className="relative pl-8">
+                    <span className="absolute left-[3px] top-1 w-3.5 h-3.5 rounded-full bg-[#1a0202] border-2 border-[#D4AF37]"></span>
+                    <p className="font-serif text-[15px] font-bold text-[#EEEAD7] tracking-wide">ASCENSION: Level 7</p>
+                    <p className="font-mono text-[10px] text-[#8d9685] mt-1.5 leading-relaxed">Unlocked title Nightwalker.</p>
                   </div>
                 </div>
               </div>
