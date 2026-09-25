@@ -49,13 +49,13 @@ function SettingRow({ label, desc, children }: { label: string; desc?: string; c
   );
 }
 
-const PageFiligree = ({ position }: { position: string }) => {
+const CardFiligree = ({ position }: { position: string }) => {
   const getPositionClasses = () => {
     switch (position) {
-      case 'top-left': return 'top-0 left-0';
-      case 'top-right': return 'top-0 right-0 rotate-90';
-      case 'bottom-right': return 'bottom-0 right-0 rotate-180';
-      case 'bottom-left': return 'bottom-0 left-0 -rotate-90';
+      case 'top-left': return '-top-12 -left-12';
+      case 'top-right': return '-top-12 -right-12 rotate-90';
+      case 'bottom-right': return '-bottom-12 -right-12 rotate-180';
+      case 'bottom-left': return '-bottom-12 -left-12 -rotate-90';
       default: return '';
     }
   };
@@ -66,8 +66,8 @@ const PageFiligree = ({ position }: { position: string }) => {
       pathLength: 1, 
       opacity: 1, 
       transition: { 
-        pathLength: { duration: 3, ease: "easeOut" },
-        opacity: { duration: 0.8 }
+        pathLength: { duration: 2.5, ease: "easeOut" },
+        opacity: { duration: 0.5 }
       } 
     }
   };
@@ -77,95 +77,77 @@ const PageFiligree = ({ position }: { position: string }) => {
     visible: { 
       opacity: 1, 
       scale: 1, 
-      transition: { delay: 1.5, duration: 1 } 
+      transition: { delay: 1.5, duration: 0.8 } 
     }
   };
 
   return (
     <motion.svg 
-      className={`fixed w-48 h-48 md:w-80 md:h-80 pointer-events-none text-[#D4AF37] opacity-20 dark:opacity-30 ${getPositionClasses()} drop-shadow-[0_0_8px_rgba(212,175,55,0.3)] z-0`}
+      className={`absolute w-32 h-32 pointer-events-none text-[#D4AF37] opacity-60 ${getPositionClasses()} drop-shadow-[0_0_6px_rgba(212,175,55,0.5)] z-0`}
       viewBox="0 0 100 100"
       initial="hidden"
       animate="visible"
     >
-      {/* Background shadow/leaf */}
+      {/* Anchor point at roughly (50,50), sprawling outwards */}
+      
+      {/* Large sweeping vine */}
       <motion.path 
-        d="M 0 0 C 0 40, 40 80, 80 80 C 60 80, 20 60, 0 20 Z" 
-        fill="currentColor" 
-        opacity="0.1" 
-        variants={fade} 
+        d="M 50 50 Q 80 20 95 60 T 60 95" 
+        fill="none" stroke="currentColor" strokeWidth="1.5" variants={draw} 
+      />
+      {/* Secondary vine */}
+      <motion.path 
+        d="M 50 50 Q 30 70 20 90 T 5 60" 
+        fill="none" stroke="currentColor" strokeWidth="1" variants={draw} 
       />
       
-      {/* Main C-scroll (Acanthus swirl) */}
+      {/* Inner floral loop */}
       <motion.path 
-        d="M 0 0 C 40 0, 80 20, 90 60 C 95 80, 80 100, 60 90 C 40 80, 30 60, 40 40" 
-        fill="none" 
-        stroke="currentColor" 
-        strokeWidth="2.5" 
-        variants={draw} 
+        d="M 60 50 C 80 30, 90 50, 70 70 C 50 90, 30 80, 50 60" 
+        fill="none" stroke="currentColor" strokeWidth="1" variants={draw} 
       />
       
-      {/* Inner swirling petal */}
+      {/* Flourishing petals */}
       <motion.path 
-        d="M 0 0 C 0 30, 10 50, 30 60 C 50 70, 70 60, 80 40" 
-        fill="none" 
-        stroke="currentColor" 
-        strokeWidth="1.5" 
-        variants={draw} 
-      />
-      
-      {/* Outer leaf flourishes */}
-      <motion.path 
-        d="M 60 20 C 70 10, 90 10, 100 30" 
-        fill="none" 
-        stroke="currentColor" 
-        strokeWidth="1.5" 
-        variants={draw} 
+        d="M 70 60 C 75 50, 85 55, 80 65 C 75 75, 65 70, 70 60 Z" 
+        fill="currentColor" variants={fade} 
       />
       <motion.path 
-        d="M 20 60 C 10 70, 10 90, 30 100" 
-        fill="none" 
-        stroke="currentColor" 
-        strokeWidth="1.5" 
-        variants={draw} 
+        d="M 40 75 C 35 65, 25 70, 30 80 C 35 90, 45 85, 40 75 Z" 
+        fill="currentColor" variants={fade} 
       />
 
-      {/* Flower core/petals */}
-      <motion.path 
-        d="M 40 40 C 45 35, 55 35, 60 40 C 55 45, 45 45, 40 40 Z" 
-        fill="currentColor" 
-        variants={fade} 
-      />
-      <motion.path 
-        d="M 60 40 C 65 45, 65 55, 60 60 C 55 55, 55 45, 60 40 Z" 
-        fill="currentColor" 
-        variants={fade} 
-      />
-
-      {/* Ornate pollen dots */}
-      <motion.circle cx="75" cy="75" r="2.5" fill="currentColor" variants={fade} />
-      <motion.circle cx="90" cy="50" r="1.5" fill="currentColor" variants={fade} />
-      <motion.circle cx="50" cy="90" r="1.5" fill="currentColor" variants={fade} />
+      {/* Royal dots */}
+      <motion.circle cx="85" cy="45" r="2" fill="currentColor" variants={fade} />
+      <motion.circle cx="95" cy="70" r="1.5" fill="currentColor" variants={fade} />
+      <motion.circle cx="45" cy="90" r="1.5" fill="currentColor" variants={fade} />
     </motion.svg>
   );
 };
 
 function SectionCard({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div
-      className="relative p-5 flex flex-col rounded-xl bg-[#0D1B2A] dark:bg-[#1a0202] border border-[#415A77] dark:border-[#D4AF37]/60 shadow-[0_8px_30px_rgba(0,0,0,0.8)] overflow-hidden"
-    >
-      {/* Background Watermark */}
-      <div className="absolute -bottom-10 -right-10 opacity-[0.03] text-[#D4AF37] pointer-events-none">
-        <Settings size={180} />
-      </div>
+    <div className="relative">
+      {/* Outward sprouting animated filigrees */}
+      <CardFiligree position="top-left" />
+      <CardFiligree position="top-right" />
+      <CardFiligree position="bottom-left" />
+      <CardFiligree position="bottom-right" />
 
-      <div className="flex items-center gap-2 mb-3 pb-3 border-b border-[#D4AF37]/20 relative z-10">
-        <div className="w-1 h-4 bg-[#D4AF37] shadow-[0_0_8px_rgba(212,175,55,0.8)]" />
-        <h3 className="font-mono text-xs uppercase tracking-widest text-[#D4AF37] drop-shadow-[0_0_3px_rgba(212,175,55,0.6)] font-bold">{title}</h3>
-      </div>
-      <div className="relative z-10 flex flex-col gap-1">
-        {children}
+      {/* Inner card with overflow-hidden to keep watermark contained */}
+      <div className="relative p-5 flex flex-col rounded-xl bg-[#0D1B2A] dark:bg-[#1a0202] border border-[#415A77] dark:border-[#D4AF37]/60 shadow-[0_8px_30px_rgba(0,0,0,0.8)] overflow-hidden z-10">
+        {/* Background Watermark */}
+        <div className="absolute -bottom-10 -right-10 opacity-[0.03] text-[#D4AF37] pointer-events-none">
+          <Settings size={180} />
+        </div>
+
+        <div className="flex items-center gap-2 mb-3 pb-3 border-b border-[#D4AF37]/20 relative z-10">
+          <div className="w-1 h-4 bg-[#D4AF37] shadow-[0_0_8px_rgba(212,175,55,0.8)]" />
+          <h3 className="font-mono text-xs uppercase tracking-widest text-[#D4AF37] drop-shadow-[0_0_3px_rgba(212,175,55,0.6)] font-bold">{title}</h3>
+        </div>
+        <div className="relative z-10 flex flex-col gap-1">
+          {children}
+        </div>
       </div>
     </div>
   );
@@ -180,12 +162,6 @@ export function Chamber() {
 
   return (
     <>
-      {/* Global Page Filigree Frame */}
-      <PageFiligree position="top-left" />
-      <PageFiligree position="top-right" />
-      <PageFiligree position="bottom-left" />
-      <PageFiligree position="bottom-right" />
-
       <div className="w-full max-w-[1200px] mx-auto flex flex-col gap-6 relative z-10">
 
         {/* Header */}
