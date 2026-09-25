@@ -6,71 +6,91 @@ import { motion } from 'framer-motion';
 import '../sanctum-gothic.css';
 
 const HeroFiligree = () => {
+  const bloom = {
+    hidden: { scale: 0.8, opacity: 0 },
+    visible: { 
+      scale: 1, 
+      opacity: 1, 
+      transition: { duration: 1.2, ease: "easeOut" } 
+    }
+  };
+
+  const expand = {
+    hidden: { scaleX: 0, opacity: 0 },
+    visible: { 
+      scaleX: 1, 
+      opacity: 1, 
+      transition: { duration: 1.5, ease: "easeInOut", delay: 0.2 } 
+    }
+  };
+
+  return (
+    <motion.svg 
+      className="absolute top-0 left-1/2 -translate-x-1/2 w-[300px] h-[50px] pointer-events-none text-[#D4AF37] opacity-90 z-0 drop-shadow-[0_4px_8px_rgba(0,0,0,0.9)]"
+      viewBox="0 0 400 60"
+      initial="hidden"
+      animate="visible"
+    >
+      {/* Lateral expanding heavy bars */}
+      <motion.g variants={expand} style={{ originX: 0.5, originY: 0.5 }}>
+        <path d="M 40 30 L 160 30 L 150 24 L 50 24 Z" fill="currentColor" />
+        <path d="M 360 30 L 240 30 L 250 24 L 350 24 Z" fill="currentColor" />
+        <path d="M 20 30 Q 30 20 50 15 Q 40 25 40 30 Z" fill="currentColor" />
+        <path d="M 380 30 Q 370 20 350 15 Q 360 25 360 30 Z" fill="currentColor" />
+      </motion.g>
+
+      {/* Heavy central Lotus/Crest */}
+      <motion.g variants={bloom} style={{ originX: 0.5, originY: 0.5 }}>
+        <path d="M 200 5 C 175 25, 155 45, 200 55 C 245 45, 225 25, 200 5 Z" fill="currentColor" />
+        <path d="M 200 30 C 150 40, 130 25, 140 15 C 160 30, 180 38, 200 45 C 220 38, 240 30, 260 15 C 270 25, 250 40, 200 30 Z" fill="currentColor" />
+        <circle cx="200" cy="60" r="3" fill="currentColor" />
+      </motion.g>
+    </motion.svg>
+  );
+};
+
+const CornerFiligree = ({ className }: { className?: string }) => {
   const draw = {
     hidden: { pathLength: 0, opacity: 0 },
     visible: { 
       pathLength: 1, 
       opacity: 1, 
-      transition: { pathLength: { duration: 2, ease: "easeOut" }, opacity: { duration: 0.5 } } 
+      transition: { duration: 1.5, ease: "easeOut" } 
     }
   };
-
-  const fade = {
-    hidden: { opacity: 0, scale: 0 },
-    visible: { opacity: 1, scale: 1, transition: { delay: 1.5, duration: 0.8 } }
+  const fillFade = {
+    hidden: { opacity: 0 },
+    visible: { opacity: 1, transition: { duration: 1, delay: 0.8 } }
   };
 
   return (
     <motion.svg 
-      className="absolute top-0 left-1/2 -translate-x-1/2 w-[240px] md:w-[320px] h-[30px] pointer-events-none text-[#D4AF37] opacity-60 z-0"
-      viewBox="0 0 400 40"
+      className={`absolute w-16 h-16 pointer-events-none text-[#D4AF37] opacity-80 z-0 drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)] ${className}`}
+      viewBox="0 0 100 100"
       initial="hidden"
       animate="visible"
     >
-      {/* Center crest (fleur-de-lis inspired) */}
+      {/* Outer framing line */}
       <motion.path 
-        d="M 200 5 C 190 20, 185 30, 200 35 C 215 30, 210 20, 200 5 Z" 
-        fill="currentColor" variants={fade} 
+        d="M 5 95 L 5 20 Q 5 5 20 5 L 95 5" 
+        fill="none" stroke="currentColor" strokeWidth="2.5" variants={draw} 
+      />
+      {/* Inner heavy leaf/flourish */}
+      <motion.path 
+        d="M 14 14 Q 35 14 45 28 Q 28 45 14 45 Q 14 35 14 14 Z" 
+        fill="currentColor" variants={fillFade} 
       />
       <motion.path 
-        d="M 200 15 C 190 20, 180 15, 185 25 C 190 30, 195 30, 200 35 C 205 30, 210 30, 215 25 C 220 15, 210 20, 200 15 Z" 
-        fill="currentColor" variants={fade} 
+        d="M 14 14 Q 14 35 28 45 Q 45 28 45 14 Q 35 14 14 14 Z" 
+        fill="currentColor" variants={fillFade} 
       />
-      <motion.circle cx="200" cy="38" r="1.5" fill="currentColor" variants={fade} />
-
-      {/* Left sweeping vine */}
+      {/* Accent sweeping line */}
       <motion.path 
-        d="M 185 25 Q 120 40 50 15 T 10 10" 
+        d="M 15 55 Q 15 40 40 40 Q 65 40 75 15" 
         fill="none" stroke="currentColor" strokeWidth="1.5" variants={draw} 
       />
-      <motion.path 
-        d="M 140 29 Q 100 20 80 10" 
-        fill="none" stroke="currentColor" strokeWidth="1" variants={draw} 
-      />
-      <motion.path 
-        d="M 90 20 C 70 30, 50 35, 30 25 C 10 15, 20 5, 40 10" 
-        fill="none" stroke="currentColor" strokeWidth="1" variants={draw} 
-      />
-
-      {/* Right sweeping vine */}
-      <motion.path 
-        d="M 215 25 Q 280 40 350 15 T 390 10" 
-        fill="none" stroke="currentColor" strokeWidth="1.5" variants={draw} 
-      />
-      <motion.path 
-        d="M 260 29 Q 300 20 320 10" 
-        fill="none" stroke="currentColor" strokeWidth="1" variants={draw} 
-      />
-      <motion.path 
-        d="M 310 20 C 330 30, 350 35, 370 25 C 390 15, 380 5, 360 10" 
-        fill="none" stroke="currentColor" strokeWidth="1" variants={draw} 
-      />
-
-      {/* Accent dots */}
-      <motion.circle cx="10" cy="10" r="1.5" fill="currentColor" variants={fade} />
-      <motion.circle cx="390" cy="10" r="1.5" fill="currentColor" variants={fade} />
-      <motion.circle cx="80" cy="10" r="1.5" fill="currentColor" variants={fade} />
-      <motion.circle cx="320" cy="10" r="1.5" fill="currentColor" variants={fade} />
+      <motion.circle cx="75" cy="15" r="2.5" fill="currentColor" variants={fillFade} />
+      <motion.circle cx="15" cy="55" r="2.5" fill="currentColor" variants={fillFade} />
     </motion.svg>
   );
 };
@@ -181,11 +201,11 @@ export function Sanctum() {
 
           {/* Hero Panel: Avatar & XP */}
           <section className="relative bg-[#0D1B2A] dark:bg-[#1a0202] rounded-xl p-6 md:p-8 border border-[#415A77] dark:border-[#D4AF37]/60 shadow-[0_8px_30px_rgba(0,0,0,0.8)] overflow-hidden">
-            {/* Corner diamonds */}
-            <div className="absolute top-2 left-2 text-[#D4AF37] text-[10px]">❖</div>
-            <div className="absolute top-2 right-2 text-[#D4AF37] text-[10px]">❖</div>
-            <div className="absolute bottom-2 left-2 text-[#D4AF37] text-[10px]">❖</div>
-            <div className="absolute bottom-2 right-2 text-[#D4AF37] text-[10px]">❖</div>
+            {/* Corner Filigrees */}
+            <CornerFiligree className="top-1 left-1" />
+            <CornerFiligree className="top-1 right-1 scale-x-[-1]" />
+            <CornerFiligree className="bottom-1 left-1 scale-y-[-1]" />
+            <CornerFiligree className="bottom-1 right-1 scale-x-[-1] scale-y-[-1]" />
             
             <HeroFiligree />
 
