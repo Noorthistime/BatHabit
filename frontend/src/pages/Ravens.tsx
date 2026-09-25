@@ -306,7 +306,7 @@ const FiligreeCorner = ({ position, animated }: { position: string, animated: bo
 
 const FiligreeEdge = ({ position, animated }: { position: 'top' | 'bottom', animated: boolean }) => {
   const getPositionClasses = () => {
-    return position === 'top' ? 'top-1 left-12 right-12' : 'bottom-1 left-12 right-12 rotate-180';
+    return position === 'top' ? '-top-[6px] left-1/2 -translate-x-1/2' : '-bottom-[6px] left-1/2 -translate-x-1/2 rotate-180';
   };
 
   const draw = {
@@ -315,40 +315,109 @@ const FiligreeEdge = ({ position, animated }: { position: 'top' | 'bottom', anim
       pathLength: 1, 
       opacity: 1, 
       transition: { 
-        duration: 2.5,
+        duration: 1.5,
         ease: "easeInOut"
       } 
     }
   };
-
-  const staticDraw = {
-    hidden: { pathLength: 1, opacity: 0.15 },
-    visible: { pathLength: 1, opacity: 0.15 }
+  
+  const fade = {
+    hidden: { opacity: 0, scale: 0 },
+    visible: { opacity: 1, scale: 1, transition: { delay: 1, duration: 0.5 } }
   };
 
-  const variants = animated ? draw : staticDraw;
+  const staticDraw = {
+    hidden: { pathLength: 1, opacity: 0.2 },
+    visible: { pathLength: 1, opacity: 0.2 }
+  };
+  
+  const staticFade = {
+    hidden: { opacity: 0.2, scale: 1 },
+    visible: { opacity: 0.2, scale: 1 }
+  };
+
+  const lineVariants = animated ? draw : staticDraw;
+  const fillVariants = animated ? fade : staticFade;
 
   return (
-    <div className={`absolute h-[6px] pointer-events-none text-[#D4AF37] ${getPositionClasses()} ${animated ? 'drop-shadow-[0_0_3px_rgba(212,175,55,0.6)]' : ''}`}>
+    <div className={`absolute h-3 w-[320px] pointer-events-none text-[#D4AF37] ${getPositionClasses()} ${animated ? 'drop-shadow-[0_0_4px_rgba(212,175,55,0.7)]' : ''}`}>
       <motion.svg 
         className="w-full h-full"
-        viewBox="0 0 1000 20"
-        preserveAspectRatio="none"
-        variants={variants}
-        initial="hidden"
-        animate="visible"
+        viewBox="0 0 320 12"
       >
-        <path 
-          d="M0,10 Q 50,0 100,10 T 200,10 T 300,10 T 400,10 T 500,10 T 600,10 T 700,10 T 800,10 T 900,10 T 1000,10" 
+        {/* Left line */}
+        <motion.path 
+          d="M 20 6 L 130 6" 
           fill="none" 
           stroke="currentColor" 
-          strokeWidth="2"
+          strokeWidth="1.5"
+          variants={lineVariants}
+          initial="hidden"
+          animate="visible"
         />
-        <path 
-          d="M0,10 Q 50,20 100,10 T 200,10 T 300,10 T 400,10 T 500,10 T 600,10 T 700,10 T 800,10 T 900,10 T 1000,10" 
+        {/* Left arrowhead */}
+        <motion.path 
+          d="M 20 6 L 28 2 M 20 6 L 28 10" 
+          fill="none" 
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          variants={lineVariants}
+          initial="hidden"
+          animate="visible"
+        />
+        
+        {/* Right line */}
+        <motion.path 
+          d="M 300 6 L 190 6" 
           fill="none" 
           stroke="currentColor" 
-          strokeWidth="1"
+          strokeWidth="1.5"
+          variants={lineVariants}
+          initial="hidden"
+          animate="visible"
+        />
+        {/* Right arrowhead */}
+        <motion.path 
+          d="M 300 6 L 292 2 M 300 6 L 292 10" 
+          fill="none" 
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          variants={lineVariants}
+          initial="hidden"
+          animate="visible"
+        />
+
+        {/* Center ornament */}
+        {/* Left swirl */}
+        <motion.path 
+          d="M 130 6 C 145 -4, 160 2, 160 6 C 160 10, 145 16, 130 6" 
+          fill="none" 
+          stroke="currentColor" 
+          strokeWidth="1.5"
+          variants={lineVariants}
+          initial="hidden"
+          animate="visible"
+        />
+        {/* Right swirl */}
+        <motion.path 
+          d="M 190 6 C 175 -4, 160 2, 160 6 C 160 10, 175 16, 190 6" 
+          fill="none" 
+          stroke="currentColor" 
+          strokeWidth="1.5"
+          variants={lineVariants}
+          initial="hidden"
+          animate="visible"
+        />
+        
+        {/* Center gem/dot */}
+        <motion.circle 
+          cx="160" cy="6" r="2.5" 
+          fill="currentColor"
+          variants={fillVariants}
+          initial="hidden"
+          animate="visible"
         />
       </motion.svg>
     </div>
