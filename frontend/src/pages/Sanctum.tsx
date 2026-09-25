@@ -1,77 +1,8 @@
 import { useState, useEffect } from 'react';
 import { api } from '../api';
 import { User, Flame, Coins, Shield, Book, Brain, Eye, Heart, Plus, CheckCircle, Terminal, Activity, Focus, Archive, Sun, Moon } from 'lucide-react';
-import { useTheme } from '../context/ThemeContext';
-import { motion } from 'framer-motion';
-import '../sanctum-gothic.css';
-
-const HeroFiligree = () => {
-  const draw = {
-    hidden: { pathLength: 0, opacity: 0 },
-    visible: { 
-      pathLength: 1, 
-      opacity: 1, 
-      transition: { duration: 1.5, ease: "easeOut" } 
-    }
-  };
-
-  const fade = {
-    hidden: { opacity: 0, scale: 0 },
-    visible: { opacity: 1, scale: 1, transition: { delay: 1, duration: 0.8 } }
-  };
-
-  return (
-    <motion.svg 
-      className="absolute top-0 left-1/2 -translate-x-1/2 w-[340px] h-[45px] pointer-events-none text-[#D4AF37] opacity-80 z-0 drop-shadow-[0_2px_4px_rgba(212,175,55,0.4)]"
-      viewBox="0 0 400 60"
-      initial="hidden"
-      animate="visible"
-    >
-      {/* Central blooming flower (elegant, layered petals) */}
-      <motion.g variants={fade} style={{ originX: "50%", originY: "50%" }}>
-        {/* Main central petal */}
-        <path d="M 200 10 C 185 25, 195 40, 200 45 C 205 40, 215 25, 200 10 Z" fill="currentColor" />
-        {/* Left petal */}
-        <path d="M 200 40 C 180 35, 175 15, 185 10 C 195 15, 195 30, 200 40 Z" fill="currentColor" />
-        {/* Right petal */}
-        <path d="M 200 40 C 220 35, 225 15, 215 10 C 205 15, 205 30, 200 40 Z" fill="currentColor" />
-        {/* Bottom leaf base */}
-        <path d="M 195 43 C 200 50, 200 50, 205 43 C 205 38, 195 38, 195 43 Z" fill="currentColor" />
-      </motion.g>
-
-      {/* Elegant sweeping vines */}
-      <motion.path 
-        d="M 190 40 Q 150 50 100 25 T 20 20" 
-        fill="none" stroke="currentColor" strokeWidth="1.5" variants={draw} 
-      />
-      <motion.path 
-        d="M 210 40 Q 250 50 300 25 T 380 20" 
-        fill="none" stroke="currentColor" strokeWidth="1.5" variants={draw} 
-      />
-      
-      {/* Secondary inner vines */}
-      <motion.path 
-        d="M 160 38 Q 120 20 80 30" 
-        fill="none" stroke="currentColor" strokeWidth="1" variants={draw} 
-      />
-      <motion.path 
-        d="M 240 38 Q 280 20 320 30" 
-        fill="none" stroke="currentColor" strokeWidth="1" variants={draw} 
-      />
-      
-      {/* Flourishing buds on vines */}
-      <motion.g variants={fade} style={{ originX: "50%", originY: "50%" }}>
-        <path d="M 100 25 C 95 20, 90 25, 95 30 C 100 28, 100 25, 100 25 Z" fill="currentColor" />
-        <path d="M 300 25 C 305 20, 310 25, 305 30 C 300 28, 300 25, 300 25 Z" fill="currentColor" />
-        <circle cx="20" cy="20" r="1.5" fill="currentColor" />
-        <circle cx="380" cy="20" r="1.5" fill="currentColor" />
-      </motion.g>
-    </motion.svg>
-  );
-};
-
 const CornerFiligree = ({ className }: { className?: string }) => {
-  const draw = {
+  const drawMain = {
     hidden: { pathLength: 0, opacity: 0 },
     visible: { 
       pathLength: 1, 
@@ -79,40 +10,91 @@ const CornerFiligree = ({ className }: { className?: string }) => {
       transition: { duration: 1.5, ease: "easeOut" } 
     }
   };
-  const fade = {
+  const drawSecondary = {
+    hidden: { pathLength: 0, opacity: 0 },
+    visible: { 
+      pathLength: 1, 
+      opacity: 1, 
+      transition: { duration: 1.2, ease: "easeOut", delay: 0.5 } 
+    }
+  };
+  const leafFade = {
     hidden: { opacity: 0, scale: 0 },
-    visible: { opacity: 1, scale: 1, transition: { duration: 0.8, delay: 1 } }
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.8, delay: 1.2 } }
+  };
+  const starFade = {
+    hidden: { opacity: 0, scale: 0, rotate: -45 },
+    visible: { opacity: 1, scale: 1, rotate: 0, transition: { duration: 1, delay: 1.5 } }
   };
 
   return (
     <motion.svg 
-      className={`absolute w-20 h-20 pointer-events-none text-[#D4AF37] opacity-70 z-0 drop-shadow-[0_0_3px_rgba(212,175,55,0.4)] ${className}`}
+      className={`absolute w-32 h-32 md:w-40 md:h-40 pointer-events-none text-[#D4AF37] opacity-80 z-0 drop-shadow-[0_0_3px_rgba(212,175,55,0.4)] ${className}`}
       viewBox="0 0 100 100"
       initial="hidden"
       animate="visible"
     >
-      {/* Primary corner sweeping stem */}
+      {/* Primary sweeping vines hugging the edges (subtle) */}
       <motion.path 
-        d="M 5 5 C 10 40, 20 70, 75 75" 
-        fill="none" stroke="currentColor" strokeWidth="1.5" variants={draw} 
+        d="M 2 2 C 20 5, 40 10, 95 15" 
+        fill="none" stroke="currentColor" strokeWidth="1" variants={drawMain} 
       />
       <motion.path 
-        d="M 5 5 C 40 10, 70 20, 75 75" 
-        fill="none" stroke="currentColor" strokeWidth="1" variants={draw} 
-      />
-      <motion.path 
-        d="M 25 35 Q 50 20 60 40" 
-        fill="none" stroke="currentColor" strokeWidth="1" variants={draw} 
+        d="M 2 2 C 5 20, 10 40, 15 95" 
+        fill="none" stroke="currentColor" strokeWidth="1" variants={drawMain} 
       />
 
-      {/* Flourishing floral buds at the ends */}
-      <motion.g variants={fade}>
-        {/* Flower at 75,75 */}
-        <path d="M 75 75 C 70 65, 80 65, 80 75 C 80 85, 70 85, 75 75 Z" fill="currentColor" />
-        <path d="M 75 75 C 65 70, 65 80, 75 80 C 85 80, 85 70, 75 75 Z" fill="currentColor" />
-        {/* Flower at 60,40 */}
-        <path d="M 60 40 C 55 35, 65 35, 65 40 C 65 45, 55 45, 60 40 Z" fill="currentColor" />
-        <circle cx="8" cy="8" r="1.5" fill="currentColor" />
+      {/* Secondary curling offshoots */}
+      <motion.path 
+        d="M 40 8 Q 50 20 60 15 T 70 8" 
+        fill="none" stroke="currentColor" strokeWidth="0.5" variants={drawSecondary} 
+      />
+      <motion.path 
+        d="M 70 12 Q 80 25 85 20 T 90 12" 
+        fill="none" stroke="currentColor" strokeWidth="0.5" variants={drawSecondary} 
+      />
+      <motion.path 
+        d="M 8 40 Q 20 50 15 60 T 8 70" 
+        fill="none" stroke="currentColor" strokeWidth="0.5" variants={drawSecondary} 
+      />
+      <motion.path 
+        d="M 12 70 Q 25 80 20 85 T 12 90" 
+        fill="none" stroke="currentColor" strokeWidth="0.5" variants={drawSecondary} 
+      />
+      <motion.path 
+        d="M 2 2 C 15 15, 30 30, 40 40 C 45 45, 50 40, 45 35 C 40 30, 35 35, 40 40" 
+        fill="none" stroke="currentColor" strokeWidth="0.5" variants={drawSecondary} 
+      />
+
+      {/* Flourishing delicate leaves along horizontal stem */}
+      <motion.g variants={leafFade}>
+        <path d="M 20 5 C 18 8, 22 10, 25 10 C 25 7, 22 5, 20 5 Z" fill="currentColor" />
+        <path d="M 35 7 C 32 11, 38 14, 42 13 C 42 10, 38 7, 35 7 Z" fill="currentColor" />
+        <path d="M 55 10 C 52 15, 60 18, 65 17 C 65 13, 60 10, 55 10 Z" fill="currentColor" />
+        <path d="M 80 13 C 78 17, 84 20, 88 18 C 88 15, 84 13, 80 13 Z" fill="currentColor" />
+      </motion.g>
+
+      {/* Flourishing delicate leaves along vertical stem */}
+      <motion.g variants={leafFade}>
+        <path d="M 5 20 C 8 18, 10 22, 10 25 C 7 25, 5 22, 5 20 Z" fill="currentColor" />
+        <path d="M 7 35 C 11 32, 14 38, 13 42 C 10 42, 7 38, 7 35 Z" fill="currentColor" />
+        <path d="M 10 55 C 15 52, 18 60, 17 65 C 13 65, 10 60, 10 55 Z" fill="currentColor" />
+        <path d="M 13 80 C 17 78, 20 84, 18 88 C 15 88, 13 84, 13 80 Z" fill="currentColor" />
+      </motion.g>
+      
+      {/* Delicate inner leaves for the diagonal curl */}
+      <motion.g variants={leafFade}>
+        <path d="M 15 15 C 12 18, 18 20, 20 18 C 20 15, 18 12, 15 15 Z" fill="currentColor" />
+        <path d="M 25 25 C 22 28, 28 30, 30 28 C 30 25, 28 22, 25 25 Z" fill="currentColor" />
+      </motion.g>
+
+      {/* Sparkling stars */}
+      <motion.g variants={starFade} style={{ originX: "50%", originY: "50%" }}>
+        <path d="M 45 5 L 47 10 L 52 12 L 47 14 L 45 19 L 43 14 L 38 12 L 43 10 Z" fill="currentColor" className="opacity-80" />
+        <path d="M 5 45 L 10 47 L 12 52 L 14 47 L 19 45 L 14 43 L 12 38 L 10 43 Z" fill="currentColor" className="opacity-80" />
+        <path d="M 35 35 L 36 38 L 39 39 L 36 40 L 35 43 L 34 40 L 31 39 L 34 38 Z" fill="currentColor" className="opacity-60" />
+        <path d="M 70 5 L 71 8 L 74 9 L 71 10 L 70 13 L 69 10 L 66 9 L 69 8 Z" fill="currentColor" className="opacity-60" />
+        <path d="M 5 70 L 8 71 L 9 74 L 10 71 L 13 70 L 10 69 L 9 66 L 8 69 Z" fill="currentColor" className="opacity-60" />
       </motion.g>
     </motion.svg>
   );
@@ -229,8 +211,6 @@ export function Sanctum() {
             <CornerFiligree className="top-1 right-1 scale-x-[-1]" />
             <CornerFiligree className="bottom-1 left-1 scale-y-[-1]" />
             <CornerFiligree className="bottom-1 right-1 scale-x-[-1] scale-y-[-1]" />
-            
-            <HeroFiligree />
 
             {/* Subtle glow */}
             <div className="absolute right-0 top-0 w-96 h-96 bg-[radial-gradient(ellipse_at_top_right,_rgba(212,175,55,0.05)_0%,_transparent_70%)] pointer-events-none" />
