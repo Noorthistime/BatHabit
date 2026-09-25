@@ -79,26 +79,31 @@ export function Chamber() {
 
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-5">
 
-          {/* Section Navigation */}
           <div
-            className="lg:col-span-1 h-fit rounded-xl bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 shadow-lg overflow-hidden"
+            className="lg:col-span-1 h-fit rounded-xl bg-[#1B263B]/80 dark:bg-[rgba(20,4,5,0.85)] backdrop-blur-xl border border-[#415A77] dark:border-[#D4AF37]/30 shadow-[0_8px_30px_rgba(0,0,0,0.5)] overflow-hidden relative"
           >
             {SECTIONS.map(sec => (
               <button
                 key={sec.key}
                 onClick={() => setActiveSection(sec.key)}
-                className="w-full flex items-center justify-between px-4 py-3 transition-all border-b border-[#D4AF37]/10 last:border-b-0"
-                style={{
-                  background: activeSection === sec.key ? 'rgba(109,8,8,0.4)' : 'transparent',
-                  borderLeft: activeSection === sec.key ? '2px solid #D4AF37' : '2px solid transparent',
-                  color: activeSection === sec.key ? '#D4AF37' : '#8d9685',
-                }}
+                className={`w-full flex items-center justify-between px-4 py-3 transition-all border-b border-[#D4AF37]/10 last:border-b-0 relative overflow-hidden group ${
+                  activeSection === sec.key 
+                    ? 'bg-[radial-gradient(ellipse_at_left,_rgba(109,8,8,0.6)_0%,_transparent_100%)] text-[#D4AF37] border-l-[3px] border-l-[#D4AF37] shadow-[inset_4px_0_15px_-5px_rgba(212,175,55,0.4)]' 
+                    : 'bg-transparent text-[#8d9685] border-l-[3px] border-l-transparent hover:text-[#D4AF37]/80 hover:bg-[#1B263B]/50 dark:hover:bg-[rgba(109,8,8,0.1)]'
+                }`}
               >
-                <div className="flex items-center gap-2.5">
-                  <sec.icon size={14} />
-                  <span className="font-mono text-xs uppercase tracking-widest">{sec.label}</span>
+                {/* Golden Sweep Hover Effect */}
+                <div 
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D4AF37]/10 to-transparent -translate-x-full group-hover:translate-x-full transition-all duration-700 ease-in-out pointer-events-none" 
+                />
+
+                <div className="flex items-center gap-2.5 relative z-10">
+                  <sec.icon size={14} className={activeSection === sec.key ? 'drop-shadow-[0_0_5px_rgba(212,175,55,0.8)]' : ''} />
+                  <span className={`font-mono text-xs uppercase tracking-widest ${activeSection === sec.key ? 'font-bold drop-shadow-[0_0_3px_rgba(212,175,55,0.5)]' : ''}`}>
+                    {sec.label}
+                  </span>
                 </div>
-                <ChevronRight size={12} />
+                <ChevronRight size={12} className="relative z-10 opacity-50" />
               </button>
             ))}
           </div>
