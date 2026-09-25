@@ -49,13 +49,13 @@ function SettingRow({ label, desc, children }: { label: string; desc?: string; c
   );
 }
 
-const FiligreeCorner = ({ position }: { position: string }) => {
+const PageFiligree = ({ position }: { position: string }) => {
   const getPositionClasses = () => {
     switch (position) {
-      case 'top-left': return 'top-[-2px] left-[-2px]';
-      case 'top-right': return 'top-[-2px] right-[-2px] rotate-90';
-      case 'bottom-right': return 'bottom-[-2px] right-[-2px] rotate-180';
-      case 'bottom-left': return 'bottom-[-2px] left-[-2px] -rotate-90';
+      case 'top-left': return 'top-0 left-0';
+      case 'top-right': return 'top-0 right-0 rotate-90';
+      case 'bottom-right': return 'bottom-0 right-0 rotate-180';
+      case 'bottom-left': return 'bottom-0 left-0 -rotate-90';
       default: return '';
     }
   };
@@ -66,8 +66,8 @@ const FiligreeCorner = ({ position }: { position: string }) => {
       pathLength: 1, 
       opacity: 1, 
       transition: { 
-        pathLength: { duration: 2.5, ease: "easeOut" },
-        opacity: { duration: 0.5 }
+        pathLength: { duration: 3, ease: "easeOut" },
+        opacity: { duration: 0.8 }
       } 
     }
   };
@@ -77,13 +77,13 @@ const FiligreeCorner = ({ position }: { position: string }) => {
     visible: { 
       opacity: 1, 
       scale: 1, 
-      transition: { delay: 1.5, duration: 0.8 } 
+      transition: { delay: 1.5, duration: 1 } 
     }
   };
 
   return (
     <motion.svg 
-      className={`absolute w-24 h-24 pointer-events-none text-[#D4AF37] opacity-80 ${getPositionClasses()} drop-shadow-[0_0_5px_rgba(212,175,55,0.7)]`}
+      className={`fixed w-48 h-48 md:w-80 md:h-80 pointer-events-none text-[#D4AF37] opacity-20 dark:opacity-30 ${getPositionClasses()} drop-shadow-[0_0_8px_rgba(212,175,55,0.3)] z-0`}
       viewBox="0 0 100 100"
       initial="hidden"
       animate="visible"
@@ -155,11 +155,6 @@ function SectionCard({ title, children }: { title: string; children: React.React
     <div
       className="relative p-5 flex flex-col rounded-xl bg-[#0D1B2A] dark:bg-[#1a0202] border border-[#415A77] dark:border-[#D4AF37]/60 shadow-[0_8px_30px_rgba(0,0,0,0.8)] overflow-hidden"
     >
-      <FiligreeCorner position="top-left" />
-      <FiligreeCorner position="top-right" />
-      <FiligreeCorner position="bottom-left" />
-      <FiligreeCorner position="bottom-right" />
-
       {/* Background Watermark */}
       <div className="absolute -bottom-10 -right-10 opacity-[0.03] text-[#D4AF37] pointer-events-none">
         <Settings size={180} />
@@ -185,9 +180,13 @@ export function Chamber() {
 
   return (
     <>
+      {/* Global Page Filigree Frame */}
+      <PageFiligree position="top-left" />
+      <PageFiligree position="top-right" />
+      <PageFiligree position="bottom-left" />
+      <PageFiligree position="bottom-right" />
 
-
-      <div className="w-full max-w-[1200px] mx-auto flex flex-col gap-6">
+      <div className="w-full max-w-[1200px] mx-auto flex flex-col gap-6 relative z-10">
 
         {/* Header */}
         <div className="flex flex-col pb-4 border-b border-[#415A77]/50 dark:border-[#D4AF37]/25 gap-2 mb-2">
