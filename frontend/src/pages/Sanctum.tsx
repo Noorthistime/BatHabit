@@ -67,13 +67,13 @@ export function Sanctum() {
           {/* Welcome Ribbon */}
           <section className="flex flex-col lg:flex-row lg:items-end justify-between gap-5 pb-4 border-b border-[#415A77] dark:border-[#D4AF37]/25 relative">
             <div className="space-y-1.5">
-              <div className="flex items-center gap-2">
-                <span className="font-mono text-xs uppercase text-[#D4AF37] dark:text-[#F5D77F] tracking-[0.3em] flex items-center gap-1.5 bg-[#415A77] dark:bg-[#250101] px-2.5 py-0.5 rounded border border-[#415A77] dark:border-[#D4AF37]/35 shadow-inner">
+              <div className="flex items-center gap-2 mb-2">
+                <span className="font-serif text-[10px] md:text-xs uppercase text-[#D4AF37] tracking-[0.3em] font-bold">
                   Sanctum Noctis • Chamber of Command
                 </span>
               </div>
               <h1 className="font-serif text-3xl lg:text-4xl text-[#F7F3E9] dark:text-[#EEEAD7] tracking-tight font-bold drop-shadow-md">
-                The Veil Thins, <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#EEEAD7] via-[#F5D77F] to-[#f59e0b]">{char.currentTitle || 'Novice'}</span>.
+                The Veil Thins, {char.currentTitle || 'Novice'}.
               </h1>
               <p className="font-sans text-sm text-[#F7F3E9]/70 dark:text-[#8d9685] max-w-2xl leading-relaxed">
                 Your vows resonate through the obsidian arches. Seven consecutive lunar vigils sustained without wavering.
@@ -82,100 +82,108 @@ export function Sanctum() {
             
             {/* Quick Stats Pills */}
             <div className="flex flex-wrap items-center gap-3">
-              <div className="flex items-center gap-3 px-4 py-2.5 rounded-lg bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 shadow-lg">
-                <div className="w-9 h-9 rounded-lg bg-gradient-to-br from-[#B6CBF6] dark:from-[#9e1313] to-[#D4AF37] dark:to-[#2D0000] flex items-center justify-center border border-[#415A77] dark:border-[#D4AF37]/60 shadow-inner text-[#D4AF37] dark:text-[#F5D77F]">
-                  <Flame size={20} className="text-[#ff6600]" />
+              <div className="flex items-center gap-3 px-3 py-2 rounded bg-[#0a0000] border border-[#D4AF37]/40 shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
+                <div className="w-8 h-8 rounded bg-[#6D0808] flex items-center justify-center border border-[#D4AF37]/60 text-[#D4AF37]">
+                  <Flame size={16} />
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col pr-2">
                   <div className="flex items-baseline gap-1">
-                    <span className="font-serif text-xl font-bold text-[#D4AF37] dark:text-[#F5D77F]">{streak?.currentStreak || 0}</span>
-                    <span className="font-mono text-xs text-[#F7F3E9]/70 dark:text-[#8d9685] uppercase">Days</span>
+                    <span className="font-serif text-lg font-bold text-[#F7F3E9] dark:text-[#EEEAD7]">{streak?.currentStreak || 0}</span>
+                    <span className="font-mono text-[10px] text-[#F7F3E9]/70 dark:text-[#8d9685] uppercase tracking-widest">Days</span>
                   </div>
-                  <span className="font-mono text-[10px] text-[#D4AF37] dark:text-[#C5A059] uppercase tracking-widest font-semibold">Unbroken Vow</span>
+                  <span className="font-mono text-[8px] text-[#D4AF37] uppercase tracking-widest font-bold">Unbroken Vow</span>
                 </div>
               </div>
-              <div className="flex items-center gap-3 px-4 py-2.5 rounded-lg bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 shadow-lg">
-                <div className="w-9 h-9 rounded-lg bg-[#1B263B] dark:bg-[#200000] flex items-center justify-center border border-[#415A77] dark:border-[#D4AF37]/55 shadow-inner text-[#D4AF37] dark:text-[#F5D77F]">
-                  <Coins size={20} />
+              <div className="flex items-center gap-3 px-3 py-2 rounded bg-[#0a0000] border border-[#D4AF37]/40 shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
+                <div className="w-8 h-8 rounded bg-[#200000] flex items-center justify-center border border-[#D4AF37]/60 text-[#D4AF37]">
+                  <Coins size={16} />
                 </div>
-                <div className="flex flex-col">
+                <div className="flex flex-col pr-2">
                   <div className="flex items-baseline gap-1">
-                    <span className="font-serif text-xl font-bold text-[#D4AF37] dark:text-[#F5D77F]">{currency?.balance || 0}</span>
+                    <span className="font-serif text-lg font-bold text-[#F7F3E9] dark:text-[#EEEAD7]">{currency?.balance || 0}</span>
                   </div>
-                  <span className="font-mono text-[10px] text-[#D4AF37] dark:text-[#C5A059] uppercase tracking-widest font-semibold">Tarnished Crowns</span>
+                  <span className="font-mono text-[8px] text-[#D4AF37] uppercase tracking-widest font-bold">Tarnished Crowns</span>
                 </div>
               </div>
             </div>
           </section>
 
           {/* Hero Panel: Avatar & XP */}
-          <section className="relative bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-xl rounded-xl p-7 border border-[#415A77] dark:border-[#D4AF37]/45 shadow-[0_14px_50px_rgba(0,0,0,0.9)] overflow-hidden">
-            <div className="absolute top-2 left-2 text-[#D4AF37] dark:text-[#D4AF37]/60 font-serif text-xs">❖</div>
-            <div className="absolute top-2 right-2 text-[#D4AF37] dark:text-[#D4AF37]/60 font-serif text-xs">❖</div>
-            <div className="absolute bottom-2 left-2 text-[#D4AF37] dark:text-[#D4AF37]/60 font-serif text-xs">❖</div>
-            <div className="absolute bottom-2 right-2 text-[#D4AF37] dark:text-[#D4AF37]/60 font-serif text-xs">❖</div>
-            <div className="absolute -right-24 -top-24 w-96 h-96 rounded-full bg-transparent dark:bg-[#6D0808]/40 blur-3xl pointer-events-none"></div>
-            <div className="absolute -left-20 -bottom-20 w-96 h-96 rounded-full bg-[#f59e0b]/15 blur-3xl pointer-events-none"></div>
+          <section className="relative bg-[#0D1B2A] dark:bg-[#1a0202] rounded-xl p-6 md:p-8 border border-[#415A77] dark:border-[#D4AF37]/60 shadow-[0_8px_30px_rgba(0,0,0,0.8)] overflow-hidden">
+            {/* Corner diamonds */}
+            <div className="absolute top-2 left-2 text-[#D4AF37] text-[10px]">❖</div>
+            <div className="absolute top-2 right-2 text-[#D4AF37] text-[10px]">❖</div>
+            <div className="absolute bottom-2 left-2 text-[#D4AF37] text-[10px]">❖</div>
+            <div className="absolute bottom-2 right-2 text-[#D4AF37] text-[10px]">❖</div>
+            
+            {/* Subtle glow */}
+            <div className="absolute right-0 top-0 w-96 h-96 bg-[radial-gradient(ellipse_at_top_right,_rgba(212,175,55,0.05)_0%,_transparent_70%)] pointer-events-none" />
 
             <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
               <div className="lg:col-span-4 xl:col-span-3 flex flex-col items-center gap-5">
-                <div className="relative group">
-                  <div className="w-48 h-48 lg:w-56 lg:h-56 rounded-xl bg-gradient-to-b from-[#D0F4F0] dark:from-[#3d0303] via-[#415A77] dark:via-[#1a0000] to-[#D0F4F0] dark:to-[#0f0000] p-2 shadow-2xl flex items-center justify-center relative border-2 border-[#415A77] dark:border-[#F5D77F]">
-                    <div className="absolute -top-1.5 -left-1.5 w-6 h-6 border-t-2 border-l-2 border-[#415A77] dark:border-[#F5D77F]"></div>
-                    <div className="absolute -top-1.5 -right-1.5 w-6 h-6 border-t-2 border-r-2 border-[#415A77] dark:border-[#F5D77F]"></div>
-                    <div className="absolute -bottom-1.5 -left-1.5 w-6 h-6 border-b-2 border-l-2 border-[#415A77] dark:border-[#F5D77F]"></div>
-                    <div className="absolute -bottom-1.5 -right-1.5 w-6 h-6 border-b-2 border-r-2 border-[#415A77] dark:border-[#F5D77F]"></div>
-                    <div className="w-full h-full rounded-lg overflow-hidden relative border border-[#415A77] dark:border-[#D4AF37]/60 flex items-center justify-center bg-[#1B263B] dark:bg-[#200000]">
-                      {char.avatarUrl ? (
-                        <img src={char.avatarUrl} alt="Avatar" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
-                      ) : (
-                        <User size={64} className="text-[#D4AF37] dark:text-[#D4AF37]" />
-                      )}
-                    </div>
+                <div className="relative group p-1">
+                  {/* Outer double border */}
+                  <div className="absolute inset-0 border border-[#D4AF37]/80 rounded-sm pointer-events-none"></div>
+                  <div className="absolute inset-1 border border-[#D4AF37]/40 rounded-sm pointer-events-none"></div>
+                  {/* Corner squares */}
+                  <div className="absolute -top-1 -left-1 w-2.5 h-2.5 bg-[#1a0202] border border-[#D4AF37] rounded-sm"></div>
+                  <div className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-[#1a0202] border border-[#D4AF37] rounded-sm"></div>
+                  <div className="absolute -bottom-1 -left-1 w-2.5 h-2.5 bg-[#1a0202] border border-[#D4AF37] rounded-sm"></div>
+                  <div className="absolute -bottom-1 -right-1 w-2.5 h-2.5 bg-[#1a0202] border border-[#D4AF37] rounded-sm"></div>
+                  
+                  <div className="w-48 h-48 lg:w-52 lg:h-52 bg-[#0a0000] m-1.5 flex items-center justify-center relative overflow-hidden">
+                    {char.avatarUrl ? (
+                      <img src={char.avatarUrl} alt="Avatar" className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105" />
+                    ) : (
+                      <User size={64} className="text-[#D4AF37]" />
+                    )}
                   </div>
-                  <div className="absolute -bottom-4 left-1/2 -translate-x-1/2 px-4 py-1.5 rounded-md bg-gradient-to-r from-[#1B263B] via-[#415A77] to-[#1B263B] dark:from-[#6D0808] dark:via-[#8e0e0e] dark:to-[#6D0808] text-[#D4AF37] dark:text-[#F5D77F] shadow-[0_4px_12px_rgba(0,0,0,0.6)] dark:shadow-lg flex items-center gap-2 whitespace-nowrap border border-[#415A77] dark:border-[#F5D77F]">
-                    <span className="font-serif text-xs font-bold tracking-widest text-[#F7F3E9] dark:text-[#EEEAD7]">LEVEL {char.level || 1} • {char.currentTitle || 'INITIATE'}</span>
+                  
+                  <div className="absolute -bottom-3 left-1/2 -translate-x-1/2 px-4 py-1 rounded bg-[#6D0808] text-[#EEEAD7] flex items-center whitespace-nowrap border border-[#D4AF37] shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
+                    <span className="font-serif text-xs font-bold tracking-widest uppercase">LEVEL {char.level || 1} • {char.currentTitle || 'INITIATE'}</span>
                   </div>
                 </div>
               </div>
-              <div className="lg:col-span-8 xl:col-span-9 flex flex-col justify-center space-y-5">
-                <div className="space-y-2.5 bg-[#0D1B2A]/90 dark:bg-[#140305]/95 p-5 rounded-lg border border-[#415A77] dark:border-[#D4AF37]/40 shadow-[0_4px_24px_rgba(0,0,0,0.4)] dark:shadow-inner relative overflow-hidden">
+
+              <div className="lg:col-span-8 xl:col-span-9 flex flex-col justify-center space-y-4">
+                <div className="space-y-3 bg-[#0a0000] p-5 rounded border border-[#D4AF37]/30 shadow-inner relative overflow-hidden">
                   <div className="flex justify-between items-baseline font-mono text-xs">
-                    <span className="text-[#D4AF37] dark:text-[#F5D77F] flex items-center gap-2 uppercase tracking-wider font-semibold">
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#F5D77F] animate-ping"></span>
+                    <span className="text-[#8d9685] flex items-center gap-2 uppercase tracking-[0.2em] font-bold">
+                      <span className="w-2.5 h-2.5 rounded-full bg-[#1a0202] border border-[#D4AF37]/50"></span>
                       Arcane Essence XP Gauge
                     </span>
                     <div className="flex items-center gap-2">
-                      <span className="font-serif text-lg font-bold text-[#D4AF37] dark:text-[#F5D77F]">{char.totalXp}</span>
-                      <span className="text-[#F7F3E9]/70 dark:text-[#8d9685]">/</span>
-                      <span className="font-mono text-xs text-[#F7F3E9]/70 dark:text-[#8d9685]">{nextLevelXpRequired} XP</span>
-                      <span className="text-[#F7F3E9] dark:text-[#EEEAD7] font-bold ml-1 bg-[#415A77] dark:bg-[#250101] px-2 py-0.5 rounded border border-[#415A77] dark:border-[#D4AF37]/35">{progressPercent.toFixed(1)}%</span>
+                      <span className="font-serif text-lg font-bold text-[#D4AF37]">{char.totalXp}</span>
+                      <span className="text-[#8d9685]">/</span>
+                      <span className="font-mono text-xs text-[#8d9685]">{nextLevelXpRequired} XP</span>
+                      <span className="text-[#EEEAD7] font-bold ml-2 bg-[#1a0202] px-2 py-0.5 rounded border border-[#D4AF37]/40 text-[10px]">{progressPercent.toFixed(1)}%</span>
                     </div>
                   </div>
-                  <div className="relative w-full h-5 bg-[#0a0000] rounded-md p-0.5 shadow-inner overflow-hidden border border-[#415A77] dark:border-[#D4AF37]/55">
-                    <div className="h-full rounded-sm bg-gradient-to-r from-[#6D0808] via-[#f59e0b] to-[#F5D77F]" style={{ width: progressPercent + "%" }}></div>
+                  <div className="relative w-full h-3 bg-[#1a0202] rounded-full p-px shadow-inner border border-[#D4AF37]/20">
+                    <div className="h-full rounded-full bg-gradient-to-r from-[#6D0808] via-[#f59e0b] to-[#F5D77F]" style={{ width: progressPercent + "%" }}></div>
                   </div>
                   <div className="flex justify-between items-center text-xs font-mono pt-1">
-                    <span className="text-[11px] text-[#F7F3E9]/70 dark:text-[#8d9685]"><span className="text-[#D4AF37] dark:text-[#F5D77F]">✦</span> +{Math.floor(xpNeededForNext)} XP to Level {(char.level || 1) + 1}</span>
+                    <span className="text-[10px] text-[#8d9685] uppercase tracking-wider"><span className="text-[#D4AF37]">✦</span> +{Math.floor(xpNeededForNext)} XP to Level {(char.level || 1) + 1}</span>
                   </div>
                 </div>
+                
                 {/* Stats Row */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-2.5 pt-1">
-                  <div className="px-3.5 py-2.5 rounded bg-[#1B263B] dark:bg-[#160202] border border-[#415A77] dark:border-[#D4AF37]/30 flex items-center justify-between shadow-sm">
-                    <span className="font-mono text-[11px] text-[#F7F3E9]/70 dark:text-[#8d9685] uppercase">Active Vigor</span>
-                    <span className="font-serif text-sm font-bold text-[#D4AF37] dark:text-[#F5D77F]">94 / 100</span>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 pt-2">
+                  <div className="px-4 py-3 rounded bg-[#0a0000] border border-[#D4AF37]/20 flex items-center justify-between shadow-inner">
+                    <span className="font-mono text-[9px] text-[#8d9685] uppercase tracking-widest">Active Vigor</span>
+                    <span className="font-serif text-sm font-bold text-[#D4AF37]">94 / 100</span>
                   </div>
-                  <div className="px-3.5 py-2.5 rounded bg-[#1B263B] dark:bg-[#160202] border border-[#415A77] dark:border-[#D4AF37]/30 flex items-center justify-between shadow-sm">
-                    <span className="font-mono text-[11px] text-[#F7F3E9]/70 dark:text-[#8d9685] uppercase">Shadow Will</span>
-                    <span className="font-serif text-sm font-bold text-[#F7F3E9] dark:text-[#EEEAD7]">Tier III</span>
+                  <div className="px-4 py-3 rounded bg-[#0a0000] border border-[#D4AF37]/20 flex items-center justify-between shadow-inner">
+                    <span className="font-mono text-[9px] text-[#8d9685] uppercase tracking-widest">Shadow Will</span>
+                    <span className="font-serif text-sm font-bold text-[#EEEAD7]">Tier III</span>
                   </div>
-                  <div className="px-3.5 py-2.5 rounded bg-[#1B263B] dark:bg-[#160202] border border-[#415A77] dark:border-[#D4AF37]/30 flex items-center justify-between shadow-sm">
-                    <span className="font-mono text-[11px] text-[#F7F3E9]/70 dark:text-[#8d9685] uppercase">Discipline</span>
-                    <span className="font-serif text-sm font-bold text-[#D4AF37] dark:text-[#F5D77F]">1.25x</span>
+                  <div className="px-4 py-3 rounded bg-[#0a0000] border border-[#D4AF37]/20 flex items-center justify-between shadow-inner">
+                    <span className="font-mono text-[9px] text-[#8d9685] uppercase tracking-widest">Discipline</span>
+                    <span className="font-serif text-sm font-bold text-[#D4AF37]">1.25x</span>
                   </div>
-                  <div className="px-3.5 py-2.5 rounded bg-[#1B263B] dark:bg-[#160202] border border-[#415A77] dark:border-[#D4AF37]/30 flex items-center justify-between shadow-sm">
-                    <span className="font-mono text-[11px] text-[#F7F3E9]/70 dark:text-[#8d9685] uppercase">Lunar Phase</span>
-                    <span className="font-serif text-sm font-bold text-[#F7F3E9] dark:text-[#EEEAD7]">Waxing</span>
+                  <div className="px-4 py-3 rounded bg-[#0a0000] border border-[#D4AF37]/20 flex items-center justify-between shadow-inner">
+                    <span className="font-mono text-[9px] text-[#8d9685] uppercase tracking-widest">Lunar Phase</span>
+                    <span className="font-serif text-sm font-bold text-[#EEEAD7]">Waxing</span>
                   </div>
                 </div>
               </div>
