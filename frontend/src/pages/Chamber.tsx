@@ -161,8 +161,9 @@ export function Chamber() {
                       <p className="font-serif text-base font-bold text-[#EEEAD7]">Alistair Vance</p>
                       <p className="font-mono text-xs text-[#8d9685]">alistair@bathabit.nocturnal</p>
                     </div>
-                    <button className="ml-auto px-3 py-1.5 font-mono text-xs uppercase tracking-wider" style={{ background: 'rgba(109,8,8,0.5)', border: '1px solid rgba(212,175,55,0.3)', color: '#D4AF37' }}>
-                      Edit
+                    <button className="ml-auto px-3 py-1.5 font-mono text-xs uppercase tracking-wider relative overflow-hidden group rounded-md shadow-md hover:shadow-lg transition-all" style={{ background: 'rgba(109,8,8,0.5)', border: '1px solid rgba(212,175,55,0.4)', color: '#D4AF37' }}>
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D4AF37]/20 to-transparent -translate-x-full group-hover:translate-x-full transition-all duration-700 ease-in-out pointer-events-none" />
+                      <span className="relative z-10 drop-shadow-[0_0_2px_rgba(212,175,55,0.8)] font-bold">Edit</span>
                     </button>
                   </div>
 
@@ -181,11 +182,11 @@ export function Chamber() {
 
                 <SectionCard title="Danger Zone">
                   <div className="flex flex-col gap-3 py-2">
-                    <button className="flex items-center gap-2 px-4 py-2 font-mono text-xs uppercase tracking-widest self-start" style={{ background: 'transparent', border: '1px solid rgba(212,175,55,0.2)', color: '#8d9685' }}>
+                    <button className="flex items-center gap-2 px-4 py-2 font-mono text-xs uppercase tracking-widest self-start rounded-md border border-[#415A77]/50 text-[#8d9685] hover:bg-[#1B263B]/80 hover:text-[#EEEAD7] hover:border-[#415A77] transition-all shadow-sm">
                       <LogOut size={12} /> Sign Out
                     </button>
-                    <button className="flex items-center gap-2 px-4 py-2 font-mono text-xs uppercase tracking-widest self-start" style={{ background: 'transparent', border: '1px dashed #6D0808', color: '#ff6b6b' }}>
-                      <Trash2 size={12} /> Delete Account
+                    <button className="flex items-center gap-2 px-4 py-2 font-mono text-xs uppercase tracking-widest self-start rounded-md border border-[#6D0808]/80 text-[#ff6b6b] hover:bg-[rgba(109,8,8,0.2)] hover:border-[#ff6b6b] hover:shadow-[0_0_10px_rgba(255,107,107,0.3)] transition-all shadow-sm group">
+                      <Trash2 size={12} className="group-hover:animate-pulse" /> Delete Account
                     </button>
                   </div>
                 </SectionCard>
@@ -198,22 +199,26 @@ export function Chamber() {
                 <SettingRow label="Color Mode" desc="Toggle between Light and Dark sanctuary themes">
                   <button
                     onClick={toggleTheme}
-                    className="flex items-center gap-2 px-4 py-2 font-mono text-xs uppercase tracking-widest transition-all"
-                    style={{ background: '#6D0808', border: '1px solid rgba(212,175,55,0.4)', color: '#D4AF37' }}
+                    className="flex items-center gap-2 px-4 py-2 font-mono text-xs uppercase tracking-widest transition-all rounded-md relative overflow-hidden group shadow-md hover:scale-[1.02]"
+                    style={{ background: 'linear-gradient(135deg, #3d0303, #6D0808)', border: '1px solid rgba(212,175,55,0.5)', color: '#D4AF37' }}
                   >
-                    {theme === 'dark' ? <><Moon size={12} /> Dark</> : <><Sun size={12} /> Light</>}
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D4AF37]/20 to-transparent -translate-x-full group-hover:translate-x-full transition-all duration-700 ease-in-out pointer-events-none" />
+                    <span className="relative z-10 flex items-center gap-2 drop-shadow-[0_0_2px_rgba(212,175,55,0.8)] font-bold">
+                      {theme === 'dark' ? <><Moon size={12} /> Dark</> : <><Sun size={12} /> Light</>}
+                    </span>
                   </button>
                 </SettingRow>
                 <SettingRow label="Interface Density" desc="Choose compact or spacious layout">
-                  <div className="flex gap-1">
+                  <div className="flex gap-1 bg-[#1a0204] p-1 rounded-lg border border-[#415A77]/30 shadow-[inset_0_2px_4px_rgba(0,0,0,0.6)]">
                     {['Compact', 'Default', 'Spacious'].map(d => (
                       <button
                         key={d}
-                        className="px-2.5 py-1 font-mono text-[9px] uppercase tracking-wider transition-all"
+                        className={`px-3 py-1.5 font-mono text-[9px] uppercase tracking-wider transition-all rounded-md ${d === 'Default' ? 'shadow-md' : 'hover:bg-[rgba(212,175,55,0.05)]'}`}
                         style={{
-                          background: d === 'Default' ? '#6D0808' : 'transparent',
-                          border: `1px solid ${d === 'Default' ? 'rgba(212,175,55,0.4)' : 'rgba(212,175,55,0.15)'}`,
+                          background: d === 'Default' ? 'linear-gradient(135deg, #3d0303, #6D0808)' : 'transparent',
+                          border: `1px solid ${d === 'Default' ? 'rgba(212,175,55,0.5)' : 'transparent'}`,
                           color: d === 'Default' ? '#D4AF37' : '#8d9685',
+                          textShadow: d === 'Default' ? '0 0 2px rgba(212,175,55,0.8)' : 'none'
                         }}
                       >
                         {d}
@@ -265,8 +270,9 @@ export function Chamber() {
                   />
                 </SettingRow>
                 <div className="pt-3">
-                  <button className="px-4 py-2 font-mono text-xs uppercase tracking-widest" style={{ background: '#6D0808', border: '1px solid rgba(212,175,55,0.4)', color: '#D4AF37' }}>
-                    Update Password
+                  <button className="px-4 py-2 font-mono text-xs uppercase tracking-widest relative overflow-hidden group rounded-md shadow-[0_4px_10px_rgba(0,0,0,0.5)] transition-all hover:scale-[1.02]" style={{ background: 'linear-gradient(135deg, #3d0303, #6D0808)', border: '1px solid rgba(212,175,55,0.6)', color: '#D4AF37' }}>
+                    <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D4AF37]/30 to-transparent -translate-x-full group-hover:translate-x-full transition-all duration-700 ease-in-out pointer-events-none" />
+                    <span className="relative z-10 drop-shadow-[0_0_3px_rgba(212,175,55,0.8)] font-bold">Update Password</span>
                   </button>
                 </div>
               </SectionCard>
