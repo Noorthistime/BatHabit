@@ -2,7 +2,78 @@ import { useState, useEffect } from 'react';
 import { api } from '../api';
 import { User, Flame, Coins, Shield, Book, Brain, Eye, Heart, Plus, CheckCircle, Terminal, Activity, Focus, Archive, Sun, Moon } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
+import { motion } from 'framer-motion';
 import '../sanctum-gothic.css';
+
+const HeroFiligree = () => {
+  const draw = {
+    hidden: { pathLength: 0, opacity: 0 },
+    visible: { 
+      pathLength: 1, 
+      opacity: 1, 
+      transition: { pathLength: { duration: 2, ease: "easeOut" }, opacity: { duration: 0.5 } } 
+    }
+  };
+
+  const fade = {
+    hidden: { opacity: 0, scale: 0 },
+    visible: { opacity: 1, scale: 1, transition: { delay: 1.5, duration: 0.8 } }
+  };
+
+  return (
+    <motion.svg 
+      className="absolute top-0 left-1/2 -translate-x-1/2 w-[240px] md:w-[320px] h-[30px] pointer-events-none text-[#D4AF37] opacity-60 z-0"
+      viewBox="0 0 400 40"
+      initial="hidden"
+      animate="visible"
+    >
+      {/* Center crest (fleur-de-lis inspired) */}
+      <motion.path 
+        d="M 200 5 C 190 20, 185 30, 200 35 C 215 30, 210 20, 200 5 Z" 
+        fill="currentColor" variants={fade} 
+      />
+      <motion.path 
+        d="M 200 15 C 190 20, 180 15, 185 25 C 190 30, 195 30, 200 35 C 205 30, 210 30, 215 25 C 220 15, 210 20, 200 15 Z" 
+        fill="currentColor" variants={fade} 
+      />
+      <motion.circle cx="200" cy="38" r="1.5" fill="currentColor" variants={fade} />
+
+      {/* Left sweeping vine */}
+      <motion.path 
+        d="M 185 25 Q 120 40 50 15 T 10 10" 
+        fill="none" stroke="currentColor" strokeWidth="1.5" variants={draw} 
+      />
+      <motion.path 
+        d="M 140 29 Q 100 20 80 10" 
+        fill="none" stroke="currentColor" strokeWidth="1" variants={draw} 
+      />
+      <motion.path 
+        d="M 90 20 C 70 30, 50 35, 30 25 C 10 15, 20 5, 40 10" 
+        fill="none" stroke="currentColor" strokeWidth="1" variants={draw} 
+      />
+
+      {/* Right sweeping vine */}
+      <motion.path 
+        d="M 215 25 Q 280 40 350 15 T 390 10" 
+        fill="none" stroke="currentColor" strokeWidth="1.5" variants={draw} 
+      />
+      <motion.path 
+        d="M 260 29 Q 300 20 320 10" 
+        fill="none" stroke="currentColor" strokeWidth="1" variants={draw} 
+      />
+      <motion.path 
+        d="M 310 20 C 330 30, 350 35, 370 25 C 390 15, 380 5, 360 10" 
+        fill="none" stroke="currentColor" strokeWidth="1" variants={draw} 
+      />
+
+      {/* Accent dots */}
+      <motion.circle cx="10" cy="10" r="1.5" fill="currentColor" variants={fade} />
+      <motion.circle cx="390" cy="10" r="1.5" fill="currentColor" variants={fade} />
+      <motion.circle cx="80" cy="10" r="1.5" fill="currentColor" variants={fade} />
+      <motion.circle cx="320" cy="10" r="1.5" fill="currentColor" variants={fade} />
+    </motion.svg>
+  );
+};
 
 export function Sanctum() {
   const [profile, setProfile] = useState<any>(null);
@@ -116,6 +187,8 @@ export function Sanctum() {
             <div className="absolute bottom-2 left-2 text-[#D4AF37] text-[10px]">❖</div>
             <div className="absolute bottom-2 right-2 text-[#D4AF37] text-[10px]">❖</div>
             
+            <HeroFiligree />
+
             {/* Subtle glow */}
             <div className="absolute right-0 top-0 w-96 h-96 bg-[radial-gradient(ellipse_at_top_right,_rgba(212,175,55,0.05)_0%,_transparent_70%)] pointer-events-none" />
 
