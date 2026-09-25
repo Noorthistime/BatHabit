@@ -49,7 +49,7 @@ function SettingRow({ label, desc, children }: { label: string; desc?: string; c
   );
 }
 
-const CardFiligree = ({ position }: { position: string }) => {
+const CardFiligree = ({ position, isDanger = false }: { position: string; isDanger?: boolean }) => {
   const getPositionClasses = () => {
     switch (position) {
       case 'top-left': return 'top-0 left-0';
@@ -83,7 +83,7 @@ const CardFiligree = ({ position }: { position: string }) => {
 
   return (
     <motion.svg 
-      className={`absolute w-12 h-12 pointer-events-none text-[#D4AF37] opacity-60 ${getPositionClasses()} drop-shadow-[0_0_3px_rgba(212,175,55,0.4)] z-0`}
+      className={`absolute w-12 h-12 pointer-events-none opacity-60 ${getPositionClasses()} ${isDanger ? 'text-[#ff4444] drop-shadow-[0_0_4px_rgba(255,68,68,0.5)]' : 'text-[#D4AF37] drop-shadow-[0_0_3px_rgba(212,175,55,0.4)]'} z-0`}
       viewBox="0 0 100 100"
       initial="hidden"
       animate="visible"
@@ -125,14 +125,14 @@ const CardFiligree = ({ position }: { position: string }) => {
   );
 };
 
-function SectionCard({ title, children }: { title: string; children: React.ReactNode }) {
+function SectionCard({ title, children, isDanger = false }: { title: string; children: React.ReactNode; isDanger?: boolean }) {
   return (
     <div className="relative p-5 flex flex-col rounded-xl bg-[#0D1B2A] dark:bg-[#1a0202] border border-[#415A77] dark:border-[#D4AF37]/60 shadow-[0_8px_30px_rgba(0,0,0,0.8)] overflow-hidden z-10">
       {/* Outward sprouting animated filigrees */}
-      <CardFiligree position="top-left" />
-      <CardFiligree position="top-right" />
-      <CardFiligree position="bottom-left" />
-      <CardFiligree position="bottom-right" />
+      <CardFiligree position="top-left" isDanger={isDanger} />
+      <CardFiligree position="top-right" isDanger={isDanger} />
+      <CardFiligree position="bottom-left" isDanger={isDanger} />
+      <CardFiligree position="bottom-right" isDanger={isDanger} />
 
       {/* Background Watermark */}
       <div className="absolute -bottom-10 -right-10 opacity-[0.03] text-[#D4AF37] pointer-events-none">
@@ -240,7 +240,7 @@ export function Chamber() {
                   </div>
                 </SectionCard>
 
-                <SectionCard title="Danger Zone">
+                <SectionCard title="Danger Zone" isDanger>
                   <div className="flex flex-col gap-3 py-2">
                     <button className="flex items-center gap-2 px-4 py-2 font-mono text-xs uppercase tracking-widest self-start rounded-md border border-[#415A77]/50 text-[#8d9685] hover:bg-[#1B263B]/80 hover:text-[#EEEAD7] hover:border-[#415A77] transition-all shadow-sm">
                       <LogOut size={12} /> Sign Out
