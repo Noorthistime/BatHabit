@@ -168,7 +168,7 @@ function NotificationCard({ notification, onRead }: { notification: Notification
       initial={{ opacity: 0, y: 10 }}
       animate={{ opacity: 1, y: 0 }}
       onClick={onRead}
-      className={`relative flex gap-4 p-5 rounded-xl border cursor-pointer transition-all overflow-hidden ${
+      className={`relative flex gap-4 p-5 rounded-xl border cursor-pointer transition-all ${
         isNew 
           ? 'bg-[#0D1B2A] dark:bg-[#1a0202] border-[#415A77] dark:border-[#D4AF37]/60 shadow-lg dark:shadow-[0_8px_30px_rgba(0,0,0,0.8)]' 
           : 'bg-[#0D1B2A]/50 dark:bg-[#0a0101] border-[#415A77]/50 dark:border-[#D4AF37]/20 opacity-80 hover:opacity-100 hover:bg-[#0D1B2A] dark:hover:bg-[#1a0202] dark:hover:border-[#D4AF37]/40 shadow-sm'
@@ -306,7 +306,7 @@ const FiligreeCorner = ({ position, animated }: { position: string, animated: bo
 
 const FiligreeEdge = ({ position, animated }: { position: 'top' | 'bottom', animated: boolean }) => {
   const getPositionClasses = () => {
-    return position === 'top' ? '-top-2 left-1/2 -translate-x-1/2' : '-bottom-2 left-1/2 -translate-x-1/2 rotate-180';
+    return position === 'top' ? '-top-3 left-1/2 -translate-x-1/2' : '-bottom-3 left-1/2 -translate-x-1/2 rotate-180';
   };
 
   const draw = {
@@ -331,21 +331,20 @@ const FiligreeEdge = ({ position, animated }: { position: 'top' | 'bottom', anim
 
   return (
     <motion.svg 
-      className={`absolute w-24 h-4 pointer-events-none text-[#D4AF37] ${getPositionClasses()} ${animated ? 'drop-shadow-[0_0_5px_rgba(212,175,55,0.8)]' : ''}`}
-      viewBox="0 0 64 16"
+      className={`absolute w-32 h-6 pointer-events-none text-[#D4AF37] ${getPositionClasses()} ${animated ? 'drop-shadow-[0_0_5px_rgba(212,175,55,0.8)]' : ''}`}
+      viewBox="0 0 128 24"
       variants={variants}
       initial="hidden"
       animate="visible"
     >
-      {/* Central Diamond/Gem */}
-      <path d="M32,2 L36,8 L32,14 L28,8 Z" fill="currentColor" />
-      {/* Left Wing / Fleur */}
-      <path d="M26,8 C18,8 10,2 2,2 C6,8 18,14 26,8 Z" fill="currentColor" />
-      {/* Right Wing / Fleur */}
-      <path d="M38,8 C46,8 54,2 62,2 C58,8 46,14 38,8 Z" fill="currentColor" />
-      {/* Small accent dots */}
-      <circle cx="14" cy="5" r="1" fill="currentColor" />
-      <circle cx="50" cy="5" r="1" fill="currentColor" />
+      {/* Central Sword/Gem */}
+      <path d="M64,2 L70,12 L64,22 L58,12 Z" fill="currentColor" />
+      {/* Intricate Wings */}
+      <path d="M54,12 C40,12 20,4 4,4 C12,12 36,20 54,12 Z" fill="currentColor" />
+      <path d="M74,12 C88,12 108,4 124,4 C116,12 92,20 74,12 Z" fill="currentColor" />
+      {/* Flourish dots */}
+      <circle cx="24" cy="8" r="1.5" fill="currentColor" />
+      <circle cx="104" cy="8" r="1.5" fill="currentColor" />
     </motion.svg>
   );
 };
