@@ -306,78 +306,46 @@ const FiligreeCorner = ({ position, animated }: { position: string, animated: bo
 
 const FiligreeEdge = ({ position, animated }: { position: 'top' | 'bottom', animated: boolean }) => {
   const getPositionClasses = () => {
-    return position === 'top' ? 'top-0 left-1/2 -translate-x-1/2' : 'bottom-0 left-1/2 -translate-x-1/2 rotate-180';
+    return position === 'top' ? '-top-2 left-1/2 -translate-x-1/2' : '-bottom-2 left-1/2 -translate-x-1/2 rotate-180';
   };
 
   const draw = {
-    hidden: { pathLength: 0, opacity: 0 },
+    hidden: { scale: 0.5, opacity: 0 },
     visible: { 
-      pathLength: 1, 
+      scale: 1, 
       opacity: 1, 
       transition: { 
-        pathLength: { type: "spring", duration: 3, bounce: 0 },
-        opacity: { duration: 0.5 }
+        duration: 0.8,
+        ease: "easeOut",
+        delay: 0.2
       } 
     }
   };
 
   const staticDraw = {
-    hidden: { pathLength: 1, opacity: 0.15 },
-    visible: { pathLength: 1, opacity: 0.15 }
+    hidden: { scale: 1, opacity: 0.2 },
+    visible: { scale: 1, opacity: 0.2 }
   };
 
   const variants = animated ? draw : staticDraw;
-  const initial = "hidden";
-  const animate = "visible";
 
   return (
-    <svg 
-      className={`absolute w-48 h-8 pointer-events-none text-[#D4AF37] ${getPositionClasses()} ${animated ? 'drop-shadow-[0_0_3px_rgba(212,175,55,0.6)]' : ''}`}
-      viewBox="0 0 200 30" 
+    <motion.svg 
+      className={`absolute w-24 h-4 pointer-events-none text-[#D4AF37] ${getPositionClasses()} ${animated ? 'drop-shadow-[0_0_5px_rgba(212,175,55,0.8)]' : ''}`}
+      viewBox="0 0 64 16"
+      variants={variants}
+      initial="hidden"
+      animate="visible"
     >
-      {/* Central sweeping curves */}
-      <motion.path
-        d="M0,0 C50,0 70,25 100,25 C130,25 150,0 200,0"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1.5"
-        variants={variants}
-        initial={initial}
-        animate={animate}
-      />
-      <motion.path
-        d="M40,0 C60,0 80,15 100,15 C120,15 140,0 160,0"
-        fill="none"
-        stroke="currentColor"
-        strokeWidth="1"
-        variants={variants}
-        initial={initial}
-        animate={animate}
-      />
-      
-      {/* Decorative center diamond/diamond substitute */}
-      <motion.path
-        d="M95,15 L100,20 L105,15 L100,10 Z"
-        fill="currentColor"
-        variants={animated ? { hidden: { scale: 0, opacity: 0 }, visible: { scale: 1, opacity: 1, transition: { delay: 1 } } } : staticDraw}
-        initial="hidden"
-        animate="visible"
-      />
-
-      <motion.circle 
-        cx="70" cy="8" r="1.5" 
-        fill="currentColor"
-        variants={animated ? { hidden: { scale: 0 }, visible: { scale: 1, transition: { delay: 1.2 } } } : staticDraw}
-        initial="hidden"
-        animate="visible"
-      />
-      <motion.circle 
-        cx="130" cy="8" r="1.5" 
-        fill="currentColor"
-        variants={animated ? { hidden: { scale: 0 }, visible: { scale: 1, transition: { delay: 1.2 } } } : staticDraw}
-        initial="hidden"
-        animate="visible"
-      />
-    </svg>
+      {/* Central Diamond/Gem */}
+      <path d="M32,2 L36,8 L32,14 L28,8 Z" fill="currentColor" />
+      {/* Left Wing / Fleur */}
+      <path d="M26,8 C18,8 10,2 2,2 C6,8 18,14 26,8 Z" fill="currentColor" />
+      {/* Right Wing / Fleur */}
+      <path d="M38,8 C46,8 54,2 62,2 C58,8 46,14 38,8 Z" fill="currentColor" />
+      {/* Small accent dots */}
+      <circle cx="14" cy="5" r="1" fill="currentColor" />
+      <circle cx="50" cy="5" r="1" fill="currentColor" />
+    </motion.svg>
   );
 };
