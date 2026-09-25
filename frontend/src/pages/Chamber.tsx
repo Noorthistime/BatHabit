@@ -52,10 +52,10 @@ function SettingRow({ label, desc, children }: { label: string; desc?: string; c
 const CardFiligree = ({ position }: { position: string }) => {
   const getPositionClasses = () => {
     switch (position) {
-      case 'top-left': return '-top-12 -left-12';
-      case 'top-right': return '-top-12 -right-12 rotate-90';
-      case 'bottom-right': return '-bottom-12 -right-12 rotate-180';
-      case 'bottom-left': return '-bottom-12 -left-12 -rotate-90';
+      case 'top-left': return 'top-0 left-0';
+      case 'top-right': return 'top-0 right-0 rotate-90';
+      case 'bottom-right': return 'bottom-0 right-0 rotate-180';
+      case 'bottom-left': return 'bottom-0 left-0 -rotate-90';
       default: return '';
     }
   };
@@ -66,7 +66,7 @@ const CardFiligree = ({ position }: { position: string }) => {
       pathLength: 1, 
       opacity: 1, 
       transition: { 
-        pathLength: { duration: 2.5, ease: "easeOut" },
+        pathLength: { duration: 1.5, ease: "easeOut" },
         opacity: { duration: 0.5 }
       } 
     }
@@ -77,77 +77,74 @@ const CardFiligree = ({ position }: { position: string }) => {
     visible: { 
       opacity: 1, 
       scale: 1, 
-      transition: { delay: 1.5, duration: 0.8 } 
+      transition: { delay: 1, duration: 0.5 } 
     }
   };
 
   return (
     <motion.svg 
-      className={`absolute w-32 h-32 pointer-events-none text-[#D4AF37] opacity-60 ${getPositionClasses()} drop-shadow-[0_0_6px_rgba(212,175,55,0.5)] z-0`}
+      className={`absolute w-12 h-12 pointer-events-none text-[#D4AF37] opacity-60 ${getPositionClasses()} drop-shadow-[0_0_3px_rgba(212,175,55,0.4)] z-0`}
       viewBox="0 0 100 100"
       initial="hidden"
       animate="visible"
     >
-      {/* Anchor point at roughly (50,50), sprawling outwards */}
-      
-      {/* Large sweeping vine */}
+      {/* Short simple stem originating from the exact corner 0,0 */}
       <motion.path 
-        d="M 50 50 Q 80 20 95 60 T 60 95" 
+        d="M 0 0 C 10 30, 20 40, 45 45" 
+        fill="none" stroke="currentColor" strokeWidth="2.5" variants={draw} 
+      />
+      {/* Two tiny side stems */}
+      <motion.path 
+        d="M 0 0 C 30 10, 40 5, 55 15" 
         fill="none" stroke="currentColor" strokeWidth="1.5" variants={draw} 
       />
-      {/* Secondary vine */}
       <motion.path 
-        d="M 50 50 Q 30 70 20 90 T 5 60" 
-        fill="none" stroke="currentColor" strokeWidth="1" variants={draw} 
+        d="M 0 0 C 10 30, 5 40, 15 55" 
+        fill="none" stroke="currentColor" strokeWidth="1.5" variants={draw} 
       />
       
-      {/* Inner floral loop */}
+      {/* Simple flourishing flower at the end of the main stem (45,45) */}
       <motion.path 
-        d="M 60 50 C 80 30, 90 50, 70 70 C 50 90, 30 80, 50 60" 
-        fill="none" stroke="currentColor" strokeWidth="1" variants={draw} 
-      />
-      
-      {/* Flourishing petals */}
-      <motion.path 
-        d="M 70 60 C 75 50, 85 55, 80 65 C 75 75, 65 70, 70 60 Z" 
+        d="M 45 45 C 40 40, 40 30, 45 25 C 50 30, 50 40, 45 45 Z" 
         fill="currentColor" variants={fade} 
       />
       <motion.path 
-        d="M 40 75 C 35 65, 25 70, 30 80 C 35 90, 45 85, 40 75 Z" 
+        d="M 45 45 C 50 40, 60 40, 65 45 C 60 50, 50 50, 45 45 Z" 
         fill="currentColor" variants={fade} 
       />
-
-      {/* Royal dots */}
-      <motion.circle cx="85" cy="45" r="2" fill="currentColor" variants={fade} />
-      <motion.circle cx="95" cy="70" r="1.5" fill="currentColor" variants={fade} />
-      <motion.circle cx="45" cy="90" r="1.5" fill="currentColor" variants={fade} />
+      <motion.path 
+        d="M 45 45 C 40 50, 40 60, 45 65 C 50 60, 50 50, 45 45 Z" 
+        fill="currentColor" variants={fade} 
+      />
+      
+      {/* Little dots for pollen/elegance */}
+      <motion.circle cx="45" cy="45" r="2.5" fill="currentColor" variants={fade} />
+      <motion.circle cx="65" cy="25" r="2" fill="currentColor" variants={fade} />
+      <motion.circle cx="25" cy="65" r="2" fill="currentColor" variants={fade} />
     </motion.svg>
   );
 };
 
 function SectionCard({ title, children }: { title: string; children: React.ReactNode }) {
   return (
-    <div className="relative">
+    <div className="relative p-5 flex flex-col rounded-xl bg-[#0D1B2A] dark:bg-[#1a0202] border border-[#415A77] dark:border-[#D4AF37]/60 shadow-[0_8px_30px_rgba(0,0,0,0.8)] overflow-hidden z-10">
       {/* Outward sprouting animated filigrees */}
       <CardFiligree position="top-left" />
       <CardFiligree position="top-right" />
       <CardFiligree position="bottom-left" />
       <CardFiligree position="bottom-right" />
 
-      {/* Inner card with overflow-hidden to keep watermark contained */}
-      <div className="relative p-5 flex flex-col rounded-xl bg-[#0D1B2A] dark:bg-[#1a0202] border border-[#415A77] dark:border-[#D4AF37]/60 shadow-[0_8px_30px_rgba(0,0,0,0.8)] overflow-hidden z-10">
-        {/* Background Watermark */}
-        <div className="absolute -bottom-10 -right-10 opacity-[0.03] text-[#D4AF37] pointer-events-none">
-          <Settings size={180} />
-        </div>
+      {/* Background Watermark */}
+      <div className="absolute -bottom-10 -right-10 opacity-[0.03] text-[#D4AF37] pointer-events-none">
+        <Settings size={180} />
+      </div>
 
-        <div className="flex items-center gap-2 mb-3 pb-3 border-b border-[#D4AF37]/20 relative z-10">
-          <div className="w-1 h-4 bg-[#D4AF37] shadow-[0_0_8px_rgba(212,175,55,0.8)]" />
-          <h3 className="font-mono text-xs uppercase tracking-widest text-[#D4AF37] drop-shadow-[0_0_3px_rgba(212,175,55,0.6)] font-bold">{title}</h3>
-        </div>
-        <div className="relative z-10 flex flex-col gap-1">
-          {children}
-        </div>
+      <div className="flex items-center gap-2 mb-3 pb-3 border-b border-[#D4AF37]/20 relative z-10">
+        <div className="w-1 h-4 bg-[#D4AF37] shadow-[0_0_8px_rgba(212,175,55,0.8)]" />
+        <h3 className="font-mono text-xs uppercase tracking-widest text-[#D4AF37] drop-shadow-[0_0_3px_rgba(212,175,55,0.6)] font-bold">{title}</h3>
+      </div>
+      <div className="relative z-10 flex flex-col gap-1">
+        {children}
       </div>
     </div>
   );
