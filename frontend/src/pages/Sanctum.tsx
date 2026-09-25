@@ -6,44 +6,65 @@ import { motion } from 'framer-motion';
 import '../sanctum-gothic.css';
 
 const HeroFiligree = () => {
-  const bloom = {
-    hidden: { scale: 0.8, opacity: 0 },
+  const draw = {
+    hidden: { pathLength: 0, opacity: 0 },
     visible: { 
-      scale: 1, 
+      pathLength: 1, 
       opacity: 1, 
-      transition: { duration: 1.2, ease: "easeOut" } 
+      transition: { duration: 1.5, ease: "easeOut" } 
     }
   };
 
-  const expand = {
-    hidden: { scaleX: 0, opacity: 0 },
-    visible: { 
-      scaleX: 1, 
-      opacity: 1, 
-      transition: { duration: 1.5, ease: "easeInOut", delay: 0.2 } 
-    }
+  const fade = {
+    hidden: { opacity: 0, scale: 0 },
+    visible: { opacity: 1, scale: 1, transition: { delay: 1, duration: 0.8 } }
   };
 
   return (
     <motion.svg 
-      className="absolute top-0 left-1/2 -translate-x-1/2 w-[300px] h-[50px] pointer-events-none text-[#D4AF37] opacity-90 z-0 drop-shadow-[0_4px_8px_rgba(0,0,0,0.9)]"
+      className="absolute top-0 left-1/2 -translate-x-1/2 w-[340px] h-[45px] pointer-events-none text-[#D4AF37] opacity-80 z-0 drop-shadow-[0_2px_4px_rgba(212,175,55,0.4)]"
       viewBox="0 0 400 60"
       initial="hidden"
       animate="visible"
     >
-      {/* Lateral expanding heavy bars */}
-      <motion.g variants={expand} style={{ originX: 0.5, originY: 0.5 }}>
-        <path d="M 40 30 L 160 30 L 150 24 L 50 24 Z" fill="currentColor" />
-        <path d="M 360 30 L 240 30 L 250 24 L 350 24 Z" fill="currentColor" />
-        <path d="M 20 30 Q 30 20 50 15 Q 40 25 40 30 Z" fill="currentColor" />
-        <path d="M 380 30 Q 370 20 350 15 Q 360 25 360 30 Z" fill="currentColor" />
+      {/* Central blooming flower (elegant, layered petals) */}
+      <motion.g variants={fade} style={{ originX: "50%", originY: "50%" }}>
+        {/* Main central petal */}
+        <path d="M 200 10 C 185 25, 195 40, 200 45 C 205 40, 215 25, 200 10 Z" fill="currentColor" />
+        {/* Left petal */}
+        <path d="M 200 40 C 180 35, 175 15, 185 10 C 195 15, 195 30, 200 40 Z" fill="currentColor" />
+        {/* Right petal */}
+        <path d="M 200 40 C 220 35, 225 15, 215 10 C 205 15, 205 30, 200 40 Z" fill="currentColor" />
+        {/* Bottom leaf base */}
+        <path d="M 195 43 C 200 50, 200 50, 205 43 C 205 38, 195 38, 195 43 Z" fill="currentColor" />
       </motion.g>
 
-      {/* Heavy central Lotus/Crest */}
-      <motion.g variants={bloom} style={{ originX: 0.5, originY: 0.5 }}>
-        <path d="M 200 5 C 175 25, 155 45, 200 55 C 245 45, 225 25, 200 5 Z" fill="currentColor" />
-        <path d="M 200 30 C 150 40, 130 25, 140 15 C 160 30, 180 38, 200 45 C 220 38, 240 30, 260 15 C 270 25, 250 40, 200 30 Z" fill="currentColor" />
-        <circle cx="200" cy="60" r="3" fill="currentColor" />
+      {/* Elegant sweeping vines */}
+      <motion.path 
+        d="M 190 40 Q 150 50 100 25 T 20 20" 
+        fill="none" stroke="currentColor" strokeWidth="1.5" variants={draw} 
+      />
+      <motion.path 
+        d="M 210 40 Q 250 50 300 25 T 380 20" 
+        fill="none" stroke="currentColor" strokeWidth="1.5" variants={draw} 
+      />
+      
+      {/* Secondary inner vines */}
+      <motion.path 
+        d="M 160 38 Q 120 20 80 30" 
+        fill="none" stroke="currentColor" strokeWidth="1" variants={draw} 
+      />
+      <motion.path 
+        d="M 240 38 Q 280 20 320 30" 
+        fill="none" stroke="currentColor" strokeWidth="1" variants={draw} 
+      />
+      
+      {/* Flourishing buds on vines */}
+      <motion.g variants={fade} style={{ originX: "50%", originY: "50%" }}>
+        <path d="M 100 25 C 95 20, 90 25, 95 30 C 100 28, 100 25, 100 25 Z" fill="currentColor" />
+        <path d="M 300 25 C 305 20, 310 25, 305 30 C 300 28, 300 25, 300 25 Z" fill="currentColor" />
+        <circle cx="20" cy="20" r="1.5" fill="currentColor" />
+        <circle cx="380" cy="20" r="1.5" fill="currentColor" />
       </motion.g>
     </motion.svg>
   );
@@ -58,39 +79,41 @@ const CornerFiligree = ({ className }: { className?: string }) => {
       transition: { duration: 1.5, ease: "easeOut" } 
     }
   };
-  const fillFade = {
-    hidden: { opacity: 0 },
-    visible: { opacity: 1, transition: { duration: 1, delay: 0.8 } }
+  const fade = {
+    hidden: { opacity: 0, scale: 0 },
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.8, delay: 1 } }
   };
 
   return (
     <motion.svg 
-      className={`absolute w-16 h-16 pointer-events-none text-[#D4AF37] opacity-80 z-0 drop-shadow-[0_2px_6px_rgba(0,0,0,0.9)] ${className}`}
+      className={`absolute w-20 h-20 pointer-events-none text-[#D4AF37] opacity-70 z-0 drop-shadow-[0_0_3px_rgba(212,175,55,0.4)] ${className}`}
       viewBox="0 0 100 100"
       initial="hidden"
       animate="visible"
     >
-      {/* Outer framing line */}
+      {/* Primary corner sweeping stem */}
       <motion.path 
-        d="M 5 95 L 5 20 Q 5 5 20 5 L 95 5" 
-        fill="none" stroke="currentColor" strokeWidth="2.5" variants={draw} 
-      />
-      {/* Inner heavy leaf/flourish */}
-      <motion.path 
-        d="M 14 14 Q 35 14 45 28 Q 28 45 14 45 Q 14 35 14 14 Z" 
-        fill="currentColor" variants={fillFade} 
-      />
-      <motion.path 
-        d="M 14 14 Q 14 35 28 45 Q 45 28 45 14 Q 35 14 14 14 Z" 
-        fill="currentColor" variants={fillFade} 
-      />
-      {/* Accent sweeping line */}
-      <motion.path 
-        d="M 15 55 Q 15 40 40 40 Q 65 40 75 15" 
+        d="M 5 5 C 10 40, 20 70, 75 75" 
         fill="none" stroke="currentColor" strokeWidth="1.5" variants={draw} 
       />
-      <motion.circle cx="75" cy="15" r="2.5" fill="currentColor" variants={fillFade} />
-      <motion.circle cx="15" cy="55" r="2.5" fill="currentColor" variants={fillFade} />
+      <motion.path 
+        d="M 5 5 C 40 10, 70 20, 75 75" 
+        fill="none" stroke="currentColor" strokeWidth="1" variants={draw} 
+      />
+      <motion.path 
+        d="M 25 35 Q 50 20 60 40" 
+        fill="none" stroke="currentColor" strokeWidth="1" variants={draw} 
+      />
+
+      {/* Flourishing floral buds at the ends */}
+      <motion.g variants={fade}>
+        {/* Flower at 75,75 */}
+        <path d="M 75 75 C 70 65, 80 65, 80 75 C 80 85, 70 85, 75 75 Z" fill="currentColor" />
+        <path d="M 75 75 C 65 70, 65 80, 75 80 C 85 80, 85 70, 75 75 Z" fill="currentColor" />
+        {/* Flower at 60,40 */}
+        <path d="M 60 40 C 55 35, 65 35, 65 40 C 65 45, 55 45, 60 40 Z" fill="currentColor" />
+        <circle cx="8" cy="8" r="1.5" fill="currentColor" />
+      </motion.g>
     </motion.svg>
   );
 };
