@@ -48,19 +48,50 @@ function SettingRow({ label, desc, children }: { label: string; desc?: string; c
   );
 }
 
+const FiligreeCorner = ({ position }: { position: string }) => {
+  const getPositionClasses = () => {
+    switch (position) {
+      case 'top-left': return 'top-0 left-0';
+      case 'top-right': return 'top-0 right-0 rotate-90';
+      case 'bottom-right': return 'bottom-0 right-0 rotate-180';
+      case 'bottom-left': return 'bottom-0 left-0 -rotate-90';
+      default: return '';
+    }
+  };
+
+  return (
+    <svg 
+      className={`absolute w-16 h-16 pointer-events-none text-[#D4AF37] opacity-40 ${getPositionClasses()}`}
+      viewBox="0 0 100 100"
+    >
+      <path d="M0,0 L0,40 C0,40 20,40 20,20 C20,0 40,0 40,0 L0,0 Z" fill="currentColor" opacity="0.2" />
+      <path d="M0,0 L0,60 C30,60 60,30 60,0 L0,0 Z" fill="none" stroke="currentColor" strokeWidth="1.5" />
+      <path d="M0,0 L0,80 C45,80 80,45 80,0 L0,0 Z" fill="none" stroke="currentColor" strokeWidth="0.75" />
+      <path d="M15,15 L25,10 L35,15 L25,25 Z" fill="currentColor" />
+      <circle cx="45" cy="15" r="2" fill="currentColor" />
+      <circle cx="15" cy="45" r="2" fill="currentColor" />
+    </svg>
+  );
+};
+
 function SectionCard({ title, children }: { title: string; children: React.ReactNode }) {
   return (
     <div
-      className="relative p-5 flex flex-col rounded-xl bg-[#1B263B]/80 dark:bg-[rgba(20,4,5,0.85)] backdrop-blur-xl border border-[#415A77] dark:border-[#D4AF37]/30 shadow-[0_10px_40px_rgba(0,0,0,0.6)] overflow-hidden"
+      className="relative p-5 flex flex-col rounded-xl bg-[#0D1B2A] dark:bg-[#1a0202] border border-[#415A77] dark:border-[#D4AF37]/60 shadow-[0_8px_30px_rgba(0,0,0,0.8)] overflow-hidden"
     >
+      <FiligreeCorner position="top-left" />
+      <FiligreeCorner position="top-right" />
+      <FiligreeCorner position="bottom-left" />
+      <FiligreeCorner position="bottom-right" />
+
       {/* Background Watermark */}
       <div className="absolute -bottom-10 -right-10 opacity-[0.03] text-[#D4AF37] pointer-events-none">
         <Settings size={180} />
       </div>
 
-      <div className="flex items-center gap-2 mb-3 pb-3 border-b border-[#D4AF37]/15 relative z-10">
-        <div className="w-1 h-4 bg-[#D4AF37] shadow-[0_0_5px_#D4AF37]" />
-        <h3 className="font-mono text-xs uppercase tracking-widest text-[#D4AF37] drop-shadow-[0_0_2px_rgba(212,175,55,0.4)] font-bold">{title}</h3>
+      <div className="flex items-center gap-2 mb-3 pb-3 border-b border-[#D4AF37]/20 relative z-10">
+        <div className="w-1 h-4 bg-[#D4AF37] shadow-[0_0_8px_rgba(212,175,55,0.8)]" />
+        <h3 className="font-mono text-xs uppercase tracking-widest text-[#D4AF37] drop-shadow-[0_0_3px_rgba(212,175,55,0.6)] font-bold">{title}</h3>
       </div>
       <div className="relative z-10 flex flex-col gap-1">
         {children}
@@ -68,22 +99,6 @@ function SectionCard({ title, children }: { title: string; children: React.React
     </div>
   );
 }
-
-const OrnamentalDivider = () => (
-  <div className="w-full max-w-[280px] h-3 text-[#D4AF37] opacity-80 mt-1 mb-2 drop-shadow-[0_0_3px_rgba(212,175,55,0.5)]">
-    <svg className="w-full h-full" viewBox="0 0 320 12">
-      <path d="M 24 6 L 130 6" fill="none" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M 20 1 Q 20 6 14 6 Q 20 6 20 11 Q 20 6 26 6 Q 20 6 20 1 Z" fill="currentColor" />
-      <circle cx="10" cy="6" r="1.5" fill="currentColor" />
-      <path d="M 296 6 L 190 6" fill="none" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M 300 1 Q 300 6 294 6 Q 300 6 300 11 Q 300 6 306 6 Q 300 6 300 1 Z" fill="currentColor" />
-      <circle cx="310" cy="6" r="1.5" fill="currentColor" />
-      <path d="M 130 6 C 145 -4, 160 2, 160 6 C 160 10, 145 16, 130 6" fill="none" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M 190 6 C 175 -4, 160 2, 160 6 C 160 10, 175 16, 190 6" fill="none" stroke="currentColor" strokeWidth="1.5" />
-      <circle cx="160" cy="6" r="2.5" fill="currentColor" />
-    </svg>
-  </div>
-);
 
 export function Chamber() {
   const { theme, toggleTheme } = useTheme();
@@ -98,16 +113,13 @@ export function Chamber() {
 
       <div className="w-full max-w-[1200px] mx-auto flex flex-col gap-6">
 
-        <div className="flex flex-col pb-4 border-b border-[#415A77]/50 dark:border-[#D4AF37]/25 gap-2 mb-2 relative">
-          {/* Subtle background glow for header */}
-          <div className="absolute top-0 left-0 w-64 h-32 bg-[radial-gradient(ellipse_at_top_left,_rgba(212,175,55,0.15)_0%,_transparent_70%)] pointer-events-none" />
-          
-          <span className="font-mono text-xs uppercase text-[#D4AF37] tracking-[0.3em] bg-[#415A77]/20 dark:bg-[#250101] px-2.5 py-0.5 border border-[#415A77]/40 dark:border-[#D4AF37]/35 self-start shadow-[0_0_10px_rgba(212,175,55,0.1)] relative z-10">
+        {/* Header */}
+        <div className="flex flex-col pb-4 border-b border-[#415A77]/50 dark:border-[#D4AF37]/25 gap-2 mb-2">
+          <span className="font-mono text-xs uppercase text-[#D4AF37] tracking-[0.3em] bg-[#415A77]/20 dark:bg-[#250101] px-2.5 py-0.5 border border-[#415A77]/40 dark:border-[#D4AF37]/35 self-start">
             Sanctum Noctis • The Chamber
           </span>
-          <h1 className="font-serif text-3xl lg:text-4xl text-[#EEEAD7] font-bold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)] relative z-10">The Chamber</h1>
-          <OrnamentalDivider />
-          <p className="font-sans text-sm text-[#8d9685] leading-relaxed relative z-10">
+          <h1 className="font-serif text-3xl lg:text-4xl text-[#EEEAD7] font-bold drop-shadow-md">The Chamber</h1>
+          <p className="font-sans text-sm text-[#8d9685] leading-relaxed">
             Configure your sanctuary. Carve the rules by which your nocturnal order operates.
           </p>
         </div>
