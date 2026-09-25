@@ -178,6 +178,8 @@ function NotificationCard({ notification, onRead }: { notification: Notification
       <FiligreeCorner position="top-right" animated={isNew} />
       <FiligreeCorner position="bottom-left" animated={isNew} />
       <FiligreeCorner position="bottom-right" animated={isNew} />
+      <FiligreeEdge position="top" animated={isNew} />
+      <FiligreeEdge position="bottom" animated={isNew} />
 
       {/* Unread Dot */}
       {isNew && (
@@ -301,3 +303,81 @@ const FiligreeCorner = ({ position, animated }: { position: string, animated: bo
     </svg>
   );
 }
+
+const FiligreeEdge = ({ position, animated }: { position: 'top' | 'bottom', animated: boolean }) => {
+  const getPositionClasses = () => {
+    return position === 'top' ? 'top-0 left-1/2 -translate-x-1/2' : 'bottom-0 left-1/2 -translate-x-1/2 rotate-180';
+  };
+
+  const draw = {
+    hidden: { pathLength: 0, opacity: 0 },
+    visible: { 
+      pathLength: 1, 
+      opacity: 1, 
+      transition: { 
+        pathLength: { type: "spring", duration: 3, bounce: 0 },
+        opacity: { duration: 0.5 }
+      } 
+    }
+  };
+
+  const staticDraw = {
+    hidden: { pathLength: 1, opacity: 0.15 },
+    visible: { pathLength: 1, opacity: 0.15 }
+  };
+
+  const variants = animated ? draw : staticDraw;
+  const initial = "hidden";
+  const animate = "visible";
+
+  return (
+    <svg 
+      className={`absolute w-48 h-8 pointer-events-none text-[#D4AF37] ${getPositionClasses()} ${animated ? 'drop-shadow-[0_0_3px_rgba(212,175,55,0.6)]' : ''}`}
+      viewBox="0 0 200 30" 
+    >
+      {/* Central sweeping curves */}
+      <motion.path
+        d="M0,0 C50,0 70,25 100,25 C130,25 150,0 200,0"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.5"
+        variants={variants}
+        initial={initial}
+        animate={animate}
+      />
+      <motion.path
+        d="M40,0 C60,0 80,15 100,15 C120,15 140,0 160,0"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1"
+        variants={variants}
+        initial={initial}
+        animate={animate}
+      />
+      
+      {/* Decorative center diamond/diamond substitute */}
+      <motion.path
+        d="M95,15 L100,20 L105,15 L100,10 Z"
+        fill="currentColor"
+        variants={animated ? { hidden: { scale: 0, opacity: 0 }, visible: { scale: 1, opacity: 1, transition: { delay: 1 } } } : staticDraw}
+        initial="hidden"
+        animate="visible"
+      />
+
+      <motion.circle 
+        cx="70" cy="8" r="1.5" 
+        fill="currentColor"
+        variants={animated ? { hidden: { scale: 0 }, visible: { scale: 1, transition: { delay: 1.2 } } } : staticDraw}
+        initial="hidden"
+        animate="visible"
+      />
+      <motion.circle 
+        cx="130" cy="8" r="1.5" 
+        fill="currentColor"
+        variants={animated ? { hidden: { scale: 0 }, visible: { scale: 1, transition: { delay: 1.2 } } } : staticDraw}
+        initial="hidden"
+        animate="visible"
+      />
+    </svg>
+  );
+};
