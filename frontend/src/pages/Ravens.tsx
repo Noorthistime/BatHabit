@@ -306,45 +306,51 @@ const FiligreeCorner = ({ position, animated }: { position: string, animated: bo
 
 const FiligreeEdge = ({ position, animated }: { position: 'top' | 'bottom', animated: boolean }) => {
   const getPositionClasses = () => {
-    return position === 'top' ? '-top-3 left-1/2 -translate-x-1/2' : '-bottom-3 left-1/2 -translate-x-1/2 rotate-180';
+    return position === 'top' ? 'top-1 left-12 right-12' : 'bottom-1 left-12 right-12 rotate-180';
   };
 
   const draw = {
-    hidden: { scale: 0.5, opacity: 0 },
+    hidden: { pathLength: 0, opacity: 0 },
     visible: { 
-      scale: 1, 
+      pathLength: 1, 
       opacity: 1, 
       transition: { 
-        duration: 0.8,
-        ease: "easeOut",
-        delay: 0.2
+        duration: 2.5,
+        ease: "easeInOut"
       } 
     }
   };
 
   const staticDraw = {
-    hidden: { scale: 1, opacity: 0.2 },
-    visible: { scale: 1, opacity: 0.2 }
+    hidden: { pathLength: 1, opacity: 0.15 },
+    visible: { pathLength: 1, opacity: 0.15 }
   };
 
   const variants = animated ? draw : staticDraw;
 
   return (
-    <motion.svg 
-      className={`absolute w-32 h-6 pointer-events-none text-[#D4AF37] ${getPositionClasses()} ${animated ? 'drop-shadow-[0_0_5px_rgba(212,175,55,0.8)]' : ''}`}
-      viewBox="0 0 128 24"
-      variants={variants}
-      initial="hidden"
-      animate="visible"
-    >
-      {/* Central Sword/Gem */}
-      <path d="M64,2 L70,12 L64,22 L58,12 Z" fill="currentColor" />
-      {/* Intricate Wings */}
-      <path d="M54,12 C40,12 20,4 4,4 C12,12 36,20 54,12 Z" fill="currentColor" />
-      <path d="M74,12 C88,12 108,4 124,4 C116,12 92,20 74,12 Z" fill="currentColor" />
-      {/* Flourish dots */}
-      <circle cx="24" cy="8" r="1.5" fill="currentColor" />
-      <circle cx="104" cy="8" r="1.5" fill="currentColor" />
-    </motion.svg>
+    <div className={`absolute h-[6px] pointer-events-none text-[#D4AF37] ${getPositionClasses()} ${animated ? 'drop-shadow-[0_0_3px_rgba(212,175,55,0.6)]' : ''}`}>
+      <motion.svg 
+        className="w-full h-full"
+        viewBox="0 0 1000 20"
+        preserveAspectRatio="none"
+        variants={variants}
+        initial="hidden"
+        animate="visible"
+      >
+        <path 
+          d="M0,10 Q 50,0 100,10 T 200,10 T 300,10 T 400,10 T 500,10 T 600,10 T 700,10 T 800,10 T 900,10 T 1000,10" 
+          fill="none" 
+          stroke="currentColor" 
+          strokeWidth="2"
+        />
+        <path 
+          d="M0,10 Q 50,20 100,10 T 200,10 T 300,10 T 400,10 T 500,10 T 600,10 T 700,10 T 800,10 T 900,10 T 1000,10" 
+          fill="none" 
+          stroke="currentColor" 
+          strokeWidth="1"
+        />
+      </motion.svg>
+    </div>
   );
 };
