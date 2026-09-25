@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useTheme } from '../context/ThemeContext';
 import { User, Bell, Shield, Settings, Moon, Sun, ChevronRight, Eye, EyeOff, Trash2, LogOut } from 'lucide-react';
+import { motion } from 'framer-motion';
 
 type Section = 'account' | 'appearance' | 'notifications' | 'security' | 'preferences';
 
@@ -51,26 +52,101 @@ function SettingRow({ label, desc, children }: { label: string; desc?: string; c
 const FiligreeCorner = ({ position }: { position: string }) => {
   const getPositionClasses = () => {
     switch (position) {
-      case 'top-left': return 'top-0 left-0';
-      case 'top-right': return 'top-0 right-0 rotate-90';
-      case 'bottom-right': return 'bottom-0 right-0 rotate-180';
-      case 'bottom-left': return 'bottom-0 left-0 -rotate-90';
+      case 'top-left': return 'top-[-2px] left-[-2px]';
+      case 'top-right': return 'top-[-2px] right-[-2px] rotate-90';
+      case 'bottom-right': return 'bottom-[-2px] right-[-2px] rotate-180';
+      case 'bottom-left': return 'bottom-[-2px] left-[-2px] -rotate-90';
       default: return '';
     }
   };
 
+  const draw = {
+    hidden: { pathLength: 0, opacity: 0 },
+    visible: { 
+      pathLength: 1, 
+      opacity: 1, 
+      transition: { 
+        pathLength: { duration: 2.5, ease: "easeOut" },
+        opacity: { duration: 0.5 }
+      } 
+    }
+  };
+
+  const fade = {
+    hidden: { opacity: 0, scale: 0 },
+    visible: { 
+      opacity: 1, 
+      scale: 1, 
+      transition: { delay: 1.5, duration: 0.8 } 
+    }
+  };
+
   return (
-    <svg 
-      className={`absolute w-16 h-16 pointer-events-none text-[#D4AF37] opacity-40 ${getPositionClasses()}`}
+    <motion.svg 
+      className={`absolute w-24 h-24 pointer-events-none text-[#D4AF37] opacity-80 ${getPositionClasses()} drop-shadow-[0_0_5px_rgba(212,175,55,0.7)]`}
       viewBox="0 0 100 100"
+      initial="hidden"
+      animate="visible"
     >
-      <path d="M0,0 L0,40 C0,40 20,40 20,20 C20,0 40,0 40,0 L0,0 Z" fill="currentColor" opacity="0.2" />
-      <path d="M0,0 L0,60 C30,60 60,30 60,0 L0,0 Z" fill="none" stroke="currentColor" strokeWidth="1.5" />
-      <path d="M0,0 L0,80 C45,80 80,45 80,0 L0,0 Z" fill="none" stroke="currentColor" strokeWidth="0.75" />
-      <path d="M15,15 L25,10 L35,15 L25,25 Z" fill="currentColor" />
-      <circle cx="45" cy="15" r="2" fill="currentColor" />
-      <circle cx="15" cy="45" r="2" fill="currentColor" />
-    </svg>
+      {/* Background shadow/leaf */}
+      <motion.path 
+        d="M 0 0 C 0 40, 40 80, 80 80 C 60 80, 20 60, 0 20 Z" 
+        fill="currentColor" 
+        opacity="0.1" 
+        variants={fade} 
+      />
+      
+      {/* Main C-scroll (Acanthus swirl) */}
+      <motion.path 
+        d="M 0 0 C 40 0, 80 20, 90 60 C 95 80, 80 100, 60 90 C 40 80, 30 60, 40 40" 
+        fill="none" 
+        stroke="currentColor" 
+        strokeWidth="2.5" 
+        variants={draw} 
+      />
+      
+      {/* Inner swirling petal */}
+      <motion.path 
+        d="M 0 0 C 0 30, 10 50, 30 60 C 50 70, 70 60, 80 40" 
+        fill="none" 
+        stroke="currentColor" 
+        strokeWidth="1.5" 
+        variants={draw} 
+      />
+      
+      {/* Outer leaf flourishes */}
+      <motion.path 
+        d="M 60 20 C 70 10, 90 10, 100 30" 
+        fill="none" 
+        stroke="currentColor" 
+        strokeWidth="1.5" 
+        variants={draw} 
+      />
+      <motion.path 
+        d="M 20 60 C 10 70, 10 90, 30 100" 
+        fill="none" 
+        stroke="currentColor" 
+        strokeWidth="1.5" 
+        variants={draw} 
+      />
+
+      {/* Flower core/petals */}
+      <motion.path 
+        d="M 40 40 C 45 35, 55 35, 60 40 C 55 45, 45 45, 40 40 Z" 
+        fill="currentColor" 
+        variants={fade} 
+      />
+      <motion.path 
+        d="M 60 40 C 65 45, 65 55, 60 60 C 55 55, 55 45, 60 40 Z" 
+        fill="currentColor" 
+        variants={fade} 
+      />
+
+      {/* Ornate pollen dots */}
+      <motion.circle cx="75" cy="75" r="2.5" fill="currentColor" variants={fade} />
+      <motion.circle cx="90" cy="50" r="1.5" fill="currentColor" variants={fade} />
+      <motion.circle cx="50" cy="90" r="1.5" fill="currentColor" variants={fade} />
+    </motion.svg>
   );
 };
 
