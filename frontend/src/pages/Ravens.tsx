@@ -347,7 +347,7 @@ const FiligreeEdge = ({ position, animated }: { position: 'top' | 'bottom', anim
       >
         {/* Left line */}
         <motion.path 
-          d="M 20 6 L 130 6" 
+          d="M 24 6 L 130 6" 
           fill="none" 
           stroke="currentColor" 
           strokeWidth="1.5"
@@ -355,21 +355,19 @@ const FiligreeEdge = ({ position, animated }: { position: 'top' | 'bottom', anim
           initial="hidden"
           animate="visible"
         />
-        {/* Left arrowhead */}
+        {/* Left flourishing flower */}
         <motion.path 
-          d="M 20 6 L 28 2 M 20 6 L 28 10" 
-          fill="none" 
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          variants={lineVariants}
+          d="M 20 1 Q 20 6 14 6 Q 20 6 20 11 Q 20 6 26 6 Q 20 6 20 1 Z" 
+          fill="currentColor"
+          variants={fillVariants}
           initial="hidden"
           animate="visible"
         />
+        <motion.circle cx="10" cy="6" r="1.5" fill="currentColor" variants={fillVariants} initial="hidden" animate="visible" />
         
         {/* Right line */}
         <motion.path 
-          d="M 300 6 L 190 6" 
+          d="M 296 6 L 190 6" 
           fill="none" 
           stroke="currentColor" 
           strokeWidth="1.5"
@@ -377,17 +375,15 @@ const FiligreeEdge = ({ position, animated }: { position: 'top' | 'bottom', anim
           initial="hidden"
           animate="visible"
         />
-        {/* Right arrowhead */}
+        {/* Right flourishing flower */}
         <motion.path 
-          d="M 300 6 L 292 2 M 300 6 L 292 10" 
-          fill="none" 
-          stroke="currentColor"
-          strokeWidth="1.5"
-          strokeLinecap="round"
-          variants={lineVariants}
+          d="M 300 1 Q 300 6 294 6 Q 300 6 300 11 Q 300 6 306 6 Q 300 6 300 1 Z" 
+          fill="currentColor"
+          variants={fillVariants}
           initial="hidden"
           animate="visible"
         />
+        <motion.circle cx="310" cy="6" r="1.5" fill="currentColor" variants={fillVariants} initial="hidden" animate="visible" />
 
         {/* Center ornament */}
         {/* Left swirl */}
