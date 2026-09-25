@@ -16,12 +16,21 @@ function Toggle({ enabled, onToggle }: { enabled: boolean; onToggle: () => void 
   return (
     <button
       onClick={onToggle}
-      className="relative w-10 h-5 transition-all focus:outline-none"
-      style={{ background: enabled ? '#6D0808' : 'rgba(212,175,55,0.1)', border: `1px solid ${enabled ? 'rgba(212,175,55,0.5)' : 'rgba(212,175,55,0.2)'}` }}
+      className="relative w-10 h-5 transition-all focus:outline-none rounded-full"
+      style={{ 
+        background: enabled ? 'rgba(109,8,8,0.8)' : 'rgba(20,4,5,0.8)', 
+        border: `1px solid ${enabled ? 'rgba(212,175,55,0.5)' : 'rgba(65,90,119,0.3)'}`,
+        boxShadow: enabled ? 'inset 0 2px 4px rgba(0,0,0,0.8)' : 'inset 0 2px 4px rgba(0,0,0,0.6)'
+      }}
     >
       <div
-        className="absolute top-0.5 w-4 h-4 transition-all duration-200"
-        style={{ left: enabled ? '22px' : '2px', background: enabled ? '#D4AF37' : '#8d9685', boxShadow: enabled ? '0 0 8px rgba(212,175,55,0.5)' : 'none' }}
+        className="absolute top-[1px] w-4 h-4 rounded-full transition-all duration-300 ease-out"
+        style={{ 
+          left: enabled ? '21px' : '2px', 
+          background: enabled ? 'radial-gradient(circle at 30% 30%, #F5D77F, #D4AF37)' : 'linear-gradient(135deg, #415A77, #1B263B)', 
+          boxShadow: enabled ? '0 0 10px rgba(212,175,55,0.8), inset -1px -1px 3px rgba(109,8,8,0.5)' : '0 2px 4px rgba(0,0,0,0.5)',
+          border: enabled ? 'none' : '1px solid rgba(255,255,255,0.1)'
+        }}
       />
     </button>
   );
@@ -241,9 +250,9 @@ export function Chamber() {
                     <input
                       type={showPassword ? 'text' : 'password'}
                       defaultValue="••••••••••"
-                      className="font-mono text-xs bg-[#1a0204] border border-[#D4AF37]/20 px-3 py-1.5 text-[#EEEAD7] focus:border-[#D4AF37]/50 focus:outline-none w-32"
+                      className="font-mono text-xs bg-[rgba(20,4,5,0.8)] border border-[#415A77]/50 rounded px-3 py-1.5 text-[#EEEAD7] focus:border-[#D4AF37] focus:shadow-[0_0_8px_rgba(212,175,55,0.3)] focus:outline-none w-32 transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.6)]"
                     />
-                    <button onClick={() => setShowPassword(!showPassword)} className="text-[#8d9685] hover:text-[#D4AF37]">
+                    <button onClick={() => setShowPassword(!showPassword)} className="text-[#8d9685] hover:text-[#D4AF37] transition-colors drop-shadow">
                       {showPassword ? <EyeOff size={14} /> : <Eye size={14} />}
                     </button>
                   </div>
@@ -252,7 +261,7 @@ export function Chamber() {
                   <input
                     type="password"
                     placeholder="New password"
-                    className="font-mono text-xs bg-[#1a0204] border border-[#D4AF37]/20 px-3 py-1.5 text-[#EEEAD7] focus:border-[#D4AF37]/50 focus:outline-none w-40 placeholder-[#8d9685]/50"
+                    className="font-mono text-xs bg-[rgba(20,4,5,0.8)] border border-[#415A77]/50 rounded px-3 py-1.5 text-[#EEEAD7] focus:border-[#D4AF37] focus:shadow-[0_0_8px_rgba(212,175,55,0.3)] focus:outline-none w-40 placeholder-[#8d9685]/50 transition-all shadow-[inset_0_2px_4px_rgba(0,0,0,0.6)]"
                   />
                 </SettingRow>
                 <div className="pt-3">
