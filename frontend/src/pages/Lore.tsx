@@ -307,35 +307,35 @@ const RoyalBoxFrame = () => (
     viewport={{ once: true, margin: "-100px" }}
     className="absolute inset-0 pointer-events-none z-0"
   >
-    <motion.div variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 1 } } }} className="absolute inset-0">
+    <div className="absolute inset-0">
       
       {/* Outer borders */}
-      <div className="absolute top-[16px] left-[48px] right-[48px] h-[1.5px] bg-[#D4AF37]" />
-      <div className="absolute bottom-[16px] left-[48px] right-[48px] h-[1.5px] bg-[#D4AF37]" />
-      <div className="absolute left-[16px] top-[48px] bottom-[48px] w-[1.5px] bg-[#D4AF37]" />
-      <div className="absolute right-[16px] top-[48px] bottom-[48px] w-[1.5px] bg-[#D4AF37]" />
+      <motion.div variants={{ hidden: { scaleX: 0 }, visible: { scaleX: 1, transition: { duration: 1, ease: "easeOut" } } }} className="absolute top-[16px] left-[48px] right-[48px] h-[1.5px] bg-[#D4AF37] origin-center" />
+      <motion.div variants={{ hidden: { scaleX: 0 }, visible: { scaleX: 1, transition: { duration: 1, ease: "easeOut" } } }} className="absolute bottom-[16px] left-[48px] right-[48px] h-[1.5px] bg-[#D4AF37] origin-center" />
+      <motion.div variants={{ hidden: { scaleY: 0 }, visible: { scaleY: 1, transition: { duration: 1, ease: "easeOut" } } }} className="absolute left-[16px] top-[48px] bottom-[48px] w-[1.5px] bg-[#D4AF37] origin-center" />
+      <motion.div variants={{ hidden: { scaleY: 0 }, visible: { scaleY: 1, transition: { duration: 1, ease: "easeOut" } } }} className="absolute right-[16px] top-[48px] bottom-[48px] w-[1.5px] bg-[#D4AF37] origin-center" />
 
       {/* Inner borders */}
-      <div className="absolute top-[22px] left-[52px] right-[52px] h-[1px] bg-[#D4AF37]/40" />
-      <div className="absolute bottom-[22px] left-[52px] right-[52px] h-[1px] bg-[#D4AF37]/40" />
-      <div className="absolute left-[22px] top-[52px] bottom-[52px] w-[1px] bg-[#D4AF37]/40" />
-      <div className="absolute right-[22px] top-[52px] bottom-[52px] w-[1px] bg-[#D4AF37]/40" />
+      <motion.div variants={{ hidden: { scaleX: 0 }, visible: { scaleX: 1, transition: { delay: 0.2, duration: 1, ease: "easeOut" } } }} className="absolute top-[22px] left-[52px] right-[52px] h-[1px] bg-[#D4AF37]/40 origin-center" />
+      <motion.div variants={{ hidden: { scaleX: 0 }, visible: { scaleX: 1, transition: { delay: 0.2, duration: 1, ease: "easeOut" } } }} className="absolute bottom-[22px] left-[52px] right-[52px] h-[1px] bg-[#D4AF37]/40 origin-center" />
+      <motion.div variants={{ hidden: { scaleY: 0 }, visible: { scaleY: 1, transition: { delay: 0.2, duration: 1, ease: "easeOut" } } }} className="absolute left-[22px] top-[52px] bottom-[52px] w-[1px] bg-[#D4AF37]/40 origin-center" />
+      <motion.div variants={{ hidden: { scaleY: 0 }, visible: { scaleY: 1, transition: { delay: 0.2, duration: 1, ease: "easeOut" } } }} className="absolute right-[22px] top-[52px] bottom-[52px] w-[1px] bg-[#D4AF37]/40 origin-center" />
 
       {/* Top/Bottom Center Diamonds */}
-      <div className="absolute top-[8px] left-1/2 -translate-x-1/2 w-8 h-8 rotate-45 border-[1.5px] border-[#D4AF37] bg-[#110102] z-10 flex items-center justify-center shadow-[0_0_8px_rgba(212,175,55,0.4)]">
-         <div className="w-3 h-3 border border-[#D4AF37]" />
-      </div>
-      <div className="absolute bottom-[8px] left-1/2 -translate-x-1/2 w-8 h-8 rotate-45 border-[1.5px] border-[#D4AF37] bg-[#110102] z-10 flex items-center justify-center shadow-[0_0_8px_rgba(212,175,55,0.4)]">
-         <div className="w-3 h-3 border border-[#D4AF37]" />
-      </div>
+      <motion.div variants={{ hidden: { scale: 0, rotate: 0 }, visible: { scale: 1, rotate: 45, transition: { duration: 0.5, ease: "backOut" } } }} className="absolute top-[8px] left-1/2 -translate-x-1/2 w-8 h-8 border-[1.5px] border-[#D4AF37] bg-[#110102] z-10 flex items-center justify-center shadow-[0_0_8px_rgba(212,175,55,0.4)]">
+         <motion.div variants={{ hidden: { scale: 0 }, visible: { scale: 1, transition: { delay: 0.3 } } }} className="w-3 h-3 border border-[#D4AF37]" />
+      </motion.div>
+      <motion.div variants={{ hidden: { scale: 0, rotate: 0 }, visible: { scale: 1, rotate: 45, transition: { duration: 0.5, ease: "backOut" } } }} className="absolute bottom-[8px] left-1/2 -translate-x-1/2 w-8 h-8 border-[1.5px] border-[#D4AF37] bg-[#110102] z-10 flex items-center justify-center shadow-[0_0_8px_rgba(212,175,55,0.4)]">
+         <motion.div variants={{ hidden: { scale: 0 }, visible: { scale: 1, transition: { delay: 0.3 } } }} className="w-3 h-3 border border-[#D4AF37]" />
+      </motion.div>
 
       {/* Left/Right Center Diamonds */}
-      <div className="absolute left-[8px] top-1/2 -translate-y-1/2 w-8 h-8 rotate-45 border-[1.5px] border-[#D4AF37] bg-[#110102] z-10 flex items-center justify-center shadow-[0_0_8px_rgba(212,175,55,0.4)]">
-         <div className="w-3 h-3 border border-[#D4AF37]" />
-      </div>
-      <div className="absolute right-[8px] top-1/2 -translate-y-1/2 w-8 h-8 rotate-45 border-[1.5px] border-[#D4AF37] bg-[#110102] z-10 flex items-center justify-center shadow-[0_0_8px_rgba(212,175,55,0.4)]">
-         <div className="w-3 h-3 border border-[#D4AF37]" />
-      </div>
+      <motion.div variants={{ hidden: { scale: 0, rotate: 0 }, visible: { scale: 1, rotate: 45, transition: { duration: 0.5, ease: "backOut" } } }} className="absolute left-[8px] top-1/2 -translate-y-1/2 w-8 h-8 border-[1.5px] border-[#D4AF37] bg-[#110102] z-10 flex items-center justify-center shadow-[0_0_8px_rgba(212,175,55,0.4)]">
+         <motion.div variants={{ hidden: { scale: 0 }, visible: { scale: 1, transition: { delay: 0.3 } } }} className="w-3 h-3 border border-[#D4AF37]" />
+      </motion.div>
+      <motion.div variants={{ hidden: { scale: 0, rotate: 0 }, visible: { scale: 1, rotate: 45, transition: { duration: 0.5, ease: "backOut" } } }} className="absolute right-[8px] top-1/2 -translate-y-1/2 w-8 h-8 border-[1.5px] border-[#D4AF37] bg-[#110102] z-10 flex items-center justify-center shadow-[0_0_8px_rgba(212,175,55,0.4)]">
+         <motion.div variants={{ hidden: { scale: 0 }, visible: { scale: 1, transition: { delay: 0.3 } } }} className="w-3 h-3 border border-[#D4AF37]" />
+      </motion.div>
 
       {/* Corner Ornaments */}
       {[
@@ -347,17 +347,17 @@ const RoyalBoxFrame = () => (
         <div key={i} className={`absolute w-[44px] h-[44px] text-[#D4AF37] ${pos.style}`}>
           <svg viewBox="0 0 44 44" fill="none" stroke="currentColor">
              {/* Intricate sweeping curve connecting to lines */}
-             <path d="M 8 44 C 8 20 20 8 44 8" strokeWidth="2" />
-             <path d="M 14 44 C 14 26 26 14 44 14" strokeWidth="1" strokeDasharray="2 2" />
+             <motion.path variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { delay: 0.5, duration: 1, ease: "easeInOut" } } }} d="M 8 44 C 8 20 20 8 44 8" strokeWidth="2" />
+             <motion.path variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { delay: 0.7, duration: 1, ease: "easeInOut" } } }} d="M 14 44 C 14 26 26 14 44 14" strokeWidth="1" strokeDasharray="2 2" />
              {/* Acanthus leaf curls in the corner */}
-             <path d="M 12 36 C 12 24 24 12 36 12 C 26 14 16 22 18 32 C 14 34 10 38 12 36 Z" fill="currentColor" stroke="none" />
+             <motion.path variants={{ hidden: { scale: 0, opacity: 0 }, visible: { scale: 1, opacity: 1, transition: { delay: 1, duration: 0.5 } } }} d="M 12 36 C 12 24 24 12 36 12 C 26 14 16 22 18 32 C 14 34 10 38 12 36 Z" fill="currentColor" stroke="none" className="origin-top-left" />
              {/* The corner tip */}
-             <circle cx="8" cy="8" r="4" fill="currentColor" stroke="none" />
-             <circle cx="16" cy="16" r="2" fill="currentColor" stroke="none" />
+             <motion.circle variants={{ hidden: { scale: 0 }, visible: { scale: 1, transition: { delay: 1.2 } } }} cx="8" cy="8" r="4" fill="currentColor" stroke="none" />
+             <motion.circle variants={{ hidden: { scale: 0 }, visible: { scale: 1, transition: { delay: 1.3 } } }} cx="16" cy="16" r="2" fill="currentColor" stroke="none" />
           </svg>
         </div>
       ))}
-    </motion.div>
+    </div>
   </motion.div>
 );
 
