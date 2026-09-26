@@ -215,11 +215,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   {getMoonPhase()}
                 </span>
               </div>
-              <div className="flex items-baseline justify-center gap-2.5 px-6 py-2 rounded-lg bg-gradient-to-br from-[#1B263B] to-[#0D1B2A] dark:from-[#3a0404] dark:to-[#1a0101] border border-[#D4AF37]/50 dark:border-[#D4AF37]/80 shadow-[inset_0_0_12px_rgba(212,175,55,0.15),_0_4px_12px_rgba(0,0,0,0.5)] dark:shadow-[inset_0_0_12px_rgba(212,175,55,0.3),_0_0_15px_rgba(212,175,55,0.5)] relative overflow-hidden">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D4AF37]/10 to-transparent translate-x-[-100%] animate-[shimmer_3s_infinite]"></div>
-                <span className="font-mono text-xs text-[#D4AF37] dark:text-[#D4AF37] uppercase tracking-widest font-bold relative z-10">Rank {char.level || 1}</span>
-                <span className="text-[#D4AF37]/60 dark:text-[#D4AF37]/60 font-bold relative z-10">:</span>
-                <span className="font-serif text-[15px] text-[#F7F3E9] dark:text-[#F5D77F] font-bold tracking-wider relative z-10">{char.currentTitle || 'Novice'}</span>
+              <div className="gothic-notched group overflow-hidden shadow-[0_4px_12px_rgba(0,0,0,0.6)]">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D4AF37]/10 to-transparent translate-x-[-120%] group-hover:animate-[shimmer-sweep_2.4s_infinite]"></div>
+                <span className="font-mono text-xs text-[#D4AF37] dark:text-[#D4AF37] uppercase tracking-widest font-bold">Rank {char.level || 1}</span>
+                <span className="text-[#D4AF37]/60 dark:text-[#D4AF37]/60 font-bold mx-2">:</span>
+                <span className="font-serif text-[15px] text-[#F7F3E9] dark:text-[#F5D77F] font-bold tracking-wider">{char.currentTitle || 'Novice'}</span>
               </div>
             </div>
           </div>
@@ -231,16 +231,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
           </div>
 
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#0D1B2A] dark:bg-gradient-to-r dark:from-[#280406] dark:to-[#140203] border border-[#415A77] dark:border-[#D4AF37]/60 shadow-[0_0_18px_rgba(212,175,55,0.3)]">
-              <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-[#947014] via-[#F5D77F] to-[#D4AF37] flex items-center justify-center text-[#0c0608] font-bold text-xs shadow-md border border-[#FFF5C0]">
+            <div className="gothic-notched cursor-default shadow-[0_4px_12px_rgba(0,0,0,0.6)]">
+              <div className="w-5 h-5 mr-2 rounded-full bg-gradient-to-tr from-[#947014] via-[#F5D77F] to-[#D4AF37] flex items-center justify-center text-[#0c0608] font-bold text-[10px] shadow-[0_0_8px_rgba(212,175,55,0.4)] border border-[#FFF5C0]">
                 <span className="font-serif">✦</span>
               </div>
-              <span className="font-serif text-base font-bold text-[#D4AF37] dark:text-[#F5D77F] tracking-wider">{currency?.balance || 0}</span>
-              <span className="font-mono text-[10px] text-[#D4AF37] dark:text-[#C5A059] uppercase font-bold tracking-widest">Crowns</span>
+              <span className="font-serif text-[15px] font-bold text-[#D4AF37] dark:text-[#F5D77F] tracking-wider">{currency?.balance || 0}</span>
+              <span className="font-mono text-[10px] text-[#D4AF37] dark:text-[#C5A059] uppercase font-bold tracking-widest ml-2 mt-0.5">Crowns</span>
             </div>
-            <div className="flex items-center gap-3 pl-3 border-l border-[#415A77] dark:border-[#D4AF37]/30">
-              <button onClick={toggleTheme} className="px-4 py-1.5 rounded-full bg-[#1B263B] dark:bg-[#3d0303] flex items-center justify-center border-2 border-[#415A77] dark:border-[#D4AF37] shadow-[0_0_12px_rgba(212,175,55,0.6)] text-[#D4AF37] dark:text-[#F5D77F] hover:scale-105 transition-transform font-serif text-[11px] font-bold tracking-widest uppercase">
-                {theme === 'dark' ? 'Crimson Realm' : 'Twilight Realm'}
+            
+            <div className="flex items-center gap-3 pl-4 border-l border-[#415A77]/50 dark:border-[#D4AF37]/30 h-8">
+              <button onClick={toggleTheme} className="gothic-notched cursor-pointer hover:scale-[1.03] active:scale-95 transition-transform shadow-[0_4px_12px_rgba(0,0,0,0.6)]">
+                <span className="font-serif text-[11px] text-[#D4AF37] dark:text-[#F5D77F] font-bold tracking-widest uppercase">
+                  {theme === 'dark' ? 'Crimson Realm' : 'Twilight Realm'}
+                </span>
               </button>
             </div>
           </div>
