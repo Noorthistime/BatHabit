@@ -35,6 +35,14 @@ export function Layout({ children }: { children: React.ReactNode }) {
   const char = profile?.character || {};
   const currency = profile?.currency || {};
 
+  const getGreeting = () => {
+    const hour = new Date().getHours();
+    if (hour < 12) return 'Good morning';
+    if (hour < 17) return 'Good afternoon';
+    if (hour < 21) return 'Good evening';
+    return 'Good night';
+  };
+
   const navItems = [
     { icon: Home, label: 'Sanctum', path: '/dashboard' },
     { icon: BookOpen, label: 'Questbook', path: '/dashboard/questbook' },
@@ -131,8 +139,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           <div className="flex items-center gap-4">
             <div className="flex flex-col">
               <span className="font-serif text-lg font-bold text-[#F7F3E9] dark:text-[#EEEAD7] tracking-wide flex items-center gap-2">
-                Good evening, {char.currentTitle || 'Novice'}
-                <span className="font-mono text-[11px] font-normal px-2 py-0.5 rounded bg-[#415A77] dark:bg-[#2c0000] text-[#D4AF37] dark:text-[#F5D77F] border border-[#415A77] dark:border-[#D4AF37]/45">RANK {char.level || 1}</span>
+                {getGreeting()}, <span className="font-mono text-[13px] font-normal px-2 py-0.5 ml-1 rounded bg-[#415A77] dark:bg-[#2c0000] text-[#D4AF37] dark:text-[#F5D77F] border border-[#415A77] dark:border-[#D4AF37]/45">RANK {char.level || 1} • {char.currentTitle || 'Novice'}</span>
               </span>
               <span className="font-mono text-xs text-[#D4AF37] dark:text-[#C5A059] flex items-center gap-1.5">
                 Waxing Gibbous • Cycle VII Nocturne
