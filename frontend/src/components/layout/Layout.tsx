@@ -82,7 +82,7 @@ const FiligreeFrame = ({ children, className }: { children: React.ReactNode, cla
       </svg>
     </div>
 
-    <div className="relative z-10 flex flex-col items-center justify-center w-full">
+    <div className="relative z-10 flex items-baseline justify-center w-full h-full">
       {children}
     </div>
   </div>
@@ -282,9 +282,9 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   {getMoonPhase()}
                 </span>
               </div>
-              <FiligreeFrame className="w-24 h-[4.5rem]">
-                <span className="font-serif text-[11px] text-[#D4AF37]/90 uppercase tracking-widest font-bold">Rank {char.level || 1}</span>
-                <span className="font-serif text-[10px] text-[#D4AF37]/60 leading-[8px] my-1">:</span>
+              <FiligreeFrame className="h-[2.75rem] px-8 whitespace-nowrap">
+                <span className="font-mono text-[11px] text-[#D4AF37]/90 uppercase tracking-widest font-bold">Rank {char.level || 1}</span>
+                <span className="font-serif text-[14px] text-[#D4AF37]/60 mx-2 leading-none">:</span>
                 <span className="font-serif text-[14px] text-[#F7F3E9] dark:text-[#F5D77F] font-bold tracking-wider">{char.currentTitle || 'Novice'}</span>
               </FiligreeFrame>
             </div>
@@ -297,16 +297,16 @@ export function Layout({ children }: { children: React.ReactNode }) {
           </div>
 
           <div className="flex items-center gap-6">
-            <FiligreeFrame className="w-24 h-[4.5rem]">
-              <span className="font-serif text-[13px] text-[#D4AF37] drop-shadow-[0_0_6px_rgba(212,175,55,1)] leading-none">✦</span>
-              <span className="font-serif text-[16px] font-bold text-[#F7F3E9] dark:text-[#F5D77F] tracking-wider my-0.5 leading-none">{currency?.balance || 0}</span>
-              <span className="font-serif text-[9px] text-[#D4AF37]/80 uppercase font-bold tracking-widest leading-none">Crowns</span>
+            <FiligreeFrame className="h-[2.75rem] px-6 whitespace-nowrap">
+              <span className="font-serif text-[14px] text-[#D4AF37] drop-shadow-[0_0_6px_rgba(212,175,55,1)] leading-none mr-2">✦</span>
+              <span className="font-serif text-[15px] font-bold text-[#F7F3E9] dark:text-[#F5D77F] tracking-wider leading-none mr-2">{currency?.balance || 0}</span>
+              <span className="font-serif text-[10px] text-[#D4AF37]/80 uppercase font-bold tracking-widest leading-none">Crowns</span>
             </FiligreeFrame>
             
             <button onClick={toggleTheme} className="group hover:scale-[1.03] active:scale-95 transition-transform">
-              <FiligreeFrame className="w-32 h-[4.5rem]">
-                <span className="font-serif text-[13px] text-[#D4AF37] dark:text-[#F5D77F] font-bold tracking-widest uppercase text-center leading-tight">
-                  {theme === 'dark' ? 'Crimson\nRealm' : 'Twilight\nRealm'}
+              <FiligreeFrame className="h-[2.75rem] px-8 whitespace-nowrap">
+                <span className="font-serif text-[12px] text-[#D4AF37] dark:text-[#F5D77F] font-bold tracking-widest uppercase text-center leading-none">
+                  {theme === 'dark' ? 'Crimson Realm' : 'Twilight Realm'}
                 </span>
               </FiligreeFrame>
             </button>
