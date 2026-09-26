@@ -386,7 +386,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
           </div>
           
           <div className="absolute left-1/2 -translate-x-1/2 max-w-[40%] hidden xl:flex items-center justify-center pointer-events-none">
-            <span className="font-serif text-[16px] text-[#F7F3E9]/90 dark:text-[#F5D77F]/90 italic text-center truncate drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] tracking-wide">
+            <span className="font-serif text-[16px] text-[#F7F3E9]/90 dark:text-[#F5D77F]/90 text-center truncate drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] tracking-wide">
               {randomQuote}
             </span>
           </div>
