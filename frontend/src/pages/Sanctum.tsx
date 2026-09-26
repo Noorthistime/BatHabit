@@ -5,13 +5,13 @@ import { useTheme } from '../context/ThemeContext';
 import { motion } from 'framer-motion';
 import '../sanctum-gothic.css';
 
-const AnimatedFiligree = () => {
+const AnimatedFiligree = ({ widthClass = "w-[160px]" }: { widthClass?: string }) => {
   return (
-    <div className="absolute -top-[16px] left-1/2 -translate-x-1/2 w-[160px] h-[32px] pointer-events-none flex items-center justify-center z-20">
+    <div className={`absolute top-0 -translate-y-1/2 left-1/2 -translate-x-1/2 ${widthClass} pointer-events-none flex items-center justify-center z-20`}>
       <motion.svg 
         viewBox="0 0 160 32" 
         fill="none" 
-        className="w-full h-full text-[#D4AF37] drop-shadow-[0_0_6px_rgba(212,175,55,0.7)]"
+        className="w-full h-auto text-[#D4AF37] drop-shadow-[0_0_6px_rgba(212,175,55,0.7)]"
       >
         {/* Left primary sweeping vine */}
         <motion.path 
@@ -229,7 +229,7 @@ export function Sanctum() {
 
               {/* Stat 2: Tarnished Crowns */}
               <div className="relative group flex items-center gap-4 px-5 py-4 rounded-[12px] bg-[#110102] dark:bg-[radial-gradient(ellipse_at_center,_rgba(45,5,8,1)_0%,_rgba(15,2,4,1)_100%)] border border-[#D4AF37]/40 shadow-[0_4px_20px_rgba(0,0,0,0.5)] cursor-default transition-all duration-300 hover:border-[#D4AF37]/80 hover:shadow-[0_4px_25px_rgba(212,175,55,0.2)]">
-                <AnimatedFiligree />
+                <AnimatedFiligree widthClass="w-[200px]" />
                 <div className="w-10 h-10 rounded-[10px] flex items-center justify-center border border-[#D4AF37]/50 text-[#F5D77F] shadow-[inset_0_0_8px_rgba(212,175,55,0.1)] transition-all duration-300 group-hover:bg-[#D4AF37]/10 group-hover:border-[#F5D77F] group-hover:scale-110">
                   <Coins size={20} strokeWidth={1.5} className="transition-transform duration-500 group-hover:-rotate-12 group-hover:scale-110" />
                 </div>
