@@ -206,24 +206,26 @@ export function Layout({ children }: { children: React.ReactNode }) {
         {/* Universal Top Header */}
         <header className="hidden md:flex fixed top-0 left-72 right-0 h-20 bg-[#0D1B2A]/92 dark:bg-[#140406]/92 backdrop-blur-xl z-40 px-8 items-center justify-between border-b border-[#415A77] dark:border-[#D4AF37]/35 shadow-[0_4px_32px_rgba(0,0,0,0.85)]">
           <div className="flex items-center gap-4">
-            <div className="flex items-center gap-5">
-              <div className="flex flex-col">
+            <div className="flex items-center gap-6">
+              <div className="flex flex-col items-center">
                 <span className="font-serif text-lg font-bold text-[#F7F3E9] dark:text-[#EEEAD7] tracking-wide">
-                  {getGreeting()},
+                  {getGreeting()}
                 </span>
-                <span className="font-mono text-xs text-[#D4AF37] dark:text-[#C5A059]">
+                <span className="font-mono text-[11px] text-[#D4AF37] dark:text-[#C5A059] tracking-widest uppercase mt-0.5">
                   {getMoonPhase()}
                 </span>
               </div>
-              <div className="flex flex-col items-center justify-center px-4 py-1.5 rounded bg-gradient-to-br from-[#1B263B] to-[#0D1B2A] dark:from-[#4a0505] dark:to-[#1a0101] border border-[#D4AF37]/60 dark:border-[#D4AF37] shadow-[inset_0_0_12px_rgba(212,175,55,0.1),_0_4px_12px_rgba(0,0,0,0.6)] dark:shadow-[inset_0_0_12px_rgba(212,175,55,0.2),_0_0_15px_rgba(212,175,55,0.4)]">
-                <span className="font-mono text-[10px] text-[#D4AF37]/80 dark:text-[#D4AF37]/80 uppercase tracking-[0.2em] leading-none mb-1">Rank {char.level || 1}</span>
-                <span className="font-serif text-sm text-[#F7F3E9] dark:text-[#F5D77F] font-bold leading-none tracking-wider">{char.currentTitle || 'Novice'}</span>
+              <div className="flex items-baseline justify-center gap-2.5 px-6 py-2 rounded-lg bg-gradient-to-br from-[#1B263B] to-[#0D1B2A] dark:from-[#3a0404] dark:to-[#1a0101] border border-[#D4AF37]/50 dark:border-[#D4AF37]/80 shadow-[inset_0_0_12px_rgba(212,175,55,0.15),_0_4px_12px_rgba(0,0,0,0.5)] dark:shadow-[inset_0_0_12px_rgba(212,175,55,0.3),_0_0_15px_rgba(212,175,55,0.5)] relative overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D4AF37]/10 to-transparent translate-x-[-100%] animate-[shimmer_3s_infinite]"></div>
+                <span className="font-mono text-xs text-[#D4AF37] dark:text-[#D4AF37] uppercase tracking-widest font-bold relative z-10">Rank {char.level || 1}</span>
+                <span className="text-[#D4AF37]/60 dark:text-[#D4AF37]/60 font-bold relative z-10">:</span>
+                <span className="font-serif text-[15px] text-[#F7F3E9] dark:text-[#F5D77F] font-bold tracking-wider relative z-10">{char.currentTitle || 'Novice'}</span>
               </div>
             </div>
           </div>
           
-          <div className="absolute left-1/2 -translate-x-1/2 max-w-[35%] hidden xl:flex items-center justify-center pointer-events-none">
-            <span className="font-serif text-[13px] text-[#F7F3E9]/50 dark:text-[#D4AF37]/50 italic text-center truncate drop-shadow-sm leading-relaxed">
+          <div className="absolute left-1/2 -translate-x-1/2 max-w-[40%] hidden xl:flex items-center justify-center pointer-events-none">
+            <span className="font-serif text-[16px] text-[#F7F3E9]/90 dark:text-[#F5D77F]/90 italic text-center truncate drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] tracking-wide">
               "{randomQuote}"
             </span>
           </div>
