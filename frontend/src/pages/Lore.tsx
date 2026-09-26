@@ -27,86 +27,61 @@ const staggerContainer: Variants = {
   }
 };
 
-const drawVariants = {
-  hidden: { pathLength: 0, fillOpacity: 0, stroke: "currentColor", strokeWidth: 1.5 },
-  visible: { 
-    pathLength: 1, 
-    fillOpacity: 1,
-    strokeWidth: 0,
-    transition: { 
-      pathLength: { duration: 1.5, ease: "easeInOut" },
-      fillOpacity: { duration: 0.8, ease: "easeIn", delay: 1.2 }
-    }
-  }
-};
-
 const ContinuousLoreFrame = () => (
   <motion.div 
-    initial="hidden"
-    whileInView="visible"
+    initial={{ clipPath: 'polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%)' }}
+    whileInView={{ clipPath: 'polygon(16px 0, calc(100% - 16px) 0, 100% 16px, 100% calc(100% - 16px), calc(100% - 16px) 100%, 16px 100%, 0 calc(100% - 16px), 0 16px, 0 16px, 0 16px, 0 16px, 0 16px, 0 16px)' }}
     viewport={{ once: true }}
-    className="absolute inset-0 pointer-events-none z-0 animate-[pulse_4s_ease-in-out_infinite]"
+    transition={{ duration: 1.5, ease: "easeInOut" }}
+    className="absolute inset-0 pointer-events-none z-0"
   >
-    {/* Continuous Outer Thin Gold Border */}
-    <motion.div variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 1.5 } } }} className="absolute inset-[3px] border border-[#D4AF37]/40 shadow-[0_0_10px_rgba(212,175,55,0.2)]" />
-    {/* Continuous Inner Thin Gold Border */}
-    <motion.div variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 1.5, delay: 0.5 } } }} className="absolute inset-[6px] border border-[#D4AF37]/20" />
-
-    {/* Top Left Sharp Corner */}
-    <svg className="absolute top-0 left-0 w-24 h-24 text-[#F5D77F] drop-shadow-[0_0_8px_rgba(245,215,127,0.8)]" viewBox="0 0 100 100" fill="none">
-      <motion.path variants={drawVariants} d="M0,0 L50,0 L40,8 L8,8 L8,40 L0,50 Z" />
-      <motion.path variants={drawVariants} d="M20,8 Q35,25 55,10 Q40,15 20,8 Z" />
-      <motion.path variants={drawVariants} d="M8,20 Q25,35 10,55 Q15,40 8,20 Z" />
-      <motion.circle variants={{ hidden: { opacity: 0 }, visible: { opacity: 0.7, transition: { delay: 1.8 } } }} cx="16" cy="16" r="3" fill="currentColor" />
-    </svg>
-    {/* Top Right Sharp Corner */}
-    <svg className="absolute top-0 right-0 w-24 h-24 text-[#F5D77F] drop-shadow-[0_0_8px_rgba(245,215,127,0.8)] scale-x-[-1]" viewBox="0 0 100 100" fill="none">
-      <motion.path variants={drawVariants} d="M0,0 L50,0 L40,8 L8,8 L8,40 L0,50 Z" />
-      <motion.path variants={drawVariants} d="M20,8 Q35,25 55,10 Q40,15 20,8 Z" />
-      <motion.path variants={drawVariants} d="M8,20 Q25,35 10,55 Q15,40 8,20 Z" />
-      <motion.circle variants={{ hidden: { opacity: 0 }, visible: { opacity: 0.7, transition: { delay: 1.8 } } }} cx="16" cy="16" r="3" fill="currentColor" />
-    </svg>
-    {/* Bottom Left Sharp Corner */}
-    <svg className="absolute bottom-0 left-0 w-24 h-24 text-[#F5D77F] drop-shadow-[0_0_8px_rgba(245,215,127,0.8)] scale-y-[-1]" viewBox="0 0 100 100" fill="none">
-      <motion.path variants={drawVariants} d="M0,0 L50,0 L40,8 L8,8 L8,40 L0,50 Z" />
-      <motion.path variants={drawVariants} d="M20,8 Q35,25 55,10 Q40,15 20,8 Z" />
-      <motion.path variants={drawVariants} d="M8,20 Q25,35 10,55 Q15,40 8,20 Z" />
-      <motion.circle variants={{ hidden: { opacity: 0 }, visible: { opacity: 0.7, transition: { delay: 1.8 } } }} cx="16" cy="16" r="3" fill="currentColor" />
-    </svg>
-    {/* Bottom Right Sharp Corner */}
-    <svg className="absolute bottom-0 right-0 w-24 h-24 text-[#F5D77F] drop-shadow-[0_0_8px_rgba(245,215,127,0.8)] scale-[-1]" viewBox="0 0 100 100" fill="none">
-      <motion.path variants={drawVariants} d="M0,0 L50,0 L40,8 L8,8 L8,40 L0,50 Z" />
-      <motion.path variants={drawVariants} d="M20,8 Q35,25 55,10 Q40,15 20,8 Z" />
-      <motion.path variants={drawVariants} d="M8,20 Q25,35 10,55 Q15,40 8,20 Z" />
-      <motion.circle variants={{ hidden: { opacity: 0 }, visible: { opacity: 0.7, transition: { delay: 1.8 } } }} cx="16" cy="16" r="3" fill="currentColor" />
-    </svg>
-
-    {/* Top Center Ornate Crest */}
-    <div className="absolute top-[2px] left-1/2 -translate-x-1/2 w-48 h-6 flex items-center justify-center">
-       <svg viewBox="0 0 300 40" className="h-full text-[#F5D77F] drop-shadow-[0_0_6px_rgba(245,215,127,0.8)]">
-          <motion.path variants={drawVariants} d="M0,0 L300,0 L280,10 L250,5 Q200,20 150,30 Q100,20 50,5 L20,10 Z" />
-          <motion.path variants={{ hidden: { opacity: 0 }, visible: { opacity: 0.5, transition: { duration: 1, delay: 1.5 } } }} d="M100,10 Q150,25 200,10 Q150,5 100,10 Z" fill="currentColor" />
-       </svg>
-    </div>
-    {/* Bottom Center Ornate Crest */}
-    <div className="absolute bottom-[2px] left-1/2 -translate-x-1/2 w-48 h-6 flex items-center justify-center">
-       <svg viewBox="0 0 300 40" className="h-full text-[#F5D77F] drop-shadow-[0_0_6px_rgba(245,215,127,0.8)] scale-y-[-1]">
-          <motion.path variants={drawVariants} d="M0,0 L300,0 L280,10 L250,5 Q200,20 150,30 Q100,20 50,5 L20,10 Z" />
-          <motion.path variants={{ hidden: { opacity: 0 }, visible: { opacity: 0.5, transition: { duration: 1, delay: 1.5 } } }} d="M100,10 Q150,25 200,10 Q150,5 100,10 Z" fill="currentColor" />
-       </svg>
+    {/* Continuous Outer Gold Border with Beveled Corners */}
+    <div className="absolute inset-0 bg-gradient-to-b from-[#D4AF37]/80 to-[#D4AF37]/30 shadow-[0_0_15px_rgba(212,175,55,0.4)]" 
+         style={{ clipPath: 'polygon(16px 0, calc(100% - 16px) 0, 100% 16px, 100% calc(100% - 16px), calc(100% - 16px) 100%, 16px 100%, 0 calc(100% - 16px), 0 16px)' }}>
     </div>
     
-    {/* Side Center Accents */}
-    <div className="absolute top-1/2 left-[2px] -translate-y-1/2 w-3 h-24 flex items-center justify-center">
-       <svg viewBox="0 0 20 200" className="w-full text-[#F5D77F] drop-shadow-[0_0_6px_rgba(245,215,127,0.6)]">
-          <motion.path variants={drawVariants} d="M0,0 L10,20 L5,50 Q15,100 5,150 L10,180 L0,200 Z" />
-       </svg>
+    {/* Inner panel background cutting out the center of the border to make it 1.5px thick */}
+    <div className="absolute inset-[1.5px] bg-[#110102]" 
+         style={{ clipPath: 'polygon(15px 0, calc(100% - 15px) 0, 100% 15px, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0 calc(100% - 15px), 0 15px)' }}>
+      {/* Deep Crimson Radial Glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(109,8,8,0.4)_0%,_rgba(17,1,2,1)_100%)]" />
     </div>
-    <div className="absolute top-1/2 right-[2px] -translate-y-1/2 w-3 h-24 flex items-center justify-center">
-       <svg viewBox="0 0 20 200" className="w-full text-[#F5D77F] drop-shadow-[0_0_6px_rgba(245,215,127,0.6)] scale-x-[-1]">
-          <motion.path variants={drawVariants} d="M0,0 L10,20 L5,50 Q15,100 5,150 L10,180 L0,200 Z" />
-       </svg>
-    </div>
+
+    {/* Inner Thin Accent Border */}
+    <div className="absolute inset-[6px] border border-[#D4AF37]/20" 
+         style={{ clipPath: 'polygon(12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0 calc(100% - 12px), 0 12px)' }} />
+
+    {/* Elegant Corner Flourishes (Inside the frame) */}
+    <motion.svg initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 1, duration: 1 }} className="absolute top-[8px] left-[8px] w-6 h-6 text-[#F5D77F] drop-shadow-[0_0_4px_rgba(212,175,55,0.8)]" viewBox="0 0 24 24">
+      <path d="M 0 12 L 12 0 L 14 2 L 2 14 Z" fill="currentColor" />
+      <circle cx="16" cy="16" r="1.5" fill="currentColor" />
+    </motion.svg>
+    <motion.svg initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 1, duration: 1 }} className="absolute top-[8px] right-[8px] w-6 h-6 text-[#F5D77F] drop-shadow-[0_0_4px_rgba(212,175,55,0.8)] scale-x-[-1]" viewBox="0 0 24 24">
+      <path d="M 0 12 L 12 0 L 14 2 L 2 14 Z" fill="currentColor" />
+      <circle cx="16" cy="16" r="1.5" fill="currentColor" />
+    </motion.svg>
+    <motion.svg initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 1, duration: 1 }} className="absolute bottom-[8px] left-[8px] w-6 h-6 text-[#F5D77F] drop-shadow-[0_0_4px_rgba(212,175,55,0.8)] scale-y-[-1]" viewBox="0 0 24 24">
+      <path d="M 0 12 L 12 0 L 14 2 L 2 14 Z" fill="currentColor" />
+      <circle cx="16" cy="16" r="1.5" fill="currentColor" />
+    </motion.svg>
+    <motion.svg initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 1, duration: 1 }} className="absolute bottom-[8px] right-[8px] w-6 h-6 text-[#F5D77F] drop-shadow-[0_0_4px_rgba(212,175,55,0.8)] scale-[-1]" viewBox="0 0 24 24">
+      <path d="M 0 12 L 12 0 L 14 2 L 2 14 Z" fill="currentColor" />
+      <circle cx="16" cy="16" r="1.5" fill="currentColor" />
+    </motion.svg>
+
+    {/* Top-Center Royal Crest */}
+    <motion.div initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 1.2, duration: 0.8 }} className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-3 flex items-center justify-center">
+      <svg viewBox="0 0 40 10" className="h-full text-[#F5D77F] drop-shadow-[0_0_6px_rgba(245,215,127,1)]">
+        <path d="M 0 0 L 20 10 L 40 0 L 20 4 Z" fill="currentColor" />
+      </svg>
+    </motion.div>
+    
+    {/* Bottom-Center Royal Crest */}
+    <motion.div initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 1.2, duration: 0.8 }} className="absolute bottom-0 left-1/2 -translate-x-1/2 w-16 h-3 flex items-center justify-center">
+      <svg viewBox="0 0 40 10" className="h-full text-[#F5D77F] drop-shadow-[0_0_6px_rgba(245,215,127,1)] scale-y-[-1]">
+        <path d="M 0 0 L 20 10 L 40 0 L 20 4 Z" fill="currentColor" />
+      </svg>
+    </motion.div>
   </motion.div>
 );
 
