@@ -21,6 +21,73 @@ const ORACLES = [
   { name: 'Chamber', icon: Key, path: '/dashboard/chamber' },
 ];
 
+const FiligreeFrame = ({ children, className }: { children: React.ReactNode, className?: string }) => (
+  <div className={`relative flex flex-col items-center justify-center px-4 py-2 bg-gradient-to-br from-[#101828] to-[#040810] dark:from-[#1f0303] dark:to-[#0a0000] shadow-[0_6px_20px_rgba(0,0,0,0.8)] ${className}`}>
+    
+    {/* Base Double Border */}
+    <div className="absolute inset-1 border border-[#D4AF37]/80 pointer-events-none"></div>
+    <div className="absolute inset-[5px] border border-[#D4AF37]/30 pointer-events-none"></div>
+
+    {/* Top Center Flourish */}
+    <div className="absolute top-[-3px] left-1/2 -translate-x-1/2 flex items-center justify-center text-[#D4AF37] pointer-events-none">
+      <svg width="50" height="10" viewBox="0 0 50 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 5 Q12.5 5 20 10 Q25 -2 30 10 Q37.5 5 50 5" stroke="#D4AF37" strokeWidth="1"/>
+        <path d="M18 5 C18 2 25 -2 32 5" stroke="#D4AF37" strokeWidth="1"/>
+        <path d="M23 4 L25 1 L27 4 Z" fill="#D4AF37"/>
+      </svg>
+    </div>
+
+    {/* Bottom Center Flourish */}
+    <div className="absolute bottom-[-3px] left-1/2 -translate-x-1/2 flex items-center justify-center text-[#D4AF37] rotate-180 pointer-events-none">
+      <svg width="50" height="10" viewBox="0 0 50 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M0 5 Q12.5 5 20 10 Q25 -2 30 10 Q37.5 5 50 5" stroke="#D4AF37" strokeWidth="1"/>
+        <path d="M18 5 C18 2 25 -2 32 5" stroke="#D4AF37" strokeWidth="1"/>
+        <path d="M23 4 L25 1 L27 4 Z" fill="#D4AF37"/>
+      </svg>
+    </div>
+
+    {/* Top Left Corner */}
+    <div className="absolute top-[-1px] left-[-1px] text-[#D4AF37] pointer-events-none">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 2 C9 2 2 9 2 16" stroke="#D4AF37" strokeWidth="1.2"/>
+        <path d="M12 5 C8 5 5 8 5 12" stroke="#D4AF37" strokeWidth="0.8"/>
+        <circle cx="4" cy="4" r="1.5" fill="#D4AF37"/>
+      </svg>
+    </div>
+
+    {/* Top Right Corner */}
+    <div className="absolute top-[-1px] right-[-1px] text-[#D4AF37] rotate-90 pointer-events-none">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 2 C9 2 2 9 2 16" stroke="#D4AF37" strokeWidth="1.2"/>
+        <path d="M12 5 C8 5 5 8 5 12" stroke="#D4AF37" strokeWidth="0.8"/>
+        <circle cx="4" cy="4" r="1.5" fill="#D4AF37"/>
+      </svg>
+    </div>
+
+    {/* Bottom Right Corner */}
+    <div className="absolute bottom-[-1px] right-[-1px] text-[#D4AF37] rotate-180 pointer-events-none">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 2 C9 2 2 9 2 16" stroke="#D4AF37" strokeWidth="1.2"/>
+        <path d="M12 5 C8 5 5 8 5 12" stroke="#D4AF37" strokeWidth="0.8"/>
+        <circle cx="4" cy="4" r="1.5" fill="#D4AF37"/>
+      </svg>
+    </div>
+
+    {/* Bottom Left Corner */}
+    <div className="absolute bottom-[-1px] left-[-1px] text-[#D4AF37] -rotate-90 pointer-events-none">
+      <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M16 2 C9 2 2 9 2 16" stroke="#D4AF37" strokeWidth="1.2"/>
+        <path d="M12 5 C8 5 5 8 5 12" stroke="#D4AF37" strokeWidth="0.8"/>
+        <circle cx="4" cy="4" r="1.5" fill="#D4AF37"/>
+      </svg>
+    </div>
+
+    <div className="relative z-10 flex flex-col items-center justify-center w-full">
+      {children}
+    </div>
+  </div>
+);
+
 const GOTHIC_QUOTES = [
   "Arise, Nightwalker, and conquer the trials of this night.",
   "No crown was ever won through idle hands.",
@@ -215,12 +282,11 @@ export function Layout({ children }: { children: React.ReactNode }) {
                   {getMoonPhase()}
                 </span>
               </div>
-              <div className="gothic-notched group overflow-hidden shadow-[0_4px_12px_rgba(0,0,0,0.6)]">
-                <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D4AF37]/10 to-transparent translate-x-[-120%] group-hover:animate-[shimmer-sweep_2.4s_infinite]"></div>
-                <span className="font-mono text-xs text-[#D4AF37] dark:text-[#D4AF37] uppercase tracking-widest font-bold">Rank {char.level || 1}</span>
-                <span className="text-[#D4AF37]/60 dark:text-[#D4AF37]/60 font-bold mx-2">:</span>
-                <span className="font-serif text-[15px] text-[#F7F3E9] dark:text-[#F5D77F] font-bold tracking-wider">{char.currentTitle || 'Novice'}</span>
-              </div>
+              <FiligreeFrame className="w-24 h-[4.5rem]">
+                <span className="font-serif text-[11px] text-[#D4AF37]/90 uppercase tracking-widest font-bold">Rank {char.level || 1}</span>
+                <span className="font-serif text-[10px] text-[#D4AF37]/60 leading-[8px] my-1">:</span>
+                <span className="font-serif text-[14px] text-[#F7F3E9] dark:text-[#F5D77F] font-bold tracking-wider">{char.currentTitle || 'Novice'}</span>
+              </FiligreeFrame>
             </div>
           </div>
           
@@ -230,22 +296,20 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </span>
           </div>
 
-          <div className="flex items-center gap-4">
-            <div className="gothic-notched cursor-default shadow-[0_4px_12px_rgba(0,0,0,0.6)]">
-              <div className="w-5 h-5 mr-2 rounded-full bg-gradient-to-tr from-[#947014] via-[#F5D77F] to-[#D4AF37] flex items-center justify-center text-[#0c0608] font-bold text-[10px] shadow-[0_0_8px_rgba(212,175,55,0.4)] border border-[#FFF5C0]">
-                <span className="font-serif">✦</span>
-              </div>
-              <span className="font-serif text-[15px] font-bold text-[#D4AF37] dark:text-[#F5D77F] tracking-wider">{currency?.balance || 0}</span>
-              <span className="font-mono text-[10px] text-[#D4AF37] dark:text-[#C5A059] uppercase font-bold tracking-widest ml-2 mt-0.5">Crowns</span>
-            </div>
+          <div className="flex items-center gap-6">
+            <FiligreeFrame className="w-24 h-[4.5rem]">
+              <span className="font-serif text-[13px] text-[#D4AF37] drop-shadow-[0_0_6px_rgba(212,175,55,1)] leading-none">✦</span>
+              <span className="font-serif text-[16px] font-bold text-[#F7F3E9] dark:text-[#F5D77F] tracking-wider my-0.5 leading-none">{currency?.balance || 0}</span>
+              <span className="font-serif text-[9px] text-[#D4AF37]/80 uppercase font-bold tracking-widest leading-none">Crowns</span>
+            </FiligreeFrame>
             
-            <div className="flex items-center gap-3 pl-4 border-l border-[#415A77]/50 dark:border-[#D4AF37]/30 h-8">
-              <button onClick={toggleTheme} className="gothic-notched cursor-pointer hover:scale-[1.03] active:scale-95 transition-transform shadow-[0_4px_12px_rgba(0,0,0,0.6)]">
-                <span className="font-serif text-[11px] text-[#D4AF37] dark:text-[#F5D77F] font-bold tracking-widest uppercase">
-                  {theme === 'dark' ? 'Crimson Realm' : 'Twilight Realm'}
+            <button onClick={toggleTheme} className="group hover:scale-[1.03] active:scale-95 transition-transform">
+              <FiligreeFrame className="w-32 h-[4.5rem]">
+                <span className="font-serif text-[13px] text-[#D4AF37] dark:text-[#F5D77F] font-bold tracking-widest uppercase text-center leading-tight">
+                  {theme === 'dark' ? 'Crimson\nRealm' : 'Twilight\nRealm'}
                 </span>
-              </button>
-            </div>
+              </FiligreeFrame>
+            </button>
           </div>
         </header>
 
