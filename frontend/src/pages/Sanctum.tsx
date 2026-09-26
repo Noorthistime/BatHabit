@@ -161,7 +161,7 @@ export function Sanctum() {
       </header>
 
       {/* Main Container */}
-      <div className="pt-20 px-4 md:px-8 pb-16">
+      <div className="pt-32 px-4 md:px-8 pb-16">
         <div className="max-w-6xl mx-auto space-y-8">
           
           {/* Welcome Ribbon */}
