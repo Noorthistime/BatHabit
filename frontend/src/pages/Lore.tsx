@@ -279,7 +279,104 @@ const CurrencyFrame = () => (
       </svg>
     </div>
   </div>
+const LeafCrest = () => (
+  <svg viewBox="0 0 100 100" className="w-full h-full" fill="none" stroke="currentColor">
+    {/* Thick curving side leaves */}
+    <motion.path variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { duration: 1.2, ease: "easeOut" } } }} d="M 50 10 C 20 10 5 35 15 60 C 25 80 50 90 50 90" strokeWidth="2.5" />
+    <motion.path variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { duration: 1.2, ease: "easeOut" } } }} d="M 50 10 C 80 10 95 35 85 60 C 75 80 50 90 50 90" strokeWidth="2.5" />
+    
+    {/* Inner leaf curls */}
+    <motion.path variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { delay: 0.3, duration: 1 } } }} d="M 25 40 C 15 50 20 70 40 80" strokeWidth="1.5" />
+    <motion.path variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { delay: 0.3, duration: 1 } } }} d="M 75 40 C 85 50 80 70 60 80" strokeWidth="1.5" />
+    
+    {/* Center Diamond Border */}
+    <motion.path variants={{ hidden: { scale: 0, opacity: 0 }, visible: { scale: 1, opacity: 1, transition: { delay: 0.6, duration: 0.6 } } }} d="M 50 25 L 70 50 L 50 75 L 30 50 Z" strokeWidth="1.5" />
+    <motion.path variants={{ hidden: { scale: 0, opacity: 0 }, visible: { scale: 1, opacity: 1, transition: { delay: 0.8, duration: 0.6 } } }} d="M 50 32 L 63 50 L 50 68 L 37 50 Z" strokeWidth="1" strokeDasharray="2 2" />
+    
+    {/* Leaf petal tips (filled) */}
+    <motion.path variants={{ hidden: { scale: 0 }, visible: { scale: 1, transition: { delay: 1, duration: 0.4 } } }} d="M 15 60 C 10 65 5 55 10 50 C 15 45 20 55 15 60 Z" fill="currentColor" stroke="none" />
+    <motion.path variants={{ hidden: { scale: 0 }, visible: { scale: 1, transition: { delay: 1, duration: 0.4 } } }} d="M 85 60 C 90 65 95 55 90 50 C 85 45 80 55 85 60 Z" fill="currentColor" stroke="none" />
+  </svg>
 );
+
+const BoxFlourish = () => (
+  <svg viewBox="0 0 64 64" className="w-full h-full" fill="none" stroke="currentColor">
+    {/* Scrolling acanthus corner */}
+    <path d="M 0 16 C 16 16 24 16 24 0" strokeWidth="2" />
+    <path d="M 16 0 C 16 16 16 24 0 24" strokeWidth="2" />
+    <path d="M 24 0 C 32 16 24 32 8 40" strokeWidth="1.5" />
+    <path d="M 0 24 C 16 32 32 24 40 8" strokeWidth="1.5" />
+    <circle cx="8" cy="8" r="3" fill="currentColor" stroke="none" />
+    <circle cx="28" cy="28" r="1.5" fill="currentColor" stroke="none" />
+  </svg>
+);
+
+const WorkflowStep = ({ num, title, text, isLast }: { num: number, title: string, text: React.ReactNode, isLast?: boolean }) => {
+  return (
+    <div className="relative pl-24 md:pl-32 pb-16">
+      {/* Vertical Scrolling Vine connecting to the next node (except if last) */}
+      {!isLast && (
+        <div className="absolute top-[80px] bottom-[-20px] left-[40px] w-0 flex justify-center z-10">
+          <motion.div 
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1.5, ease: "linear" }}
+            className="w-[2px] h-full bg-gradient-to-b from-[#D4AF37] via-[#D4AF37]/80 to-[#D4AF37] origin-top shadow-[0_0_8px_rgba(212,175,55,0.8)] relative"
+          >
+            <motion.div initial={{ scale: 0 }} whileInView={{ scale: 1 }} transition={{ delay: 0.5 }} className="absolute top-[25%] left-0 w-3 h-4 text-[#D4AF37]">
+              <svg viewBox="0 0 10 16" fill="currentColor"><path d="M 10 16 C 0 16 0 0 10 0 C 5 8 5 12 10 16" /></svg>
+            </motion.div>
+            <motion.div initial={{ scale: 0 }} whileInView={{ scale: 1 }} transition={{ delay: 1.0 }} className="absolute top-[75%] right-0 w-3 h-4 text-[#D4AF37] scale-x-[-1]">
+              <svg viewBox="0 0 10 16" fill="currentColor"><path d="M 10 16 C 0 16 0 0 10 0 C 5 8 5 12 10 16" /></svg>
+            </motion.div>
+          </motion.div>
+        </div>
+      )}
+      
+      {/* Royal Leaf Crest Node */}
+      <motion.div 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        className="absolute left-0 top-0 w-20 h-20 flex items-center justify-center z-20"
+      >
+        <div className="absolute inset-0 text-[#F5D77F] drop-shadow-[0_0_8px_rgba(245,215,127,0.6)]">
+          <LeafCrest />
+        </div>
+        <motion.span variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { delay: 1 } } }} className="relative z-10 font-serif text-2xl font-bold text-[#FFF9E6] drop-shadow-[0_0_10px_rgba(245,215,127,1)]">{num}</motion.span>
+      </motion.div>
+
+      {/* Content Box */}
+      <motion.div 
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, margin: "-100px" }}
+        variants={{ hidden: { x: 50, opacity: 0 }, visible: { x: 0, opacity: 1, transition: { delay: 0.5, duration: 0.8, ease: "easeOut" } } }}
+        className="relative bg-[rgba(17,1,2,0.8)] backdrop-blur-md rounded-xl shadow-inner border border-[#D4AF37]/20 p-8 pt-10 pb-10 overflow-hidden"
+      >
+        {/* Box Flourishes */}
+        <div className="absolute top-2 left-2 w-12 h-12 text-[#D4AF37]/40 pointer-events-none">
+          <BoxFlourish />
+        </div>
+        <div className="absolute top-2 right-2 w-12 h-12 text-[#D4AF37]/40 pointer-events-none scale-x-[-1]">
+          <BoxFlourish />
+        </div>
+        <div className="absolute bottom-2 left-2 w-12 h-12 text-[#D4AF37]/40 pointer-events-none scale-y-[-1]">
+          <BoxFlourish />
+        </div>
+        <div className="absolute bottom-2 right-2 w-12 h-12 text-[#D4AF37]/40 pointer-events-none scale-[-1]">
+          <BoxFlourish />
+        </div>
+        
+        <h3 className="font-serif text-2xl text-[#F7F3E9] mb-4 relative z-10 drop-shadow-[0_0_8px_rgba(245,215,127,0.3)]">{title}</h3>
+        <div className="font-sans text-[#EEEAD7]/90 leading-relaxed relative z-10">
+          {text}
+        </div>
+      </motion.div>
+    </div>
+  );
+};
 
 export function Lore() {
   const { theme } = useTheme();
@@ -558,71 +655,41 @@ export function Lore() {
 
         <div className="relative pl-12 md:pl-16 space-y-12">
           
-          {/* The connecting string */}
-          <div className="absolute left-4 md:left-6 top-8 bottom-0 w-0.5 bg-gradient-to-b from-[#D4AF37] via-[#D4AF37]/50 to-transparent"></div>
+        <div className="relative mt-12">
           
-          <motion.div variants={slideRight} className="relative bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 p-6 rounded-xl shadow-lg dark:shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
-            <div className="absolute top-6 -left-[2.85rem] md:-left-[3.35rem] w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#0D1B2A] dark:bg-[#060102] border-2 border-[#D4AF37] flex items-center justify-center text-[#D4AF37] font-serif text-xl md:text-2xl font-bold z-10 shadow-[0_0_10px_rgba(212,175,55,0.4)]">
-              1
-            </div>
-            <div className="flex items-center gap-4 mb-3">
-              <h3 className="font-serif text-2xl text-[#F7F3E9] dark:text-[#EEEAD7]">The Grind</h3>
-            </div>
-            <p className="font-sans text-[#F7F3E9]/80 dark:text-[#8d9685] leading-relaxed">
-              Your journey begins with daily dedication. Every morning, open your sidebar and navigate to the <strong>Questbook</strong> for one-off tasks (like "Clean the garage" or "Finish the essay"), and the <strong>Grimoire</strong> to log your recurring daily habits (like "Drink water" or "Meditate"). Simply checking off these tasks is the core loop of your journey—doing the necessary work to survive the Night Realm.
-            </p>
-          </motion.div>
-
-          <motion.div variants={slideRight} className="relative bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 p-6 rounded-xl shadow-lg dark:shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
-            <div className="absolute top-6 -left-[2.85rem] md:-left-[3.35rem] w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#0D1B2A] dark:bg-[#060102] border-2 border-[#D4AF37] flex items-center justify-center text-[#D4AF37] font-serif text-xl md:text-2xl font-bold z-10 shadow-[0_0_10px_rgba(212,175,55,0.4)]">
-              2
-            </div>
-            <div className="flex items-center gap-4 mb-3">
-              <h3 className="font-serif text-2xl text-[#F7F3E9] dark:text-[#EEEAD7]">The Evolution</h3>
-            </div>
-            <p className="font-sans text-[#F7F3E9]/80 dark:text-[#8d9685] leading-relaxed">
-              As you check off tasks in the Questbook and Grimoire, your soul automatically absorbs experience points (XP). Navigate to your <strong>Bloodline</strong> from the sidebar to inspect your attributes and monitor your total level. Earning enough XP will permanently rank you up from a mere <em>Novice</em> to legendary titles like <em>Nightwalker</em>, unlocking prestigious recognition and deeper mechanics over time.
-            </p>
-          </motion.div>
-
-          <motion.div variants={slideRight} className="relative bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 p-6 rounded-xl shadow-lg dark:shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
-            <div className="absolute top-6 -left-[2.85rem] md:-left-[3.35rem] w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#0D1B2A] dark:bg-[#060102] border-2 border-[#D4AF37] flex items-center justify-center text-[#D4AF37] font-serif text-xl md:text-2xl font-bold z-10 shadow-[0_0_10px_rgba(212,175,55,0.4)]">
-              3
-            </div>
-            <div className="flex items-center gap-4 mb-3">
-              <h3 className="font-serif text-2xl text-[#F7F3E9] dark:text-[#EEEAD7]">The Farm</h3>
-            </div>
-            <p className="font-sans text-[#F7F3E9]/80 dark:text-[#8d9685] leading-relaxed">
-              True power comes from consistency. If you complete a habit in your <strong>Grimoire</strong> multiple days in a row, you establish an "Unbroken Vow"—a streak. The higher your streak gets, the more <strong>Crowns</strong> you will passively farm every single day. Relentless discipline directly translates to massive wealth, but skipping a day will break your vow and shatter your income.
-            </p>
-          </motion.div>
-
-          <motion.div variants={slideRight} className="relative bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 p-6 rounded-xl shadow-lg dark:shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
-            <div className="absolute top-6 -left-[2.85rem] md:-left-[3.35rem] w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#0D1B2A] dark:bg-[#060102] border-2 border-[#D4AF37] flex items-center justify-center text-[#D4AF37] font-serif text-xl md:text-2xl font-bold z-10 shadow-[0_0_10px_rgba(212,175,55,0.4)]">
-              4
-            </div>
-            <div className="flex items-center gap-4 mb-3">
-              <h3 className="font-serif text-2xl text-[#F7F3E9] dark:text-[#EEEAD7]">The Harvest</h3>
-            </div>
-            <p className="font-sans text-[#F7F3E9]/80 dark:text-[#8d9685] leading-relaxed">
-              Once you have farmed a hoard of Crowns, it is time to reap what you've sown. Navigate to the <strong>Night Market</strong> via the sidebar. Here, you can spend your hard-earned currency to purchase real-life custom rewards, video games, or self-care treats that you have personally set as motivation. This is where your virtual discipline becomes tangible reality.
-            </p>
-          </motion.div>
-
-          <motion.div variants={slideRight} className="relative bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 p-6 rounded-xl shadow-lg dark:shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
-            <div className="absolute top-6 -left-[2.85rem] md:-left-[3.35rem] w-10 h-10 md:w-12 md:h-12 rounded-full bg-[#0D1B2A] dark:bg-[#060102] border-2 border-[#D4AF37] flex items-center justify-center text-[#D4AF37] font-serif text-xl md:text-2xl font-bold z-10 shadow-[0_0_10px_rgba(212,175,55,0.4)]">
-              5
-            </div>
-            <div className="flex items-center gap-4 mb-3">
-              <h3 className="font-serif text-2xl text-[#F7F3E9] dark:text-[#EEEAD7]">The Legacy</h3>
-            </div>
-            <p className="font-sans text-[#F7F3E9]/80 dark:text-[#8d9685] leading-relaxed">
-              Finally, every item you successfully harvest from the Night Market is permanently logged and stored securely in your <strong>Vault</strong>. Click on the Vault in your sidebar to review a glorious treasure trove of your past victories. Whenever you doubt yourself, visit your <strong>Sanctum</strong> dashboard to see your entire legacy standing tall.
-            </p>
-          </motion.div>
-
+          <WorkflowStep 
+            num={1} 
+            title="The Grind" 
+            text={<>Your journey begins with daily dedication. Every morning, open your sidebar and navigate to the <strong>Questbook</strong> for one-off tasks (like "Clean the garage" or "Finish the essay"), and the <strong>Grimoire</strong> to log your recurring daily habits (like "Drink water" or "Meditate"). Simply checking off these tasks is the core loop of your journey—doing the necessary work to survive the Night Realm.</>} 
+          />
+          
+          <WorkflowStep 
+            num={2} 
+            title="The Evolution" 
+            text={<>As you check off tasks in the Questbook and Grimoire, your soul automatically absorbs experience points (XP). Navigate to your <strong>Bloodline</strong> from the sidebar to inspect your attributes and monitor your total level. Earning enough XP will permanently rank you up from a mere <em>Novice</em> to legendary titles like <em>Nightwalker</em>, unlocking prestigious recognition and deeper mechanics over time.</>} 
+          />
+          
+          <WorkflowStep 
+            num={3} 
+            title="The Farm" 
+            text={<>True power comes from consistency. If you complete a habit in your <strong>Grimoire</strong> multiple days in a row, you establish an "Unbroken Vow"—a streak. The higher your streak gets, the more <strong>Crowns</strong> you will passively farm every single day. Relentless discipline directly translates to massive wealth, but skipping a day will break your vow and shatter your income.</>} 
+          />
+          
+          <WorkflowStep 
+            num={4} 
+            title="The Harvest" 
+            text={<>Once you have farmed a hoard of Crowns, it is time to reap what you've sown. Navigate to the <strong>Night Market</strong> via the sidebar. Here, you can spend your hard-earned currency to purchase real-life custom rewards, video games, or self-care treats that you have personally set as motivation. This is where your virtual discipline becomes tangible reality.</>} 
+          />
+          
+          <WorkflowStep 
+            num={5} 
+            title="The Legacy" 
+            isLast={true}
+            text={<>Finally, every item you successfully harvest from the Night Market is permanently logged and stored securely in your <strong>Vault</strong>. Click on the Vault in your sidebar to review a glorious treasure trove of your past victories. Whenever you doubt yourself, visit your <strong>Sanctum</strong> dashboard to see your entire legacy standing tall.</>} 
+          />
+          
         </div>
-      </motion.section>
+      </section>
 
       {/* Conclusion */}
       <motion.div 
