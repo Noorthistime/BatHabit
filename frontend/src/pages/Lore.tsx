@@ -29,57 +29,78 @@ const staggerContainer: Variants = {
 
 const ContinuousLoreFrame = () => (
   <motion.div 
-    initial={{ clipPath: 'polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%, 50% 50%)' }}
-    whileInView={{ clipPath: 'polygon(16px 0, calc(100% - 16px) 0, 100% 16px, 100% calc(100% - 16px), calc(100% - 16px) 100%, 16px 100%, 0 calc(100% - 16px), 0 16px, 0 16px, 0 16px, 0 16px, 0 16px, 0 16px)' }}
+    initial={{ clipPath: 'polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%)' }}
+    whileInView={{ clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)' }}
     viewport={{ once: true }}
     transition={{ duration: 1.5, ease: "easeInOut" }}
     className="absolute inset-0 pointer-events-none z-0"
   >
-    {/* Continuous Outer Gold Border with Beveled Corners */}
-    <div className="absolute inset-0 bg-gradient-to-b from-[#D4AF37]/80 to-[#D4AF37]/30 shadow-[0_0_15px_rgba(212,175,55,0.4)]" 
-         style={{ clipPath: 'polygon(16px 0, calc(100% - 16px) 0, 100% 16px, 100% calc(100% - 16px), calc(100% - 16px) 100%, 16px 100%, 0 calc(100% - 16px), 0 16px)' }}>
-    </div>
-    
-    {/* Inner panel background cutting out the center of the border to make it 1.5px thick */}
-    <div className="absolute inset-[1.5px] bg-[#110102]" 
-         style={{ clipPath: 'polygon(15px 0, calc(100% - 15px) 0, 100% 15px, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0 calc(100% - 15px), 0 15px)' }}>
-      {/* Deep Crimson Radial Glow */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(109,8,8,0.4)_0%,_rgba(17,1,2,1)_100%)]" />
-    </div>
+    {/* Background Glow */}
+    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(109,8,8,0.3)_0%,_rgba(17,1,2,0.8)_100%)] rounded-lg" />
 
-    {/* Inner Thin Accent Border */}
-    <div className="absolute inset-[6px] border border-[#D4AF37]/20" 
-         style={{ clipPath: 'polygon(12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0 calc(100% - 12px), 0 12px)' }} />
+    {/* The Continuous Straight Lines (Stopping before corners) */}
+    <div className="absolute top-[6px] left-[40px] right-[40px] h-[1.5px] bg-[#D4AF37] shadow-[0_0_8px_rgba(212,175,55,0.6)]" />
+    <div className="absolute bottom-[6px] left-[40px] right-[40px] h-[1.5px] bg-[#D4AF37] shadow-[0_0_8px_rgba(212,175,55,0.6)]" />
+    <div className="absolute left-[6px] top-[40px] bottom-[40px] w-[1.5px] bg-[#D4AF37] shadow-[0_0_8px_rgba(212,175,55,0.6)]" />
+    <div className="absolute right-[6px] top-[40px] bottom-[40px] w-[1.5px] bg-[#D4AF37] shadow-[0_0_8px_rgba(212,175,55,0.6)]" />
 
-    {/* Elegant Corner Flourishes (Inside the frame) */}
-    <motion.svg initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 1, duration: 1 }} className="absolute top-[8px] left-[8px] w-6 h-6 text-[#F5D77F] drop-shadow-[0_0_4px_rgba(212,175,55,0.8)]" viewBox="0 0 24 24">
-      <path d="M 0 12 L 12 0 L 14 2 L 2 14 Z" fill="currentColor" />
-      <circle cx="16" cy="16" r="1.5" fill="currentColor" />
-    </motion.svg>
-    <motion.svg initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 1, duration: 1 }} className="absolute top-[8px] right-[8px] w-6 h-6 text-[#F5D77F] drop-shadow-[0_0_4px_rgba(212,175,55,0.8)] scale-x-[-1]" viewBox="0 0 24 24">
-      <path d="M 0 12 L 12 0 L 14 2 L 2 14 Z" fill="currentColor" />
-      <circle cx="16" cy="16" r="1.5" fill="currentColor" />
-    </motion.svg>
-    <motion.svg initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 1, duration: 1 }} className="absolute bottom-[8px] left-[8px] w-6 h-6 text-[#F5D77F] drop-shadow-[0_0_4px_rgba(212,175,55,0.8)] scale-y-[-1]" viewBox="0 0 24 24">
-      <path d="M 0 12 L 12 0 L 14 2 L 2 14 Z" fill="currentColor" />
-      <circle cx="16" cy="16" r="1.5" fill="currentColor" />
-    </motion.svg>
-    <motion.svg initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 1, duration: 1 }} className="absolute bottom-[8px] right-[8px] w-6 h-6 text-[#F5D77F] drop-shadow-[0_0_4px_rgba(212,175,55,0.8)] scale-[-1]" viewBox="0 0 24 24">
-      <path d="M 0 12 L 12 0 L 14 2 L 2 14 Z" fill="currentColor" />
-      <circle cx="16" cy="16" r="1.5" fill="currentColor" />
-    </motion.svg>
+    {/* Top-Left Scythe Corner */}
+    <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 1, duration: 1 }} className="absolute top-[1px] left-[1px] w-12 h-16 text-[#F5D77F] drop-shadow-[0_0_6px_rgba(245,215,127,0.8)]">
+      <svg viewBox="0 0 48 64" className="w-full h-full" fill="none" stroke="currentColor">
+        <circle cx="8" cy="8" r="2" fill="currentColor" stroke="none" />
+        <path d="M 16 5 L 40 5" strokeWidth="1.5" />
+        <path d="M 22 5 L 19 11 L 16 5 Z" fill="currentColor" stroke="none" />
+        <path d="M 5 16 L 5 40" strokeWidth="1.5" />
+        <path d="M 5 16 C 12 30 18 45 28 55 C 16 48 7 32 5 20 Z" fill="currentColor" stroke="none" />
+      </svg>
+    </motion.div>
 
-    {/* Top-Center Royal Crest */}
-    <motion.div initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 1.2, duration: 0.8 }} className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-3 flex items-center justify-center">
-      <svg viewBox="0 0 40 10" className="h-full text-[#F5D77F] drop-shadow-[0_0_6px_rgba(245,215,127,1)]">
-        <path d="M 0 0 L 20 10 L 40 0 L 20 4 Z" fill="currentColor" />
+    {/* Top-Right Scythe Corner */}
+    <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 1, duration: 1 }} className="absolute top-[1px] right-[1px] w-12 h-16 text-[#F5D77F] drop-shadow-[0_0_6px_rgba(245,215,127,0.8)] scale-x-[-1]">
+      <svg viewBox="0 0 48 64" className="w-full h-full" fill="none" stroke="currentColor">
+        <circle cx="8" cy="8" r="2" fill="currentColor" stroke="none" />
+        <path d="M 16 5 L 40 5" strokeWidth="1.5" />
+        <path d="M 22 5 L 19 11 L 16 5 Z" fill="currentColor" stroke="none" />
+        <path d="M 5 16 L 5 40" strokeWidth="1.5" />
+        <path d="M 5 16 C 12 30 18 45 28 55 C 16 48 7 32 5 20 Z" fill="currentColor" stroke="none" />
+      </svg>
+    </motion.div>
+
+    {/* Bottom-Left Scythe Corner */}
+    <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 1, duration: 1 }} className="absolute bottom-[1px] left-[1px] w-12 h-16 text-[#F5D77F] drop-shadow-[0_0_6px_rgba(245,215,127,0.8)] scale-y-[-1]">
+      <svg viewBox="0 0 48 64" className="w-full h-full" fill="none" stroke="currentColor">
+        <circle cx="8" cy="8" r="2" fill="currentColor" stroke="none" />
+        <path d="M 16 5 L 40 5" strokeWidth="1.5" />
+        <path d="M 22 5 L 19 11 L 16 5 Z" fill="currentColor" stroke="none" />
+        <path d="M 5 16 L 5 40" strokeWidth="1.5" />
+        <path d="M 5 16 C 12 30 18 45 28 55 C 16 48 7 32 5 20 Z" fill="currentColor" stroke="none" />
+      </svg>
+    </motion.div>
+
+    {/* Bottom-Right Scythe Corner */}
+    <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 1, duration: 1 }} className="absolute bottom-[1px] right-[1px] w-12 h-16 text-[#F5D77F] drop-shadow-[0_0_6px_rgba(245,215,127,0.8)] scale-[-1]">
+      <svg viewBox="0 0 48 64" className="w-full h-full" fill="none" stroke="currentColor">
+        <circle cx="8" cy="8" r="2" fill="currentColor" stroke="none" />
+        <path d="M 16 5 L 40 5" strokeWidth="1.5" />
+        <path d="M 22 5 L 19 11 L 16 5 Z" fill="currentColor" stroke="none" />
+        <path d="M 5 16 L 5 40" strokeWidth="1.5" />
+        <path d="M 5 16 C 12 30 18 45 28 55 C 16 48 7 32 5 20 Z" fill="currentColor" stroke="none" />
+      </svg>
+    </motion.div>
+
+    {/* Top Center Geometric Crest */}
+    <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 1.2, duration: 0.8 }} className="absolute top-[3px] left-1/2 -translate-x-1/2 w-32 h-6 flex items-center justify-center">
+      <svg viewBox="0 0 100 20" className="w-full h-full text-[#F5D77F] drop-shadow-[0_0_6px_rgba(245,215,127,0.8)]" fill="none" stroke="currentColor">
+        <path d="M 0 16 L 30 16 L 40 4 L 60 4 L 70 16 L 100 16" strokeWidth="1.5" />
+        <path d="M 36 10 L 42 7 L 58 7 L 64 10" strokeWidth="1.5" opacity="0.6" />
       </svg>
     </motion.div>
     
-    {/* Bottom-Center Royal Crest */}
-    <motion.div initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 1.2, duration: 0.8 }} className="absolute bottom-0 left-1/2 -translate-x-1/2 w-16 h-3 flex items-center justify-center">
-      <svg viewBox="0 0 40 10" className="h-full text-[#F5D77F] drop-shadow-[0_0_6px_rgba(245,215,127,1)] scale-y-[-1]">
-        <path d="M 0 0 L 20 10 L 40 0 L 20 4 Z" fill="currentColor" />
+    {/* Bottom Center Geometric Crest */}
+    <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 1.2, duration: 0.8 }} className="absolute bottom-[3px] left-1/2 -translate-x-1/2 w-32 h-6 flex items-center justify-center">
+      <svg viewBox="0 0 100 20" className="w-full h-full text-[#F5D77F] drop-shadow-[0_0_6px_rgba(245,215,127,0.8)] scale-y-[-1]" fill="none" stroke="currentColor">
+        <path d="M 0 16 L 30 16 L 40 4 L 60 4 L 70 16 L 100 16" strokeWidth="1.5" />
+        <path d="M 36 10 L 42 7 L 58 7 L 64 10" strokeWidth="1.5" opacity="0.6" />
       </svg>
     </motion.div>
   </motion.div>
