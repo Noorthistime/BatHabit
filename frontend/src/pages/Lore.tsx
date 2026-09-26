@@ -279,6 +279,8 @@ const CurrencyFrame = () => (
       </svg>
     </div>
   </div>
+);
+
 const LeafCrest = () => (
   <svg viewBox="0 0 100 100" className="w-full h-full" fill="none" stroke="currentColor">
     {/* Thick curving side leaves */}
