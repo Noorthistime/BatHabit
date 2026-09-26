@@ -117,69 +117,85 @@ const ContinuousSanctuaryFrame = () => (
     {/* Background Glow */}
     <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(109,8,8,0.2)_0%,_rgba(17,1,2,0.6)_100%)] rounded-xl" />
 
-    {/* The Continuous Straight Lines (Stopping before corners) */}
-    <div className="absolute top-[6px] left-[30px] right-[30px] h-[1.5px] bg-[#D4AF37]/60 shadow-[0_0_8px_rgba(212,175,55,0.4)]" />
-    <div className="absolute bottom-[6px] left-[30px] right-[30px] h-[1.5px] bg-[#D4AF37]/60 shadow-[0_0_8px_rgba(212,175,55,0.4)]" />
-    <div className="absolute left-[6px] top-[30px] bottom-[30px] w-[1.5px] bg-[#D4AF37]/60 shadow-[0_0_8px_rgba(212,175,55,0.4)]" />
-    <div className="absolute right-[6px] top-[30px] bottom-[30px] w-[1.5px] bg-[#D4AF37]/60 shadow-[0_0_8px_rgba(212,175,55,0.4)]" />
+    {/* Top Border Segments */}
+    <div className="absolute top-[32px] left-[64px] right-[calc(50%+80px)] h-[1.5px] bg-[#D4AF37]/60 shadow-[0_0_8px_rgba(212,175,55,0.4)]" />
+    <div className="absolute top-[32px] right-[64px] left-[calc(50%+80px)] h-[1.5px] bg-[#D4AF37]/60 shadow-[0_0_8px_rgba(212,175,55,0.4)]" />
+    
+    {/* Bottom Border Segments */}
+    <div className="absolute bottom-[32px] left-[64px] right-[calc(50%+80px)] h-[1.5px] bg-[#D4AF37]/60 shadow-[0_0_8px_rgba(212,175,55,0.4)]" />
+    <div className="absolute bottom-[32px] right-[64px] left-[calc(50%+80px)] h-[1.5px] bg-[#D4AF37]/60 shadow-[0_0_8px_rgba(212,175,55,0.4)]" />
 
-    {/* Top-Left Scythe Corner */}
-    <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.8, duration: 1 }} className="absolute top-[1px] left-[1px] w-8 h-10 text-[#F5D77F] drop-shadow-[0_0_4px_rgba(245,215,127,0.6)]">
-      <svg viewBox="0 0 48 64" className="w-full h-full" fill="none" stroke="currentColor">
-        <circle cx="8" cy="8" r="3" fill="currentColor" stroke="none" />
-        <path d="M 16 5 L 48 5" strokeWidth="2" />
-        <path d="M 24 5 L 20 13 L 16 5 Z" fill="currentColor" stroke="none" />
-        <path d="M 5 16 L 5 64" strokeWidth="2" />
-        <path d="M 5 16 C 12 30 18 45 28 55 C 16 48 7 32 5 20 Z" fill="currentColor" stroke="none" />
+    {/* Left Border Segments */}
+    <div className="absolute left-[32px] top-[64px] bottom-[calc(50%+48px)] w-[1.5px] bg-[#D4AF37]/60 shadow-[0_0_8px_rgba(212,175,55,0.4)]" />
+    <div className="absolute left-[32px] bottom-[64px] top-[calc(50%+48px)] w-[1.5px] bg-[#D4AF37]/60 shadow-[0_0_8px_rgba(212,175,55,0.4)]" />
+
+    {/* Right Border Segments */}
+    <div className="absolute right-[32px] top-[64px] bottom-[calc(50%+48px)] w-[1.5px] bg-[#D4AF37]/60 shadow-[0_0_8px_rgba(212,175,55,0.4)]" />
+    <div className="absolute right-[32px] bottom-[64px] top-[calc(50%+48px)] w-[1.5px] bg-[#D4AF37]/60 shadow-[0_0_8px_rgba(212,175,55,0.4)]" />
+
+    {/* Top-Left Corner */}
+    <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.8, duration: 1 }} className="absolute top-[32px] left-[32px] -translate-x-1/2 -translate-y-1/2 w-16 h-16 text-[#F5D77F] drop-shadow-[0_0_4px_rgba(245,215,127,0.6)]">
+      <svg viewBox="0 0 64 64" className="w-full h-full" fill="none" stroke="currentColor">
+        <path d="M 64 32 L 40 32 C 20 32 10 17 20 12 C 30 7 40 22 30 42 L 32 64" strokeWidth="1.5" />
+        <path d="M 20 20 Q 30 30 35 40 Q 25 35 15 30 Q 15 20 20 20 Z" fill="currentColor" stroke="none" />
       </svg>
     </motion.div>
 
-    {/* Top-Right Scythe Corner */}
-    <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.8, duration: 1 }} className="absolute top-[1px] right-[1px] w-8 h-10 text-[#F5D77F] drop-shadow-[0_0_4px_rgba(245,215,127,0.6)] scale-x-[-1]">
-      <svg viewBox="0 0 48 64" className="w-full h-full" fill="none" stroke="currentColor">
-        <circle cx="8" cy="8" r="3" fill="currentColor" stroke="none" />
-        <path d="M 16 5 L 48 5" strokeWidth="2" />
-        <path d="M 24 5 L 20 13 L 16 5 Z" fill="currentColor" stroke="none" />
-        <path d="M 5 16 L 5 64" strokeWidth="2" />
-        <path d="M 5 16 C 12 30 18 45 28 55 C 16 48 7 32 5 20 Z" fill="currentColor" stroke="none" />
+    {/* Top-Right Corner */}
+    <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.8, duration: 1 }} className="absolute top-[32px] right-[32px] translate-x-1/2 -translate-y-1/2 w-16 h-16 text-[#F5D77F] drop-shadow-[0_0_4px_rgba(245,215,127,0.6)] scale-x-[-1]">
+      <svg viewBox="0 0 64 64" className="w-full h-full" fill="none" stroke="currentColor">
+        <path d="M 64 32 L 40 32 C 20 32 10 17 20 12 C 30 7 40 22 30 42 L 32 64" strokeWidth="1.5" />
+        <path d="M 20 20 Q 30 30 35 40 Q 25 35 15 30 Q 15 20 20 20 Z" fill="currentColor" stroke="none" />
       </svg>
     </motion.div>
 
-    {/* Bottom-Left Scythe Corner */}
-    <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.8, duration: 1 }} className="absolute bottom-[1px] left-[1px] w-8 h-10 text-[#F5D77F] drop-shadow-[0_0_4px_rgba(245,215,127,0.6)] scale-y-[-1]">
-      <svg viewBox="0 0 48 64" className="w-full h-full" fill="none" stroke="currentColor">
-        <circle cx="8" cy="8" r="3" fill="currentColor" stroke="none" />
-        <path d="M 16 5 L 48 5" strokeWidth="2" />
-        <path d="M 24 5 L 20 13 L 16 5 Z" fill="currentColor" stroke="none" />
-        <path d="M 5 16 L 5 64" strokeWidth="2" />
-        <path d="M 5 16 C 12 30 18 45 28 55 C 16 48 7 32 5 20 Z" fill="currentColor" stroke="none" />
+    {/* Bottom-Left Corner */}
+    <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.8, duration: 1 }} className="absolute bottom-[32px] left-[32px] -translate-x-1/2 translate-y-1/2 w-16 h-16 text-[#F5D77F] drop-shadow-[0_0_4px_rgba(245,215,127,0.6)] scale-y-[-1]">
+      <svg viewBox="0 0 64 64" className="w-full h-full" fill="none" stroke="currentColor">
+        <path d="M 64 32 L 40 32 C 20 32 10 17 20 12 C 30 7 40 22 30 42 L 32 64" strokeWidth="1.5" />
+        <path d="M 20 20 Q 30 30 35 40 Q 25 35 15 30 Q 15 20 20 20 Z" fill="currentColor" stroke="none" />
       </svg>
     </motion.div>
 
-    {/* Bottom-Right Scythe Corner */}
-    <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.8, duration: 1 }} className="absolute bottom-[1px] right-[1px] w-8 h-10 text-[#F5D77F] drop-shadow-[0_0_4px_rgba(245,215,127,0.6)] scale-[-1]">
-      <svg viewBox="0 0 48 64" className="w-full h-full" fill="none" stroke="currentColor">
-        <circle cx="8" cy="8" r="3" fill="currentColor" stroke="none" />
-        <path d="M 16 5 L 48 5" strokeWidth="2" />
-        <path d="M 24 5 L 20 13 L 16 5 Z" fill="currentColor" stroke="none" />
-        <path d="M 5 16 L 5 64" strokeWidth="2" />
-        <path d="M 5 16 C 12 30 18 45 28 55 C 16 48 7 32 5 20 Z" fill="currentColor" stroke="none" />
+    {/* Bottom-Right Corner */}
+    <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.8, duration: 1 }} className="absolute bottom-[32px] right-[32px] translate-x-1/2 translate-y-1/2 w-16 h-16 text-[#F5D77F] drop-shadow-[0_0_4px_rgba(245,215,127,0.6)] scale-[-1]">
+      <svg viewBox="0 0 64 64" className="w-full h-full" fill="none" stroke="currentColor">
+        <path d="M 64 32 L 40 32 C 20 32 10 17 20 12 C 30 7 40 22 30 42 L 32 64" strokeWidth="1.5" />
+        <path d="M 20 20 Q 30 30 35 40 Q 25 35 15 30 Q 15 20 20 20 Z" fill="currentColor" stroke="none" />
       </svg>
     </motion.div>
 
-    {/* Top Center Geometric Crest */}
-    <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 1, duration: 0.8 }} className="absolute top-[3px] left-1/2 -translate-x-1/2 w-20 h-4 flex items-center justify-center">
-      <svg viewBox="0 0 100 20" className="w-full h-full text-[#F5D77F] drop-shadow-[0_0_4px_rgba(245,215,127,0.6)]" fill="none" stroke="currentColor">
-        <path d="M 0 16 L 30 16 L 40 4 L 60 4 L 70 16 L 100 16" strokeWidth="2" />
-        <path d="M 36 10 L 42 7 L 58 7 L 64 10" strokeWidth="2" opacity="0.6" />
+    {/* Top Center Gothic Crest */}
+    <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 1, duration: 0.8 }} className="absolute top-[32px] left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-16 flex items-center justify-center">
+      <svg viewBox="0 0 160 64" className="w-full h-full text-[#F5D77F] drop-shadow-[0_0_4px_rgba(245,215,127,0.6)]" fill="none" stroke="currentColor">
+        <path d="M 0 32 C 20 32 20 12 40 22 C 60 32 40 52 25 37 C 15 27 30 27 45 32" strokeWidth="1.5" />
+        <path d="M 160 32 C 140 32 140 12 120 22 C 100 32 120 52 135 37 C 145 27 130 27 115 32" strokeWidth="1.5" />
+        <path d="M 80 12 L 85 22 L 95 27 L 85 32 L 80 52 L 75 32 L 65 27 L 75 22 Z" fill="currentColor" stroke="none" />
       </svg>
     </motion.div>
     
-    {/* Bottom Center Geometric Crest */}
-    <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 1, duration: 0.8 }} className="absolute bottom-[3px] left-1/2 -translate-x-1/2 w-20 h-4 flex items-center justify-center">
-      <svg viewBox="0 0 100 20" className="w-full h-full text-[#F5D77F] drop-shadow-[0_0_4px_rgba(245,215,127,0.6)] scale-y-[-1]" fill="none" stroke="currentColor">
-        <path d="M 0 16 L 30 16 L 40 4 L 60 4 L 70 16 L 100 16" strokeWidth="2" />
-        <path d="M 36 10 L 42 7 L 58 7 L 64 10" strokeWidth="2" opacity="0.6" />
+    {/* Bottom Center Gothic Crest */}
+    <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 1, duration: 0.8 }} className="absolute bottom-[32px] left-1/2 -translate-x-1/2 translate-y-1/2 w-40 h-16 flex items-center justify-center scale-y-[-1]">
+      <svg viewBox="0 0 160 64" className="w-full h-full text-[#F5D77F] drop-shadow-[0_0_4px_rgba(245,215,127,0.6)]" fill="none" stroke="currentColor">
+        <path d="M 0 32 C 20 32 20 12 40 22 C 60 32 40 52 25 37 C 15 27 30 27 45 32" strokeWidth="1.5" />
+        <path d="M 160 32 C 140 32 140 12 120 22 C 100 32 120 52 135 37 C 145 27 130 27 115 32" strokeWidth="1.5" />
+        <path d="M 80 12 L 85 22 L 95 27 L 85 32 L 80 52 L 75 32 L 65 27 L 75 22 Z" fill="currentColor" stroke="none" />
+      </svg>
+    </motion.div>
+
+    {/* Left Center Flourish */}
+    <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 1, duration: 0.8 }} className="absolute top-1/2 left-[32px] -translate-x-1/2 -translate-y-1/2 w-8 h-24 flex items-center justify-center">
+      <svg viewBox="0 0 32 96" className="w-full h-full text-[#F5D77F] drop-shadow-[0_0_4px_rgba(245,215,127,0.6)]" fill="none" stroke="currentColor">
+        <path d="M 16 0 L 16 20 C 1 20 -4 33 6 48 C -4 63 1 76 16 76 L 16 96" strokeWidth="1.5" />
+        <path d="M 9 48 L 19 42 L 17 48 L 19 54 Z" fill="currentColor" stroke="none" />
+      </svg>
+    </motion.div>
+
+    {/* Right Center Flourish */}
+    <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 1, duration: 0.8 }} className="absolute top-1/2 right-[32px] translate-x-1/2 -translate-y-1/2 w-8 h-24 flex items-center justify-center scale-x-[-1]">
+      <svg viewBox="0 0 32 96" className="w-full h-full text-[#F5D77F] drop-shadow-[0_0_4px_rgba(245,215,127,0.6)]" fill="none" stroke="currentColor">
+        <path d="M 16 0 L 16 20 C 1 20 -4 33 6 48 C -4 63 1 76 16 76 L 16 96" strokeWidth="1.5" />
+        <path d="M 9 48 L 19 42 L 17 48 L 19 54 Z" fill="currentColor" stroke="none" />
       </svg>
     </motion.div>
   </motion.div>
