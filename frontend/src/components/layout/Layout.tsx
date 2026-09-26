@@ -43,6 +43,22 @@ export function Layout({ children }: { children: React.ReactNode }) {
     return 'Good night';
   };
 
+  const getMoonPhase = () => {
+    const LUNAR_MONTH = 29.53058867;
+    const newMoon = new Date('2000-01-06T12:24:01Z');
+    const diff = (new Date().getTime() - newMoon.getTime()) / (1000 * 60 * 60 * 24);
+    const cycle = diff % LUNAR_MONTH;
+    
+    if (cycle < 1.84 || cycle > 27.68) return 'New Moon';
+    if (cycle < 5.53) return 'Waxing Crescent';
+    if (cycle < 9.22) return 'First Quarter';
+    if (cycle < 12.91) return 'Waxing Gibbous';
+    if (cycle < 16.61) return 'Full Moon';
+    if (cycle < 20.30) return 'Waning Gibbous';
+    if (cycle < 23.99) return 'Third Quarter';
+    return 'Waning Crescent';
+  };
+
   const navItems = [
     { icon: Home, label: 'Sanctum', path: '/dashboard' },
     { icon: BookOpen, label: 'Questbook', path: '/dashboard/questbook' },
@@ -142,7 +158,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
                 {getGreeting()}, <span className="font-mono text-[13px] font-normal px-2 py-0.5 ml-1 rounded bg-[#415A77] dark:bg-[#2c0000] text-[#D4AF37] dark:text-[#F5D77F] border border-[#415A77] dark:border-[#D4AF37]/45">RANK {char.level || 1} • {char.currentTitle || 'Novice'}</span>
               </span>
               <span className="font-mono text-xs text-[#D4AF37] dark:text-[#C5A059] flex items-center gap-1.5">
-                Waxing Gibbous • Cycle VII Nocturne
+                {getMoonPhase()} • Cycle VII Nocturne
               </span>
             </div>
           </div>
