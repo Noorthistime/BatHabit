@@ -508,13 +508,13 @@ export function Lore() {
           <h2 className="font-serif text-2xl uppercase tracking-wide drop-shadow-[0_0_10px_rgba(245,215,127,0.5)] text-transparent bg-clip-text bg-gradient-to-b from-[#FFF9E6] to-[#D4AF37]">The Currency</h2>
         </motion.div>
         
-        <div className="pt-8 max-w-3xl mx-auto">
+        <div className="max-w-3xl mx-auto mt-4">
           <motion.div 
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
             variants={slideRight}
-            className="relative bg-[rgba(17,1,2,0.8)] backdrop-blur-md rounded-xl shadow-inner border border-transparent overflow-visible mt-12"
+            className="relative bg-[rgba(17,1,2,0.8)] backdrop-blur-md rounded-xl shadow-inner border border-transparent overflow-visible"
           >
             <CurrencyFrame />
             <div className="px-10 pt-20 pb-20 relative z-10 flex flex-col items-center text-center">
