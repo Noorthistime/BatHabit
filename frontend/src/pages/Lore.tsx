@@ -48,9 +48,14 @@ export function Lore() {
             <Compass size={28} className="text-[#F5D77F] drop-shadow-[0_0_5px_rgba(245,215,127,0.8)] relative z-10" />
           </div>
         </div>
-        <h1 className="font-serif text-4xl text-[#FFF9E6] font-bold tracking-wider uppercase drop-shadow-[0_0_12px_rgba(255,249,230,0.6)]">
+        <motion.h1 
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+          className="font-serif text-4xl font-bold tracking-wider uppercase drop-shadow-[0_0_15px_rgba(245,215,127,0.5)] text-transparent bg-clip-text bg-gradient-to-r from-[#F5D77F] via-[#D4AF37] to-[#F5D77F]"
+        >
           The Lore & Mechanics
-        </h1>
+        </motion.h1>
         <p className="font-sans text-[#F7F3E9]/80 dark:text-[#8d9685] max-w-2xl mx-auto">
           A comprehensive guide to understanding your progression through the Night Realm. Master your habits, earn your Crowns, and ascend the ranks.
         </p>
@@ -64,18 +69,39 @@ export function Lore() {
         variants={staggerContainer}
         className="space-y-6"
       >
-        <motion.div variants={fadeIn} className="flex items-center gap-4 border-b border-[#D4AF37]/20 pb-4">
-          <span className="font-mono text-2xl text-[#F5D77F] font-bold drop-shadow-[0_0_5px_rgba(245,215,127,0.4)]">I.</span>
-          <h2 className="font-serif text-2xl text-[#FFF9E6] uppercase tracking-wide drop-shadow-[0_0_8px_rgba(255,249,230,0.5)]">The Gate & Awakening</h2>
+        <motion.div variants={fadeIn} className="flex items-center justify-center gap-4 border-b border-[#D4AF37]/20 pb-4">
+          <span className="font-mono text-2xl text-[#F5D77F] font-bold drop-shadow-[0_0_8px_rgba(245,215,127,0.6)]">I.</span>
+          <h2 className="font-serif text-2xl uppercase tracking-wide drop-shadow-[0_0_10px_rgba(245,215,127,0.5)] text-transparent bg-clip-text bg-gradient-to-b from-[#FFF9E6] to-[#D4AF37]">The Gate & Awakening</h2>
         </motion.div>
         
-        <motion.div variants={fadeIn} className="bg-[rgba(17,1,2,0.8)] backdrop-blur-md border border-[#D4AF37]/20 p-6 rounded-lg shadow-inner">
-          <p className="font-sans text-[#EEEAD7]/90 leading-relaxed mb-4">
-            Your journey begins at <strong>The Gate</strong>, the portal that separates the mortal world from the Night Realm. Here, you create your account and bind your soul to BatHabit.
-          </p>
-          <p className="font-sans text-[#EEEAD7]/90 leading-relaxed">
-            Upon entry, you experience the <strong>Awakening</strong>—an interactive onboarding where you define your very first core habit. This single commitment forms the foundation of your legacy.
-          </p>
+        <motion.div variants={fadeIn} className="relative bg-[rgba(17,1,2,0.8)] backdrop-blur-md border border-[#D4AF37]/20 rounded-lg shadow-inner overflow-visible">
+          {/* Animated Gothic Corner Filigree */}
+          <svg className="absolute top-[-4px] left-[-4px] w-12 h-12 text-[#D4AF37] animate-[pulse_4s_ease-in-out_infinite] drop-shadow-[0_0_6px_rgba(212,175,55,0.6)]" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M0 0 L10 0 C6 2 4 4 2 10 L0 10 Z" />
+            <path d="M4 4 C6 8 8 6 12 4 C8 2 6 0 4 4 Z" opacity="0.7" />
+          </svg>
+          <svg className="absolute top-[-4px] right-[-4px] w-12 h-12 text-[#D4AF37] animate-[pulse_4s_ease-in-out_infinite] drop-shadow-[0_0_6px_rgba(212,175,55,0.6)] scale-x-[-1]" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M0 0 L10 0 C6 2 4 4 2 10 L0 10 Z" />
+            <path d="M4 4 C6 8 8 6 12 4 C8 2 6 0 4 4 Z" opacity="0.7" />
+          </svg>
+          <svg className="absolute bottom-[-4px] left-[-4px] w-12 h-12 text-[#D4AF37] animate-[pulse_4s_ease-in-out_infinite] drop-shadow-[0_0_6px_rgba(212,175,55,0.6)] scale-y-[-1]" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M0 0 L10 0 C6 2 4 4 2 10 L0 10 Z" />
+            <path d="M4 4 C6 8 8 6 12 4 C8 2 6 0 4 4 Z" opacity="0.7" />
+          </svg>
+          <svg className="absolute bottom-[-4px] right-[-4px] w-12 h-12 text-[#D4AF37] animate-[pulse_4s_ease-in-out_infinite] drop-shadow-[0_0_6px_rgba(212,175,55,0.6)] scale-[-1]" viewBox="0 0 24 24" fill="currentColor">
+            <path d="M0 0 L10 0 C6 2 4 4 2 10 L0 10 Z" />
+            <path d="M4 4 C6 8 8 6 12 4 C8 2 6 0 4 4 Z" opacity="0.7" />
+          </svg>
+
+          {/* Inner Content with large padding to prevent overlap */}
+          <div className="p-10 relative z-10">
+            <p className="font-sans text-[#EEEAD7]/90 leading-relaxed mb-4">
+              Your journey begins at <strong>The Gate</strong>, the portal that separates the mortal world from the Night Realm. Here, you create your account and bind your soul to BatHabit.
+            </p>
+            <p className="font-sans text-[#EEEAD7]/90 leading-relaxed">
+              Upon entry, you experience the <strong>Awakening</strong>—an interactive onboarding where you define your very first core habit. This single commitment forms the foundation of your legacy.
+            </p>
+          </div>
         </motion.div>
       </motion.section>
 
