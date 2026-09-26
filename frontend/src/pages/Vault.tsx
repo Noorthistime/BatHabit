@@ -313,8 +313,8 @@ export function Vault() {
                     key={item.id}
                     className={`p-4 flex flex-col items-center justify-between gap-3 text-center cursor-pointer transition-all duration-300 group rounded-xl backdrop-blur-md relative overflow-hidden ${
                       isEquipped 
-                        ? 'bg-[rgba(109,8,8,0.3)] border border-[#D4AF37]/60 shadow-[0_0_20px_rgba(109,8,8,0.6)] ring-1 ring-[#D4AF37]/30' 
-                        : 'bg-[#1B263B]/40 dark:bg-[rgba(35,6,8,0.6)] border border-[#415A77]/50 dark:border-[#D4AF37]/25 hover:border-[#415A77] dark:hover:border-[#D4AF37]/60 hover:shadow-[0_8px_20px_rgba(109,8,8,0.4)]'
+                        ? 'bg-[rgba(109,8,8,0.4)] border border-[#D4AF37] ring-1 ring-[#D4AF37] shadow-[0_0_15px_rgba(212,175,55,0.4)]' 
+                        : 'bg-[rgba(35,6,8,0.6)] border border-[#D4AF37]/40 hover:border-[#D4AF37]/80 hover:shadow-[0_4px_15px_rgba(109,8,8,0.6)]'
                     }`}
                     onClick={() => toggleEquip(item.id, item.category)}
                   >
