@@ -93,27 +93,49 @@ const FiligreeFrame = ({ children, className }: { children: React.ReactNode, cla
 );
 
 const MoonPhaseIcon = ({ phase }: { phase: string }) => {
-  const dark = "#1a1a1a";
-  const light = "#d1d5db";
+  const dark = "url(#moon-dark)";
+  const light = "url(#moon-light)";
   
   const getPath = () => {
     switch (phase) {
       case 'New Moon': return null;
-      case 'Waxing Crescent': return <path d="M 10 1 A 9 9 0 0 1 10 19 A 4 9 0 0 0 10 1 Z" fill={light} />;
+      case 'Waxing Crescent': return <path d="M 10 1 A 9 9 0 0 1 10 19 A 5 9 0 0 0 10 1 Z" fill={light} />;
       case 'First Quarter': return <path d="M 10 1 A 9 9 0 0 1 10 19 L 10 1 Z" fill={light} />;
-      case 'Waxing Gibbous': return <path d="M 10 1 A 9 9 0 0 1 10 19 A 4 9 0 0 1 10 1 Z" fill={light} />;
+      case 'Waxing Gibbous': return <path d="M 10 1 A 9 9 0 0 1 10 19 A 5 9 0 0 1 10 1 Z" fill={light} />;
       case 'Full Moon': return <circle cx="10" cy="10" r="9" fill={light} />;
-      case 'Waning Gibbous': return <path d="M 10 1 A 9 9 0 0 0 10 19 A 4 9 0 0 0 10 1 Z" fill={light} />;
+      case 'Waning Gibbous': return <path d="M 10 1 A 9 9 0 0 0 10 19 A 5 9 0 0 0 10 1 Z" fill={light} />;
       case 'Third Quarter': return <path d="M 10 1 A 9 9 0 0 0 10 19 L 10 1 Z" fill={light} />;
-      case 'Waning Crescent': return <path d="M 10 1 A 9 9 0 0 0 10 19 A 4 9 0 0 1 10 1 Z" fill={light} />;
+      case 'Waning Crescent': return <path d="M 10 1 A 9 9 0 0 0 10 19 A 5 9 0 0 1 10 1 Z" fill={light} />;
       default: return null;
     }
   };
 
   return (
-    <svg width="1em" height="1em" viewBox="0 0 20 20" className="inline-block drop-shadow-md" xmlns="http://www.w3.org/2000/svg">
-      <circle cx="10" cy="10" r="9" fill={dark} stroke="#333" strokeWidth="0.5" />
-      {getPath()}
+    <svg width="1.4em" height="1.4em" viewBox="0 0 20 20" className="inline-block drop-shadow-[0_0_4px_rgba(255,255,255,0.3)]" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="moon-light" cx="30%" cy="30%" r="70%">
+          <stop offset="0%" stopColor="#ffffff" />
+          <stop offset="50%" stopColor="#e5e7eb" />
+          <stop offset="100%" stopColor="#9ca3af" />
+        </radialGradient>
+        <radialGradient id="moon-dark" cx="30%" cy="30%" r="70%">
+          <stop offset="0%" stopColor="#374151" />
+          <stop offset="100%" stopColor="#030712" />
+        </radialGradient>
+        <filter id="craters">
+          <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" result="noise" />
+          <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.35 0" in="noise" result="coloredNoise" />
+          <feComposite operator="in" in="coloredNoise" in2="SourceGraphic" result="texture" />
+          <feBlend mode="multiply" in="texture" in2="SourceGraphic" />
+        </filter>
+      </defs>
+      
+      <g filter="url(#craters)">
+        <circle cx="10" cy="10" r="9" fill={dark} />
+        {getPath()}
+      </g>
+      {/* Subtle crisp outline to maintain perfectly round shape over the filter */}
+      <circle cx="10" cy="10" r="9" fill="none" stroke="#fff" strokeOpacity="0.15" strokeWidth="0.5" />
     </svg>
   );
 };
