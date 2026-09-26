@@ -22,15 +22,15 @@ const ORACLES = [
 ];
 
 const GOTHIC_QUOTES = [
-  "Arise, champion, and conquer the trials of this day.",
+  "Arise, Nightwalker, and conquer the trials of this night.",
   "No crown was ever won through idle hands.",
   "Steel thy will; even the darkest dungeon hath an exit.",
-  "Fear not the mountain, for thy resolve is forged in iron.",
+  "Fear not the abyss, for thy resolve is forged in iron.",
   "A noble destiny awaiteth him who dareth to begin.",
-  "Slay thy doubt, and no foe shall stand before thee.",
+  "Slay thy doubt, and no beast shall stand before thee.",
   "Every great legend began with a single strike of the blade.",
-  "Stand firm, knight, for the kingdom of thy future calleth.",
-  "Let thy deeds today echo through the halls of history.",
+  "Stand firm, Novice, for the kingdom of thy future calleth.",
+  "Let thy deeds tonight echo through the halls of history.",
   "Rest if thou must, but yield thy quest to none.",
   "Draw thy blade, for destiny waiteth upon no man.",
   "Even the grandest castle was built stone by weary stone.",
@@ -41,11 +41,34 @@ const GOTHIC_QUOTES = [
   "Hold the line against despair, and the morrow shall be thine.",
   "Greatness is not bestowed by fate—it is forged in battle.",
   "Let no task be left unfinished while breath remaineth in thy lungs.",
-  "Rise above the shadows, and light the hearth of thy kingdom.",
+  "Master the shadows, and light the hearth of thy kingdom.",
   "A warrior’s true power lieth not in his armor, but in his resolve.",
-  "Claim this day, knight, ere the darkness claimeth thee."
+  "Claim this night, Nightwalker, ere the dawn claimeth thee.",
+  "Heed the call of glory, for honor is won before the sun doth rise.",
+  "The forge testeth the iron; this night testeth thy soul.",
+  "Sheathe not thy purpose until the final deed is done.",
+  "A steadfast heart will breach walls that no siege engine can break.",
+  "March forth, warrior, and let thy labor silence every foe.",
+  "No beast of the abyss is slain by intentions left unspoken.",
+  "Stand tall, for the realm of tomorrow is wrought by thy hands tonight.",
+  "Let thy resolve burn brighter than the darkest dungeon fire.",
+  "Tread boldly, champion; cowardice never carved a kingdom.",
+  "Small deeds, wrought with honor, build an unshakeable throne.",
+  "Bear thy burdens like armor, and wear thy scars as gold.",
+  "The hour is upon thee—strike, and claim thy rightful renown.",
+  "A sharp mind and a steady hand can fell the mightiest titan.",
+  "Look not behind thee, Nightwalker; thy kingdom lieth straight ahead.",
+  "Even the fiercest storm must break against the fortress of thy will.",
+  "Let thy sword be swift and thy discipline unyielding.",
+  "No banner was ever raised without blood and valor.",
+  "Kindle the flame of purpose, and master the shadows.",
+  "The crown awaiteth the brave, not those who wait for easy nights.",
+  "Conquer the hour before thee, and the empire shall follow.",
+  "Fall seven times upon the battlefield; rise eight times with shield in hand.",
+  "A true sovereign mastereth himself ere he seeketh to rule the realm.",
+  "Leave thy mark upon this earth, that bards may sing of thy labor.",
+  "To arms, noble soul—thy greatest triumphs lie yet unwritten."
 ];
-
 
 
 export function Layout({ children }: { children: React.ReactNode }) {
