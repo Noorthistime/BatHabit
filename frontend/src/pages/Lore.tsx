@@ -27,6 +27,71 @@ const staggerContainer: Variants = {
   }
 };
 
+const ContinuousLoreFrame = () => (
+  <div className="absolute inset-0 pointer-events-none z-0 animate-[pulse_4s_ease-in-out_infinite]">
+    {/* Continuous Outer Thin Gold Border */}
+    <div className="absolute inset-[3px] border border-[#D4AF37]/40 shadow-[0_0_10px_rgba(212,175,55,0.2)]" />
+    {/* Continuous Inner Thin Gold Border */}
+    <div className="absolute inset-[6px] border border-[#D4AF37]/20" />
+
+    {/* Top Left Sharp Corner */}
+    <svg className="absolute top-0 left-0 w-24 h-24 text-[#F5D77F] drop-shadow-[0_0_8px_rgba(245,215,127,0.8)]" viewBox="0 0 100 100" fill="none">
+      <path d="M0,0 L50,0 L40,8 L8,8 L8,40 L0,50 Z" fill="currentColor" />
+      <path d="M20,8 Q35,25 55,10 Q40,15 20,8 Z" fill="currentColor" />
+      <path d="M8,20 Q25,35 10,55 Q15,40 8,20 Z" fill="currentColor" />
+      <circle cx="16" cy="16" r="3" fill="currentColor" opacity="0.7" />
+    </svg>
+    {/* Top Right Sharp Corner */}
+    <svg className="absolute top-0 right-0 w-24 h-24 text-[#F5D77F] drop-shadow-[0_0_8px_rgba(245,215,127,0.8)] scale-x-[-1]" viewBox="0 0 100 100" fill="none">
+      <path d="M0,0 L50,0 L40,8 L8,8 L8,40 L0,50 Z" fill="currentColor" />
+      <path d="M20,8 Q35,25 55,10 Q40,15 20,8 Z" fill="currentColor" />
+      <path d="M8,20 Q25,35 10,55 Q15,40 8,20 Z" fill="currentColor" />
+      <circle cx="16" cy="16" r="3" fill="currentColor" opacity="0.7" />
+    </svg>
+    {/* Bottom Left Sharp Corner */}
+    <svg className="absolute bottom-0 left-0 w-24 h-24 text-[#F5D77F] drop-shadow-[0_0_8px_rgba(245,215,127,0.8)] scale-y-[-1]" viewBox="0 0 100 100" fill="none">
+      <path d="M0,0 L50,0 L40,8 L8,8 L8,40 L0,50 Z" fill="currentColor" />
+      <path d="M20,8 Q35,25 55,10 Q40,15 20,8 Z" fill="currentColor" />
+      <path d="M8,20 Q25,35 10,55 Q15,40 8,20 Z" fill="currentColor" />
+      <circle cx="16" cy="16" r="3" fill="currentColor" opacity="0.7" />
+    </svg>
+    {/* Bottom Right Sharp Corner */}
+    <svg className="absolute bottom-0 right-0 w-24 h-24 text-[#F5D77F] drop-shadow-[0_0_8px_rgba(245,215,127,0.8)] scale-[-1]" viewBox="0 0 100 100" fill="none">
+      <path d="M0,0 L50,0 L40,8 L8,8 L8,40 L0,50 Z" fill="currentColor" />
+      <path d="M20,8 Q35,25 55,10 Q40,15 20,8 Z" fill="currentColor" />
+      <path d="M8,20 Q25,35 10,55 Q15,40 8,20 Z" fill="currentColor" />
+      <circle cx="16" cy="16" r="3" fill="currentColor" opacity="0.7" />
+    </svg>
+
+    {/* Top Center Ornate Crest */}
+    <div className="absolute top-[2px] left-1/2 -translate-x-1/2 w-48 h-6 flex items-center justify-center">
+       <svg viewBox="0 0 300 40" className="h-full text-[#F5D77F] drop-shadow-[0_0_6px_rgba(245,215,127,0.8)]">
+          <path d="M0,0 L300,0 L280,10 L250,5 Q200,20 150,30 Q100,20 50,5 L20,10 Z" fill="currentColor" />
+          <path d="M100,10 Q150,25 200,10 Q150,5 100,10 Z" fill="currentColor" opacity="0.5" />
+       </svg>
+    </div>
+    {/* Bottom Center Ornate Crest */}
+    <div className="absolute bottom-[2px] left-1/2 -translate-x-1/2 w-48 h-6 flex items-center justify-center">
+       <svg viewBox="0 0 300 40" className="h-full text-[#F5D77F] drop-shadow-[0_0_6px_rgba(245,215,127,0.8)] scale-y-[-1]">
+          <path d="M0,0 L300,0 L280,10 L250,5 Q200,20 150,30 Q100,20 50,5 L20,10 Z" fill="currentColor" />
+          <path d="M100,10 Q150,25 200,10 Q150,5 100,10 Z" fill="currentColor" opacity="0.5" />
+       </svg>
+    </div>
+    
+    {/* Side Center Accents */}
+    <div className="absolute top-1/2 left-[2px] -translate-y-1/2 w-3 h-24 flex items-center justify-center">
+       <svg viewBox="0 0 20 200" className="w-full text-[#F5D77F] drop-shadow-[0_0_6px_rgba(245,215,127,0.6)]">
+          <path d="M0,0 L10,20 L5,50 Q15,100 5,150 L10,180 L0,200 Z" fill="currentColor" />
+       </svg>
+    </div>
+    <div className="absolute top-1/2 right-[2px] -translate-y-1/2 w-3 h-24 flex items-center justify-center">
+       <svg viewBox="0 0 20 200" className="w-full text-[#F5D77F] drop-shadow-[0_0_6px_rgba(245,215,127,0.6)] scale-x-[-1]">
+          <path d="M0,0 L10,20 L5,50 Q15,100 5,150 L10,180 L0,200 Z" fill="currentColor" />
+       </svg>
+    </div>
+  </div>
+);
+
 export function Lore() {
   const { theme } = useTheme();
 
@@ -74,27 +139,12 @@ export function Lore() {
           <h2 className="font-serif text-2xl uppercase tracking-wide drop-shadow-[0_0_10px_rgba(245,215,127,0.5)] text-transparent bg-clip-text bg-gradient-to-b from-[#FFF9E6] to-[#D4AF37]">The Gate & Awakening</h2>
         </motion.div>
         
-        <motion.div variants={fadeIn} className="relative bg-[rgba(17,1,2,0.8)] backdrop-blur-md border border-[#D4AF37]/20 rounded-lg shadow-inner overflow-visible">
-          {/* Animated Gothic Corner Filigree */}
-          <svg className="absolute top-[-4px] left-[-4px] w-12 h-12 text-[#D4AF37] animate-[pulse_4s_ease-in-out_infinite] drop-shadow-[0_0_6px_rgba(212,175,55,0.6)]" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M0 0 L10 0 C6 2 4 4 2 10 L0 10 Z" />
-            <path d="M4 4 C6 8 8 6 12 4 C8 2 6 0 4 4 Z" opacity="0.7" />
-          </svg>
-          <svg className="absolute top-[-4px] right-[-4px] w-12 h-12 text-[#D4AF37] animate-[pulse_4s_ease-in-out_infinite] drop-shadow-[0_0_6px_rgba(212,175,55,0.6)] scale-x-[-1]" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M0 0 L10 0 C6 2 4 4 2 10 L0 10 Z" />
-            <path d="M4 4 C6 8 8 6 12 4 C8 2 6 0 4 4 Z" opacity="0.7" />
-          </svg>
-          <svg className="absolute bottom-[-4px] left-[-4px] w-12 h-12 text-[#D4AF37] animate-[pulse_4s_ease-in-out_infinite] drop-shadow-[0_0_6px_rgba(212,175,55,0.6)] scale-y-[-1]" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M0 0 L10 0 C6 2 4 4 2 10 L0 10 Z" />
-            <path d="M4 4 C6 8 8 6 12 4 C8 2 6 0 4 4 Z" opacity="0.7" />
-          </svg>
-          <svg className="absolute bottom-[-4px] right-[-4px] w-12 h-12 text-[#D4AF37] animate-[pulse_4s_ease-in-out_infinite] drop-shadow-[0_0_6px_rgba(212,175,55,0.6)] scale-[-1]" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M0 0 L10 0 C6 2 4 4 2 10 L0 10 Z" />
-            <path d="M4 4 C6 8 8 6 12 4 C8 2 6 0 4 4 Z" opacity="0.7" />
-          </svg>
+        <motion.div variants={fadeIn} className="relative bg-[rgba(17,1,2,0.8)] backdrop-blur-md rounded-lg shadow-inner border border-transparent">
+          
+          <ContinuousLoreFrame />
 
           {/* Inner Content with large padding to prevent overlap */}
-          <div className="p-10 relative z-10">
+          <div className="p-12 relative z-10">
             <p className="font-sans text-[#EEEAD7]/90 leading-relaxed mb-4">
               Your journey begins at <strong>The Gate</strong>, the portal that separates the mortal world from the Night Realm. Here, you create your account and bind your soul to BatHabit.
             </p>
