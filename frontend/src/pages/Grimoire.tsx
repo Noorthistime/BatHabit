@@ -66,6 +66,58 @@ const AnimatedNumber = ({ value, duration = 1000 }: { value: number, duration?: 
   return <>{count}</>;
 };
 
+const GrimoireFrame = () => (
+  <div className="absolute inset-0 pointer-events-none z-0">
+    {/* Continuous Outer Gold Border with Beveled Corners */}
+    <div className="absolute inset-0 bg-gradient-to-b from-[#D4AF37]/80 to-[#D4AF37]/30 shadow-[0_0_15px_rgba(212,175,55,0.4)]" 
+         style={{ clipPath: 'polygon(16px 0, calc(100% - 16px) 0, 100% 16px, 100% calc(100% - 16px), calc(100% - 16px) 100%, 16px 100%, 0 calc(100% - 16px), 0 16px)' }}>
+    </div>
+    
+    {/* Inner panel background cutting out the center of the border to make it 1.5px thick */}
+    <div className="absolute inset-[1.5px] bg-[#110102]" 
+         style={{ clipPath: 'polygon(15px 0, calc(100% - 15px) 0, 100% 15px, 100% calc(100% - 15px), calc(100% - 15px) 100%, 15px 100%, 0 calc(100% - 15px), 0 15px)' }}>
+      {/* Deep Crimson Radial Glow */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(109,8,8,0.4)_0%,_rgba(17,1,2,1)_100%)]" />
+    </div>
+
+    {/* Inner Thin Accent Border */}
+    <div className="absolute inset-[6px] border border-[#D4AF37]/20" 
+         style={{ clipPath: 'polygon(12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0 calc(100% - 12px), 0 12px)' }} />
+
+    {/* Elegant Corner Flourishes (Inside the frame) */}
+    <svg className="absolute top-[8px] left-[8px] w-6 h-6 text-[#F5D77F] drop-shadow-[0_0_4px_rgba(212,175,55,0.8)]" viewBox="0 0 24 24">
+      <path d="M 0 12 L 12 0 L 14 2 L 2 14 Z" fill="currentColor" />
+      <circle cx="16" cy="16" r="1.5" fill="currentColor" />
+    </svg>
+    <svg className="absolute top-[8px] right-[8px] w-6 h-6 text-[#F5D77F] drop-shadow-[0_0_4px_rgba(212,175,55,0.8)] scale-x-[-1]" viewBox="0 0 24 24">
+      <path d="M 0 12 L 12 0 L 14 2 L 2 14 Z" fill="currentColor" />
+      <circle cx="16" cy="16" r="1.5" fill="currentColor" />
+    </svg>
+    <svg className="absolute bottom-[8px] left-[8px] w-6 h-6 text-[#F5D77F] drop-shadow-[0_0_4px_rgba(212,175,55,0.8)] scale-y-[-1]" viewBox="0 0 24 24">
+      <path d="M 0 12 L 12 0 L 14 2 L 2 14 Z" fill="currentColor" />
+      <circle cx="16" cy="16" r="1.5" fill="currentColor" />
+    </svg>
+    <svg className="absolute bottom-[8px] right-[8px] w-6 h-6 text-[#F5D77F] drop-shadow-[0_0_4px_rgba(212,175,55,0.8)] scale-[-1]" viewBox="0 0 24 24">
+      <path d="M 0 12 L 12 0 L 14 2 L 2 14 Z" fill="currentColor" />
+      <circle cx="16" cy="16" r="1.5" fill="currentColor" />
+    </svg>
+
+    {/* Top-Center Royal Crest */}
+    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-3 flex items-center justify-center">
+      <svg viewBox="0 0 40 10" className="h-full text-[#F5D77F] drop-shadow-[0_0_6px_rgba(245,215,127,1)]">
+        <path d="M 0 0 L 20 10 L 40 0 L 20 4 Z" fill="currentColor" />
+      </svg>
+    </div>
+    
+    {/* Bottom-Center Royal Crest */}
+    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-16 h-3 flex items-center justify-center">
+      <svg viewBox="0 0 40 10" className="h-full text-[#F5D77F] drop-shadow-[0_0_6px_rgba(245,215,127,1)] scale-y-[-1]">
+        <path d="M 0 0 L 20 10 L 40 0 L 20 4 Z" fill="currentColor" />
+      </svg>
+    </div>
+  </div>
+);
+
 export function Grimoire() {
   const [activeTab, setActiveTab] = useState<'attributes' | 'evolution' | 'achievements'>('attributes');
   const currentXP = 4820;
@@ -97,16 +149,12 @@ export function Grimoire() {
 
         {/* Character Card */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-3 flex-1">
-          <div className="rounded-xl p-4 flex flex-col items-center text-center gap-3 justify-between relative col-span-1 h-full bg-[#1B263B]/40 dark:bg-[rgba(35,6,8,0.85)] backdrop-blur-xl border border-[#415A77]/60 dark:border-[#D4AF37]/50 shadow-[0_8px_30px_rgba(109,8,8,0.5)]">
+          <div className="p-4 flex flex-col items-center text-center gap-3 justify-between relative col-span-1 h-full overflow-hidden shadow-[0_8px_30px_rgba(109,8,8,0.5)] bg-transparent">
+            <GrimoireFrame />
             {/* Background Watermark */}
             <div className="absolute bottom-0 left-0 right-0 h-56 overflow-hidden rounded-b-xl pointer-events-none flex items-end justify-center opacity-[0.06] text-[#D4AF37]">
               <GiDragonHead className="w-64 h-64 translate-y-4" />
             </div>
-            {/* Corner Brackets */}
-            <div className="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-[#D4AF37]/80" />
-            <div className="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-[#D4AF37]/80" />
-            <div className="absolute bottom-0 left-0 w-6 h-6 border-b-2 border-l-2 border-[#D4AF37]/80" />
-            <div className="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-[#D4AF37]/80" />
 
             {/* Avatar */}
             <div className="relative mt-2">
