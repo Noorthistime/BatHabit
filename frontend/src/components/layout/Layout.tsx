@@ -92,6 +92,32 @@ const FiligreeFrame = ({ children, className }: { children: React.ReactNode, cla
   </div>
 );
 
+const MoonPhaseIcon = ({ phase }: { phase: string }) => {
+  const dark = "#1a1a1a";
+  const light = "#d1d5db";
+  
+  const getPath = () => {
+    switch (phase) {
+      case 'New Moon': return null;
+      case 'Waxing Crescent': return <path d="M 10 1 A 9 9 0 0 1 10 19 A 4 9 0 0 0 10 1 Z" fill={light} />;
+      case 'First Quarter': return <path d="M 10 1 A 9 9 0 0 1 10 19 L 10 1 Z" fill={light} />;
+      case 'Waxing Gibbous': return <path d="M 10 1 A 9 9 0 0 1 10 19 A 4 9 0 0 1 10 1 Z" fill={light} />;
+      case 'Full Moon': return <circle cx="10" cy="10" r="9" fill={light} />;
+      case 'Waning Gibbous': return <path d="M 10 1 A 9 9 0 0 0 10 19 A 4 9 0 0 0 10 1 Z" fill={light} />;
+      case 'Third Quarter': return <path d="M 10 1 A 9 9 0 0 0 10 19 L 10 1 Z" fill={light} />;
+      case 'Waning Crescent': return <path d="M 10 1 A 9 9 0 0 0 10 19 A 4 9 0 0 1 10 1 Z" fill={light} />;
+      default: return null;
+    }
+  };
+
+  return (
+    <svg width="1em" height="1em" viewBox="0 0 20 20" className="inline-block drop-shadow-md" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="10" cy="10" r="9" fill={dark} stroke="#333" strokeWidth="0.5" />
+      {getPath()}
+    </svg>
+  );
+};
+
 const GOTHIC_QUOTES = [
   "Arise, Nightwalker, and conquer the trials of this night.",
   "No crown was ever won through idle hands.",
@@ -173,14 +199,22 @@ export function Layout({ children }: { children: React.ReactNode }) {
     const diff = (new Date().getTime() - newMoon.getTime()) / (1000 * 60 * 60 * 24);
     const cycle = diff % LUNAR_MONTH;
     
-    if (cycle < 1.84 || cycle > 27.68) return 'New Moon';
-    if (cycle < 5.53) return 'Waxing Crescent';
-    if (cycle < 9.22) return 'First Quarter';
-    if (cycle < 12.91) return 'Waxing Gibbous';
-    if (cycle < 16.61) return 'Full Moon';
-    if (cycle < 20.30) return 'Waning Gibbous';
-    if (cycle < 23.99) return 'Third Quarter';
-    return 'Waning Crescent';
+    let phase = '';
+    if (cycle < 1.84 || cycle > 27.68) phase = 'New Moon';
+    else if (cycle < 5.53) phase = 'Waxing Crescent';
+    else if (cycle < 9.22) phase = 'First Quarter';
+    else if (cycle < 12.91) phase = 'Waxing Gibbous';
+    else if (cycle < 16.61) phase = 'Full Moon';
+    else if (cycle < 20.30) phase = 'Waning Gibbous';
+    else if (cycle < 23.99) phase = 'Third Quarter';
+    else phase = 'Waning Crescent';
+
+    return (
+      <span className="flex items-center gap-1.5">
+        <span>{phase}</span>
+        <MoonPhaseIcon phase={phase} />
+      </span>
+    );
   };
 
   const navItems = [
