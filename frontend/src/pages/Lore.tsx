@@ -266,21 +266,27 @@ export function Lore() {
       </motion.section>
 
       {/* Chapter 2: The Sanctuaries */}
-      <motion.section 
-        initial="hidden" 
-        whileInView="visible" 
-        viewport={{ once: true, margin: "-100px" }}
-        variants={staggerContainer}
-        className="space-y-6"
-      >
-        <motion.div variants={fadeIn} className="flex items-center justify-center gap-4 border-b border-[#D4AF37]/20 pb-4">
+      <section className="space-y-6">
+        <motion.div 
+          initial="hidden" 
+          whileInView="visible" 
+          viewport={{ once: true, margin: "-50px" }}
+          variants={fadeIn} 
+          className="flex items-center justify-center gap-4 border-b border-[#D4AF37]/20 pb-4"
+        >
           <span className="font-mono text-2xl text-[#F5D77F] font-bold drop-shadow-[0_0_8px_rgba(245,215,127,0.6)]">II.</span>
           <h2 className="font-serif text-2xl uppercase tracking-wide drop-shadow-[0_0_10px_rgba(245,215,127,0.5)] text-transparent bg-clip-text bg-gradient-to-b from-[#FFF9E6] to-[#D4AF37]">The Sanctuaries</h2>
         </motion.div>
         
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
           
-          <motion.div variants={slideLeft} className="relative bg-[rgba(17,1,2,0.8)] backdrop-blur-md rounded-xl shadow-inner border border-transparent overflow-visible">
+          <motion.div 
+            initial="hidden" 
+            whileInView="visible" 
+            viewport={{ once: true, margin: "-50px" }}
+            variants={slideLeft} 
+            className="relative bg-[rgba(17,1,2,0.8)] backdrop-blur-md rounded-xl shadow-inner border border-transparent overflow-visible"
+          >
             <ContinuousSanctuaryFrame />
             <div className="p-10 relative z-10 flex flex-col items-center text-center">
               <div className="relative flex items-center justify-center mb-6">
@@ -297,7 +303,13 @@ export function Lore() {
             </div>
           </motion.div>
 
-          <motion.div variants={slideRight} className="relative bg-[rgba(17,1,2,0.8)] backdrop-blur-md rounded-xl shadow-inner border border-transparent overflow-visible md:mt-12">
+          <motion.div 
+            initial="hidden" 
+            whileInView="visible" 
+            viewport={{ once: true, margin: "-50px" }}
+            variants={slideRight} 
+            className="relative bg-[rgba(17,1,2,0.8)] backdrop-blur-md rounded-xl shadow-inner border border-transparent overflow-visible md:mt-12"
+          >
             <ContinuousSanctuaryFrame />
             <div className="p-10 relative z-10 flex flex-col items-center text-center">
               <div className="relative flex items-center justify-center mb-6">
@@ -313,7 +325,13 @@ export function Lore() {
             </div>
           </motion.div>
           
-          <motion.div variants={slideLeft} className="relative bg-[rgba(17,1,2,0.8)] backdrop-blur-md rounded-xl shadow-inner border border-transparent overflow-visible">
+          <motion.div 
+            initial="hidden" 
+            whileInView="visible" 
+            viewport={{ once: true, margin: "-50px" }}
+            variants={slideLeft} 
+            className="relative bg-[rgba(17,1,2,0.8)] backdrop-blur-md rounded-xl shadow-inner border border-transparent overflow-visible"
+          >
             <ContinuousSanctuaryFrame />
             <div className="p-10 relative z-10 flex flex-col items-center text-center">
               <div className="relative flex items-center justify-center mb-6">
@@ -329,7 +347,13 @@ export function Lore() {
             </div>
           </motion.div>
 
-          <motion.div variants={slideRight} className="relative bg-[rgba(17,1,2,0.8)] backdrop-blur-md rounded-xl shadow-inner border border-transparent overflow-visible md:mt-12">
+          <motion.div 
+            initial="hidden" 
+            whileInView="visible" 
+            viewport={{ once: true, margin: "-50px" }}
+            variants={slideRight} 
+            className="relative bg-[rgba(17,1,2,0.8)] backdrop-blur-md rounded-xl shadow-inner border border-transparent overflow-visible md:mt-12"
+          >
             <ContinuousSanctuaryFrame />
             <div className="p-10 relative z-10 flex flex-col items-center text-center">
               <div className="relative flex items-center justify-center mb-6">
@@ -345,7 +369,13 @@ export function Lore() {
             </div>
           </motion.div>
 
-          <motion.div variants={slideLeft} className="relative bg-[rgba(17,1,2,0.8)] backdrop-blur-md rounded-xl shadow-inner border border-transparent overflow-visible">
+          <motion.div 
+            initial="hidden" 
+            whileInView="visible" 
+            viewport={{ once: true, margin: "-50px" }}
+            variants={slideLeft} 
+            className="relative bg-[rgba(17,1,2,0.8)] backdrop-blur-md rounded-xl shadow-inner border border-transparent overflow-visible"
+          >
             <ContinuousSanctuaryFrame />
             <div className="p-10 relative z-10 flex flex-col items-center text-center">
               <div className="relative flex items-center justify-center mb-6">
@@ -361,7 +391,13 @@ export function Lore() {
             </div>
           </motion.div>
 
-          <motion.div variants={slideRight} className="relative bg-[rgba(17,1,2,0.8)] backdrop-blur-md rounded-xl shadow-inner border border-transparent overflow-visible md:mt-12">
+          <motion.div 
+            initial="hidden" 
+            whileInView="visible" 
+            viewport={{ once: true, margin: "-50px" }}
+            variants={slideRight} 
+            className="relative bg-[rgba(17,1,2,0.8)] backdrop-blur-md rounded-xl shadow-inner border border-transparent overflow-visible md:mt-12"
+          >
             <ContinuousSanctuaryFrame />
             <div className="p-10 relative z-10 flex flex-col items-center text-center">
               <div className="relative flex items-center justify-center mb-6">
@@ -378,7 +414,7 @@ export function Lore() {
           </motion.div>
 
         </div>
-      </motion.section>
+      </section>
 
       {/* Chapter 3: The Currency */}
       <motion.section 
