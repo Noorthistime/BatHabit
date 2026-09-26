@@ -96,46 +96,81 @@ const MoonPhaseIcon = ({ phase }: { phase: string }) => {
   const dark = "url(#moon-dark)";
   const light = "url(#moon-light)";
   
-  const getPath = () => {
+  const getD = () => {
     switch (phase) {
-      case 'New Moon': return null;
-      case 'Waxing Crescent': return <path d="M 10 1 A 9 9 0 0 1 10 19 A 5 9 0 0 0 10 1 Z" fill={light} />;
-      case 'First Quarter': return <path d="M 10 1 A 9 9 0 0 1 10 19 L 10 1 Z" fill={light} />;
-      case 'Waxing Gibbous': return <path d="M 10 1 A 9 9 0 0 1 10 19 A 5 9 0 0 1 10 1 Z" fill={light} />;
-      case 'Full Moon': return <circle cx="10" cy="10" r="9" fill={light} />;
-      case 'Waning Gibbous': return <path d="M 10 1 A 9 9 0 0 0 10 19 A 5 9 0 0 0 10 1 Z" fill={light} />;
-      case 'Third Quarter': return <path d="M 10 1 A 9 9 0 0 0 10 19 L 10 1 Z" fill={light} />;
-      case 'Waning Crescent': return <path d="M 10 1 A 9 9 0 0 0 10 19 A 5 9 0 0 1 10 1 Z" fill={light} />;
-      default: return null;
+      case 'New Moon': return "";
+      case 'Waxing Crescent': return "M 10 1 A 9 9 0 0 1 10 19 A 5 9 0 0 0 10 1 Z";
+      case 'First Quarter': return "M 10 1 A 9 9 0 0 1 10 19 L 10 1 Z";
+      case 'Waxing Gibbous': return "M 10 1 A 9 9 0 0 1 10 19 A 5 9 0 0 1 10 1 Z";
+      case 'Waning Gibbous': return "M 10 1 A 9 9 0 0 0 10 19 A 5 9 0 0 0 10 1 Z";
+      case 'Third Quarter': return "M 10 1 A 9 9 0 0 0 10 19 L 10 1 Z";
+      case 'Waning Crescent': return "M 10 1 A 9 9 0 0 0 10 19 A 5 9 0 0 1 10 1 Z";
+      default: return "";
     }
   };
 
+  const d = getD();
+  const isFull = phase === 'Full Moon';
+  const isNew = phase === 'New Moon';
+
   return (
-    <svg width="1.4em" height="1.4em" viewBox="0 0 20 20" className="inline-block drop-shadow-[0_0_4px_rgba(255,255,255,0.3)]" xmlns="http://www.w3.org/2000/svg">
+    <svg width="1.6em" height="1.6em" viewBox="0 0 20 20" className="inline-block drop-shadow-[0_0_6px_rgba(255,255,255,0.25)] ml-1" xmlns="http://www.w3.org/2000/svg">
       <defs>
         <radialGradient id="moon-light" cx="30%" cy="30%" r="70%">
           <stop offset="0%" stopColor="#ffffff" />
-          <stop offset="50%" stopColor="#e5e7eb" />
+          <stop offset="45%" stopColor="#f3f4f6" />
+          <stop offset="75%" stopColor="#d1d5db" />
           <stop offset="100%" stopColor="#9ca3af" />
         </radialGradient>
-        <radialGradient id="moon-dark" cx="30%" cy="30%" r="70%">
-          <stop offset="0%" stopColor="#374151" />
+        <radialGradient id="moon-dark" cx="40%" cy="40%" r="60%">
+          <stop offset="0%" stopColor="#1f2937" />
           <stop offset="100%" stopColor="#030712" />
         </radialGradient>
-        <filter id="craters">
-          <feTurbulence type="fractalNoise" baseFrequency="0.8" numOctaves="3" result="noise" />
-          <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 0.35 0" in="noise" result="coloredNoise" />
-          <feComposite operator="in" in="coloredNoise" in2="SourceGraphic" result="texture" />
-          <feBlend mode="multiply" in="texture" in2="SourceGraphic" />
-        </filter>
+        
+        {/* Hand-crafted realistic lunar maria (the dark spots of the moon) */}
+        <pattern id="maria" x="0" y="0" width="20" height="20" patternUnits="userSpaceOnUse">
+           <circle cx="6" cy="6" r="2.5" fill="#000" opacity="0.3" filter="blur(0.8px)"/>
+           <circle cx="14" cy="8" r="4.5" fill="#000" opacity="0.25" filter="blur(1.2px)"/>
+           <circle cx="8" cy="13" r="3" fill="#000" opacity="0.28" filter="blur(1px)"/>
+           <circle cx="12" cy="14" r="3.5" fill="#000" opacity="0.2" filter="blur(1.2px)"/>
+           <circle cx="16" cy="4" r="1.5" fill="#000" opacity="0.2" filter="blur(0.5px)"/>
+           <circle cx="4" cy="11" r="1.5" fill="#000" opacity="0.25" filter="blur(0.5px)"/>
+           {/* Add a tiny bright crater (Tycho) */}
+           <circle cx="9" cy="16" r="0.8" fill="#fff" opacity="0.7" filter="blur(0.2px)"/>
+           <circle cx="13" cy="6" r="0.6" fill="#fff" opacity="0.6" filter="blur(0.2px)"/>
+        </pattern>
+
+        <mask id="phase-mask">
+          {isFull ? <circle cx="10" cy="10" r="9" fill="white" /> : (d ? <path d={d} fill="white" /> : null)}
+        </mask>
       </defs>
       
-      <g filter="url(#craters)">
-        <circle cx="10" cy="10" r="9" fill={dark} />
-        {getPath()}
-      </g>
-      {/* Subtle crisp outline to maintain perfectly round shape over the filter */}
-      <circle cx="10" cy="10" r="9" fill="none" stroke="#fff" strokeOpacity="0.15" strokeWidth="0.5" />
+      {/* Base dark moon */}
+      <circle cx="10" cy="10" r="9" fill={dark} />
+
+      {/* Lit Moon Phase */}
+      {!isNew && (
+        <g>
+          {isFull ? (
+             <circle cx="10" cy="10" r="9" fill={light} />
+          ) : (
+             <path d={d} fill={light} />
+          )}
+          
+          {/* Apply the realistic craters/maria over the top of the lit mask! */}
+          <circle cx="10" cy="10" r="9" fill="url(#maria)" mask="url(#phase-mask)" />
+          
+          {/* Inner spherical highlight */}
+          {isFull ? (
+            <circle cx="10" cy="10" r="9" fill="none" stroke="#ffffff" strokeOpacity="0.5" strokeWidth="0.5" mask="url(#phase-mask)" />
+          ) : (
+            <path d={d} fill="none" stroke="#ffffff" strokeOpacity="0.5" strokeWidth="0.5" mask="url(#phase-mask)" />
+          )}
+        </g>
+      )}
+
+      {/* Universal outer sharp rim */}
+      <circle cx="10" cy="10" r="9" fill="none" stroke="#000000" strokeOpacity="0.5" strokeWidth="0.8" />
     </svg>
   );
 };
