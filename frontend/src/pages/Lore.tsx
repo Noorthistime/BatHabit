@@ -655,8 +655,6 @@ export function Lore() {
           <h2 className="font-serif text-2xl uppercase tracking-wide drop-shadow-[0_0_10px_rgba(245,215,127,0.5)] text-transparent bg-clip-text bg-gradient-to-b from-[#FFF9E6] to-[#D4AF37]">The Progression Workflow</h2>
         </motion.div>
 
-        <div className="relative pl-12 md:pl-16 space-y-12">
-          
         <div className="relative mt-12">
           
           <WorkflowStep 
@@ -691,7 +689,7 @@ export function Lore() {
           />
           
         </div>
-      </section>
+      </motion.section>
 
       {/* Conclusion */}
       <motion.div 
