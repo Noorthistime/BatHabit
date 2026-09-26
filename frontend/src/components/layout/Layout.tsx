@@ -175,6 +175,33 @@ const MoonPhaseIcon = ({ phase }: { phase: string }) => {
   );
 };
 
+const QuoteFiligree = ({ flipped = false }: { flipped?: boolean }) => {
+  const id = flipped ? "quote-fade-r" : "quote-fade-l";
+  return (
+    <svg 
+      width="60" 
+      height="15" 
+      viewBox="0 0 60 15" 
+      fill="none" 
+      xmlns="http://www.w3.org/2000/svg" 
+      className={`text-[#D4AF37]/60 dark:text-[#C5A059]/60 flex-shrink-0 ${flipped ? 'scale-x-[-1]' : ''}`}
+    >
+      <path d="M0 7.5 L35 7.5" stroke={`url(#${id})`} strokeWidth="1" />
+      <path d="M 35 7.5 C 35 7.5, 38 2, 45 2 C 49 2, 53 5, 49 7.5 C 53 10, 49 13, 45 13 C 38 13, 35 7.5, 35 7.5 Z" stroke="currentColor" strokeWidth="1.2" fill="none" />
+      <path d="M 54 7.5 L 57 5.5 L 60 7.5 L 57 9.5 Z" fill="currentColor" />
+      <path d="M 49 7.5 L 54 7.5" stroke="currentColor" strokeWidth="1" />
+      <circle cx="45" cy="5" r="0.5" fill="currentColor" />
+      <circle cx="45" cy="10" r="0.5" fill="currentColor" />
+      <defs>
+        <linearGradient id={id} x1="100%" y1="0%" x2="0%" y2="0%">
+          <stop offset="0%" stopColor="currentColor" stopOpacity="1" />
+          <stop offset="100%" stopColor="currentColor" stopOpacity="0" />
+        </linearGradient>
+      </defs>
+    </svg>
+  );
+};
+
 const GOTHIC_QUOTES = [
   "Arise, Nightwalker, and conquer the trials of this night.",
   "No crown was ever won through idle hands.",
@@ -385,10 +412,12 @@ export function Layout({ children }: { children: React.ReactNode }) {
             </div>
           </div>
           
-          <div className="absolute left-1/2 -translate-x-1/2 max-w-[40%] hidden xl:flex items-center justify-center pointer-events-none">
+          <div className="absolute left-1/2 -translate-x-1/2 max-w-[50%] hidden xl:flex items-center justify-center pointer-events-none gap-4">
+            <QuoteFiligree />
             <span className="font-serif text-[16px] text-[#F7F3E9]/90 dark:text-[#F5D77F]/90 text-center truncate drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] tracking-wide">
               {randomQuote}
             </span>
+            <QuoteFiligree flipped />
           </div>
 
           <div className="flex items-center gap-6">
