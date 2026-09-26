@@ -5,6 +5,67 @@ import { useTheme } from '../context/ThemeContext';
 import { motion } from 'framer-motion';
 import '../sanctum-gothic.css';
 
+const AnimatedFiligree = () => {
+  return (
+    <div className="absolute -top-[16px] left-1/2 -translate-x-1/2 w-[160px] h-[32px] pointer-events-none flex items-center justify-center z-20">
+      <motion.svg 
+        viewBox="0 0 160 32" 
+        fill="none" 
+        className="w-full h-full text-[#D4AF37] drop-shadow-[0_0_6px_rgba(212,175,55,0.7)]"
+      >
+        {/* Left primary sweeping vine */}
+        <motion.path 
+          d="M80,20 C 65,20 55,6 35,12 C 20,16 10,8 2,14" 
+          stroke="currentColor" 
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ duration: 1.8, ease: "easeInOut" }}
+        />
+        {/* Right primary sweeping vine */}
+        <motion.path 
+          d="M80,20 C 95,20 105,6 125,12 C 140,16 150,8 158,14" 
+          stroke="currentColor" 
+          strokeWidth="1.5"
+          strokeLinecap="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ duration: 1.8, ease: "easeInOut" }}
+        />
+        {/* Center Crest */}
+        <motion.path
+          d="M80,6 L84,18 L80,28 L76,18 Z"
+          fill="#F5D77F"
+          initial={{ scale: 0, opacity: 0, y: -10 }}
+          animate={{ scale: 1, opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 1.4, type: "spring", bounce: 0.6 }}
+        />
+        {/* Inner flourish left */}
+        <motion.path 
+          d="M74,20 Q 65,28 50,22" 
+          stroke="currentColor" 
+          strokeWidth="1"
+          strokeLinecap="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 0.5 }}
+          transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
+        />
+        {/* Inner flourish right */}
+        <motion.path 
+          d="M86,20 Q 95,28 110,22" 
+          stroke="currentColor" 
+          strokeWidth="1"
+          strokeLinecap="round"
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 0.5 }}
+          transition={{ duration: 1.2, delay: 0.4, ease: "easeOut" }}
+        />
+      </motion.svg>
+    </div>
+  );
+};
+
 const CornerFiligree = ({ className }: { className?: string }) => {
   const drawMain = {
     hidden: { pathLength: 0, opacity: 0 },
@@ -149,30 +210,37 @@ export function Sanctum() {
             </div>
             
             {/* Quick Stats Pills */}
-            <div className="flex flex-wrap items-center gap-3">
-              <div className="flex items-center gap-3 px-3 py-2 rounded bg-[#0a0000] border border-[#D4AF37]/40 shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
-                <div className="w-8 h-8 rounded bg-[#6D0808] flex items-center justify-center border border-[#D4AF37]/60 text-[#D4AF37]">
-                  <Flame size={16} />
+            <div className="flex flex-wrap items-center gap-4 shrink-0">
+              
+              {/* Stat 1: Unbroken Vow */}
+              <div className="relative group flex items-center gap-4 px-5 py-4 rounded-[12px] bg-[#110102] dark:bg-[radial-gradient(ellipse_at_center,_rgba(45,5,8,1)_0%,_rgba(15,2,4,1)_100%)] border border-[#D4AF37]/40 shadow-[0_4px_20px_rgba(0,0,0,0.5)] cursor-default transition-all duration-300 hover:border-[#D4AF37]/80 hover:shadow-[0_4px_25px_rgba(212,175,55,0.2)]">
+                <AnimatedFiligree />
+                <div className="w-10 h-10 rounded-[10px] flex items-center justify-center border border-[#D4AF37]/50 text-[#F5D77F] shadow-[inset_0_0_8px_rgba(212,175,55,0.1)] transition-all duration-300 group-hover:bg-[#D4AF37]/10 group-hover:border-[#F5D77F] group-hover:scale-110">
+                  <Flame size={20} strokeWidth={1.5} className="transition-transform duration-500 group-hover:rotate-12 group-hover:scale-110" />
                 </div>
-                <div className="flex flex-col pr-2">
-                  <div className="flex items-baseline gap-1">
-                    <span className="font-serif text-lg font-bold text-[#F7F3E9] dark:text-[#EEEAD7]">{streak?.currentStreak || 0}</span>
-                    <span className="font-mono text-[10px] text-[#F7F3E9]/70 dark:text-[#8d9685] uppercase tracking-widest">Days</span>
+                <div className="flex flex-col justify-center">
+                  <div className="flex items-baseline gap-1.5 leading-none mb-1.5">
+                    <span className="font-serif text-2xl font-bold text-[#F5D77F] drop-shadow-[0_0_8px_rgba(245,215,127,0.2)]">{streak?.currentStreak || 0}</span>
+                    <span className="font-mono text-[11px] text-[#F7F3E9]/60 dark:text-[#F7F3E9]/50 uppercase tracking-wide">Days</span>
                   </div>
-                  <span className="font-mono text-[8px] text-[#D4AF37] uppercase tracking-widest font-bold">Unbroken Vow</span>
+                  <span className="font-mono text-[9px] text-[#D4AF37] dark:text-[#D4AF37]/90 uppercase tracking-[0.15em] font-bold">UNBROKEN VOW</span>
                 </div>
               </div>
-              <div className="flex items-center gap-3 px-3 py-2 rounded bg-[#0a0000] border border-[#D4AF37]/40 shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
-                <div className="w-8 h-8 rounded bg-[#200000] flex items-center justify-center border border-[#D4AF37]/60 text-[#D4AF37]">
-                  <Coins size={16} />
+
+              {/* Stat 2: Tarnished Crowns */}
+              <div className="relative group flex items-center gap-4 px-5 py-4 rounded-[12px] bg-[#110102] dark:bg-[radial-gradient(ellipse_at_center,_rgba(45,5,8,1)_0%,_rgba(15,2,4,1)_100%)] border border-[#D4AF37]/40 shadow-[0_4px_20px_rgba(0,0,0,0.5)] cursor-default transition-all duration-300 hover:border-[#D4AF37]/80 hover:shadow-[0_4px_25px_rgba(212,175,55,0.2)]">
+                <AnimatedFiligree />
+                <div className="w-10 h-10 rounded-[10px] flex items-center justify-center border border-[#D4AF37]/50 text-[#F5D77F] shadow-[inset_0_0_8px_rgba(212,175,55,0.1)] transition-all duration-300 group-hover:bg-[#D4AF37]/10 group-hover:border-[#F5D77F] group-hover:scale-110">
+                  <Coins size={20} strokeWidth={1.5} className="transition-transform duration-500 group-hover:-rotate-12 group-hover:scale-110" />
                 </div>
-                <div className="flex flex-col pr-2">
-                  <div className="flex items-baseline gap-1">
-                    <span className="font-serif text-lg font-bold text-[#F7F3E9] dark:text-[#EEEAD7]">{currency?.balance || 0}</span>
+                <div className="flex flex-col justify-center">
+                  <div className="flex items-baseline gap-1.5 leading-none mb-1.5">
+                    <span className="font-serif text-2xl font-bold text-[#F5D77F] drop-shadow-[0_0_8px_rgba(245,215,127,0.2)]">{currency?.balance || 0}</span>
                   </div>
-                  <span className="font-mono text-[8px] text-[#D4AF37] uppercase tracking-widest font-bold">Tarnished Crowns</span>
+                  <span className="font-mono text-[9px] text-[#D4AF37] dark:text-[#D4AF37]/90 uppercase tracking-[0.15em] font-bold">TARNISHED CROWNS</span>
                 </div>
               </div>
+
             </div>
           </section>
 
