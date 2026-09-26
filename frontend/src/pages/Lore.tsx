@@ -545,9 +545,15 @@ export function Lore() {
         variants={staggerContainer}
         className="space-y-6"
       >
-        <motion.div variants={fadeIn} className="flex items-center gap-4 border-b border-[#415A77] dark:border-[#D4AF37]/30 pb-4">
-          <span className="font-mono text-2xl text-[#D4AF37] dark:text-[#C5A059] font-bold">IV.</span>
-          <h2 className="font-serif text-2xl text-[#F7F3E9] dark:text-[#EEEAD7] uppercase tracking-wide">The Progression Workflow</h2>
+        <motion.div 
+          initial="hidden" 
+          whileInView="visible" 
+          viewport={{ once: true, margin: "-50px" }}
+          variants={fadeIn} 
+          className="flex items-center justify-center gap-4 border-b border-[#D4AF37]/20 pb-4"
+        >
+          <span className="font-mono text-2xl text-[#F5D77F] font-bold drop-shadow-[0_0_8px_rgba(245,215,127,0.6)]">IV.</span>
+          <h2 className="font-serif text-2xl uppercase tracking-wide drop-shadow-[0_0_10px_rgba(245,215,127,0.5)] text-transparent bg-clip-text bg-gradient-to-b from-[#FFF9E6] to-[#D4AF37]">The Progression Workflow</h2>
         </motion.div>
 
         <div className="relative pl-12 md:pl-16 space-y-12">
