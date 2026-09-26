@@ -281,98 +281,107 @@ const CurrencyFrame = () => (
   </div>
 );
 
-const ShieldNode = () => (
+const RoyalStarNode = () => (
   <svg viewBox="0 0 100 100" className="w-full h-full" fill="none" stroke="currentColor">
-    {/* Outer Droplet Shield */}
+    {/* Four-Pointed Star (Compass) */}
     <motion.path 
-      variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { duration: 1.2, ease: "easeOut" } } }} 
-      d="M 50 95 C 20 70 10 50 10 35 C 10 15 25 5 50 5 C 75 5 90 15 90 35 C 90 50 80 70 50 95 Z" 
-      strokeWidth="2" 
+      variants={{ hidden: { scale: 0, rotate: -45 }, visible: { scale: 1, rotate: 0, transition: { duration: 1, ease: "easeOut" } } }} 
+      d="M 50 5 L 55 40 L 95 50 L 55 60 L 50 95 L 45 60 L 5 50 L 45 40 Z" 
+      fill="currentColor" 
+      stroke="none"
+      className="text-[#D4AF37]" 
     />
-    <motion.path 
-      variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { duration: 1.2, delay: 0.2 } } }} 
-      d="M 50 85 C 30 65 20 45 20 35 C 20 20 30 15 50 15 C 70 15 80 20 80 35 C 80 45 70 65 50 85 Z" 
-      strokeWidth="1.5" 
-    />
-    {/* Side Dots */}
-    <motion.circle variants={{ hidden: { scale: 0 }, visible: { scale: 1, transition: { delay: 1 } } }} cx="10" cy="45" r="4" fill="currentColor" stroke="none" />
-    <motion.circle variants={{ hidden: { scale: 0 }, visible: { scale: 1, transition: { delay: 1 } } }} cx="90" cy="45" r="4" fill="currentColor" stroke="none" />
+    {/* Outer Double Circle */}
+    <motion.circle variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { duration: 1.5 } } }} cx="50" cy="50" r="35" strokeWidth="1.5" />
+    <motion.circle variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { delay: 0.2, duration: 1.5 } } }} cx="50" cy="50" r="40" strokeWidth="1" strokeDasharray="2 3" />
     
-    {/* Inner Diamond */}
-    <motion.path 
-      variants={{ hidden: { scale: 0, opacity: 0 }, visible: { scale: 1, opacity: 1, transition: { delay: 0.6, duration: 0.6 } } }} 
-      d="M 50 25 L 70 45 L 50 65 L 30 45 Z" 
-      strokeWidth="2" 
-    />
-    <motion.path 
-      variants={{ hidden: { scale: 0, opacity: 0 }, visible: { scale: 1, opacity: 1, transition: { delay: 0.8, duration: 0.6 } } }} 
-      d="M 50 30 L 65 45 L 50 60 L 35 45 Z" 
-      strokeWidth="1.5" 
-      strokeDasharray="3 3" 
-    />
+    {/* Inner Solid Circle behind the number */}
+    <motion.circle variants={{ hidden: { scale: 0 }, visible: { scale: 1, transition: { delay: 0.5 } } }} cx="50" cy="50" r="25" fill="#110102" stroke="#D4AF37" strokeWidth="2" />
   </svg>
 );
 
-const HorizontalRoyalDividerTop = () => (
-  <div className="absolute top-0 left-0 right-0 h-[80px] pointer-events-none flex items-end justify-center overflow-visible z-0">
-    {/* Straight Lines */}
-    <motion.div variants={{ hidden: { scaleX: 0 }, visible: { scaleX: 1, transition: { delay: 0.5, duration: 0.8 } } }} className="absolute bottom-[20px] left-8 right-[calc(50%+60px)] h-[2px] bg-[#D4AF37] shadow-[0_0_5px_rgba(212,175,55,0.5)] origin-right" />
-    <motion.div variants={{ hidden: { scaleX: 0 }, visible: { scaleX: 1, transition: { delay: 0.5, duration: 0.8 } } }} className="absolute bottom-[20px] right-8 left-[calc(50%+60px)] h-[2px] bg-[#D4AF37] shadow-[0_0_5px_rgba(212,175,55,0.5)] origin-left" />
-    
-    {/* Central Crest */}
-    <div className="relative w-[300px] h-[80px] text-[#D4AF37] drop-shadow-[0_0_8px_rgba(212,175,55,0.6)]">
-      <svg viewBox="0 0 300 80" className="w-full h-full" fill="none" stroke="currentColor">
-        {/* Center tall spike */}
-        <motion.path variants={{ hidden: { scaleY: 0 }, visible: { scaleY: 1, transition: { delay: 0.8, duration: 0.5 } } }} d="M 150 10 C 140 30 145 50 150 60 C 155 50 160 30 150 10 Z" fill="currentColor" stroke="none" className="origin-bottom" />
-        {/* Side sweeping leaves */}
-        <motion.path variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { delay: 1, duration: 0.8 } } }} d="M 150 60 C 100 60 70 20 110 20 C 130 20 140 40 145 55" strokeWidth="3" />
-        <motion.path variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { delay: 1, duration: 0.8 } } }} d="M 150 60 C 200 60 230 20 190 20 C 170 20 160 40 155 55" strokeWidth="3" />
-        {/* Inner curls */}
-        <motion.path variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { delay: 1.2, duration: 0.6 } } }} d="M 130 60 C 115 50 115 35 130 35 C 140 35 145 45 135 50" strokeWidth="2" />
-        <motion.path variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { delay: 1.2, duration: 0.6 } } }} d="M 170 60 C 185 50 185 35 170 35 C 160 35 155 45 165 50" strokeWidth="2" />
-        
-        {/* Outer scrolls over the lines */}
-        <motion.path variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { delay: 1.4, duration: 0.6 } } }} d="M 90 60 C 50 60 30 30 10 45" strokeWidth="2.5" />
-        <motion.path variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { delay: 1.4, duration: 0.6 } } }} d="M 210 60 C 250 60 270 30 290 45" strokeWidth="2.5" />
-        
-        {/* Dots */}
-        <motion.circle variants={{ hidden: { scale: 0 }, visible: { scale: 1, transition: { delay: 1.6 } } }} cx="90" cy="60" r="4" fill="currentColor" stroke="none" />
-        <motion.circle variants={{ hidden: { scale: 0 }, visible: { scale: 1, transition: { delay: 1.6 } } }} cx="210" cy="60" r="4" fill="currentColor" stroke="none" />
-      </svg>
-    </div>
-  </div>
-);
+const RoyalBoxFrame = () => (
+  <motion.div 
+    initial="hidden" 
+    whileInView="visible" 
+    viewport={{ once: true, margin: "-100px" }}
+    className="absolute inset-0 pointer-events-none z-0"
+  >
+    <motion.div variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { duration: 1 } } }} className="absolute inset-0">
+      
+      {/* Outer borders */}
+      <div className="absolute top-[16px] left-[48px] right-[48px] h-[1.5px] bg-[#D4AF37]" />
+      <div className="absolute bottom-[16px] left-[48px] right-[48px] h-[1.5px] bg-[#D4AF37]" />
+      <div className="absolute left-[16px] top-[48px] bottom-[48px] w-[1.5px] bg-[#D4AF37]" />
+      <div className="absolute right-[16px] top-[48px] bottom-[48px] w-[1.5px] bg-[#D4AF37]" />
 
-const HorizontalRoyalDividerBottom = () => (
-  <div className="absolute bottom-0 left-0 right-0 h-[80px] pointer-events-none scale-y-[-1] z-0">
-    <HorizontalRoyalDividerTop />
-  </div>
+      {/* Inner borders */}
+      <div className="absolute top-[22px] left-[52px] right-[52px] h-[1px] bg-[#D4AF37]/40" />
+      <div className="absolute bottom-[22px] left-[52px] right-[52px] h-[1px] bg-[#D4AF37]/40" />
+      <div className="absolute left-[22px] top-[52px] bottom-[52px] w-[1px] bg-[#D4AF37]/40" />
+      <div className="absolute right-[22px] top-[52px] bottom-[52px] w-[1px] bg-[#D4AF37]/40" />
+
+      {/* Top/Bottom Center Diamonds */}
+      <div className="absolute top-[8px] left-1/2 -translate-x-1/2 w-8 h-8 rotate-45 border-[1.5px] border-[#D4AF37] bg-[#110102] z-10 flex items-center justify-center shadow-[0_0_8px_rgba(212,175,55,0.4)]">
+         <div className="w-3 h-3 border border-[#D4AF37]" />
+      </div>
+      <div className="absolute bottom-[8px] left-1/2 -translate-x-1/2 w-8 h-8 rotate-45 border-[1.5px] border-[#D4AF37] bg-[#110102] z-10 flex items-center justify-center shadow-[0_0_8px_rgba(212,175,55,0.4)]">
+         <div className="w-3 h-3 border border-[#D4AF37]" />
+      </div>
+
+      {/* Left/Right Center Diamonds */}
+      <div className="absolute left-[8px] top-1/2 -translate-y-1/2 w-8 h-8 rotate-45 border-[1.5px] border-[#D4AF37] bg-[#110102] z-10 flex items-center justify-center shadow-[0_0_8px_rgba(212,175,55,0.4)]">
+         <div className="w-3 h-3 border border-[#D4AF37]" />
+      </div>
+      <div className="absolute right-[8px] top-1/2 -translate-y-1/2 w-8 h-8 rotate-45 border-[1.5px] border-[#D4AF37] bg-[#110102] z-10 flex items-center justify-center shadow-[0_0_8px_rgba(212,175,55,0.4)]">
+         <div className="w-3 h-3 border border-[#D4AF37]" />
+      </div>
+
+      {/* Corner Ornaments */}
+      {[
+        { style: "top-[8px] left-[8px]" },
+        { style: "top-[8px] right-[8px] scale-x-[-1]" },
+        { style: "bottom-[8px] left-[8px] scale-y-[-1]" },
+        { style: "bottom-[8px] right-[8px] scale-[-1]" }
+      ].map((pos, i) => (
+        <div key={i} className={`absolute w-[44px] h-[44px] text-[#D4AF37] ${pos.style}`}>
+          <svg viewBox="0 0 44 44" fill="none" stroke="currentColor">
+             {/* Intricate sweeping curve connecting to lines */}
+             <path d="M 8 44 C 8 20 20 8 44 8" strokeWidth="2" />
+             <path d="M 14 44 C 14 26 26 14 44 14" strokeWidth="1" strokeDasharray="2 2" />
+             {/* Acanthus leaf curls in the corner */}
+             <path d="M 12 36 C 12 24 24 12 36 12 C 26 14 16 22 18 32 C 14 34 10 38 12 36 Z" fill="currentColor" stroke="none" />
+             {/* The corner tip */}
+             <circle cx="8" cy="8" r="4" fill="currentColor" stroke="none" />
+             <circle cx="16" cy="16" r="2" fill="currentColor" stroke="none" />
+          </svg>
+        </div>
+      ))}
+    </motion.div>
+  </motion.div>
 );
 
 const WorkflowStep = ({ num, title, text, isLast }: { num: number, title: string, text: React.ReactNode, isLast?: boolean }) => {
   return (
     <div className="relative pl-24 md:pl-32 pb-16">
-      {/* Cascading Golden Crescent Moons */}
+      {/* Diamond-studded Golden Thread */}
       {!isLast && (
-        <div className="absolute top-[80px] bottom-[-20px] left-[32px] w-[16px] flex flex-col justify-evenly items-center z-10 py-8">
-          {[1, 2, 3].map((_, i) => (
-            <motion.div 
-              key={i}
-              initial={{ opacity: 0, y: -10 }} 
-              whileInView={{ opacity: 1, y: 0 }} 
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ delay: 0.5 + i * 0.3, duration: 0.8 }}
-              className="w-4 h-6 text-[#D4AF37] drop-shadow-[0_0_5px_rgba(212,175,55,0.8)]"
-            >
-              <svg viewBox="0 0 20 30" fill="currentColor">
-                <path d="M 15 0 C 5 10 5 20 15 30 C 10 20 10 10 15 0 Z" />
-              </svg>
-            </motion.div>
-          ))}
+        <div className="absolute top-[80px] bottom-[-20px] left-[39px] w-[2px] flex justify-center z-10">
+          <motion.div 
+            initial={{ scaleY: 0 }}
+            whileInView={{ scaleY: 1 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 1.5, ease: "linear" }}
+            className="w-full h-full bg-gradient-to-b from-[#D4AF37] via-[#D4AF37]/50 to-[#D4AF37] origin-top shadow-[0_0_8px_rgba(212,175,55,0.8)] relative"
+          >
+            <motion.div initial={{ scale: 0, rotate: 45 }} whileInView={{ scale: 1, rotate: 45 }} transition={{ delay: 0.5 }} className="absolute top-[25%] left-[-3px] w-2 h-2 bg-[#D4AF37] shadow-[0_0_5px_rgba(212,175,55,0.8)]" />
+            <motion.div initial={{ scale: 0, rotate: 45 }} whileInView={{ scale: 1, rotate: 45 }} transition={{ delay: 0.8 }} className="absolute top-[50%] left-[-3px] w-2 h-2 bg-[#D4AF37] shadow-[0_0_5px_rgba(212,175,55,0.8)]" />
+            <motion.div initial={{ scale: 0, rotate: 45 }} whileInView={{ scale: 1, rotate: 45 }} transition={{ delay: 1.1 }} className="absolute top-[75%] left-[-3px] w-2 h-2 bg-[#D4AF37] shadow-[0_0_5px_rgba(212,175,55,0.8)]" />
+          </motion.div>
         </div>
       )}
       
-      {/* Royal Shield Node */}
+      {/* Royal Star Node */}
       <motion.div 
         initial="hidden"
         whileInView="visible"
@@ -380,7 +389,7 @@ const WorkflowStep = ({ num, title, text, isLast }: { num: number, title: string
         className="absolute left-0 top-0 w-20 h-20 flex items-center justify-center z-20"
       >
         <div className="absolute inset-0 text-[#F5D77F] drop-shadow-[0_0_8px_rgba(245,215,127,0.6)]">
-          <ShieldNode />
+          <RoyalStarNode />
         </div>
         <motion.span variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { delay: 1 } } }} className="relative z-10 font-serif text-2xl font-bold text-[#FFF9E6] drop-shadow-[0_0_10px_rgba(245,215,127,1)]">{num}</motion.span>
       </motion.div>
@@ -391,11 +400,10 @@ const WorkflowStep = ({ num, title, text, isLast }: { num: number, title: string
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
         variants={{ hidden: { x: 50, opacity: 0 }, visible: { x: 0, opacity: 1, transition: { delay: 0.5, duration: 0.8, ease: "easeOut" } } }}
-        className="relative bg-[rgba(17,1,2,0.8)] backdrop-blur-md rounded-xl shadow-inner border border-transparent py-14 px-8 overflow-hidden"
+        className="relative bg-[rgba(17,1,2,0.8)] backdrop-blur-md rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.8)] p-12 md:p-16 overflow-hidden"
       >
-        {/* Full Top and Bottom Royal Dividers */}
-        <HorizontalRoyalDividerTop />
-        <HorizontalRoyalDividerBottom />
+        {/* Full Unbroken Royal Frame */}
+        <RoyalBoxFrame />
         
         <h3 className="font-serif text-2xl text-[#F7F3E9] mb-4 relative z-10 drop-shadow-[0_0_8px_rgba(245,215,127,0.3)]">{title}</h3>
         <div className="font-sans text-[#EEEAD7]/90 leading-relaxed relative z-10">
