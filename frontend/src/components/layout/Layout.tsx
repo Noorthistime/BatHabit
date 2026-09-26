@@ -153,13 +153,19 @@ export function Layout({ children }: { children: React.ReactNode }) {
         {/* Universal Top Header */}
         <header className="hidden md:flex fixed top-0 left-72 right-0 h-20 bg-[#0D1B2A]/92 dark:bg-[#140406]/92 backdrop-blur-xl z-40 px-8 items-center justify-between border-b border-[#415A77] dark:border-[#D4AF37]/35 shadow-[0_4px_32px_rgba(0,0,0,0.85)]">
           <div className="flex items-center gap-4">
-            <div className="flex flex-col">
-              <span className="font-serif text-lg font-bold text-[#F7F3E9] dark:text-[#EEEAD7] tracking-wide flex items-center gap-2">
-                {getGreeting()}, <span className="font-mono text-[13px] font-normal px-2 py-0.5 ml-1 rounded bg-[#415A77] dark:bg-[#2c0000] text-[#D4AF37] dark:text-[#F5D77F] border border-[#415A77] dark:border-[#D4AF37]/45">RANK {char.level || 1} • {char.currentTitle || 'Novice'}</span>
-              </span>
-              <span className="font-mono text-xs text-[#D4AF37] dark:text-[#C5A059] flex items-center gap-1.5">
-                {getMoonPhase()} • Cycle VII Nocturne
-              </span>
+            <div className="flex items-center gap-5">
+              <div className="flex flex-col">
+                <span className="font-serif text-lg font-bold text-[#F7F3E9] dark:text-[#EEEAD7] tracking-wide">
+                  {getGreeting()},
+                </span>
+                <span className="font-mono text-xs text-[#D4AF37] dark:text-[#C5A059]">
+                  {getMoonPhase()}
+                </span>
+              </div>
+              <div className="flex flex-col items-center justify-center px-4 py-1.5 rounded bg-gradient-to-br from-[#1B263B] to-[#0D1B2A] dark:from-[#4a0505] dark:to-[#1a0101] border border-[#D4AF37]/60 dark:border-[#D4AF37] shadow-[inset_0_0_12px_rgba(212,175,55,0.1),_0_4px_12px_rgba(0,0,0,0.6)] dark:shadow-[inset_0_0_12px_rgba(212,175,55,0.2),_0_0_15px_rgba(212,175,55,0.4)]">
+                <span className="font-mono text-[10px] text-[#D4AF37]/80 dark:text-[#D4AF37]/80 uppercase tracking-[0.2em] leading-none mb-1">Rank {char.level || 1}</span>
+                <span className="font-serif text-sm text-[#F7F3E9] dark:text-[#F5D77F] font-bold leading-none tracking-wider">{char.currentTitle || 'Novice'}</span>
+              </div>
             </div>
           </div>
           <div className="flex items-center gap-4">
