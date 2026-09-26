@@ -1,4 +1,6 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import { api } from '../../api';
+import { useTheme } from '../../context/ThemeContext';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import { Home, BookOpen, Scroll, Droplet, Store, Archive, History, Bell, MessageSquare, Key, Moon, Sun, User, Zap, Landmark, Coins, Compass } from 'lucide-react';
 import { cn } from '../ui/Button';
@@ -21,6 +23,17 @@ const ORACLES = [
 
 export function Layout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
+  const { theme, toggleTheme } = useTheme();
+  const [profile, setProfile] = useState<any>(null);
+
+  useEffect(() => {
+    api.get('/auth/me')
+      .then(res => setProfile(res.data.user))
+      .catch(console.error);
+  }, []);
+
+  const char = profile?.character || {};
+  const currency = profile?.currency || {};
 
   const navItems = [
     { icon: Home, label: 'Sanctum', path: '/dashboard' },
@@ -113,6 +126,38 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
       {/* Main Content Area */}
       <main className="flex-1 md:pl-72 pb-20 md:pb-0 min-h-screen">
+        {/* Universal Top Header */}
+        <header className="hidden md:flex fixed top-0 left-72 right-0 h-20 bg-[#0D1B2A]/92 dark:bg-[#140406]/92 backdrop-blur-xl z-40 px-8 items-center justify-between border-b border-[#415A77] dark:border-[#D4AF37]/35 shadow-[0_4px_32px_rgba(0,0,0,0.85)]">
+          <div className="flex items-center gap-4">
+            <div className="flex flex-col">
+              <span className="font-serif text-lg font-bold text-[#F7F3E9] dark:text-[#EEEAD7] tracking-wide flex items-center gap-2">
+                Good evening, {char.currentTitle || 'Novice'}
+                <span className="font-mono text-[11px] font-normal px-2 py-0.5 rounded bg-[#415A77] dark:bg-[#2c0000] text-[#D4AF37] dark:text-[#F5D77F] border border-[#415A77] dark:border-[#D4AF37]/45">RANK {char.level || 1}</span>
+              </span>
+              <span className="font-mono text-xs text-[#D4AF37] dark:text-[#C5A059] flex items-center gap-1.5">
+                Waxing Gibbous • Cycle VII Nocturne
+              </span>
+            </div>
+          </div>
+          <div className="flex items-center gap-4">
+            <div className="flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#0D1B2A] dark:bg-gradient-to-r dark:from-[#280406] dark:to-[#140203] border border-[#415A77] dark:border-[#D4AF37]/60 shadow-[0_0_18px_rgba(212,175,55,0.3)]">
+              <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-[#947014] via-[#F5D77F] to-[#D4AF37] flex items-center justify-center text-[#0c0608] font-bold text-xs shadow-md border border-[#FFF5C0]">
+                <span className="font-serif">✦</span>
+              </div>
+              <span className="font-serif text-base font-bold text-[#D4AF37] dark:text-[#F5D77F] tracking-wider">{currency?.balance || 0}</span>
+              <span className="font-mono text-[10px] text-[#D4AF37] dark:text-[#C5A059] uppercase font-bold tracking-widest">Crowns</span>
+            </div>
+            <div className="flex items-center gap-3 pl-3 border-l border-[#415A77] dark:border-[#D4AF37]/30">
+              <button onClick={toggleTheme} className="w-10 h-10 rounded-full bg-[#1B263B] dark:bg-[#3d0303] flex items-center justify-center border-2 border-[#415A77] dark:border-[#D4AF37] shadow-[0_0_12px_rgba(212,175,55,0.6)] text-[#D4AF37] dark:text-[#F5D77F] hover:scale-105 transition-transform">
+                {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
+              </button>
+              <div className="w-10 h-10 rounded-full bg-[#1B263B] dark:bg-[#3d0303] flex items-center justify-center border-2 border-[#415A77] dark:border-[#D4AF37] shadow-[0_0_12px_rgba(212,175,55,0.6)] text-[#D4AF37] dark:text-[#F5D77F]">
+                <User size={20} />
+              </div>
+            </div>
+          </div>
+        </header>
+
         {children}
       </main>
 
