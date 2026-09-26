@@ -208,23 +208,23 @@ const CurrencyFrame = () => (
     <div className="absolute inset-[1px] bg-[radial-gradient(circle_at_center,_rgba(212,175,55,0.08)_0%,_rgba(17,1,2,0.8)_100%)] rounded-xl" />
     
     {/* Top Crown Crest */}
-    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-[30%] w-48 h-24 text-[#F5D77F] drop-shadow-[0_0_8px_rgba(245,215,127,0.6)]">
-      <svg viewBox="0 0 192 96" className="w-full h-full" fill="none" stroke="currentColor">
+    <div className="absolute top-[-32px] left-1/2 -translate-x-1/2 w-48 h-32 text-[#F5D77F] drop-shadow-[0_0_8px_rgba(245,215,127,0.6)]">
+      <svg viewBox="0 0 192 128" className="w-full h-full" fill="none" stroke="currentColor">
         {/* Arching crown band */}
-        <motion.path variants={{ hidden: { pathLength: 0, opacity: 0 }, visible: { pathLength: 1, opacity: 1, transition: { duration: 1, ease: "easeInOut" } } }} d="M 0 64 C 40 64 60 50 76 30 L 96 50 L 116 30 C 132 50 152 64 192 64" strokeWidth="2" />
+        <motion.path variants={{ hidden: { pathLength: 0, opacity: 0 }, visible: { pathLength: 1, opacity: 1, transition: { duration: 1, ease: "easeInOut" } } }} d="M 0 96 C 40 96 60 70 76 46 L 96 70 L 116 46 C 132 70 152 96 192 96" strokeWidth="2" />
         {/* Crown peaks */}
-        <motion.path variants={{ hidden: { pathLength: 0, opacity: 0 }, visible: { pathLength: 1, opacity: 1, transition: { delay: 0.5, duration: 0.8, ease: "easeOut" } } }} d="M 76 30 L 76 10 L 96 30 L 116 10 L 116 30" strokeWidth="2" strokeLinejoin="round" />
+        <motion.path variants={{ hidden: { pathLength: 0, opacity: 0 }, visible: { pathLength: 1, opacity: 1, transition: { delay: 0.5, duration: 0.8, ease: "easeOut" } } }} d="M 76 46 L 76 22 L 96 46 L 116 22 L 116 46" strokeWidth="2" strokeLinejoin="round" />
         {/* Center Diamond/Coin */}
-        <motion.path variants={{ hidden: { pathLength: 0, opacity: 0, scale: 0.5 }, visible: { pathLength: 1, opacity: 1, scale: 1, transition: { delay: 1, duration: 0.5 } } }} d="M 96 16 L 106 26 L 96 36 L 86 26 Z" strokeWidth="1.5" />
-        <motion.circle variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { delay: 1.3 } } }} cx="96" cy="26" r="3" fill="currentColor" stroke="none" />
+        <motion.path variants={{ hidden: { pathLength: 0, opacity: 0, scale: 0.5 }, visible: { pathLength: 1, opacity: 1, scale: 1, transition: { delay: 1, duration: 0.5 } } }} d="M 96 28 L 106 38 L 96 48 L 86 38 Z" strokeWidth="1.5" />
+        <motion.circle variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { delay: 1.3 } } }} cx="96" cy="38" r="3" fill="currentColor" stroke="none" />
         {/* Bottom flourishing ribbon */}
-        <motion.path variants={{ hidden: { pathLength: 0, opacity: 0 }, visible: { pathLength: 1, opacity: 1, transition: { delay: 0.8, duration: 1 } } }} d="M 48 80 Q 96 96 144 80 Q 96 60 48 80 Z" strokeWidth="1.5" />
+        <motion.path variants={{ hidden: { pathLength: 0, opacity: 0 }, visible: { pathLength: 1, opacity: 1, transition: { delay: 0.8, duration: 1 } } }} d="M 48 112 Q 96 128 144 112 Q 96 88 48 112 Z" strokeWidth="1.5" />
       </svg>
     </div>
 
     {/* Top Border Lines */}
-    <motion.div variants={{ hidden: { scaleX: 0, opacity: 0 }, visible: { scaleX: 1, opacity: 1, transition: { delay: 0.6, duration: 0.6, ease: "linear" } } }} className="absolute top-[64px] left-[64px] right-[calc(50%+96px)] h-[1.5px] bg-gradient-to-r from-[#D4AF37] to-transparent origin-right" />
-    <motion.div variants={{ hidden: { scaleX: 0, opacity: 0 }, visible: { scaleX: 1, opacity: 1, transition: { delay: 0.6, duration: 0.6, ease: "linear" } } }} className="absolute top-[64px] right-[64px] left-[calc(50%+96px)] h-[1.5px] bg-gradient-to-l from-[#D4AF37] to-transparent origin-left" />
+    <motion.div variants={{ hidden: { scaleX: 0, opacity: 0 }, visible: { scaleX: 1, opacity: 1, transition: { delay: 0.6, duration: 0.6, ease: "linear" } } }} className="absolute top-[63.25px] left-[64px] right-[calc(50%+96px)] h-[1.5px] bg-gradient-to-r from-[#D4AF37] to-transparent origin-right" />
+    <motion.div variants={{ hidden: { scaleX: 0, opacity: 0 }, visible: { scaleX: 1, opacity: 1, transition: { delay: 0.6, duration: 0.6, ease: "linear" } } }} className="absolute top-[63.25px] right-[64px] left-[calc(50%+96px)] h-[1.5px] bg-gradient-to-l from-[#D4AF37] to-transparent origin-left" />
 
     {/* Corners (Coin Knots) */}
     {/* TL */}
@@ -245,8 +245,8 @@ const CurrencyFrame = () => (
     </div>
 
     {/* Side Lines */}
-    <motion.div variants={{ hidden: { scaleY: 0, opacity: 0 }, visible: { scaleY: 1, opacity: 1, transition: { delay: 1.3, duration: 0.6, ease: "linear" } } }} className="absolute top-[96px] bottom-[96px] left-[32px] w-[1.5px] bg-gradient-to-b from-[#D4AF37] via-[#D4AF37]/30 to-[#D4AF37] origin-top" />
-    <motion.div variants={{ hidden: { scaleY: 0, opacity: 0 }, visible: { scaleY: 1, opacity: 1, transition: { delay: 1.3, duration: 0.6, ease: "linear" } } }} className="absolute top-[96px] bottom-[96px] right-[32px] w-[1.5px] bg-gradient-to-b from-[#D4AF37] via-[#D4AF37]/30 to-[#D4AF37] origin-top" />
+    <motion.div variants={{ hidden: { scaleY: 0, opacity: 0 }, visible: { scaleY: 1, opacity: 1, transition: { delay: 1.3, duration: 0.6, ease: "linear" } } }} className="absolute top-[96px] bottom-[96px] left-[31.25px] w-[1.5px] bg-gradient-to-b from-[#D4AF37] via-[#D4AF37]/30 to-[#D4AF37] origin-top" />
+    <motion.div variants={{ hidden: { scaleY: 0, opacity: 0 }, visible: { scaleY: 1, opacity: 1, transition: { delay: 1.3, duration: 0.6, ease: "linear" } } }} className="absolute top-[96px] bottom-[96px] right-[31.25px] w-[1.5px] bg-gradient-to-b from-[#D4AF37] via-[#D4AF37]/30 to-[#D4AF37] origin-top" />
 
     {/* Bottom Corners */}
     {/* BL */}
@@ -267,8 +267,8 @@ const CurrencyFrame = () => (
     </div>
 
     {/* Bottom Lines */}
-    <motion.div variants={{ hidden: { scaleX: 0, opacity: 0 }, visible: { scaleX: 1, opacity: 1, transition: { delay: 2, duration: 0.6, ease: "linear" } } }} className="absolute bottom-[64px] left-[64px] right-[calc(50%+48px)] h-[1.5px] bg-gradient-to-r from-transparent to-[#D4AF37] origin-left" />
-    <motion.div variants={{ hidden: { scaleX: 0, opacity: 0 }, visible: { scaleX: 1, opacity: 1, transition: { delay: 2, duration: 0.6, ease: "linear" } } }} className="absolute bottom-[64px] right-[64px] left-[calc(50%+48px)] h-[1.5px] bg-gradient-to-l from-transparent to-[#D4AF37] origin-right" />
+    <motion.div variants={{ hidden: { scaleX: 0, opacity: 0 }, visible: { scaleX: 1, opacity: 1, transition: { delay: 2, duration: 0.6, ease: "linear" } } }} className="absolute bottom-[63.25px] left-[64px] right-[calc(50%+48px)] h-[1.5px] bg-gradient-to-r from-transparent to-[#D4AF37] origin-left" />
+    <motion.div variants={{ hidden: { scaleX: 0, opacity: 0 }, visible: { scaleX: 1, opacity: 1, transition: { delay: 2, duration: 0.6, ease: "linear" } } }} className="absolute bottom-[63.25px] right-[64px] left-[calc(50%+48px)] h-[1.5px] bg-gradient-to-l from-transparent to-[#D4AF37] origin-right" />
 
     {/* Bottom Center Diamond */}
     <div className="absolute bottom-[64px] left-1/2 -translate-x-1/2 translate-y-1/2 w-24 h-24 text-[#F5D77F] drop-shadow-[0_0_8px_rgba(245,215,127,0.6)]">
