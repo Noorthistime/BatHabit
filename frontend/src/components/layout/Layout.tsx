@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { api } from '../../api';
 import { useTheme } from '../../context/ThemeContext';
 import { Link, NavLink, useLocation } from 'react-router-dom';
@@ -21,10 +21,40 @@ const ORACLES = [
   { name: 'Chamber', icon: Key, path: '/dashboard/chamber' },
 ];
 
+const GOTHIC_QUOTES = [
+  "Arise, champion, and conquer the trials of this day.",
+  "No crown was ever won through idle hands.",
+  "Steel thy will; even the darkest dungeon hath an exit.",
+  "Fear not the mountain, for thy resolve is forged in iron.",
+  "A noble destiny awaiteth him who dareth to begin.",
+  "Slay thy doubt, and no foe shall stand before thee.",
+  "Every great legend began with a single strike of the blade.",
+  "Stand firm, knight, for the kingdom of thy future calleth.",
+  "Let thy deeds today echo through the halls of history.",
+  "Rest if thou must, but yield thy quest to none.",
+  "Draw thy blade, for destiny waiteth upon no man.",
+  "Even the grandest castle was built stone by weary stone.",
+  "Tremble not before the beast; thy courage is thy sharpest shield.",
+  "Toil in silence, and let thy victory sound the horns of triumph.",
+  "The path of glory is paved by those who dare not falter.",
+  "Cast away thy fear, for valor maketh a commoner a king.",
+  "Hold the line against despair, and the morrow shall be thine.",
+  "Greatness is not bestowed by fate—it is forged in battle.",
+  "Let no task be left unfinished while breath remaineth in thy lungs.",
+  "Rise above the shadows, and light the hearth of thy kingdom.",
+  "A warrior’s true power lieth not in his armor, but in his resolve.",
+  "Claim this day, knight, ere the darkness claimeth thee."
+];
+
+
+
 export function Layout({ children }: { children: React.ReactNode }) {
   const location = useLocation();
   const { theme, toggleTheme } = useTheme();
   const [profile, setProfile] = useState<any>(null);
+  
+  const randomQuote = useMemo(() => GOTHIC_QUOTES[Math.floor(Math.random() * GOTHIC_QUOTES.length)], []);
+
 
   useEffect(() => {
     api.get('/auth/me')
@@ -168,6 +198,13 @@ export function Layout({ children }: { children: React.ReactNode }) {
               </div>
             </div>
           </div>
+          
+          <div className="absolute left-1/2 -translate-x-1/2 max-w-[35%] hidden xl:flex items-center justify-center pointer-events-none">
+            <span className="font-serif text-[13px] text-[#F7F3E9]/50 dark:text-[#D4AF37]/50 italic text-center truncate drop-shadow-sm leading-relaxed">
+              "{randomQuote}"
+            </span>
+          </div>
+
           <div className="flex items-center gap-4">
             <div className="flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#0D1B2A] dark:bg-gradient-to-r dark:from-[#280406] dark:to-[#140203] border border-[#415A77] dark:border-[#D4AF37]/60 shadow-[0_0_18px_rgba(212,175,55,0.3)]">
               <div className="w-6 h-6 rounded-full bg-gradient-to-tr from-[#947014] via-[#F5D77F] to-[#D4AF37] flex items-center justify-center text-[#0c0608] font-bold text-xs shadow-md border border-[#FFF5C0]">
