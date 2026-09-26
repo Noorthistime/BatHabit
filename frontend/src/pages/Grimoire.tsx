@@ -176,45 +176,53 @@ export function Grimoire() {
               </div>
             </div>
 
-            <div className="mt-2">
-              <p className="font-mono text-[9px] text-[#D4AF37] uppercase tracking-[0.4em] drop-shadow-[0_0_5px_rgba(212,175,55,0.5)]">Rank IV Ascendant</p>
-              <h2 className="font-serif text-2xl text-[#EEEAD7] font-bold mt-2 drop-shadow-md">Alistair Vance</h2>
+            <div className="mt-2 relative z-10 flex flex-col items-center">
+              <p className="font-mono text-[9px] text-[#D4AF37] uppercase tracking-[0.4em] drop-shadow-[0_0_5px_rgba(212,175,55,0.5)] flex items-center gap-2">
+                <span className="w-4 h-[1px] bg-gradient-to-r from-transparent to-[#D4AF37]/60"></span>
+                Rank IV Ascendant
+                <span className="w-4 h-[1px] bg-gradient-to-l from-transparent to-[#D4AF37]/60"></span>
+              </p>
+              <h2 className="font-serif text-3xl font-bold mt-2 drop-shadow-[0_0_10px_rgba(245,215,127,0.4)] text-transparent bg-clip-text bg-gradient-to-b from-[#FFF9E6] to-[#D4AF37]">
+                Alistair Vance
+              </h2>
               <p className="font-mono text-[10px] text-[#D4AF37]/80 uppercase tracking-widest mt-1">Keeper of the Ancient Flame</p>
             </div>
 
             {/* XP Bar */}
-            <div className="w-full space-y-2 mt-2">
-              <div className="flex justify-between font-mono text-[10px] text-[#8d9685] tracking-widest">
+            <div className="w-full space-y-2 mt-4 relative z-10">
+              <div className="flex flex-col items-center justify-center font-mono text-[10px] text-[#8d9685] tracking-widest gap-1">
                 <span>XP PROGRESS</span>
-                <span className="text-[#D4AF37] drop-shadow-[0_0_3px_rgba(212,175,55,0.5)]">{currentXP.toLocaleString()} <span className="text-[#8d9685]">/ {nextXP.toLocaleString()}</span></span>
+                <span className="text-[#D4AF37] drop-shadow-[0_0_3px_rgba(212,175,55,0.5)] font-bold">{currentXP.toLocaleString()} <span className="text-[#8d9685] font-normal">/ {nextXP.toLocaleString()}</span></span>
               </div>
-              <div className="h-2.5 bg-[#1a0204] border border-[#D4AF37]/30 rounded-full overflow-hidden relative shadow-inner">
+              <div className="h-2.5 bg-[#1a0204] border border-[#D4AF37]/30 rounded-full overflow-hidden relative shadow-[inset_0_2px_4px_rgba(0,0,0,0.5)]">
                 {/* Liquid Gold/Blood Gradient */}
-                <div
-                  className="h-full relative transition-all duration-1000 ease-out rounded-full"
+                <motion.div
+                  initial={{ width: 0 }}
+                  animate={{ width: `${progress}%` }}
+                  transition={{ duration: 1.2, ease: "easeOut" }}
+                  className="h-full relative rounded-full"
                   style={{
-                    width: `${progress}%`,
                     background: 'linear-gradient(90deg, #6D0808 0%, #b31212 50%, #D4AF37 100%)',
                     boxShadow: '0 0 15px rgba(212,175,55,0.6)',
                   }}
                 >
                   {/* Shimmer effect inside the bar */}
                   <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent w-full -translate-x-full animate-[shimmer_2s_infinite]"></div>
-                </div>
+                </motion.div>
               </div>
-              <p className="font-mono text-[9px] text-[#8d9685] text-right">{Math.round(nextXP - currentXP).toLocaleString()} XP to Rank V</p>
+              <p className="font-mono text-[9px] text-[#8d9685] text-center">{Math.round(nextXP - currentXP).toLocaleString()} XP to Rank V</p>
             </div>
 
             {/* Quick Stats */}
-            <div className="w-full grid grid-cols-3 gap-2 border-t border-[#D4AF37]/20 pt-4 relative z-10">
+            <div className="w-full grid grid-cols-3 gap-3 border-t border-[#D4AF37]/20 pt-5 relative z-10">
               {[
                 { label: 'QUESTS', value: '147' },
                 { label: 'STREAK', value: '12d' },
                 { label: 'CROWNS', value: '2840' },
               ].map(s => (
-                <div key={s.label} className="text-center group">
+                <div key={s.label} className="text-center group flex flex-col items-center justify-center py-2 px-1 rounded bg-[#1B263B]/20 dark:bg-[#250101]/40 border border-[#415A77]/30 dark:border-[#D4AF37]/20 shadow-[inset_0_0_10px_rgba(0,0,0,0.2)]">
                   <div className="font-mono text-lg font-bold text-[#F5D77F] drop-shadow-[0_0_8px_rgba(212,175,55,0.4)] group-hover:scale-110 transition-transform cursor-default">{s.value}</div>
-                  <div className="font-mono text-[9px] text-[#D4AF37]/70 uppercase tracking-widest mt-1">{s.label}</div>
+                  <div className="font-mono text-[8px] text-[#D4AF37]/70 uppercase tracking-widest mt-1">{s.label}</div>
                 </div>
               ))}
             </div>
