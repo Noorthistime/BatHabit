@@ -288,7 +288,7 @@ export function Lore() {
             className="relative bg-[rgba(17,1,2,0.8)] backdrop-blur-md rounded-xl shadow-inner border border-transparent overflow-visible"
           >
             <ContinuousSanctuaryFrame />
-            <div className="p-10 relative z-10 flex flex-col items-center text-center">
+            <div className="px-10 pt-10 pb-16 relative z-10 flex flex-col items-center text-center">
               <div className="relative flex items-center justify-center mb-6">
                  {/* Glowing Royal Backdrop */}
                  <div className="absolute inset-0 bg-[#D4AF37] blur-[15px] opacity-20 rounded-full w-12 h-12 mx-auto" />
@@ -311,7 +311,7 @@ export function Lore() {
             className="relative bg-[rgba(17,1,2,0.8)] backdrop-blur-md rounded-xl shadow-inner border border-transparent overflow-visible md:mt-12"
           >
             <ContinuousSanctuaryFrame />
-            <div className="p-10 relative z-10 flex flex-col items-center text-center">
+            <div className="px-10 pt-10 pb-16 relative z-10 flex flex-col items-center text-center">
               <div className="relative flex items-center justify-center mb-6">
                  <div className="absolute inset-0 bg-[#D4AF37] blur-[15px] opacity-20 rounded-full w-12 h-12 mx-auto" />
                  <div className="bg-[#110102] p-4 rounded-full border border-[#D4AF37]/30 shadow-[0_0_10px_rgba(212,175,55,0.3)] text-[#F5D77F] relative z-10">
@@ -333,7 +333,7 @@ export function Lore() {
             className="relative bg-[rgba(17,1,2,0.8)] backdrop-blur-md rounded-xl shadow-inner border border-transparent overflow-visible"
           >
             <ContinuousSanctuaryFrame />
-            <div className="p-10 relative z-10 flex flex-col items-center text-center">
+            <div className="px-10 pt-10 pb-16 relative z-10 flex flex-col items-center text-center">
               <div className="relative flex items-center justify-center mb-6">
                  <div className="absolute inset-0 bg-[#D4AF37] blur-[15px] opacity-20 rounded-full w-12 h-12 mx-auto" />
                  <div className="bg-[#110102] p-4 rounded-full border border-[#D4AF37]/30 shadow-[0_0_10px_rgba(212,175,55,0.3)] text-[#F5D77F] relative z-10">
@@ -355,7 +355,7 @@ export function Lore() {
             className="relative bg-[rgba(17,1,2,0.8)] backdrop-blur-md rounded-xl shadow-inner border border-transparent overflow-visible md:mt-12"
           >
             <ContinuousSanctuaryFrame />
-            <div className="p-10 relative z-10 flex flex-col items-center text-center">
+            <div className="px-10 pt-10 pb-16 relative z-10 flex flex-col items-center text-center">
               <div className="relative flex items-center justify-center mb-6">
                  <div className="absolute inset-0 bg-[#D4AF37] blur-[15px] opacity-20 rounded-full w-12 h-12 mx-auto" />
                  <div className="bg-[#110102] p-4 rounded-full border border-[#D4AF37]/30 shadow-[0_0_10px_rgba(212,175,55,0.3)] text-[#F5D77F] relative z-10">
@@ -377,7 +377,7 @@ export function Lore() {
             className="relative bg-[rgba(17,1,2,0.8)] backdrop-blur-md rounded-xl shadow-inner border border-transparent overflow-visible"
           >
             <ContinuousSanctuaryFrame />
-            <div className="p-10 relative z-10 flex flex-col items-center text-center">
+            <div className="px-10 pt-10 pb-16 relative z-10 flex flex-col items-center text-center">
               <div className="relative flex items-center justify-center mb-6">
                  <div className="absolute inset-0 bg-[#D4AF37] blur-[15px] opacity-20 rounded-full w-12 h-12 mx-auto" />
                  <div className="bg-[#110102] p-4 rounded-full border border-[#D4AF37]/30 shadow-[0_0_10px_rgba(212,175,55,0.3)] text-[#F5D77F] relative z-10">
@@ -399,7 +399,7 @@ export function Lore() {
             className="relative bg-[rgba(17,1,2,0.8)] backdrop-blur-md rounded-xl shadow-inner border border-transparent overflow-visible md:mt-12"
           >
             <ContinuousSanctuaryFrame />
-            <div className="p-10 relative z-10 flex flex-col items-center text-center">
+            <div className="px-10 pt-10 pb-16 relative z-10 flex flex-col items-center text-center">
               <div className="relative flex items-center justify-center mb-6">
                  <div className="absolute inset-0 bg-[#D4AF37] blur-[15px] opacity-20 rounded-full w-12 h-12 mx-auto" />
                  <div className="bg-[#110102] p-4 rounded-full border border-[#D4AF37]/30 shadow-[0_0_10px_rgba(212,175,55,0.3)] text-[#F5D77F] relative z-10">
