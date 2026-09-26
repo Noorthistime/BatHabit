@@ -29,7 +29,7 @@ const CornerFiligree = ({ className }: { className?: string }) => {
 
   return (
     <motion.svg 
-      className={`absolute w-32 h-32 md:w-40 md:h-40 pointer-events-none text-[#D4AF37] opacity-80 z-0 drop-shadow-[0_0_3px_rgba(212,175,55,0.4)] ${className}`}
+      className={`absolute w-16 h-16 md:w-20 md:h-20 pointer-events-none text-[#D4AF37] opacity-80 z-0 drop-shadow-[0_0_3px_rgba(212,175,55,0.4)] ${className}`}
       viewBox="0 0 100 100"
       initial="hidden"
       animate="visible"
@@ -207,10 +207,10 @@ export function Sanctum() {
           {/* Hero Panel: Avatar & XP */}
           <section className="relative bg-[#0D1B2A] dark:bg-[#1a0202] rounded-xl p-6 md:p-8 border border-[#415A77] dark:border-[#D4AF37]/60 shadow-[0_8px_30px_rgba(0,0,0,0.8)] overflow-hidden">
             {/* Corner Filigrees */}
-            <CornerFiligree className="top-1 left-1" />
-            <CornerFiligree className="top-1 right-1 scale-x-[-1]" />
-            <CornerFiligree className="bottom-1 left-1 scale-y-[-1]" />
-            <CornerFiligree className="bottom-1 right-1 scale-x-[-1] scale-y-[-1]" />
+            <CornerFiligree className="top-0 left-0" />
+            <CornerFiligree className="top-0 right-0 scale-x-[-1]" />
+            <CornerFiligree className="bottom-0 left-0 scale-y-[-1]" />
+            <CornerFiligree className="bottom-0 right-0 scale-x-[-1] scale-y-[-1]" />
 
             {/* Subtle glow */}
             <div className="absolute right-0 top-0 w-96 h-96 bg-[radial-gradient(ellipse_at_top_right,_rgba(212,175,55,0.05)_0%,_transparent_70%)] pointer-events-none" />
