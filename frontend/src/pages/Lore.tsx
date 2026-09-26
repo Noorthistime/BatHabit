@@ -106,6 +106,85 @@ const ContinuousLoreFrame = () => (
   </motion.div>
 );
 
+const ContinuousSanctuaryFrame = () => (
+  <motion.div 
+    initial={{ clipPath: 'polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%)' }}
+    whileInView={{ clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)' }}
+    viewport={{ once: true, margin: "-50px" }}
+    transition={{ duration: 1.2, ease: "easeInOut" }}
+    className="absolute inset-0 pointer-events-none z-0"
+  >
+    {/* Background Glow */}
+    <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(109,8,8,0.2)_0%,_rgba(17,1,2,0.6)_100%)] rounded-xl" />
+
+    {/* The Continuous Straight Lines (Stopping before corners) */}
+    <div className="absolute top-[6px] left-[30px] right-[30px] h-[1.5px] bg-[#D4AF37]/60 shadow-[0_0_8px_rgba(212,175,55,0.4)]" />
+    <div className="absolute bottom-[6px] left-[30px] right-[30px] h-[1.5px] bg-[#D4AF37]/60 shadow-[0_0_8px_rgba(212,175,55,0.4)]" />
+    <div className="absolute left-[6px] top-[30px] bottom-[30px] w-[1.5px] bg-[#D4AF37]/60 shadow-[0_0_8px_rgba(212,175,55,0.4)]" />
+    <div className="absolute right-[6px] top-[30px] bottom-[30px] w-[1.5px] bg-[#D4AF37]/60 shadow-[0_0_8px_rgba(212,175,55,0.4)]" />
+
+    {/* Top-Left Scythe Corner */}
+    <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.8, duration: 1 }} className="absolute top-[1px] left-[1px] w-8 h-10 text-[#F5D77F] drop-shadow-[0_0_4px_rgba(245,215,127,0.6)]">
+      <svg viewBox="0 0 48 64" className="w-full h-full" fill="none" stroke="currentColor">
+        <circle cx="8" cy="8" r="3" fill="currentColor" stroke="none" />
+        <path d="M 16 5 L 48 5" strokeWidth="2" />
+        <path d="M 24 5 L 20 13 L 16 5 Z" fill="currentColor" stroke="none" />
+        <path d="M 5 16 L 5 64" strokeWidth="2" />
+        <path d="M 5 16 C 12 30 18 45 28 55 C 16 48 7 32 5 20 Z" fill="currentColor" stroke="none" />
+      </svg>
+    </motion.div>
+
+    {/* Top-Right Scythe Corner */}
+    <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.8, duration: 1 }} className="absolute top-[1px] right-[1px] w-8 h-10 text-[#F5D77F] drop-shadow-[0_0_4px_rgba(245,215,127,0.6)] scale-x-[-1]">
+      <svg viewBox="0 0 48 64" className="w-full h-full" fill="none" stroke="currentColor">
+        <circle cx="8" cy="8" r="3" fill="currentColor" stroke="none" />
+        <path d="M 16 5 L 48 5" strokeWidth="2" />
+        <path d="M 24 5 L 20 13 L 16 5 Z" fill="currentColor" stroke="none" />
+        <path d="M 5 16 L 5 64" strokeWidth="2" />
+        <path d="M 5 16 C 12 30 18 45 28 55 C 16 48 7 32 5 20 Z" fill="currentColor" stroke="none" />
+      </svg>
+    </motion.div>
+
+    {/* Bottom-Left Scythe Corner */}
+    <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.8, duration: 1 }} className="absolute bottom-[1px] left-[1px] w-8 h-10 text-[#F5D77F] drop-shadow-[0_0_4px_rgba(245,215,127,0.6)] scale-y-[-1]">
+      <svg viewBox="0 0 48 64" className="w-full h-full" fill="none" stroke="currentColor">
+        <circle cx="8" cy="8" r="3" fill="currentColor" stroke="none" />
+        <path d="M 16 5 L 48 5" strokeWidth="2" />
+        <path d="M 24 5 L 20 13 L 16 5 Z" fill="currentColor" stroke="none" />
+        <path d="M 5 16 L 5 64" strokeWidth="2" />
+        <path d="M 5 16 C 12 30 18 45 28 55 C 16 48 7 32 5 20 Z" fill="currentColor" stroke="none" />
+      </svg>
+    </motion.div>
+
+    {/* Bottom-Right Scythe Corner */}
+    <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} transition={{ delay: 0.8, duration: 1 }} className="absolute bottom-[1px] right-[1px] w-8 h-10 text-[#F5D77F] drop-shadow-[0_0_4px_rgba(245,215,127,0.6)] scale-[-1]">
+      <svg viewBox="0 0 48 64" className="w-full h-full" fill="none" stroke="currentColor">
+        <circle cx="8" cy="8" r="3" fill="currentColor" stroke="none" />
+        <path d="M 16 5 L 48 5" strokeWidth="2" />
+        <path d="M 24 5 L 20 13 L 16 5 Z" fill="currentColor" stroke="none" />
+        <path d="M 5 16 L 5 64" strokeWidth="2" />
+        <path d="M 5 16 C 12 30 18 45 28 55 C 16 48 7 32 5 20 Z" fill="currentColor" stroke="none" />
+      </svg>
+    </motion.div>
+
+    {/* Top Center Geometric Crest */}
+    <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 1, duration: 0.8 }} className="absolute top-[3px] left-1/2 -translate-x-1/2 w-20 h-4 flex items-center justify-center">
+      <svg viewBox="0 0 100 20" className="w-full h-full text-[#F5D77F] drop-shadow-[0_0_4px_rgba(245,215,127,0.6)]" fill="none" stroke="currentColor">
+        <path d="M 0 16 L 30 16 L 40 4 L 60 4 L 70 16 L 100 16" strokeWidth="2" />
+        <path d="M 36 10 L 42 7 L 58 7 L 64 10" strokeWidth="2" opacity="0.6" />
+      </svg>
+    </motion.div>
+    
+    {/* Bottom Center Geometric Crest */}
+    <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} transition={{ delay: 1, duration: 0.8 }} className="absolute bottom-[3px] left-1/2 -translate-x-1/2 w-20 h-4 flex items-center justify-center">
+      <svg viewBox="0 0 100 20" className="w-full h-full text-[#F5D77F] drop-shadow-[0_0_4px_rgba(245,215,127,0.6)] scale-y-[-1]" fill="none" stroke="currentColor">
+        <path d="M 0 16 L 30 16 L 40 4 L 60 4 L 70 16 L 100 16" strokeWidth="2" />
+        <path d="M 36 10 L 42 7 L 58 7 L 64 10" strokeWidth="2" opacity="0.6" />
+      </svg>
+    </motion.div>
+  </motion.div>
+);
+
 export function Lore() {
   const { theme } = useTheme();
 
@@ -177,83 +256,108 @@ export function Lore() {
         variants={staggerContainer}
         className="space-y-6"
       >
-        <motion.div variants={fadeIn} className="flex items-center gap-4 border-b border-[#415A77] dark:border-[#D4AF37]/30 pb-4">
-          <span className="font-mono text-2xl text-[#D4AF37] dark:text-[#C5A059] font-bold">II.</span>
-          <h2 className="font-serif text-2xl text-[#F7F3E9] dark:text-[#EEEAD7] uppercase tracking-wide">The Sanctuaries</h2>
+        <motion.div variants={fadeIn} className="flex items-center justify-center gap-4 border-b border-[#D4AF37]/20 pb-4">
+          <span className="font-mono text-2xl text-[#F5D77F] font-bold drop-shadow-[0_0_8px_rgba(245,215,127,0.6)]">II.</span>
+          <h2 className="font-serif text-2xl uppercase tracking-wide drop-shadow-[0_0_10px_rgba(245,215,127,0.5)] text-transparent bg-clip-text bg-gradient-to-b from-[#FFF9E6] to-[#D4AF37]">The Sanctuaries</h2>
         </motion.div>
         
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 pt-4">
           
-          <motion.div variants={slideLeft} className="bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 p-6 rounded-xl shadow-lg dark:shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
-            <div className="flex items-center gap-4 mb-4">
-              <div className="bg-[#0D1B2A] dark:bg-[#060102] p-3 rounded-full border border-[#415A77] dark:border-[#3a0404] text-[#D4AF37]">
-                <Home size={24} />
+          <motion.div variants={slideLeft} className="relative bg-[rgba(17,1,2,0.8)] backdrop-blur-md rounded-xl shadow-inner border border-transparent overflow-visible">
+            <ContinuousSanctuaryFrame />
+            <div className="p-10 relative z-10 flex flex-col items-center text-center">
+              <div className="relative flex items-center justify-center mb-6">
+                 {/* Glowing Royal Backdrop */}
+                 <div className="absolute inset-0 bg-[#D4AF37] blur-[15px] opacity-20 rounded-full w-12 h-12 mx-auto" />
+                 <div className="bg-[#110102] p-4 rounded-full border border-[#D4AF37]/30 shadow-[0_0_10px_rgba(212,175,55,0.3)] text-[#F5D77F] relative z-10">
+                   <Home size={28} className="drop-shadow-[0_0_5px_rgba(245,215,127,0.8)]" />
+                 </div>
               </div>
-              <h3 className="font-serif text-2xl text-[#F7F3E9] dark:text-[#EEEAD7]">Sanctum</h3>
+              <h3 className="font-serif text-2xl uppercase tracking-wider mb-4 drop-shadow-[0_0_8px_rgba(245,215,127,0.4)] text-transparent bg-clip-text bg-gradient-to-b from-[#FFF9E6] to-[#D4AF37]">Sanctum</h3>
+              <p className="font-sans text-[#EEEAD7]/90 leading-relaxed">
+                Your <strong>Sanctum</strong> is the central hub of your legacy. It provides a grand overview of your progression, showing your current rank, your active streaks, and a summary of what needs to be done today. It is your home in the Night Realm.
+              </p>
             </div>
-            <p className="font-sans text-[#F7F3E9]/80 dark:text-[#8d9685] leading-relaxed">
-              Your <strong>Sanctum</strong> is the central hub of your legacy. It provides a grand overview of your progression, showing your current rank, your active streaks, and a summary of what needs to be done today. It is your home in the Night Realm.
-            </p>
           </motion.div>
 
-          <motion.div variants={slideRight} className="bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 p-6 rounded-xl shadow-lg dark:shadow-[0_10px_30px_rgba(0,0,0,0.8)] md:mt-12">
-            <div className="flex items-center gap-4 mb-4">
-              <div className="bg-[#0D1B2A] dark:bg-[#060102] p-3 rounded-full border border-[#415A77] dark:border-[#3a0404] text-[#D4AF37]">
-                <BookOpen size={24} />
+          <motion.div variants={slideRight} className="relative bg-[rgba(17,1,2,0.8)] backdrop-blur-md rounded-xl shadow-inner border border-transparent overflow-visible md:mt-12">
+            <ContinuousSanctuaryFrame />
+            <div className="p-10 relative z-10 flex flex-col items-center text-center">
+              <div className="relative flex items-center justify-center mb-6">
+                 <div className="absolute inset-0 bg-[#D4AF37] blur-[15px] opacity-20 rounded-full w-12 h-12 mx-auto" />
+                 <div className="bg-[#110102] p-4 rounded-full border border-[#D4AF37]/30 shadow-[0_0_10px_rgba(212,175,55,0.3)] text-[#F5D77F] relative z-10">
+                   <BookOpen size={28} className="drop-shadow-[0_0_5px_rgba(245,215,127,0.8)]" />
+                 </div>
               </div>
-              <h3 className="font-serif text-2xl text-[#F7F3E9] dark:text-[#EEEAD7]">Questbook</h3>
+              <h3 className="font-serif text-2xl uppercase tracking-wider mb-4 drop-shadow-[0_0_8px_rgba(245,215,127,0.4)] text-transparent bg-clip-text bg-gradient-to-b from-[#FFF9E6] to-[#D4AF37]">Questbook</h3>
+              <p className="font-sans text-[#EEEAD7]/90 leading-relaxed">
+                The <strong>Questbook</strong> holds your actionable tasks. These are one-time objectives or projects you must complete. Checking off quests yields immediate experience (XP) and rewards you with Crowns. Use this for your to-do lists and singular goals.
+              </p>
             </div>
-            <p className="font-sans text-[#F7F3E9]/80 dark:text-[#8d9685] leading-relaxed">
-              The <strong>Questbook</strong> holds your actionable tasks. These are one-time objectives or projects you must complete. Checking off quests yields immediate experience (XP) and rewards you with Crowns. Use this for your to-do lists and singular goals.
-            </p>
           </motion.div>
           
-          <motion.div variants={slideLeft} className="bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 p-6 rounded-xl shadow-lg dark:shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
-            <div className="flex items-center gap-4 mb-4">
-              <div className="bg-[#0D1B2A] dark:bg-[#060102] p-3 rounded-full border border-[#415A77] dark:border-[#3a0404] text-[#D4AF37]">
-                <Scroll size={24} />
+          <motion.div variants={slideLeft} className="relative bg-[rgba(17,1,2,0.8)] backdrop-blur-md rounded-xl shadow-inner border border-transparent overflow-visible">
+            <ContinuousSanctuaryFrame />
+            <div className="p-10 relative z-10 flex flex-col items-center text-center">
+              <div className="relative flex items-center justify-center mb-6">
+                 <div className="absolute inset-0 bg-[#D4AF37] blur-[15px] opacity-20 rounded-full w-12 h-12 mx-auto" />
+                 <div className="bg-[#110102] p-4 rounded-full border border-[#D4AF37]/30 shadow-[0_0_10px_rgba(212,175,55,0.3)] text-[#F5D77F] relative z-10">
+                   <Scroll size={28} className="drop-shadow-[0_0_5px_rgba(245,215,127,0.8)]" />
+                 </div>
               </div>
-              <h3 className="font-serif text-2xl text-[#F7F3E9] dark:text-[#EEEAD7]">Grimoire</h3>
+              <h3 className="font-serif text-2xl uppercase tracking-wider mb-4 drop-shadow-[0_0_8px_rgba(245,215,127,0.4)] text-transparent bg-clip-text bg-gradient-to-b from-[#FFF9E6] to-[#D4AF37]">Grimoire</h3>
+              <p className="font-sans text-[#EEEAD7]/90 leading-relaxed">
+                The <strong>Grimoire</strong> is the ledger of your ongoing habits. Unlike quests, habits repeat daily, weekly, or monthly. Consistency here builds your "Unbroken Vow" (streak). This is where discipline is forged.
+              </p>
             </div>
-            <p className="font-sans text-[#F7F3E9]/80 dark:text-[#8d9685] leading-relaxed">
-              The <strong>Grimoire</strong> is the ledger of your ongoing habits. Unlike quests, habits repeat daily, weekly, or monthly. Consistency here builds your "Unbroken Vow" (streak). This is where discipline is forged.
-            </p>
           </motion.div>
 
-          <motion.div variants={slideRight} className="bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 p-6 rounded-xl shadow-lg dark:shadow-[0_10px_30px_rgba(0,0,0,0.8)] md:mt-12">
-            <div className="flex items-center gap-4 mb-4">
-              <div className="bg-[#0D1B2A] dark:bg-[#060102] p-3 rounded-full border border-[#415A77] dark:border-[#3a0404] text-[#D4AF37]">
-                <Droplet size={24} />
+          <motion.div variants={slideRight} className="relative bg-[rgba(17,1,2,0.8)] backdrop-blur-md rounded-xl shadow-inner border border-transparent overflow-visible md:mt-12">
+            <ContinuousSanctuaryFrame />
+            <div className="p-10 relative z-10 flex flex-col items-center text-center">
+              <div className="relative flex items-center justify-center mb-6">
+                 <div className="absolute inset-0 bg-[#D4AF37] blur-[15px] opacity-20 rounded-full w-12 h-12 mx-auto" />
+                 <div className="bg-[#110102] p-4 rounded-full border border-[#D4AF37]/30 shadow-[0_0_10px_rgba(212,175,55,0.3)] text-[#F5D77F] relative z-10">
+                   <Droplet size={28} className="drop-shadow-[0_0_5px_rgba(245,215,127,0.8)]" />
+                 </div>
               </div>
-              <h3 className="font-serif text-2xl text-[#F7F3E9] dark:text-[#EEEAD7]">Bloodline</h3>
+              <h3 className="font-serif text-2xl uppercase tracking-wider mb-4 drop-shadow-[0_0_8px_rgba(245,215,127,0.4)] text-transparent bg-clip-text bg-gradient-to-b from-[#FFF9E6] to-[#D4AF37]">Bloodline</h3>
+              <p className="font-sans text-[#EEEAD7]/90 leading-relaxed">
+                The <strong>Bloodline</strong> tracks your attributes, experience points (XP), and overall rank. As you complete quests and habits, you gain XP. Earning enough XP increases your Rank (e.g., from Novice to Nightwalker), unlocking new titles and prestige.
+              </p>
             </div>
-            <p className="font-sans text-[#F7F3E9]/80 dark:text-[#8d9685] leading-relaxed">
-              The <strong>Bloodline</strong> tracks your attributes, experience points (XP), and overall rank. As you complete quests and habits, you gain XP. Earning enough XP increases your Rank (e.g., from Novice to Nightwalker), unlocking new titles and prestige.
-            </p>
           </motion.div>
 
-          <motion.div variants={slideLeft} className="bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 p-6 rounded-xl shadow-lg dark:shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
-            <div className="flex items-center gap-4 mb-4">
-              <div className="bg-[#0D1B2A] dark:bg-[#060102] p-3 rounded-full border border-[#415A77] dark:border-[#3a0404] text-[#D4AF37]">
-                <Store size={24} />
+          <motion.div variants={slideLeft} className="relative bg-[rgba(17,1,2,0.8)] backdrop-blur-md rounded-xl shadow-inner border border-transparent overflow-visible">
+            <ContinuousSanctuaryFrame />
+            <div className="p-10 relative z-10 flex flex-col items-center text-center">
+              <div className="relative flex items-center justify-center mb-6">
+                 <div className="absolute inset-0 bg-[#D4AF37] blur-[15px] opacity-20 rounded-full w-12 h-12 mx-auto" />
+                 <div className="bg-[#110102] p-4 rounded-full border border-[#D4AF37]/30 shadow-[0_0_10px_rgba(212,175,55,0.3)] text-[#F5D77F] relative z-10">
+                   <Store size={28} className="drop-shadow-[0_0_5px_rgba(245,215,127,0.8)]" />
+                 </div>
               </div>
-              <h3 className="font-serif text-2xl text-[#F7F3E9] dark:text-[#EEEAD7]">Night Market</h3>
+              <h3 className="font-serif text-2xl uppercase tracking-wider mb-4 drop-shadow-[0_0_8px_rgba(245,215,127,0.4)] text-transparent bg-clip-text bg-gradient-to-b from-[#FFF9E6] to-[#D4AF37]">Night Market</h3>
+              <p className="font-sans text-[#EEEAD7]/90 leading-relaxed">
+                Spend your hard-earned Crowns in the <strong>Night Market</strong> to purchase custom rewards, rare items, or self-care treats you've set for yourself. This is your personal store where discipline pays off.
+              </p>
             </div>
-            <p className="font-sans text-[#F7F3E9]/80 dark:text-[#8d9685] leading-relaxed">
-              Spend your hard-earned Crowns in the <strong>Night Market</strong> to purchase custom rewards, rare items, or self-care treats you've set for yourself. This is your personal store where discipline pays off.
-            </p>
           </motion.div>
 
-          <motion.div variants={slideRight} className="bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 p-6 rounded-xl shadow-lg dark:shadow-[0_10px_30px_rgba(0,0,0,0.8)] md:mt-12">
-            <div className="flex items-center gap-4 mb-4">
-              <div className="bg-[#0D1B2A] dark:bg-[#060102] p-3 rounded-full border border-[#415A77] dark:border-[#3a0404] text-[#D4AF37]">
-                <Archive size={24} />
+          <motion.div variants={slideRight} className="relative bg-[rgba(17,1,2,0.8)] backdrop-blur-md rounded-xl shadow-inner border border-transparent overflow-visible md:mt-12">
+            <ContinuousSanctuaryFrame />
+            <div className="p-10 relative z-10 flex flex-col items-center text-center">
+              <div className="relative flex items-center justify-center mb-6">
+                 <div className="absolute inset-0 bg-[#D4AF37] blur-[15px] opacity-20 rounded-full w-12 h-12 mx-auto" />
+                 <div className="bg-[#110102] p-4 rounded-full border border-[#D4AF37]/30 shadow-[0_0_10px_rgba(212,175,55,0.3)] text-[#F5D77F] relative z-10">
+                   <Archive size={28} className="drop-shadow-[0_0_5px_rgba(245,215,127,0.8)]" />
+                 </div>
               </div>
-              <h3 className="font-serif text-2xl text-[#F7F3E9] dark:text-[#EEEAD7]">Vault</h3>
+              <h3 className="font-serif text-2xl uppercase tracking-wider mb-4 drop-shadow-[0_0_8px_rgba(245,215,127,0.4)] text-transparent bg-clip-text bg-gradient-to-b from-[#FFF9E6] to-[#D4AF37]">Vault</h3>
+              <p className="font-sans text-[#EEEAD7]/90 leading-relaxed">
+                Items you purchase from the Night Market are stored securely in your <strong>Vault</strong>. The Vault serves as a collection of your achievements and redeemed rewards, a treasure trove of your past victories.
+              </p>
             </div>
-            <p className="font-sans text-[#F7F3E9]/80 dark:text-[#8d9685] leading-relaxed">
-              Items you purchase from the Night Market are stored securely in your <strong>Vault</strong>. The Vault serves as a collection of your achievements and redeemed rewards, a treasure trove of your past victories.
-            </p>
           </motion.div>
 
         </div>
