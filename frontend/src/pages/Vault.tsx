@@ -20,6 +20,99 @@ const RARITY_COLORS: Record<string, string> = {
   Common: '#8d9685', Rare: '#60a5fa', Epic: '#a855f7', Legendary: '#D4AF37', Mythic: '#ff6b6b',
 };
 
+const NavEndFiligree = ({ flipped = false }: { flipped?: boolean }) => (
+  <div className={`relative w-[80px] md:w-[120px] h-[32px] flex items-center ${flipped ? 'scale-x-[-1]' : ''}`}>
+    <motion.svg 
+      width="100%" height="100%" viewBox="0 0 120 32" fill="none" 
+      xmlns="http://www.w3.org/2000/svg"
+      className="text-[#D4AF37] drop-shadow-[0_0_5px_rgba(212,175,55,0.8)]"
+      initial="hidden"
+      animate="visible"
+    >
+      {/* Central horizontal line */}
+      <motion.path 
+        d="M0 16 L25 16" 
+        stroke="currentColor" strokeWidth="1.5" 
+        variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { duration: 0.8, ease: "easeOut" } } }}
+      />
+      <motion.path 
+        d="M95 16 L120 16" 
+        stroke="currentColor" strokeWidth="1.5" 
+        variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { duration: 0.8, ease: "easeOut", delay: 0.8 } } }}
+      />
+      
+      {/* Eye curves */}
+      <motion.path 
+        d="M25 16 C 45 -4, 75 -4, 95 16" 
+        stroke="currentColor" strokeWidth="1.5" 
+        variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { duration: 1.2, ease: "easeInOut", delay: 0.4 } } }}
+      />
+      <motion.path 
+        d="M25 16 C 45 36, 75 36, 95 16" 
+        stroke="currentColor" strokeWidth="1.5" 
+        variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { duration: 1.2, ease: "easeInOut", delay: 0.4 } } }}
+      />
+      
+      {/* Inner flourish */}
+      <motion.path 
+        d="M35 16 Q 50 6 60 16" 
+        stroke="currentColor" strokeWidth="1" 
+        variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { duration: 0.8, ease: "easeOut", delay: 1 } } }}
+      />
+      <motion.path 
+        d="M85 16 Q 70 26 60 16" 
+        stroke="currentColor" strokeWidth="1" 
+        variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { duration: 0.8, ease: "easeOut", delay: 1 } } }}
+      />
+      
+      {/* Diamonds and Dots */}
+      <motion.g variants={{ hidden: { opacity: 0, scale: 0 }, visible: { opacity: 1, scale: 1, transition: { duration: 0.5, delay: 1.2 } } }} style={{ transformOrigin: '15px 16px' }}>
+        <path d="M12 16 L15 13 L18 16 L15 19 Z" fill="currentColor" />
+      </motion.g>
+      <motion.g variants={{ hidden: { opacity: 0, scale: 0 }, visible: { opacity: 1, scale: 1, transition: { duration: 0.5, delay: 1.4 } } }} style={{ transformOrigin: '60px 16px' }}>
+        <path d="M57 16 L60 13 L63 16 L60 19 Z" fill="currentColor" />
+      </motion.g>
+      <motion.circle cx="45" cy="16" r="2" fill="currentColor" variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { delay: 1.6 } } }} />
+      <motion.circle cx="75" cy="16" r="2" fill="currentColor" variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { delay: 1.6 } } }} />
+    </motion.svg>
+  </div>
+);
+
+const RoyalTab = ({ label, active, onClick }: { label: string, active: boolean, onClick: () => void }) => {
+  return (
+    <button 
+      onClick={onClick}
+      className={`relative group flex items-center justify-center px-4 md:px-6 py-2.5 z-20 transition-all duration-300 ${active ? 'scale-[1.15] md:mx-4 mx-2 drop-shadow-[0_0_8px_rgba(212,175,55,0.6)]' : 'hover:scale-105 hover:z-30'}`}
+      style={{ minWidth: '80px' }}
+    >
+      {/* Border Layer */}
+      <div className={`absolute inset-0 ${active ? 'bg-[#D4AF37]' : 'bg-[#D4AF37]/30 group-hover:bg-[#D4AF37]/70 transition-colors'}`} 
+           style={{ clipPath: 'polygon(8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px), 0 8px)' }}>
+      </div>
+      
+      {/* Inner Fill Layer */}
+      <div className={`absolute inset-[1.5px] ${active ? 'bg-gradient-to-b from-[#4A0404] to-[#1a0101]' : 'bg-[#110102]'}`} 
+           style={{ clipPath: 'polygon(7px 0, calc(100% - 7px) 0, 100% 7px, 100% calc(100% - 7px), calc(100% - 7px) 100%, 7px 100%, 0 calc(100% - 7px), 0 7px)' }}>
+      </div>
+
+      {/* Corner accents for active state */}
+      {active && (
+        <>
+          <div className="absolute top-[1px] left-[1px] w-2 h-2 border-t-2 border-l-2 border-[#F5D77F] pointer-events-none rounded-tl-sm shadow-[-2px_-2px_4px_rgba(245,215,127,0.5)]" />
+          <div className="absolute top-[1px] right-[1px] w-2 h-2 border-t-2 border-r-2 border-[#F5D77F] pointer-events-none rounded-tr-sm shadow-[2px_-2px_4px_rgba(245,215,127,0.5)]" />
+          <div className="absolute bottom-[1px] left-[1px] w-2 h-2 border-b-2 border-l-2 border-[#F5D77F] pointer-events-none rounded-bl-sm shadow-[-2px_2px_4px_rgba(245,215,127,0.5)]" />
+          <div className="absolute bottom-[1px] right-[1px] w-2 h-2 border-b-2 border-r-2 border-[#F5D77F] pointer-events-none rounded-br-sm shadow-[2px_2px_4px_rgba(245,215,127,0.5)]" />
+        </>
+      )}
+      
+      {/* Text */}
+      <span className={`relative z-10 font-mono text-[9px] md:text-[10px] uppercase tracking-[0.2em] font-bold mt-0.5 ${active ? 'text-[#F5D77F] drop-shadow-[0_0_6px_rgba(245,215,127,0.9)]' : 'text-[#8d9685] group-hover:text-[#D4AF37]'}`}>
+        {label}
+      </span>
+    </button>
+  );
+};
+
 export function Vault() {
   const [activeCategory, setActiveCategory] = useState<VaultCategory>('All');
   const [equipped, setEquipped] = useState<Set<number>>(new Set(OWNED_ITEMS.filter(i => i.equipped).map(i => i.id)));
@@ -132,23 +225,30 @@ export function Vault() {
 
           {/* Inventory Panel (Now on Right) */}
           <div className="lg:col-span-2 flex flex-col gap-4">
-            {/* Category Filter */}
-            <div className="flex gap-1 flex-wrap">
-              {VAULT_CATEGORIES.map(cat => (
-                <button
-                  key={cat}
-                  onClick={() => setActiveCategory(cat)}
-                  className="px-4 py-2 font-mono text-xs uppercase tracking-widest transition-all hover:border-[#D4AF37]/50"
-                  style={{
-                    background: activeCategory === cat ? 'linear-gradient(180deg, rgba(109,8,8,0.8) 0%, rgba(35,6,8,0.9) 100%)' : 'rgba(35,6,8,0.4)',
-                    border: `1px solid ${activeCategory === cat ? 'rgba(212,175,55,0.8)' : 'rgba(212,175,55,0.2)'}`,
-                    color: activeCategory === cat ? '#F5D77F' : '#8d9685',
-                    boxShadow: activeCategory === cat ? '0 0 15px rgba(109,8,8,0.5)' : 'none'
-                  }}
-                >
-                  {cat}
-                </button>
-              ))}
+            {/* Category Filter: Royal Navigation Row */}
+            <div className="relative w-full py-8 flex items-center justify-center my-2 overflow-visible">
+              {/* Continuous Golden Line */}
+              <div className="absolute top-1/2 -translate-y-1/2 left-[5%] right-[5%] h-px bg-gradient-to-r from-transparent via-[#D4AF37]/60 to-transparent shadow-[0_0_8px_rgba(212,175,55,0.8)] z-0 pointer-events-none" />
+              
+              <div className="relative z-10 flex items-center w-full max-w-[950px] justify-between px-2">
+                <NavEndFiligree />
+                
+                {VAULT_CATEGORIES.map((cat, index) => (
+                  <React.Fragment key={cat}>
+                    <RoyalTab label={cat} active={activeCategory === cat} onClick={() => setActiveCategory(cat)} />
+                    {/* Diamond Divider */}
+                    {index < VAULT_CATEGORIES.length - 1 && (
+                      <div className="relative z-10 flex items-center justify-center hidden sm:flex">
+                        <svg width="10" height="10" viewBox="0 0 12 12" fill="none" className="text-[#D4AF37] drop-shadow-[0_0_6px_rgba(212,175,55,1)]">
+                          <path d="M6 0 L12 6 L6 12 L0 6 Z" fill="currentColor" />
+                        </svg>
+                      </div>
+                    )}
+                  </React.Fragment>
+                ))}
+                
+                <NavEndFiligree flipped />
+              </div>
             </div>
 
             <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
