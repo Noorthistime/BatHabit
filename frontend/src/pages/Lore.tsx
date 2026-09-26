@@ -1,6 +1,7 @@
 import { motion, type Variants } from 'framer-motion';
 import { Compass, Home, BookOpen, Scroll, Droplet, Store, Archive, Coins, Shield } from 'lucide-react';
 import { useTheme } from '../context/ThemeContext';
+import { Link } from 'react-router-dom';
 
 const fadeIn: Variants = {
   hidden: { opacity: 0, y: 30 },
@@ -730,11 +731,54 @@ export function Lore() {
         initial="hidden" 
         whileInView="visible" 
         viewport={{ once: true, margin: "-100px" }}
-        variants={fadeIn}
-        className="text-center pt-10"
+        className="text-center pt-24 pb-16 relative flex flex-col items-center"
       >
-        <h3 className="font-serif text-xl text-[#D4AF37] dark:text-[#F5D77F] italic mb-2">"Discipline is the key to eternity."</h3>
-        <p className="font-sans text-[#F7F3E9]/60 dark:text-[#8d9685] text-sm">Return to the Sanctum and begin your vigil.</p>
+        {/* Massive Closing Crest */}
+        <motion.div 
+          variants={{ hidden: { opacity: 0, scale: 0.8 }, visible: { opacity: 1, scale: 1, transition: { duration: 1.5, ease: "easeOut" } } }}
+          className="w-full max-w-md mx-auto text-[#D4AF37] mb-12 drop-shadow-[0_0_15px_rgba(212,175,55,0.4)]"
+        >
+          <svg viewBox="0 0 400 80" fill="none" stroke="currentColor">
+            <path d="M 200 40 C 150 40 100 20 20 40 C 100 60 150 40 200 40 Z" strokeWidth="2" />
+            <path d="M 200 40 C 250 40 300 20 380 40 C 300 60 250 40 200 40 Z" strokeWidth="2" />
+            <path d="M 180 40 C 180 30 200 20 200 40 C 200 60 220 50 220 40" strokeWidth="1.5" />
+            <path d="M 220 40 C 220 30 200 20 200 40 C 200 60 180 50 180 40" strokeWidth="1.5" />
+            <circle cx="200" cy="40" r="6" fill="currentColor" stroke="none" />
+            <circle cx="20" cy="40" r="3" fill="currentColor" stroke="none" />
+            <circle cx="380" cy="40" r="3" fill="currentColor" stroke="none" />
+          </svg>
+        </motion.div>
+
+        {/* Radiant Quote */}
+        <motion.h3 
+          variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { delay: 0.5, duration: 1 } } }}
+          className="font-serif text-3xl md:text-4xl text-[#F5D77F] italic mb-12 drop-shadow-[0_0_12px_rgba(245,215,127,0.6)]"
+        >
+          "Discipline is the key to eternity."
+        </motion.h3>
+
+        {/* The Sanctum Portal (Interactive Button) */}
+        <motion.div variants={{ hidden: { opacity: 0, scale: 0.9 }, visible: { opacity: 1, scale: 1, transition: { delay: 1, duration: 0.8, ease: "easeOut" } } }}>
+          <Link to="/" className="group relative inline-flex items-center justify-center px-10 py-5 bg-[rgba(17,1,2,0.9)] rounded-sm overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(212,175,55,0.4)]">
+            {/* Animated Golden Border */}
+            <div className="absolute inset-0 border border-[#D4AF37]/50 group-hover:border-[#D4AF37] transition-colors duration-500" />
+            <div className="absolute inset-1 border border-[#D4AF37]/20 group-hover:border-[#D4AF37]/60 border-dashed transition-colors duration-500" />
+            
+            {/* Corner Accents */}
+            <div className="absolute top-0 left-0 w-3 h-3 border-t-2 border-l-2 border-[#D4AF37] group-hover:w-4 group-hover:h-4 transition-all duration-300" />
+            <div className="absolute top-0 right-0 w-3 h-3 border-t-2 border-r-2 border-[#D4AF37] group-hover:w-4 group-hover:h-4 transition-all duration-300" />
+            <div className="absolute bottom-0 left-0 w-3 h-3 border-b-2 border-l-2 border-[#D4AF37] group-hover:w-4 group-hover:h-4 transition-all duration-300" />
+            <div className="absolute bottom-0 right-0 w-3 h-3 border-b-2 border-r-2 border-[#D4AF37] group-hover:w-4 group-hover:h-4 transition-all duration-300" />
+            
+            {/* Hover Glow Background */}
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(212,175,55,0.15)_0%,transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+            
+            {/* Text content */}
+            <span className="relative font-serif text-lg md:text-xl text-[#F7F3E9] group-hover:text-[#FFF9E6] group-hover:drop-shadow-[0_0_8px_rgba(255,249,230,0.8)] transition-all duration-300 tracking-wide">
+              Return to the Sanctum and begin your vigil
+            </span>
+          </Link>
+        </motion.div>
       </motion.div>
 
     </div>
