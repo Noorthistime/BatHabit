@@ -78,6 +78,42 @@ const NavEndFiligree = ({ flipped = false }: { flipped?: boolean }) => (
   </div>
 );
 
+const CornerFiligree = ({ className }: { className?: string }) => {
+  const drawMain = {
+    hidden: { pathLength: 0, opacity: 0 },
+    visible: { pathLength: 1, opacity: 1, transition: { duration: 1.5, ease: "easeOut" } }
+  };
+  const drawSecondary = {
+    hidden: { pathLength: 0, opacity: 0 },
+    visible: { pathLength: 1, opacity: 1, transition: { duration: 1.2, ease: "easeOut", delay: 0.5 } }
+  };
+  const leafFade = {
+    hidden: { opacity: 0, scale: 0 },
+    visible: { opacity: 1, scale: 1, transition: { duration: 0.8, delay: 1.2 } }
+  };
+
+  return (
+    <motion.svg 
+      className={`absolute w-16 h-16 pointer-events-none text-[#D4AF37] opacity-80 z-0 drop-shadow-[0_0_3px_rgba(212,175,55,0.4)] ${className}`}
+      viewBox="0 0 100 100"
+      initial="hidden"
+      animate="visible"
+    >
+      {/* Primary sweeping vines hugging the edges */}
+      <motion.path d="M 2 2 C 20 5, 40 10, 95 15" fill="none" stroke="currentColor" strokeWidth="1.5" variants={drawMain} />
+      <motion.path d="M 2 2 C 5 20, 10 40, 15 95" fill="none" stroke="currentColor" strokeWidth="1.5" variants={drawMain} />
+      {/* Secondary curling offshoots */}
+      <motion.path d="M 40 8 Q 50 20 60 15 T 70 8" fill="none" stroke="currentColor" strokeWidth="1" variants={drawSecondary} />
+      <motion.path d="M 8 40 Q 20 50 15 60 T 8 70" fill="none" stroke="currentColor" strokeWidth="1" variants={drawSecondary} />
+      {/* Delicate leaves */}
+      <motion.g variants={leafFade}>
+        <path d="M 20 5 C 18 8, 22 10, 25 10 C 25 7, 22 5, 20 5 Z" fill="currentColor" />
+        <path d="M 55 10 C 52 15, 60 18, 65 17 C 65 13, 60 10, 55 10 Z" fill="currentColor" />
+      </motion.g>
+    </motion.svg>
+  );
+};
+
 const RoyalTab = ({ label, active, onClick }: { label: string, active: boolean, onClick: () => void }) => {
   return (
     <button 
@@ -138,8 +174,7 @@ export function Vault() {
   return (
     <>
 
-
-      <div className="w-full max-w-[1200px] mx-auto flex flex-col gap-6">
+      <div className="w-full max-w-[1200px] mx-auto flex flex-col h-full flex-1 overflow-hidden min-h-0 pt-2 pb-4">
 
         {/* Header */}
         <div className="flex flex-col pb-4 border-b border-[#415A77]/50 dark:border-[#D4AF37]/25 gap-2 mb-2">
@@ -152,12 +187,30 @@ export function Vault() {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 flex-1 min-h-0 overflow-hidden">
 
           {/* Active Loadout Panel (Now on Left) */}
           <div
-            className="p-5 flex flex-col gap-4 rounded-xl bg-[#1B263B]/40 dark:bg-[rgba(35,6,8,0.85)] backdrop-blur-xl border border-[#415A77]/60 dark:border-[#D4AF37]/50 shadow-[0_8px_30px_rgba(109,8,8,0.5)] relative overflow-hidden"
+            className="p-5 flex flex-col gap-4 rounded-xl bg-[#1B263B]/40 dark:bg-[rgba(35,6,8,0.85)] backdrop-blur-xl relative overflow-hidden h-full shadow-[0_8px_30px_rgba(109,8,8,0.5)]"
           >
+            {/* Museum-Grade Inset Border Layer (Golden Rule Compliant) */}
+            <div className="absolute inset-0 border-[1.5px] border-[#D4AF37]/50 rounded-xl pointer-events-none z-0" />
+            <div className="absolute inset-[4px] border border-[#D4AF37]/20 rounded-lg pointer-events-none z-0 shadow-[inset_0_0_15px_rgba(212,175,55,0.15)]" />
+
+            {/* Corner Filigrees (Absolute positioned) */}
+            <CornerFiligree className="top-[4px] left-[4px]" />
+            <CornerFiligree className="top-[4px] right-[4px] scale-x-[-1]" />
+            <CornerFiligree className="bottom-[4px] left-[4px] scale-y-[-1]" />
+            <CornerFiligree className="bottom-[4px] right-[4px] scale-[-1]" />
+
+            {/* Top-Center Border Accent */}
+            <div className="absolute top-0 left-1/2 -translate-x-1/2 flex items-center justify-center w-40 h-[1.5px] z-10 pointer-events-none">
+              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-[#F5D77F] to-transparent shadow-[0_0_8px_rgba(245,215,127,1)]" />
+              <svg width="10" height="10" viewBox="0 0 12 12" fill="none" className="text-[#F5D77F] drop-shadow-[0_0_5px_rgba(245,215,127,1)] relative z-10">
+                <path d="M6 0 L12 6 L6 12 L0 6 Z" fill="currentColor" />
+              </svg>
+            </div>
+
             {/* Background Watermark */}
             <div className="absolute top-0 right-0 h-40 w-40 overflow-hidden pointer-events-none opacity-[0.05] text-[#D4AF37] translate-x-10 -translate-y-10">
               <GiDragonHead className="w-full h-full" />
@@ -224,7 +277,7 @@ export function Vault() {
           </div>
 
           {/* Inventory Panel (Now on Right) */}
-          <div className="lg:col-span-2 flex flex-col gap-4">
+          <div className="lg:col-span-2 flex flex-col gap-4 h-full min-h-0">
             {/* Category Filter: Royal Navigation Row */}
             <div className="relative w-full py-8 flex items-center justify-center my-2 overflow-visible">
               {/* Continuous Golden Line */}
@@ -251,7 +304,7 @@ export function Vault() {
               </div>
             </div>
 
-            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-3 overflow-y-auto min-h-0 custom-scrollbar pr-2 pb-4 flex-1">
               {filtered.map((item, index) => {
                 const isEquipped = equipped.has(item.id);
                 return (
