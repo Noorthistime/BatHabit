@@ -131,3 +131,14 @@
   .dark .gothic-notched::after {
     background: linear-gradient(135deg, #2a0303, #120101);
   }
+
+  @keyframes draw-filigree {
+    from { stroke-dashoffset: 800; }
+    to { stroke-dashoffset: 0; }
+  }
+
+  .filigree-path {
+    stroke-dasharray: 800;
+    stroke-dashoffset: 800;
+    animation: draw-filigree 1.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  }
