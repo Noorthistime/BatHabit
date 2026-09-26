@@ -281,62 +281,98 @@ const CurrencyFrame = () => (
   </div>
 );
 
-const LeafCrest = () => (
+const ShieldNode = () => (
   <svg viewBox="0 0 100 100" className="w-full h-full" fill="none" stroke="currentColor">
-    {/* Thick curving side leaves */}
-    <motion.path variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { duration: 1.2, ease: "easeOut" } } }} d="M 50 10 C 20 10 5 35 15 60 C 25 80 50 90 50 90" strokeWidth="2.5" />
-    <motion.path variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { duration: 1.2, ease: "easeOut" } } }} d="M 50 10 C 80 10 95 35 85 60 C 75 80 50 90 50 90" strokeWidth="2.5" />
+    {/* Outer Droplet Shield */}
+    <motion.path 
+      variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { duration: 1.2, ease: "easeOut" } } }} 
+      d="M 50 95 C 20 70 10 50 10 35 C 10 15 25 5 50 5 C 75 5 90 15 90 35 C 90 50 80 70 50 95 Z" 
+      strokeWidth="2" 
+    />
+    <motion.path 
+      variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { duration: 1.2, delay: 0.2 } } }} 
+      d="M 50 85 C 30 65 20 45 20 35 C 20 20 30 15 50 15 C 70 15 80 20 80 35 C 80 45 70 65 50 85 Z" 
+      strokeWidth="1.5" 
+    />
+    {/* Side Dots */}
+    <motion.circle variants={{ hidden: { scale: 0 }, visible: { scale: 1, transition: { delay: 1 } } }} cx="10" cy="45" r="4" fill="currentColor" stroke="none" />
+    <motion.circle variants={{ hidden: { scale: 0 }, visible: { scale: 1, transition: { delay: 1 } } }} cx="90" cy="45" r="4" fill="currentColor" stroke="none" />
     
-    {/* Inner leaf curls */}
-    <motion.path variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { delay: 0.3, duration: 1 } } }} d="M 25 40 C 15 50 20 70 40 80" strokeWidth="1.5" />
-    <motion.path variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { delay: 0.3, duration: 1 } } }} d="M 75 40 C 85 50 80 70 60 80" strokeWidth="1.5" />
-    
-    {/* Center Diamond Border */}
-    <motion.path variants={{ hidden: { scale: 0, opacity: 0 }, visible: { scale: 1, opacity: 1, transition: { delay: 0.6, duration: 0.6 } } }} d="M 50 25 L 70 50 L 50 75 L 30 50 Z" strokeWidth="1.5" />
-    <motion.path variants={{ hidden: { scale: 0, opacity: 0 }, visible: { scale: 1, opacity: 1, transition: { delay: 0.8, duration: 0.6 } } }} d="M 50 32 L 63 50 L 50 68 L 37 50 Z" strokeWidth="1" strokeDasharray="2 2" />
-    
-    {/* Leaf petal tips (filled) */}
-    <motion.path variants={{ hidden: { scale: 0 }, visible: { scale: 1, transition: { delay: 1, duration: 0.4 } } }} d="M 15 60 C 10 65 5 55 10 50 C 15 45 20 55 15 60 Z" fill="currentColor" stroke="none" />
-    <motion.path variants={{ hidden: { scale: 0 }, visible: { scale: 1, transition: { delay: 1, duration: 0.4 } } }} d="M 85 60 C 90 65 95 55 90 50 C 85 45 80 55 85 60 Z" fill="currentColor" stroke="none" />
+    {/* Inner Diamond */}
+    <motion.path 
+      variants={{ hidden: { scale: 0, opacity: 0 }, visible: { scale: 1, opacity: 1, transition: { delay: 0.6, duration: 0.6 } } }} 
+      d="M 50 25 L 70 45 L 50 65 L 30 45 Z" 
+      strokeWidth="2" 
+    />
+    <motion.path 
+      variants={{ hidden: { scale: 0, opacity: 0 }, visible: { scale: 1, opacity: 1, transition: { delay: 0.8, duration: 0.6 } } }} 
+      d="M 50 30 L 65 45 L 50 60 L 35 45 Z" 
+      strokeWidth="1.5" 
+      strokeDasharray="3 3" 
+    />
   </svg>
 );
 
-const BoxFlourish = () => (
-  <svg viewBox="0 0 64 64" className="w-full h-full" fill="none" stroke="currentColor">
-    {/* Scrolling acanthus corner */}
-    <path d="M 0 16 C 16 16 24 16 24 0" strokeWidth="2" />
-    <path d="M 16 0 C 16 16 16 24 0 24" strokeWidth="2" />
-    <path d="M 24 0 C 32 16 24 32 8 40" strokeWidth="1.5" />
-    <path d="M 0 24 C 16 32 32 24 40 8" strokeWidth="1.5" />
-    <circle cx="8" cy="8" r="3" fill="currentColor" stroke="none" />
-    <circle cx="28" cy="28" r="1.5" fill="currentColor" stroke="none" />
-  </svg>
+const HorizontalRoyalDividerTop = () => (
+  <div className="absolute top-0 left-0 right-0 h-[80px] pointer-events-none flex items-end justify-center overflow-visible z-0">
+    {/* Straight Lines */}
+    <motion.div variants={{ hidden: { scaleX: 0 }, visible: { scaleX: 1, transition: { delay: 0.5, duration: 0.8 } } }} className="absolute bottom-[20px] left-8 right-[calc(50%+60px)] h-[2px] bg-[#D4AF37] shadow-[0_0_5px_rgba(212,175,55,0.5)] origin-right" />
+    <motion.div variants={{ hidden: { scaleX: 0 }, visible: { scaleX: 1, transition: { delay: 0.5, duration: 0.8 } } }} className="absolute bottom-[20px] right-8 left-[calc(50%+60px)] h-[2px] bg-[#D4AF37] shadow-[0_0_5px_rgba(212,175,55,0.5)] origin-left" />
+    
+    {/* Central Crest */}
+    <div className="relative w-[300px] h-[80px] text-[#D4AF37] drop-shadow-[0_0_8px_rgba(212,175,55,0.6)]">
+      <svg viewBox="0 0 300 80" className="w-full h-full" fill="none" stroke="currentColor">
+        {/* Center tall spike */}
+        <motion.path variants={{ hidden: { scaleY: 0 }, visible: { scaleY: 1, transition: { delay: 0.8, duration: 0.5 } } }} d="M 150 10 C 140 30 145 50 150 60 C 155 50 160 30 150 10 Z" fill="currentColor" stroke="none" className="origin-bottom" />
+        {/* Side sweeping leaves */}
+        <motion.path variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { delay: 1, duration: 0.8 } } }} d="M 150 60 C 100 60 70 20 110 20 C 130 20 140 40 145 55" strokeWidth="3" />
+        <motion.path variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { delay: 1, duration: 0.8 } } }} d="M 150 60 C 200 60 230 20 190 20 C 170 20 160 40 155 55" strokeWidth="3" />
+        {/* Inner curls */}
+        <motion.path variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { delay: 1.2, duration: 0.6 } } }} d="M 130 60 C 115 50 115 35 130 35 C 140 35 145 45 135 50" strokeWidth="2" />
+        <motion.path variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { delay: 1.2, duration: 0.6 } } }} d="M 170 60 C 185 50 185 35 170 35 C 160 35 155 45 165 50" strokeWidth="2" />
+        
+        {/* Outer scrolls over the lines */}
+        <motion.path variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { delay: 1.4, duration: 0.6 } } }} d="M 90 60 C 50 60 30 30 10 45" strokeWidth="2.5" />
+        <motion.path variants={{ hidden: { pathLength: 0 }, visible: { pathLength: 1, transition: { delay: 1.4, duration: 0.6 } } }} d="M 210 60 C 250 60 270 30 290 45" strokeWidth="2.5" />
+        
+        {/* Dots */}
+        <motion.circle variants={{ hidden: { scale: 0 }, visible: { scale: 1, transition: { delay: 1.6 } } }} cx="90" cy="60" r="4" fill="currentColor" stroke="none" />
+        <motion.circle variants={{ hidden: { scale: 0 }, visible: { scale: 1, transition: { delay: 1.6 } } }} cx="210" cy="60" r="4" fill="currentColor" stroke="none" />
+      </svg>
+    </div>
+  </div>
+);
+
+const HorizontalRoyalDividerBottom = () => (
+  <div className="absolute bottom-0 left-0 right-0 h-[80px] pointer-events-none scale-y-[-1] z-0">
+    <HorizontalRoyalDividerTop />
+  </div>
 );
 
 const WorkflowStep = ({ num, title, text, isLast }: { num: number, title: string, text: React.ReactNode, isLast?: boolean }) => {
   return (
     <div className="relative pl-24 md:pl-32 pb-16">
-      {/* Vertical Scrolling Vine connecting to the next node (except if last) */}
+      {/* Cascading Golden Crescent Moons */}
       {!isLast && (
-        <div className="absolute top-[80px] bottom-[-20px] left-[40px] w-0 flex justify-center z-10">
-          <motion.div 
-            initial={{ scaleY: 0 }}
-            whileInView={{ scaleY: 1 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 1.5, ease: "linear" }}
-            className="w-[2px] h-full bg-gradient-to-b from-[#D4AF37] via-[#D4AF37]/80 to-[#D4AF37] origin-top shadow-[0_0_8px_rgba(212,175,55,0.8)] relative"
-          >
-            <motion.div initial={{ scale: 0 }} whileInView={{ scale: 1 }} transition={{ delay: 0.5 }} className="absolute top-[25%] left-0 w-3 h-4 text-[#D4AF37]">
-              <svg viewBox="0 0 10 16" fill="currentColor"><path d="M 10 16 C 0 16 0 0 10 0 C 5 8 5 12 10 16" /></svg>
+        <div className="absolute top-[80px] bottom-[-20px] left-[32px] w-[16px] flex flex-col justify-evenly items-center z-10 py-8">
+          {[1, 2, 3].map((_, i) => (
+            <motion.div 
+              key={i}
+              initial={{ opacity: 0, y: -10 }} 
+              whileInView={{ opacity: 1, y: 0 }} 
+              viewport={{ once: true, margin: "-100px" }}
+              transition={{ delay: 0.5 + i * 0.3, duration: 0.8 }}
+              className="w-4 h-6 text-[#D4AF37] drop-shadow-[0_0_5px_rgba(212,175,55,0.8)]"
+            >
+              <svg viewBox="0 0 20 30" fill="currentColor">
+                <path d="M 15 0 C 5 10 5 20 15 30 C 10 20 10 10 15 0 Z" />
+              </svg>
             </motion.div>
-            <motion.div initial={{ scale: 0 }} whileInView={{ scale: 1 }} transition={{ delay: 1.0 }} className="absolute top-[75%] right-0 w-3 h-4 text-[#D4AF37] scale-x-[-1]">
-              <svg viewBox="0 0 10 16" fill="currentColor"><path d="M 10 16 C 0 16 0 0 10 0 C 5 8 5 12 10 16" /></svg>
-            </motion.div>
-          </motion.div>
+          ))}
         </div>
       )}
       
-      {/* Royal Leaf Crest Node */}
+      {/* Royal Shield Node */}
       <motion.div 
         initial="hidden"
         whileInView="visible"
@@ -344,7 +380,7 @@ const WorkflowStep = ({ num, title, text, isLast }: { num: number, title: string
         className="absolute left-0 top-0 w-20 h-20 flex items-center justify-center z-20"
       >
         <div className="absolute inset-0 text-[#F5D77F] drop-shadow-[0_0_8px_rgba(245,215,127,0.6)]">
-          <LeafCrest />
+          <ShieldNode />
         </div>
         <motion.span variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { delay: 1 } } }} className="relative z-10 font-serif text-2xl font-bold text-[#FFF9E6] drop-shadow-[0_0_10px_rgba(245,215,127,1)]">{num}</motion.span>
       </motion.div>
@@ -355,21 +391,11 @@ const WorkflowStep = ({ num, title, text, isLast }: { num: number, title: string
         whileInView="visible"
         viewport={{ once: true, margin: "-100px" }}
         variants={{ hidden: { x: 50, opacity: 0 }, visible: { x: 0, opacity: 1, transition: { delay: 0.5, duration: 0.8, ease: "easeOut" } } }}
-        className="relative bg-[rgba(17,1,2,0.8)] backdrop-blur-md rounded-xl shadow-inner border border-[#D4AF37]/20 p-8 pt-10 pb-10 overflow-hidden"
+        className="relative bg-[rgba(17,1,2,0.8)] backdrop-blur-md rounded-xl shadow-inner border border-transparent py-14 px-8 overflow-hidden"
       >
-        {/* Box Flourishes */}
-        <div className="absolute top-2 left-2 w-12 h-12 text-[#D4AF37]/40 pointer-events-none">
-          <BoxFlourish />
-        </div>
-        <div className="absolute top-2 right-2 w-12 h-12 text-[#D4AF37]/40 pointer-events-none scale-x-[-1]">
-          <BoxFlourish />
-        </div>
-        <div className="absolute bottom-2 left-2 w-12 h-12 text-[#D4AF37]/40 pointer-events-none scale-y-[-1]">
-          <BoxFlourish />
-        </div>
-        <div className="absolute bottom-2 right-2 w-12 h-12 text-[#D4AF37]/40 pointer-events-none scale-[-1]">
-          <BoxFlourish />
-        </div>
+        {/* Full Top and Bottom Royal Dividers */}
+        <HorizontalRoyalDividerTop />
+        <HorizontalRoyalDividerBottom />
         
         <h3 className="font-serif text-2xl text-[#F7F3E9] mb-4 relative z-10 drop-shadow-[0_0_8px_rgba(245,215,127,0.3)]">{title}</h3>
         <div className="font-sans text-[#EEEAD7]/90 leading-relaxed relative z-10">
