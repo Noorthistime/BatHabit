@@ -109,7 +109,8 @@ const ContinuousLoreFrame = () => (
 const ContinuousSanctuaryFrame = () => (
   <motion.div 
     initial={{ clipPath: 'polygon(50% 50%, 50% 50%, 50% 50%, 50% 50%)' }}
-    animate={{ clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)' }}
+    whileInView={{ clipPath: 'polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)' }}
+    viewport={{ once: true, amount: 0.1 }}
     transition={{ duration: 1.8, ease: [0.16, 1, 0.3, 1] }}
     className="absolute inset-0 pointer-events-none z-0"
   >
@@ -133,7 +134,7 @@ const ContinuousSanctuaryFrame = () => (
     <div className="absolute right-[32px] bottom-[64px] top-[calc(50%+48px)] w-[1.5px] bg-[#D4AF37]/60 shadow-[0_0_8px_rgba(212,175,55,0.4)]" />
 
     {/* Top-Left Corner */}
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5, duration: 1.5, ease: "easeOut" }} className="absolute top-[32px] left-[32px] -translate-x-1/2 -translate-y-1/2 w-16 h-16 text-[#F5D77F] drop-shadow-[0_0_4px_rgba(245,215,127,0.6)]">
+    <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.1 }} transition={{ delay: 0.5, duration: 1.5, ease: "easeOut" }} className="absolute top-[32px] left-[32px] -translate-x-1/2 -translate-y-1/2 w-16 h-16 text-[#F5D77F] drop-shadow-[0_0_4px_rgba(245,215,127,0.6)]">
       <svg viewBox="0 0 64 64" className="w-full h-full" fill="none" stroke="currentColor">
         <path d="M 64 32 L 40 32 C 20 32 10 17 20 12 C 30 7 40 22 30 42 L 32 64" strokeWidth="1.5" />
         <path d="M 20 20 Q 30 30 35 40 Q 25 35 15 30 Q 15 20 20 20 Z" fill="currentColor" stroke="none" />
@@ -141,7 +142,7 @@ const ContinuousSanctuaryFrame = () => (
     </motion.div>
 
     {/* Top-Right Corner */}
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5, duration: 1.5, ease: "easeOut" }} className="absolute top-[32px] right-[32px] translate-x-1/2 -translate-y-1/2 w-16 h-16 text-[#F5D77F] drop-shadow-[0_0_4px_rgba(245,215,127,0.6)] scale-x-[-1]">
+    <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.1 }} transition={{ delay: 0.5, duration: 1.5, ease: "easeOut" }} className="absolute top-[32px] right-[32px] translate-x-1/2 -translate-y-1/2 w-16 h-16 text-[#F5D77F] drop-shadow-[0_0_4px_rgba(245,215,127,0.6)] scale-x-[-1]">
       <svg viewBox="0 0 64 64" className="w-full h-full" fill="none" stroke="currentColor">
         <path d="M 64 32 L 40 32 C 20 32 10 17 20 12 C 30 7 40 22 30 42 L 32 64" strokeWidth="1.5" />
         <path d="M 20 20 Q 30 30 35 40 Q 25 35 15 30 Q 15 20 20 20 Z" fill="currentColor" stroke="none" />
@@ -149,7 +150,7 @@ const ContinuousSanctuaryFrame = () => (
     </motion.div>
 
     {/* Bottom-Left Corner */}
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5, duration: 1.5, ease: "easeOut" }} className="absolute bottom-[32px] left-[32px] -translate-x-1/2 translate-y-1/2 w-16 h-16 text-[#F5D77F] drop-shadow-[0_0_4px_rgba(245,215,127,0.6)] scale-y-[-1]">
+    <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.1 }} transition={{ delay: 0.5, duration: 1.5, ease: "easeOut" }} className="absolute bottom-[32px] left-[32px] -translate-x-1/2 translate-y-1/2 w-16 h-16 text-[#F5D77F] drop-shadow-[0_0_4px_rgba(245,215,127,0.6)] scale-y-[-1]">
       <svg viewBox="0 0 64 64" className="w-full h-full" fill="none" stroke="currentColor">
         <path d="M 64 32 L 40 32 C 20 32 10 17 20 12 C 30 7 40 22 30 42 L 32 64" strokeWidth="1.5" />
         <path d="M 20 20 Q 30 30 35 40 Q 25 35 15 30 Q 15 20 20 20 Z" fill="currentColor" stroke="none" />
@@ -157,7 +158,7 @@ const ContinuousSanctuaryFrame = () => (
     </motion.div>
 
     {/* Bottom-Right Corner */}
-    <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.5, duration: 1.5, ease: "easeOut" }} className="absolute bottom-[32px] right-[32px] translate-x-1/2 translate-y-1/2 w-16 h-16 text-[#F5D77F] drop-shadow-[0_0_4px_rgba(245,215,127,0.6)] scale-[-1]">
+    <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} viewport={{ once: true, amount: 0.1 }} transition={{ delay: 0.5, duration: 1.5, ease: "easeOut" }} className="absolute bottom-[32px] right-[32px] translate-x-1/2 translate-y-1/2 w-16 h-16 text-[#F5D77F] drop-shadow-[0_0_4px_rgba(245,215,127,0.6)] scale-[-1]">
       <svg viewBox="0 0 64 64" className="w-full h-full" fill="none" stroke="currentColor">
         <path d="M 64 32 L 40 32 C 20 32 10 17 20 12 C 30 7 40 22 30 42 L 32 64" strokeWidth="1.5" />
         <path d="M 20 20 Q 30 30 35 40 Q 25 35 15 30 Q 15 20 20 20 Z" fill="currentColor" stroke="none" />
@@ -165,7 +166,7 @@ const ContinuousSanctuaryFrame = () => (
     </motion.div>
 
     {/* Top Center Gothic Crest */}
-    <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.8, duration: 1.5, ease: "easeOut" }} className="absolute top-[32px] left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-16 flex items-center justify-center">
+    <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, amount: 0.1 }} transition={{ delay: 0.8, duration: 1.5, ease: "easeOut" }} className="absolute top-[32px] left-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-16 flex items-center justify-center">
       <svg viewBox="0 0 160 64" className="w-full h-full text-[#F5D77F] drop-shadow-[0_0_4px_rgba(245,215,127,0.6)]" fill="none" stroke="currentColor">
         <path d="M 0 32 C 20 32 20 12 40 22 C 60 32 40 52 25 37 C 15 27 30 27 45 32" strokeWidth="1.5" />
         <path d="M 160 32 C 140 32 140 12 120 22 C 100 32 120 52 135 37 C 145 27 130 27 115 32" strokeWidth="1.5" />
@@ -174,7 +175,7 @@ const ContinuousSanctuaryFrame = () => (
     </motion.div>
     
     {/* Bottom Center Gothic Crest */}
-    <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.8, duration: 1.5, ease: "easeOut" }} className="absolute bottom-[32px] left-1/2 -translate-x-1/2 translate-y-1/2 w-40 h-16 flex items-center justify-center scale-y-[-1]">
+    <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, amount: 0.1 }} transition={{ delay: 0.8, duration: 1.5, ease: "easeOut" }} className="absolute bottom-[32px] left-1/2 -translate-x-1/2 translate-y-1/2 w-40 h-16 flex items-center justify-center scale-y-[-1]">
       <svg viewBox="0 0 160 64" className="w-full h-full text-[#F5D77F] drop-shadow-[0_0_4px_rgba(245,215,127,0.6)]" fill="none" stroke="currentColor">
         <path d="M 0 32 C 20 32 20 12 40 22 C 60 32 40 52 25 37 C 15 27 30 27 45 32" strokeWidth="1.5" />
         <path d="M 160 32 C 140 32 140 12 120 22 C 100 32 120 52 135 37 C 145 27 130 27 115 32" strokeWidth="1.5" />
@@ -183,7 +184,7 @@ const ContinuousSanctuaryFrame = () => (
     </motion.div>
 
     {/* Left Center Flourish */}
-    <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.8, duration: 1.5, ease: "easeOut" }} className="absolute top-1/2 left-[32px] -translate-x-1/2 -translate-y-1/2 w-8 h-24 flex items-center justify-center">
+    <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, amount: 0.1 }} transition={{ delay: 0.8, duration: 1.5, ease: "easeOut" }} className="absolute top-1/2 left-[32px] -translate-x-1/2 -translate-y-1/2 w-8 h-24 flex items-center justify-center">
       <svg viewBox="0 0 32 96" className="w-full h-full text-[#F5D77F] drop-shadow-[0_0_4px_rgba(245,215,127,0.6)]" fill="none" stroke="currentColor">
         <path d="M 16 0 L 16 20 C 1 20 -4 33 6 48 C -4 63 1 76 16 76 L 16 96" strokeWidth="1.5" />
         <path d="M 9 48 L 19 42 L 17 48 L 19 54 Z" fill="currentColor" stroke="none" />
@@ -191,7 +192,7 @@ const ContinuousSanctuaryFrame = () => (
     </motion.div>
 
     {/* Right Center Flourish */}
-    <motion.div initial={{ opacity: 0, scale: 0.8 }} animate={{ opacity: 1, scale: 1 }} transition={{ delay: 0.8, duration: 1.5, ease: "easeOut" }} className="absolute top-1/2 right-[32px] translate-x-1/2 -translate-y-1/2 w-8 h-24 flex items-center justify-center scale-x-[-1]">
+    <motion.div initial={{ opacity: 0, scale: 0.8 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true, amount: 0.1 }} transition={{ delay: 0.8, duration: 1.5, ease: "easeOut" }} className="absolute top-1/2 right-[32px] translate-x-1/2 -translate-y-1/2 w-8 h-24 flex items-center justify-center scale-x-[-1]">
       <svg viewBox="0 0 32 96" className="w-full h-full text-[#F5D77F] drop-shadow-[0_0_4px_rgba(245,215,127,0.6)]" fill="none" stroke="currentColor">
         <path d="M 16 0 L 16 20 C 1 20 -4 33 6 48 C -4 63 1 76 16 76 L 16 96" strokeWidth="1.5" />
         <path d="M 9 48 L 19 42 L 17 48 L 19 54 Z" fill="currentColor" stroke="none" />
