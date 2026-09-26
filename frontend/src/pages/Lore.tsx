@@ -754,12 +754,12 @@ export function Lore() {
           variants={{ hidden: { opacity: 0, y: 20 }, visible: { opacity: 1, y: 0, transition: { delay: 0.5, duration: 1 } } }}
           className="font-serif text-3xl md:text-4xl text-[#F5D77F] italic mb-12 drop-shadow-[0_0_12px_rgba(245,215,127,0.6)]"
         >
-          "Discipline is the key to eternity."
+          "Only the relentless rule the Night."
         </motion.h3>
 
         {/* The Sanctum Portal (Interactive Button) */}
         <motion.div variants={{ hidden: { opacity: 0, scale: 0.9 }, visible: { opacity: 1, scale: 1, transition: { delay: 1, duration: 0.8, ease: "easeOut" } } }}>
-          <Link to="/" className="group relative inline-flex items-center justify-center px-10 py-5 bg-[rgba(17,1,2,0.9)] rounded-sm overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(212,175,55,0.4)]">
+          <Link to="/dashboard" className="group relative inline-flex items-center justify-center px-10 py-5 bg-[rgba(17,1,2,0.9)] rounded-sm overflow-hidden transition-all duration-500 hover:scale-105 hover:shadow-[0_0_30px_rgba(212,175,55,0.4)]">
             {/* Animated Golden Border */}
             <div className="absolute inset-0 border border-[#D4AF37]/50 group-hover:border-[#D4AF37] transition-colors duration-500" />
             <div className="absolute inset-1 border border-[#D4AF37]/20 group-hover:border-[#D4AF37]/60 border-dashed transition-colors duration-500" />
