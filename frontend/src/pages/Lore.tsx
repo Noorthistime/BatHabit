@@ -202,6 +202,85 @@ const ContinuousSanctuaryFrame = () => (
   </motion.div>
 );
 
+const CurrencyFrame = () => (
+  <div className="absolute inset-0 pointer-events-none z-0">
+    {/* Inner glow */}
+    <div className="absolute inset-[1px] bg-[radial-gradient(circle_at_center,_rgba(212,175,55,0.08)_0%,_rgba(17,1,2,0.8)_100%)] rounded-xl" />
+    
+    {/* Top Crown Crest */}
+    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-[30%] w-48 h-24 text-[#F5D77F] drop-shadow-[0_0_8px_rgba(245,215,127,0.6)]">
+      <svg viewBox="0 0 192 96" className="w-full h-full" fill="none" stroke="currentColor">
+        {/* Arching crown band */}
+        <motion.path variants={{ hidden: { pathLength: 0, opacity: 0 }, visible: { pathLength: 1, opacity: 1, transition: { duration: 1, ease: "easeInOut" } } }} d="M 0 64 C 40 64 60 50 76 30 L 96 50 L 116 30 C 132 50 152 64 192 64" strokeWidth="2" />
+        {/* Crown peaks */}
+        <motion.path variants={{ hidden: { pathLength: 0, opacity: 0 }, visible: { pathLength: 1, opacity: 1, transition: { delay: 0.5, duration: 0.8, ease: "easeOut" } } }} d="M 76 30 L 76 10 L 96 30 L 116 10 L 116 30" strokeWidth="2" strokeLinejoin="round" />
+        {/* Center Diamond/Coin */}
+        <motion.path variants={{ hidden: { pathLength: 0, opacity: 0, scale: 0.5 }, visible: { pathLength: 1, opacity: 1, scale: 1, transition: { delay: 1, duration: 0.5 } } }} d="M 96 16 L 106 26 L 96 36 L 86 26 Z" strokeWidth="1.5" />
+        <motion.circle variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { delay: 1.3 } } }} cx="96" cy="26" r="3" fill="currentColor" stroke="none" />
+        {/* Bottom flourishing ribbon */}
+        <motion.path variants={{ hidden: { pathLength: 0, opacity: 0 }, visible: { pathLength: 1, opacity: 1, transition: { delay: 0.8, duration: 1 } } }} d="M 48 80 Q 96 96 144 80 Q 96 60 48 80 Z" strokeWidth="1.5" />
+      </svg>
+    </div>
+
+    {/* Top Border Lines */}
+    <motion.div variants={{ hidden: { scaleX: 0, opacity: 0 }, visible: { scaleX: 1, opacity: 1, transition: { delay: 0.6, duration: 0.6, ease: "linear" } } }} className="absolute top-[64px] left-[64px] right-[calc(50%+96px)] h-[1.5px] bg-gradient-to-r from-[#D4AF37] to-transparent origin-right" />
+    <motion.div variants={{ hidden: { scaleX: 0, opacity: 0 }, visible: { scaleX: 1, opacity: 1, transition: { delay: 0.6, duration: 0.6, ease: "linear" } } }} className="absolute top-[64px] right-[64px] left-[calc(50%+96px)] h-[1.5px] bg-gradient-to-l from-[#D4AF37] to-transparent origin-left" />
+
+    {/* Corners (Coin Knots) */}
+    {/* TL */}
+    <div className="absolute top-[64px] left-[32px] -translate-x-1/2 -translate-y-1/2 w-16 h-16 text-[#F5D77F] drop-shadow-[0_0_6px_rgba(245,215,127,0.5)]">
+      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor">
+        <motion.path variants={{ hidden: { pathLength: 0, opacity: 0 }, visible: { pathLength: 1, opacity: 1, transition: { delay: 1, duration: 0.5 } } }} d="M 64 32 L 48 32 C 32 32 32 32 32 48 L 32 64" strokeWidth="1.5" />
+        <motion.circle variants={{ hidden: { pathLength: 0, opacity: 0 }, visible: { pathLength: 1, opacity: 1, transition: { delay: 1.3, duration: 0.5 } } }} cx="32" cy="32" r="12" strokeWidth="1.5" strokeDasharray="3 3" />
+        <motion.circle variants={{ hidden: { scale: 0, opacity: 0 }, visible: { scale: 1, opacity: 1, transition: { delay: 1.6, duration: 0.4 } } }} cx="32" cy="32" r="6" strokeWidth="1.5" />
+      </svg>
+    </div>
+    {/* TR */}
+    <div className="absolute top-[64px] right-[32px] translate-x-1/2 -translate-y-1/2 w-16 h-16 text-[#F5D77F] drop-shadow-[0_0_6px_rgba(245,215,127,0.5)] scale-x-[-1]">
+      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor">
+        <motion.path variants={{ hidden: { pathLength: 0, opacity: 0 }, visible: { pathLength: 1, opacity: 1, transition: { delay: 1, duration: 0.5 } } }} d="M 64 32 L 48 32 C 32 32 32 32 32 48 L 32 64" strokeWidth="1.5" />
+        <motion.circle variants={{ hidden: { pathLength: 0, opacity: 0 }, visible: { pathLength: 1, opacity: 1, transition: { delay: 1.3, duration: 0.5 } } }} cx="32" cy="32" r="12" strokeWidth="1.5" strokeDasharray="3 3" />
+        <motion.circle variants={{ hidden: { scale: 0, opacity: 0 }, visible: { scale: 1, opacity: 1, transition: { delay: 1.6, duration: 0.4 } } }} cx="32" cy="32" r="6" strokeWidth="1.5" />
+      </svg>
+    </div>
+
+    {/* Side Lines */}
+    <motion.div variants={{ hidden: { scaleY: 0, opacity: 0 }, visible: { scaleY: 1, opacity: 1, transition: { delay: 1.3, duration: 0.6, ease: "linear" } } }} className="absolute top-[96px] bottom-[96px] left-[32px] w-[1.5px] bg-gradient-to-b from-[#D4AF37] via-[#D4AF37]/30 to-[#D4AF37] origin-top" />
+    <motion.div variants={{ hidden: { scaleY: 0, opacity: 0 }, visible: { scaleY: 1, opacity: 1, transition: { delay: 1.3, duration: 0.6, ease: "linear" } } }} className="absolute top-[96px] bottom-[96px] right-[32px] w-[1.5px] bg-gradient-to-b from-[#D4AF37] via-[#D4AF37]/30 to-[#D4AF37] origin-top" />
+
+    {/* Bottom Corners */}
+    {/* BL */}
+    <div className="absolute bottom-[64px] left-[32px] -translate-x-1/2 translate-y-1/2 w-16 h-16 text-[#F5D77F] drop-shadow-[0_0_6px_rgba(245,215,127,0.5)] scale-y-[-1]">
+      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor">
+        <motion.path variants={{ hidden: { pathLength: 0, opacity: 0 }, visible: { pathLength: 1, opacity: 1, transition: { delay: 1.7, duration: 0.5 } } }} d="M 64 32 L 48 32 C 32 32 32 32 32 48 L 32 64" strokeWidth="1.5" />
+        <motion.circle variants={{ hidden: { pathLength: 0, opacity: 0 }, visible: { pathLength: 1, opacity: 1, transition: { delay: 2, duration: 0.5 } } }} cx="32" cy="32" r="12" strokeWidth="1.5" strokeDasharray="3 3" />
+        <motion.circle variants={{ hidden: { scale: 0, opacity: 0 }, visible: { scale: 1, opacity: 1, transition: { delay: 2.3, duration: 0.4 } } }} cx="32" cy="32" r="6" strokeWidth="1.5" />
+      </svg>
+    </div>
+    {/* BR */}
+    <div className="absolute bottom-[64px] right-[32px] translate-x-1/2 translate-y-1/2 w-16 h-16 text-[#F5D77F] drop-shadow-[0_0_6px_rgba(245,215,127,0.5)] scale-[-1]">
+      <svg viewBox="0 0 64 64" fill="none" stroke="currentColor">
+        <motion.path variants={{ hidden: { pathLength: 0, opacity: 0 }, visible: { pathLength: 1, opacity: 1, transition: { delay: 1.7, duration: 0.5 } } }} d="M 64 32 L 48 32 C 32 32 32 32 32 48 L 32 64" strokeWidth="1.5" />
+        <motion.circle variants={{ hidden: { pathLength: 0, opacity: 0 }, visible: { pathLength: 1, opacity: 1, transition: { delay: 2, duration: 0.5 } } }} cx="32" cy="32" r="12" strokeWidth="1.5" strokeDasharray="3 3" />
+        <motion.circle variants={{ hidden: { scale: 0, opacity: 0 }, visible: { scale: 1, opacity: 1, transition: { delay: 2.3, duration: 0.4 } } }} cx="32" cy="32" r="6" strokeWidth="1.5" />
+      </svg>
+    </div>
+
+    {/* Bottom Lines */}
+    <motion.div variants={{ hidden: { scaleX: 0, opacity: 0 }, visible: { scaleX: 1, opacity: 1, transition: { delay: 2, duration: 0.6, ease: "linear" } } }} className="absolute bottom-[64px] left-[64px] right-[calc(50%+48px)] h-[1.5px] bg-gradient-to-r from-transparent to-[#D4AF37] origin-left" />
+    <motion.div variants={{ hidden: { scaleX: 0, opacity: 0 }, visible: { scaleX: 1, opacity: 1, transition: { delay: 2, duration: 0.6, ease: "linear" } } }} className="absolute bottom-[64px] right-[64px] left-[calc(50%+48px)] h-[1.5px] bg-gradient-to-l from-transparent to-[#D4AF37] origin-right" />
+
+    {/* Bottom Center Diamond */}
+    <div className="absolute bottom-[64px] left-1/2 -translate-x-1/2 translate-y-1/2 w-24 h-24 text-[#F5D77F] drop-shadow-[0_0_8px_rgba(245,215,127,0.6)]">
+      <svg viewBox="0 0 96 96" className="w-full h-full" fill="none" stroke="currentColor">
+        <motion.path variants={{ hidden: { pathLength: 0, opacity: 0 }, visible: { pathLength: 1, opacity: 1, transition: { delay: 2.4, duration: 0.6 } } }} d="M 0 48 L 32 48 L 48 32 L 64 48 L 96 48" strokeWidth="1.5" />
+        <motion.path variants={{ hidden: { pathLength: 0, opacity: 0, scale: 0.5 }, visible: { pathLength: 1, opacity: 1, scale: 1, transition: { delay: 2.6, duration: 0.5 } } }} d="M 48 48 L 56 64 L 48 80 L 40 64 Z" strokeWidth="1.5" />
+        <motion.circle variants={{ hidden: { opacity: 0 }, visible: { opacity: 1, transition: { delay: 2.8 } } }} cx="48" cy="64" r="2" fill="currentColor" stroke="none" />
+      </svg>
+    </div>
+  </div>
+);
+
 export function Lore() {
   const { theme } = useTheme();
 
@@ -417,33 +496,46 @@ export function Lore() {
       </section>
 
       {/* Chapter 3: The Currency */}
-      <motion.section 
-        initial="hidden" 
-        whileInView="visible" 
-        viewport={{ once: true, margin: "-100px" }}
-        variants={staggerContainer}
-        className="space-y-6"
-      >
-        <motion.div variants={fadeIn} className="flex items-center gap-4 border-b border-[#415A77] dark:border-[#D4AF37]/30 pb-4">
-          <span className="font-mono text-2xl text-[#D4AF37] dark:text-[#C5A059] font-bold">III.</span>
-          <h2 className="font-serif text-2xl text-[#F7F3E9] dark:text-[#EEEAD7] uppercase tracking-wide">The Currency</h2>
+      <section className="space-y-6">
+        <motion.div 
+          initial="hidden" 
+          whileInView="visible" 
+          viewport={{ once: true, margin: "-50px" }}
+          variants={fadeIn} 
+          className="flex items-center justify-center gap-4 border-b border-[#D4AF37]/20 pb-4"
+        >
+          <span className="font-mono text-2xl text-[#F5D77F] font-bold drop-shadow-[0_0_8px_rgba(245,215,127,0.6)]">III.</span>
+          <h2 className="font-serif text-2xl uppercase tracking-wide drop-shadow-[0_0_10px_rgba(245,215,127,0.5)] text-transparent bg-clip-text bg-gradient-to-b from-[#FFF9E6] to-[#D4AF37]">The Currency</h2>
         </motion.div>
         
-        <motion.div variants={fadeIn} className="bg-[#1B263B] dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-md border border-[#415A77] dark:border-[#D4AF37]/45 p-6 rounded-xl shadow-lg dark:shadow-[0_10px_30px_rgba(0,0,0,0.8)]">
-          <div className="flex items-center gap-4 mb-4">
-            <div className="bg-[#0D1B2A] dark:bg-[#060102] p-3 rounded-full border border-[#415A77] dark:border-[#3a0404] text-[#D4AF37]">
-              <Coins size={24} />
+        <div className="pt-8 max-w-3xl mx-auto">
+          <motion.div 
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={slideRight}
+            className="relative bg-[rgba(17,1,2,0.8)] backdrop-blur-md rounded-xl shadow-inner border border-transparent overflow-visible mt-12"
+          >
+            <CurrencyFrame />
+            <div className="px-10 pt-20 pb-20 relative z-10 flex flex-col items-center text-center">
+              <div className="relative flex items-center justify-center mb-8">
+                 {/* Glowing Royal Backdrop */}
+                 <div className="absolute inset-0 bg-[#D4AF37] blur-[20px] opacity-25 rounded-full w-20 h-20 mx-auto" />
+                 <div className="bg-[#110102] p-6 rounded-full border border-[#D4AF37]/40 shadow-[0_0_15px_rgba(212,175,55,0.5)] text-[#F5D77F] relative z-10">
+                   <Coins size={40} className="drop-shadow-[0_0_8px_rgba(245,215,127,0.8)]" />
+                 </div>
+              </div>
+              <h3 className="font-serif text-3xl uppercase tracking-widest mb-6 drop-shadow-[0_0_10px_rgba(245,215,127,0.6)] text-transparent bg-clip-text bg-gradient-to-b from-[#FFF9E6] to-[#D4AF37]">Crowns</h3>
+              <p className="font-sans text-[#EEEAD7]/90 leading-relaxed mb-6 max-w-xl mx-auto text-lg">
+                <strong>Crowns</strong> are the primary currency of the Night Realm. You earn them by maintaining streaks in your Grimoire and finishing tasks in your Questbook.
+              </p>
+              <p className="font-sans text-[#EEEAD7]/90 leading-relaxed max-w-xl mx-auto text-lg">
+                Protect your Crowns carefully. While consistency rewards you handsomely, failing to maintain your core habits may result in losing Crowns.
+              </p>
             </div>
-            <h3 className="font-serif text-2xl text-[#F7F3E9] dark:text-[#EEEAD7]">Crowns</h3>
-          </div>
-          <p className="font-sans text-[#F7F3E9]/80 dark:text-[#8d9685] leading-relaxed mb-4">
-            <strong>Crowns</strong> are the primary currency of the Night Realm. You earn them by maintaining streaks in your Grimoire and finishing tasks in your Questbook.
-          </p>
-          <p className="font-sans text-[#F7F3E9]/80 dark:text-[#8d9685] leading-relaxed">
-            Protect your Crowns carefully. While consistency rewards you handsomely, failing to maintain your core habits may result in losing Crowns.
-          </p>
-        </motion.div>
-      </motion.section>
+          </motion.div>
+        </div>
+      </section>
 
       {/* Chapter 4: The Workflow */}
       <motion.section 
