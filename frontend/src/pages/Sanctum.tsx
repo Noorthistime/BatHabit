@@ -359,10 +359,10 @@ export function Sanctum() {
           </section>
 
           {/* Bottom Grid: 3-Column Triptych */}
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 lg:grid-cols-10 gap-6">
             
-            {/* Left Col (20%): Treasury */}
-            <div className="lg:col-span-1 flex flex-col h-full order-2 lg:order-1">
+            {/* Left Col (30%): Treasury */}
+            <div className="lg:col-span-3 flex flex-col h-full order-2 lg:order-1">
               {/* The Treasury */}
               <div className="bg-[#1a0202] rounded-lg p-6 border border-[#D4AF37]/60 shadow-[0_4px_12px_rgba(0,0,0,0.8)] flex flex-col items-center relative overflow-hidden h-full">
                 <div className="flex items-center justify-between w-full mb-6 relative z-10">
@@ -393,8 +393,8 @@ export function Sanctum() {
               </div>
             </div>
 
-            {/* Middle Col (60%): Quests */}
-            <div className="lg:col-span-3 flex flex-col space-y-4 order-1 lg:order-2">
+            {/* Middle Col (40%): Quests */}
+            <div className="lg:col-span-4 flex flex-col space-y-4 order-1 lg:order-2">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-[#1a0202] p-5 rounded-lg border border-[#D4AF37]/60 shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
                 <div className="flex items-center gap-4">
                   <div className="w-10 h-10 rounded border border-[#D4AF37] flex items-center justify-center text-[#D4AF37] shrink-0">
@@ -447,8 +447,8 @@ export function Sanctum() {
               ))}
             </div>
 
-            {/* Right Col (20%): Chronicle */}
-            <div className="lg:col-span-1 flex flex-col h-full order-3">
+            {/* Right Col (30%): Chronicle */}
+            <div className="lg:col-span-3 flex flex-col h-full order-3">
               {/* Chronicle of Deeds */}
               <div className="bg-gradient-to-br from-[#1a0202] to-[#0a0000] rounded-lg p-6 border border-[#D4AF37]/60 border-b-4 border-b-[#D4AF37] shadow-[0_8px_24px_rgba(0,0,0,0.9)] relative overflow-hidden h-full">
                 {/* Subtle top glare */}
