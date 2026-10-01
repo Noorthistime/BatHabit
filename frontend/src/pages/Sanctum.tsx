@@ -417,7 +417,7 @@ export function Sanctum() {
             </div>
 
             {/* Right Col: Treasury & Chronicle */}
-            <div className="lg:col-span-4 flex flex-col space-y-4">
+            <div className="lg:col-span-4 flex flex-col h-full">
               
               {/* The Treasury */}
               <div className="bg-[#1a0202] rounded-lg p-6 border border-[#D4AF37]/60 shadow-[0_4px_12px_rgba(0,0,0,0.8)] flex flex-col items-center relative overflow-hidden">
@@ -449,24 +449,27 @@ export function Sanctum() {
               </div>
 
               {/* Chronicle of Deeds */}
-              <div className="bg-[#1a0202] rounded-lg p-6 border border-[#D4AF37]/60 shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
-                <div className="flex items-center justify-between mb-6">
+              <div className="bg-gradient-to-br from-[#1a0202] to-[#0a0000] rounded-lg p-6 border border-[#D4AF37]/60 border-b-4 border-b-[#D4AF37] shadow-[0_8px_24px_rgba(0,0,0,0.9)] mt-4 lg:mt-auto relative overflow-hidden">
+                {/* Subtle top glare */}
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent"></div>
+                
+                <div className="flex items-center justify-between mb-6 relative z-10">
                   <h3 className="font-serif text-lg font-bold text-[#EEEAD7] flex items-center gap-2">
                     <Archive size={18} className="text-[#D4AF37]" /> CHRONICLE
                   </h3>
-                  <span className="font-mono text-[9px] text-[#8d9685] uppercase hover:text-[#D4AF37] cursor-pointer">Full Archive</span>
+                  <span className="font-mono text-[9px] text-[#8d9685] uppercase hover:text-[#D4AF37] cursor-pointer transition-colors">Full Archive</span>
                 </div>
                 
-                <div className="space-y-6 relative before:absolute before:inset-y-0 before:left-[9px] before:w-px before:bg-[#D4AF37]/30">
+                <div className="space-y-6 relative before:absolute before:inset-y-1 before:left-[9px] before:w-px before:bg-gradient-to-b before:from-[#D4AF37] before:to-transparent z-10">
                   <div className="relative pl-8">
-                    <span className="absolute left-[3px] top-1 w-3.5 h-3.5 rounded-full bg-[#1a0202] border-2 border-[#D4AF37] shadow-[0_0_8px_rgba(212,175,55,0.8)]"></span>
+                    <span className="absolute left-[3px] top-1 w-3.5 h-3.5 rounded-full bg-[#1a0202] border-2 border-[#D4AF37] shadow-[0_0_12px_rgba(212,175,55,1)]"></span>
                     <p className="font-serif text-[15px] font-bold text-[#EEEAD7] tracking-wide">QUEST SEALED: Solitude</p>
                     <p className="font-mono text-[10px] text-[#8d9685] mt-1.5 leading-relaxed">Yielded +50 XP and +15 Crowns.</p>
                   </div>
                   <div className="relative pl-8">
-                    <span className="absolute left-[3px] top-1 w-3.5 h-3.5 rounded-full bg-[#1a0202] border-2 border-[#D4AF37]"></span>
-                    <p className="font-serif text-[15px] font-bold text-[#EEEAD7] tracking-wide">ASCENSION: Level 7</p>
-                    <p className="font-mono text-[10px] text-[#8d9685] mt-1.5 leading-relaxed">Unlocked title Nightwalker.</p>
+                    <span className="absolute left-[3px] top-1 w-3.5 h-3.5 rounded-full bg-[#1a0202] border-2 border-[#D4AF37] opacity-60"></span>
+                    <p className="font-serif text-[15px] font-bold text-[#EEEAD7] tracking-wide opacity-80">ASCENSION: Level 7</p>
+                    <p className="font-mono text-[10px] text-[#8d9685] mt-1.5 leading-relaxed opacity-80">Unlocked title Nightwalker.</p>
                   </div>
                 </div>
               </div>
