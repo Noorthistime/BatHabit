@@ -259,18 +259,18 @@ const PrestigeAttributeFrame = () => (
     
     {/* Corner Ornaments */}
     {[
-      "top-0 left-0",
-      "top-0 right-0 scale-x-[-1]",
-      "bottom-0 left-0 scale-y-[-1]",
-      "bottom-0 right-0 scale-x-[-1] scale-y-[-1]"
-    ].map((pos, i) => (
-      <div key={i} className={`absolute ${pos} w-16 h-16 overflow-hidden`}>
+      { pos: "top-0 left-0", hover: "group-hover:-translate-x-1.5 group-hover:-translate-y-1.5" },
+      { pos: "top-0 right-0 scale-x-[-1]", hover: "group-hover:translate-x-1.5 group-hover:-translate-y-1.5" },
+      { pos: "bottom-0 left-0 scale-y-[-1]", hover: "group-hover:-translate-x-1.5 group-hover:translate-y-1.5" },
+      { pos: "bottom-0 right-0 scale-x-[-1] scale-y-[-1]", hover: "group-hover:translate-x-1.5 group-hover:translate-y-1.5" }
+    ].map((item, i) => (
+      <div key={i} className={`absolute ${item.pos} w-16 h-16 overflow-hidden transition-transform duration-500 ease-out ${item.hover}`}>
         <svg viewBox="0 0 64 64" fill="none" className="w-full h-full text-current drop-shadow-[0_0_2px_currentColor]">
           {/* Outer Box Lines */}
           <motion.path 
             initial={{ pathLength: 0, opacity: 0 }}
             animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 1.2, ease: "easeInOut", delay: 2.0 }}
+            transition={{ duration: 1.2, ease: "easeInOut", delay: 1.8 }}
             d="M 0 64 L 0 0 L 64 0" 
             stroke="currentColor" strokeWidth="1" 
           />
@@ -278,7 +278,7 @@ const PrestigeAttributeFrame = () => (
           <motion.path 
             initial={{ pathLength: 0, opacity: 0 }}
             animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 1.2, ease: "easeInOut", delay: 2.2 }}
+            transition={{ duration: 1.2, ease: "easeInOut", delay: 2.0 }}
             d="M 6 54 L 6 6 L 54 6" 
             stroke="currentColor" strokeWidth="1" className="opacity-70"
           />
@@ -286,7 +286,7 @@ const PrestigeAttributeFrame = () => (
           <motion.path 
             initial={{ pathLength: 0, opacity: 0 }}
             animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 0.8, ease: "easeInOut", delay: 2.5 }}
+            transition={{ duration: 0.8, ease: "easeInOut", delay: 2.3 }}
             d="M 16 16 L 24 16 L 24 24 L 16 24 Z M 0 16 L 6 16 M 16 0 L 16 6" 
             stroke="currentColor" strokeWidth="1" 
           />
@@ -294,7 +294,7 @@ const PrestigeAttributeFrame = () => (
           <motion.path
             initial={{ scale: 0, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 2.8 }}
+            transition={{ duration: 0.5, delay: 2.6 }}
             d="M 20 18 L 22 20 L 20 22 L 18 20 Z"
             fill="currentColor"
           />
@@ -505,10 +505,10 @@ export function Sanctum() {
               ].map((a, i) => (
                 <motion.div 
                   key={i} 
-                  initial={{ opacity: 0, x: i < 2 ? -60 : (i > 2 ? 60 : 0), y: i === 2 ? 40 : 0 }} 
-                  animate={{ opacity: 1, x: 0, y: 0 }}
-                  transition={{ duration: 0.8, ease: "easeOut", delay: (i === 0 || i === 4) ? 0.5 : ((i === 1 || i === 3) ? 0.7 : 0.9) }}
-                  className="group bg-[#1a0202] dark:bg-[#0a0000] p-6 shadow-[0_4px_16px_rgba(0,0,0,0.9)] flex flex-col justify-between space-y-6 cursor-pointer transition-all duration-500 relative overflow-hidden hover:-translate-y-1.5 hover:shadow-[0_12px_30px_rgba(212,175,55,0.25)] hover:bg-[#250303] dark:hover:bg-[#110102]"
+                  initial={{ opacity: 0, x: -40 }} 
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 + (i * 0.15) }}
+                  className="group bg-[#1a0202] dark:bg-[#0a0000] px-6 pt-6 pb-10 shadow-[0_4px_16px_rgba(0,0,0,0.9)] flex flex-col justify-between space-y-6 cursor-pointer transition-all duration-500 relative overflow-hidden hover:-translate-y-1.5 hover:shadow-[0_12px_30px_rgba(212,175,55,0.25)] hover:bg-[#250303] dark:hover:bg-[#110102]"
                 >
                   
                   {/* The Royal Geometric SVG Frame */}
@@ -526,7 +526,8 @@ export function Sanctum() {
                     <p className="font-sans text-[11px] text-[#8d9685] group-hover:text-[#EEEAD7] line-clamp-2 mt-1.5 transition-colors duration-500">{a.desc}</p>
                   </div>
                   
-                  <div className="w-full bg-[#0a0000] dark:bg-[#000] h-1.5 rounded-sm overflow-hidden border border-[#D4AF37]/30 group-hover:border-[#D4AF37]/60 mt-1 relative z-20 transition-colors duration-500">
+                  {/* Safely floating inside the card boundaries */}
+                  <div className="absolute bottom-4 left-6 right-6 bg-[#0a0000] dark:bg-[#000] h-1.5 rounded-sm overflow-hidden border border-[#D4AF37]/30 group-hover:border-[#D4AF37]/60 z-20 transition-colors duration-500">
                     <div className="bg-gradient-to-r from-[#947014] to-[#D4AF37] h-full rounded-sm shadow-[0_0_8px_rgba(212,175,55,0.8)] transition-all duration-700 ease-out" style={{width: Math.min(100, Math.max(10, (a.val || 0) * 10)) + "%" }}></div>
                   </div>
                 </motion.div>
