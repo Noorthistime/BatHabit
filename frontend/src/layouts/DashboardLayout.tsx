@@ -187,7 +187,22 @@ const GOTHIC_QUOTES = [
   "Let thy sword be swift, thy discipline iron.",
   "No banner was raised without valor.",
   "Kindle the flame, and master the shadows.",
-  "Conquer this hour, the empire shall follow."
+  "Conquer this hour, the empire shall follow.",
+  "Only the forged blade may cut the darkness.",
+  "Silence thy fears; let thy actions roar.",
+  "The throne honors those who conquer the night.",
+  "A focused mind is a fortress untaken.",
+  "Even embers may ignite a royal inferno.",
+  "A knight’s true mettle is tested in silence.",
+  "Rule thy habits, or they shall rule thee.",
+  "Bleed in practice, triumph in the battle.",
+  "Suffer the discipline, or suffer the defeat.",
+  "Great empires are built in quiet hours.",
+  "No dragon falls to a trembling hand.",
+  "Forge thy legacy before the dawn breaks.",
+  "Strength is born when weakness is denied.",
+  "Strike true, for time waiteth upon no lord.",
+  "Tread the path of iron, claim the throne."
 ];
 
 export default function DashboardLayout() {
