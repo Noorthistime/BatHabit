@@ -166,55 +166,86 @@ const CornerFiligree = ({ className }: { className?: string }) => {
 };
 
 const PrestigeHeaderDivider = () => (
-  <div className="absolute inset-0 flex items-center justify-between w-[95%] max-w-4xl mx-auto pointer-events-none text-[#D4AF37]/80">
-    {/* Left Flourish */}
-    <div className="w-32 h-6">
-      <svg viewBox="0 0 128 24" fill="none" className="w-full h-full text-current">
-        {/* Geometric central axis */}
+  <div className="absolute inset-0 flex items-center justify-between w-[95%] max-w-5xl mx-auto pointer-events-none text-[#D4AF37]/90">
+    {/* Left Flourish - Elaborate Art Deco Chevron */}
+    <div className="w-48 h-8">
+      <svg viewBox="0 0 192 32" fill="none" className="w-full h-full text-current drop-shadow-[0_0_4px_currentColor]">
+        {/* Long connecting line */}
         <motion.path 
           initial={{ pathLength: 0, opacity: 0 }}
           animate={{ pathLength: 1, opacity: 1 }}
           transition={{ duration: 1.2, ease: "easeInOut", delay: 0.5 }}
-          d="M 128 12 L 24 12" stroke="currentColor" strokeWidth="1" 
+          d="M 192 16 L 64 16" stroke="currentColor" strokeWidth="1" 
         />
-        {/* Diamond/Knot detail */}
+        {/* Outer extensive chevron knot */}
         <motion.path 
           initial={{ pathLength: 0, opacity: 0 }}
           animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ duration: 1, ease: "easeInOut", delay: 1.2 }}
-          d="M 24 12 L 18 6 L 8 6 L 12 12 L 8 18 L 18 18 Z M 6 12 L 0 12" 
+          transition={{ duration: 1.5, ease: "easeInOut", delay: 1.2 }}
+          d="M 64 16 L 48 0 L 16 0 L 32 16 L 16 32 L 48 32 Z" 
           stroke="currentColor" strokeWidth="1" 
         />
+        {/* Inner nested chevron */}
+        <motion.path 
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ duration: 1.2, ease: "easeInOut", delay: 1.5 }}
+          d="M 48 16 L 36 4 L 20 4 L 32 16 L 20 28 L 36 28 Z" 
+          stroke="currentColor" strokeWidth="1" className="opacity-70"
+        />
+        {/* Final arrowhead line */}
+        <motion.path 
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ duration: 0.8, ease: "easeInOut", delay: 2 }}
+          d="M 16 16 L 0 16" 
+          stroke="currentColor" strokeWidth="1" 
+        />
+        {/* Central tiny diamond core */}
         <motion.path 
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 1.8 }}
-          d="M 12 9 L 15 12 L 12 15 L 9 12 Z" fill="currentColor" 
+          transition={{ duration: 0.5, delay: 2.2 }}
+          d="M 32 12 L 36 16 L 32 20 L 28 16 Z" fill="currentColor" 
         />
       </svg>
     </div>
     
-    {/* Right Flourish */}
-    <div className="w-32 h-6 transform scale-x-[-1]">
-      <svg viewBox="0 0 128 24" fill="none" className="w-full h-full text-current">
+    {/* Right Flourish - Elaborate Art Deco Chevron */}
+    <div className="w-48 h-8 transform scale-x-[-1]">
+      <svg viewBox="0 0 192 32" fill="none" className="w-full h-full text-current drop-shadow-[0_0_4px_currentColor]">
         <motion.path 
           initial={{ pathLength: 0, opacity: 0 }}
           animate={{ pathLength: 1, opacity: 1 }}
           transition={{ duration: 1.2, ease: "easeInOut", delay: 0.5 }}
-          d="M 128 12 L 24 12" stroke="currentColor" strokeWidth="1" 
+          d="M 192 16 L 64 16" stroke="currentColor" strokeWidth="1" 
         />
         <motion.path 
           initial={{ pathLength: 0, opacity: 0 }}
           animate={{ pathLength: 1, opacity: 1 }}
-          transition={{ duration: 1, ease: "easeInOut", delay: 1.2 }}
-          d="M 24 12 L 18 6 L 8 6 L 12 12 L 8 18 L 18 18 Z M 6 12 L 0 12" 
+          transition={{ duration: 1.5, ease: "easeInOut", delay: 1.2 }}
+          d="M 64 16 L 48 0 L 16 0 L 32 16 L 16 32 L 48 32 Z" 
+          stroke="currentColor" strokeWidth="1" 
+        />
+        <motion.path 
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ duration: 1.2, ease: "easeInOut", delay: 1.5 }}
+          d="M 48 16 L 36 4 L 20 4 L 32 16 L 20 28 L 36 28 Z" 
+          stroke="currentColor" strokeWidth="1" className="opacity-70"
+        />
+        <motion.path 
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ duration: 0.8, ease: "easeInOut", delay: 2 }}
+          d="M 16 16 L 0 16" 
           stroke="currentColor" strokeWidth="1" 
         />
         <motion.path 
           initial={{ scale: 0, opacity: 0 }}
           animate={{ scale: 1, opacity: 1 }}
-          transition={{ duration: 0.5, delay: 1.8 }}
-          d="M 12 9 L 15 12 L 12 15 L 9 12 Z" fill="currentColor" 
+          transition={{ duration: 0.5, delay: 2.2 }}
+          d="M 32 12 L 36 16 L 32 20 L 28 16 Z" fill="currentColor" 
         />
       </svg>
     </div>
@@ -446,9 +477,21 @@ export function Sanctum() {
               className="flex flex-col items-center justify-center w-full relative py-6"
             >
               <PrestigeHeaderDivider />
-              <h2 className="font-serif text-sm md:text-base uppercase tracking-[0.3em] text-[#D4AF37] font-bold bg-[#110102] dark:bg-[#050000] px-8 py-2 relative z-10 drop-shadow-[0_0_12px_rgba(212,175,55,0.4)] border border-[#D4AF37]/20 rounded-sm">
-                Disciplines of Mastery <span className="text-[#8B0000] mx-2 dark:text-[#ff4444]">•</span> Grimoire Attributes
-              </h2>
+              
+              <div className="relative px-10 py-3 bg-[#1a0202] dark:bg-[#0a0000] z-10 shadow-[0_4px_16px_rgba(0,0,0,0.9)]">
+                {/* Text Box Prestige Borders */}
+                <div className="absolute inset-0 border border-[#D4AF37]/30 pointer-events-none"></div>
+                <div className="absolute inset-[3px] border border-[#D4AF37]/10 pointer-events-none"></div>
+                {/* 4 Corner precise brackets */}
+                <div className="absolute top-0 left-0 w-3 h-3 border-t-[1.5px] border-l-[1.5px] border-[#D4AF37]"></div>
+                <div className="absolute top-0 right-0 w-3 h-3 border-t-[1.5px] border-r-[1.5px] border-[#D4AF37]"></div>
+                <div className="absolute bottom-0 left-0 w-3 h-3 border-b-[1.5px] border-l-[1.5px] border-[#D4AF37]"></div>
+                <div className="absolute bottom-0 right-0 w-3 h-3 border-b-[1.5px] border-r-[1.5px] border-[#D4AF37]"></div>
+                
+                <h2 className="font-serif text-sm md:text-base uppercase tracking-[0.3em] text-[#D4AF37] font-bold drop-shadow-[0_0_12px_rgba(212,175,55,0.4)] relative z-20">
+                  Disciplines of Mastery <span className="text-[#8B0000] mx-3 dark:text-[#ff4444]">•</span> Grimoire Attributes
+                </h2>
+              </div>
             </motion.div>
 
             {/* Boxes */}
