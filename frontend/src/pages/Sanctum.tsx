@@ -252,51 +252,76 @@ const PrestigeHeaderDivider = () => (
   </div>
 );
 
-const PrestigeAttributeFrame = () => (
-  <div className="absolute inset-0 pointer-events-none z-10 text-[#D4AF37]/60 group-hover:text-[#D4AF37] transition-all duration-700">
-    {/* Base subtle outer boundary */}
-    <div className="absolute inset-[3px] border border-current opacity-10 group-hover:opacity-40 transition-opacity duration-700"></div>
+const PrestigeAttributeFrame = ({ delay = 1.4 }: { delay?: number }) => (
+  <div className="absolute inset-0 pointer-events-none z-10 text-[#D4AF37]/60 group-hover:text-[#D4AF37] transition-colors duration-700">
     
-    {/* Corner Ornaments */}
+    {/* True Continuous Boundary Line (Fixes the progress bar gap issue!) */}
+    <svg className="absolute inset-0 w-full h-full text-current drop-shadow-[0_0_2px_currentColor]" preserveAspectRatio="none">
+       <motion.rect 
+         variants={{
+            hidden: { pathLength: 0, opacity: 0 },
+            visible: { pathLength: 1, opacity: 1, transition: { duration: 1.5, ease: "easeInOut", delay } }
+         }}
+         x="0" y="0" width="100%" height="100%" fill="none" stroke="currentColor" strokeWidth="1" 
+         vectorEffect="non-scaling-stroke"
+       />
+       <motion.rect 
+         variants={{
+            hidden: { pathLength: 0, opacity: 0 },
+            visible: { pathLength: 1, opacity: 1, transition: { duration: 1.5, ease: "easeInOut", delay: delay + 0.2 } }
+         }}
+         x="5" y="5" width="calc(100% - 10px)" height="calc(100% - 10px)" fill="none" stroke="currentColor" strokeWidth="1" 
+         className="opacity-50"
+         vectorEffect="non-scaling-stroke"
+       />
+    </svg>
+    
+    {/* Corner Ornaments & Hover Extensions */}
     {[
-      { pos: "top-0 left-0", hover: "group-hover:-translate-x-1.5 group-hover:-translate-y-1.5" },
-      { pos: "top-0 right-0 scale-x-[-1]", hover: "group-hover:translate-x-1.5 group-hover:-translate-y-1.5" },
-      { pos: "bottom-0 left-0 scale-y-[-1]", hover: "group-hover:-translate-x-1.5 group-hover:translate-y-1.5" },
-      { pos: "bottom-0 right-0 scale-x-[-1] scale-y-[-1]", hover: "group-hover:translate-x-1.5 group-hover:translate-y-1.5" }
-    ].map((item, i) => (
-      <div key={i} className={`absolute ${item.pos} w-16 h-16 overflow-hidden transition-transform duration-500 ease-out ${item.hover}`}>
+      "top-0 left-0",
+      "top-0 right-0 scale-x-[-1]",
+      "bottom-0 left-0 scale-y-[-1]",
+      "bottom-0 right-0 scale-x-[-1] scale-y-[-1]"
+    ].map((pos, i) => (
+      <div key={i} className={`absolute ${pos} w-16 h-16 overflow-hidden`}>
         <svg viewBox="0 0 64 64" fill="none" className="w-full h-full text-current drop-shadow-[0_0_2px_currentColor]">
-          {/* Outer Box Lines */}
-          <motion.path 
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 1.2, ease: "easeInOut", delay: 1.8 }}
-            d="M 0 64 L 0 0 L 64 0" 
-            stroke="currentColor" strokeWidth="1" 
-          />
-          {/* Inner Nested Lines */}
-          <motion.path 
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 1.2, ease: "easeInOut", delay: 2.0 }}
-            d="M 6 54 L 6 6 L 54 6" 
-            stroke="currentColor" strokeWidth="1" className="opacity-70"
-          />
           {/* Corner Decorative Geometric Cut */}
           <motion.path 
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={{ pathLength: 1, opacity: 1 }}
-            transition={{ duration: 0.8, ease: "easeInOut", delay: 2.3 }}
-            d="M 16 16 L 24 16 L 24 24 L 16 24 Z M 0 16 L 6 16 M 16 0 L 16 6" 
+            variants={{
+              hidden: { pathLength: 0, opacity: 0 },
+              visible: { pathLength: 1, opacity: 1, transition: { duration: 0.8, ease: "easeInOut", delay: delay + 0.5 } }
+            }}
+            d="M 16 16 L 24 16 L 24 24 L 16 24 Z M 0 16 L 5 16 M 16 0 L 16 5" 
             stroke="currentColor" strokeWidth="1" 
           />
           {/* Inner tiny diamond */}
           <motion.path
-            initial={{ scale: 0, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            transition={{ duration: 0.5, delay: 2.6 }}
+            variants={{
+              hidden: { scale: 0, opacity: 0 },
+              visible: { scale: 1, opacity: 1, transition: { duration: 0.5, delay: delay + 0.8 } }
+            }}
             d="M 20 18 L 22 20 L 20 22 L 18 20 Z"
             fill="currentColor"
+          />
+
+          {/* THE HOVER EXTENSION FILIGREE (Draws dynamically along the border!) */}
+          <motion.path
+            variants={{
+              hidden: { pathLength: 0, opacity: 0 },
+              visible: { pathLength: 0, opacity: 0 },
+              hover: { pathLength: 1, opacity: 1, transition: { duration: 0.5, ease: "easeOut" } }
+            }}
+            d="M 5 32 L 5 48 L 12 48 L 12 32 M 32 5 L 48 5 L 48 12 L 32 12"
+            stroke="currentColor" strokeWidth="1"
+          />
+          <motion.path
+            variants={{
+              hidden: { pathLength: 0, opacity: 0 },
+              visible: { pathLength: 0, opacity: 0 },
+              hover: { pathLength: 1, opacity: 1, transition: { duration: 0.7, ease: "easeOut", delay: 0.1 } }
+            }}
+            d="M 24 24 L 32 32 M 16 24 L 16 32 M 24 16 L 32 16"
+            stroke="currentColor" strokeWidth="1" className="opacity-70"
           />
         </svg>
       </div>
@@ -505,30 +530,36 @@ export function Sanctum() {
               ].map((a, i) => (
                 <motion.div 
                   key={i} 
-                  initial={{ opacity: 0, x: -40 }} 
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ duration: 0.8, ease: "easeOut", delay: 0.5 + (i * 0.15) }}
-                  className="group bg-[#1a0202] dark:bg-[#0a0000] px-6 pt-6 pb-10 shadow-[0_4px_16px_rgba(0,0,0,0.9)] flex flex-col justify-between space-y-6 cursor-pointer transition-all duration-500 relative overflow-hidden hover:-translate-y-1.5 hover:shadow-[0_12px_30px_rgba(212,175,55,0.25)] hover:bg-[#250303] dark:hover:bg-[#110102]"
+                  initial="hidden"
+                  animate="visible"
+                  whileHover="hover"
+                  variants={{
+                    hidden: { opacity: 0, y: 15 },
+                    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut", delay: 0.5 + (i * 0.15) } },
+                    hover: { y: -6, transition: { duration: 0.3 } }
+                  }}
+                  className="relative group bg-[#1a0202] dark:bg-[#0a0000] p-6 shadow-[0_4px_16px_rgba(0,0,0,0.9)] flex flex-col justify-between overflow-hidden transition-colors duration-500 hover:shadow-[0_12px_30px_rgba(212,175,55,0.25)] hover:bg-[#250303] dark:hover:bg-[#110102]"
                 >
                   
-                  {/* The Royal Geometric SVG Frame */}
-                  <PrestigeAttributeFrame />
+                  {/* The Royal Geometric SVG Frame with Hover Drawing Extension */}
+                  <PrestigeAttributeFrame delay={1.4} />
                   
-                  <div className="flex items-start justify-between relative z-20">
-                    <div className="w-10 h-10 rounded-sm border border-[#D4AF37]/50 group-hover:border-[#D4AF37] flex items-center justify-center text-[#D4AF37]/80 group-hover:text-[#D4AF37] shadow-inner transition-all duration-500">
-                      <a.icon size={20} className="group-hover:scale-110 transition-transform duration-500" />
+                  <div className="flex flex-col h-full space-y-6 relative z-20">
+                    <div className="flex items-start justify-between">
+                      <div className="w-10 h-10 rounded-sm border border-[#D4AF37]/50 group-hover:border-[#D4AF37] flex items-center justify-center text-[#D4AF37]/80 group-hover:text-[#D4AF37] shadow-inner transition-all duration-500">
+                        <a.icon size={20} className="group-hover:scale-110 transition-transform duration-500" />
+                      </div>
+                      <span className="font-serif text-3xl text-[#D4AF37]/80 group-hover:text-[#D4AF37] font-bold transition-colors duration-500 drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]">{a.val || 0}</span>
                     </div>
-                    <span className="font-serif text-3xl text-[#D4AF37]/80 group-hover:text-[#D4AF37] font-bold transition-colors duration-500 drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]">{a.val || 0}</span>
-                  </div>
-                  
-                  <div className="relative z-20">
-                    <h3 className="font-serif text-lg text-[#EEEAD7] font-bold group-hover:text-[#FFF] transition-colors duration-500 tracking-wide">{a.label}</h3>
-                    <p className="font-sans text-[11px] text-[#8d9685] group-hover:text-[#EEEAD7] line-clamp-2 mt-1.5 transition-colors duration-500">{a.desc}</p>
-                  </div>
-                  
-                  {/* Safely floating inside the card boundaries */}
-                  <div className="absolute bottom-4 left-6 right-6 bg-[#0a0000] dark:bg-[#000] h-1.5 rounded-sm overflow-hidden border border-[#D4AF37]/30 group-hover:border-[#D4AF37]/60 z-20 transition-colors duration-500">
-                    <div className="bg-gradient-to-r from-[#947014] to-[#D4AF37] h-full rounded-sm shadow-[0_0_8px_rgba(212,175,55,0.8)] transition-all duration-700 ease-out" style={{width: Math.min(100, Math.max(10, (a.val || 0) * 10)) + "%" }}></div>
+                    
+                    <div className="flex-grow">
+                      <h3 className="font-serif text-lg text-[#EEEAD7] font-bold group-hover:text-[#FFF] transition-colors duration-500 tracking-wide">{a.label}</h3>
+                      <p className="font-sans text-[11px] text-[#8d9685] group-hover:text-[#EEEAD7] line-clamp-2 mt-1.5 transition-colors duration-500">{a.desc}</p>
+                    </div>
+                    
+                    <div className="w-full bg-[#0a0000] dark:bg-[#000] h-1.5 rounded-sm overflow-hidden border border-[#D4AF37]/30 group-hover:border-[#D4AF37]/60 mt-auto transition-colors duration-500">
+                      <div className="bg-gradient-to-r from-[#947014] to-[#D4AF37] h-full rounded-sm shadow-[0_0_8px_rgba(212,175,55,0.8)] transition-all duration-700 ease-out" style={{width: Math.min(100, Math.max(10, (a.val || 0) * 10)) + "%" }}></div>
+                    </div>
                   </div>
                 </motion.div>
               ))}
