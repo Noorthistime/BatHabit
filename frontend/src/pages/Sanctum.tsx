@@ -308,7 +308,7 @@ const PrestigeAttributeFrame = ({ delay = 1.4 }: { delay?: number }) => (
           <motion.path
             variants={{
               hidden: { pathLength: 0, opacity: 0 },
-              visible: { pathLength: 0, opacity: 0 },
+              visible: { pathLength: 0, opacity: 0, transition: { duration: 0.15 } },
               hover: { pathLength: 1, opacity: 1, transition: { duration: 0.5, ease: "easeOut" } }
             }}
             d="M 5 32 L 5 48 L 12 48 L 12 32 M 32 5 L 48 5 L 48 12 L 32 12"
@@ -317,8 +317,8 @@ const PrestigeAttributeFrame = ({ delay = 1.4 }: { delay?: number }) => (
           <motion.path
             variants={{
               hidden: { pathLength: 0, opacity: 0 },
-              visible: { pathLength: 0, opacity: 0 },
-              hover: { pathLength: 1, opacity: 1, transition: { duration: 0.7, ease: "easeOut", delay: 0.1 } }
+              visible: { pathLength: 0, opacity: 0, transition: { duration: 0.15 } },
+              hover: { pathLength: 1, opacity: 1, transition: { duration: 0.5, ease: "easeOut", delay: 0.05 } }
             }}
             d="M 24 24 L 32 32 M 16 24 L 16 32 M 24 16 L 32 16"
             stroke="currentColor" strokeWidth="1" className="opacity-70"
@@ -535,29 +535,31 @@ export function Sanctum() {
                   whileHover="hover"
                   variants={{
                     hidden: { opacity: 0, y: 15 },
-                    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut", delay: 0.5 + (i * 0.15) } },
-                    hover: { y: -6, transition: { duration: 0.3 } }
+                    visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut", delay: 0.5 + (i * 0.15) } }
                   }}
-                  className="relative group bg-[#1a0202] dark:bg-[#0a0000] p-6 shadow-[0_4px_16px_rgba(0,0,0,0.9)] flex flex-col justify-between overflow-hidden transition-colors duration-500 hover:shadow-[0_12px_30px_rgba(212,175,55,0.25)] hover:bg-[#250303] dark:hover:bg-[#110102]"
+                  className="relative group bg-[#1a0202] dark:bg-[#0a0000] p-6 shadow-[0_4px_16px_rgba(0,0,0,0.9)] flex flex-col justify-between overflow-hidden transition-all duration-150 hover:-translate-y-1.5 hover:shadow-[0_12px_30px_rgba(212,175,55,0.25)] hover:bg-[#250303] dark:hover:bg-[#110102]"
                 >
                   
                   {/* The Royal Geometric SVG Frame with Hover Drawing Extension */}
                   <PrestigeAttributeFrame delay={1.4} />
                   
-                  <div className="flex flex-col h-full space-y-6 relative z-20">
-                    <div className="flex items-start justify-between">
-                      <div className="w-10 h-10 rounded-sm border border-[#D4AF37]/50 group-hover:border-[#D4AF37] flex items-center justify-center text-[#D4AF37]/80 group-hover:text-[#D4AF37] shadow-inner transition-all duration-500">
-                        <a.icon size={20} className="group-hover:scale-110 transition-transform duration-500" />
+                  <div className="flex flex-col h-full relative z-20 px-2 py-1">
+                    {/* Shifted Icon and 0 inwards */}
+                    <div className="flex items-start justify-between px-3 pt-2">
+                      <div className="w-10 h-10 rounded-sm border border-[#D4AF37]/50 group-hover:border-[#D4AF37] flex items-center justify-center text-[#D4AF37]/80 group-hover:text-[#D4AF37] shadow-inner transition-colors duration-150">
+                        <a.icon size={20} className="group-hover:scale-110 transition-transform duration-150" />
                       </div>
-                      <span className="font-serif text-3xl text-[#D4AF37]/80 group-hover:text-[#D4AF37] font-bold transition-colors duration-500 drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]">{a.val || 0}</span>
+                      <span className="font-serif text-3xl text-[#D4AF37]/80 group-hover:text-[#D4AF37] font-bold transition-colors duration-150 drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]">{a.val || 0}</span>
                     </div>
                     
-                    <div className="flex-grow">
-                      <h3 className="font-serif text-lg text-[#EEEAD7] font-bold group-hover:text-[#FFF] transition-colors duration-500 tracking-wide">{a.label}</h3>
-                      <p className="font-sans text-[11px] text-[#8d9685] group-hover:text-[#EEEAD7] line-clamp-2 mt-1.5 transition-colors duration-500">{a.desc}</p>
+                    {/* Centered Text */}
+                    <div className="flex-grow flex flex-col items-center justify-center text-center mt-6 mb-4 px-2">
+                      <h3 className="font-serif text-lg text-[#EEEAD7] font-bold group-hover:text-[#FFF] transition-colors duration-150 tracking-wide">{a.label}</h3>
+                      <p className="font-sans text-[11px] text-[#8d9685] group-hover:text-[#EEEAD7] line-clamp-2 mt-1.5 transition-colors duration-150">{a.desc}</p>
                     </div>
                     
-                    <div className="w-full bg-[#0a0000] dark:bg-[#000] h-1.5 rounded-sm overflow-hidden border border-[#D4AF37]/30 group-hover:border-[#D4AF37]/60 mt-auto transition-colors duration-500">
+                    {/* Raised & Narrowed Progress Bar */}
+                    <div className="w-full max-w-[85%] mx-auto bg-[#0a0000] dark:bg-[#000] h-1.5 rounded-sm overflow-hidden border border-[#D4AF37]/30 group-hover:border-[#D4AF37]/60 mt-auto mb-3 transition-colors duration-150">
                       <div className="bg-gradient-to-r from-[#947014] to-[#D4AF37] h-full rounded-sm shadow-[0_0_8px_rgba(212,175,55,0.8)] transition-all duration-700 ease-out" style={{width: Math.min(100, Math.max(10, (a.val || 0) * 10)) + "%" }}></div>
                     </div>
                   </div>
