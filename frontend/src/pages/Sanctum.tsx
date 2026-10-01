@@ -356,7 +356,9 @@ export function Sanctum() {
                 </div>
               ))}
             </div>
-          </se          {/* Bottom Grid: 3-Column Triptych */}
+          </section>
+
+          {/* Bottom Grid: 3-Column Triptych */}
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
             
             {/* Left Col (20%): Treasury */}
