@@ -186,7 +186,8 @@ export function Sanctum() {
   const xpIntoLevel = (char.totalXp || 0) - currentLevelXpRequired;
   const xpNeededForNext = nextLevelXpRequired - currentLevelXpRequired;
   const progressPercent = Math.min(100, Math.max(0, (xpIntoLevel / xpNeededForNext) * 100)) || 0;
-
+  
+  const [activeLedgerTab, setActiveLedgerTab] = useState<'treasury' | 'chronicle'>('treasury');
   return (
     <>
       {/* Main Container */}
@@ -358,43 +359,115 @@ export function Sanctum() {
             </div>
           </section>
 
-          {/* Bottom Grid: 3-Column Triptych */}
-          <div className="grid grid-cols-1 lg:grid-cols-10 gap-6">
+          {/* Bottom Grid: 2-Column Grand Ledger Layout */}
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
             
-            {/* Left Col (30%): Treasury */}
-            <div className="lg:col-span-3 flex flex-col h-full order-2 lg:order-1">
-              {/* The Treasury */}
-              <div className="bg-[#1a0202] rounded-lg p-6 border border-[#D4AF37]/60 shadow-[0_4px_12px_rgba(0,0,0,0.8)] flex flex-col items-center relative overflow-hidden h-full">
-                <div className="flex items-center justify-between w-full mb-6 relative z-10">
-                  <h3 className="font-serif text-lg font-bold text-[#EEEAD7] flex items-center gap-2">
-                    <Shield size={18} className="text-[#D4AF37]" /> THE TREASURY
-                  </h3>
-                  <span className="font-mono text-[9px] text-[#8d9685] uppercase border border-[#D4AF37]/40 px-2 py-1 rounded hidden xl:block">Vault Secure</span>
+            {/* Left Col (33%): Grand Ledger (Treasury / Chronicle) */}
+            <div className="lg:col-span-4 flex flex-col h-full">
+              <div className="bg-gradient-to-br from-[#1a0202] to-[#0a0000] rounded-lg border border-[#D4AF37]/60 shadow-[0_8px_24px_rgba(0,0,0,0.9)] flex flex-col relative overflow-hidden h-full">
+                
+                {/* Subtle top glare */}
+                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent"></div>
+                
+                {/* Tab Switcher */}
+                <div className="flex border-b border-[#D4AF37]/30 bg-[#1a0202]/50 relative z-10">
+                  <button 
+                    onClick={() => setActiveLedgerTab('treasury')}
+                    className={`flex-1 py-4 font-serif text-xs uppercase tracking-[0.2em] font-bold transition-all duration-300 flex items-center justify-center gap-2 ${
+                      activeLedgerTab === 'treasury' 
+                        ? 'text-[#1a0202] bg-[#D4AF37] shadow-[inset_0_-2px_10px_rgba(0,0,0,0.2)]' 
+                        : 'text-[#D4AF37] hover:bg-[#D4AF37]/10'
+                    }`}
+                  >
+                    <Shield size={14} /> Treasury
+                  </button>
+                  <div className="w-px bg-[#D4AF37]/30"></div>
+                  <button 
+                    onClick={() => setActiveLedgerTab('chronicle')}
+                    className={`flex-1 py-4 font-serif text-xs uppercase tracking-[0.2em] font-bold transition-all duration-300 flex items-center justify-center gap-2 ${
+                      activeLedgerTab === 'chronicle' 
+                        ? 'text-[#1a0202] bg-[#D4AF37] shadow-[inset_0_-2px_10px_rgba(0,0,0,0.2)]' 
+                        : 'text-[#D4AF37] hover:bg-[#D4AF37]/10'
+                    }`}
+                  >
+                    <Archive size={14} /> Chronicle
+                  </button>
                 </div>
-                
-                <div className="w-20 h-20 rounded-full bg-[radial-gradient(ellipse_at_center,_#F5D77F_0%,_#D4AF37_50%,_#947014_100%)] flex items-center justify-center text-[#1a0202] shadow-[0_0_30px_rgba(212,175,55,0.8)] mb-4 relative z-10 shrink-0">
-                  <span className="font-serif text-4xl font-bold">✦</span>
-                </div>
-                
-                <span className="font-serif text-3xl font-bold text-[#D4AF37] relative z-10">{currency?.balance || 0}</span>
-                <span className="font-mono text-[10px] text-[#8d9685] uppercase text-center mt-2 relative z-10">Gilded Crowns • Obsidian Gold</span>
-                
-                <div className="w-full mt-6 space-y-2 border-t border-[#D4AF37]/20 pt-4 relative z-10">
-                  <span className="font-mono text-[9px] text-[#8d9685] uppercase tracking-widest block mb-3">Recent Vault Influx</span>
-                  <div className="flex flex-col xl:flex-row xl:justify-between xl:items-center bg-[#6D0808]/20 p-2 rounded border border-[#6D0808] gap-1">
-                    <span className="font-mono text-[11px] text-[#EEEAD7]">+ Solitude Rite</span>
-                    <span className="font-mono text-[11px] font-bold text-[#D4AF37]">+15 Crowns</span>
-                  </div>
-                  <div className="flex flex-col xl:flex-row xl:justify-between xl:items-center bg-[#6D0808]/20 p-2 rounded border border-[#6D0808] gap-1">
-                    <span className="font-mono text-[11px] text-[#8d9685]">- Raven Brooch</span>
-                    <span className="font-mono text-[11px] font-bold text-[#ff4444]">-450 Crowns</span>
-                  </div>
+
+                {/* Tab Content Container */}
+                <div className="p-6 flex-1 flex flex-col relative">
+                  
+                  {/* Treasury View */}
+                  {activeLedgerTab === 'treasury' && (
+                    <motion.div 
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      className="flex flex-col items-center flex-1"
+                    >
+                      <div className="flex items-center justify-between w-full mb-6">
+                        <h3 className="font-serif text-lg font-bold text-[#EEEAD7]">THE VAULT</h3>
+                        <span className="font-mono text-[9px] text-[#8d9685] uppercase border border-[#D4AF37]/40 px-2 py-1 rounded">Secure</span>
+                      </div>
+                      
+                      <div className="w-24 h-24 rounded-full bg-[radial-gradient(ellipse_at_center,_#F5D77F_0%,_#D4AF37_50%,_#947014_100%)] flex items-center justify-center text-[#1a0202] shadow-[0_0_40px_rgba(212,175,55,0.6)] mb-6 shrink-0 mt-4">
+                        <span className="font-serif text-5xl font-bold">✦</span>
+                      </div>
+                      
+                      <span className="font-serif text-4xl font-bold text-[#D4AF37]">{currency?.balance || 0}</span>
+                      <span className="font-mono text-[10px] text-[#8d9685] uppercase text-center mt-2 tracking-widest">Gilded Crowns • Obsidian Gold</span>
+                      
+                      <div className="w-full mt-auto pt-6 space-y-2 border-t border-[#D4AF37]/20">
+                        <span className="font-mono text-[9px] text-[#8d9685] uppercase tracking-widest block mb-3">Recent Influx</span>
+                        <div className="flex justify-between items-center bg-[#6D0808]/20 p-2.5 rounded border border-[#6D0808]">
+                          <span className="font-mono text-[11px] text-[#EEEAD7]">+ Solitude Rite</span>
+                          <span className="font-mono text-[11px] font-bold text-[#D4AF37]">+15 Crowns</span>
+                        </div>
+                        <div className="flex justify-between items-center bg-[#6D0808]/20 p-2.5 rounded border border-[#6D0808]">
+                          <span className="font-mono text-[11px] text-[#8d9685]">- Raven Brooch</span>
+                          <span className="font-mono text-[11px] font-bold text-[#ff4444]">-450 Crowns</span>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+
+                  {/* Chronicle View */}
+                  {activeLedgerTab === 'chronicle' && (
+                    <motion.div 
+                      initial={{ opacity: 0, x: 20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      className="flex flex-col flex-1"
+                    >
+                      <div className="flex items-center justify-between mb-6">
+                        <h3 className="font-serif text-lg font-bold text-[#EEEAD7]">THE ARCHIVE</h3>
+                        <span className="font-mono text-[9px] text-[#8d9685] uppercase hover:text-[#D4AF37] cursor-pointer transition-colors">Full History</span>
+                      </div>
+                      
+                      <div className="space-y-6 relative before:absolute before:inset-y-1 before:left-[9px] before:w-px before:bg-gradient-to-b before:from-[#D4AF37] before:to-transparent z-10 flex-1">
+                        <div className="relative pl-8">
+                          <span className="absolute left-[3px] top-1 w-3.5 h-3.5 rounded-full bg-[#1a0202] border-2 border-[#D4AF37] shadow-[0_0_12px_rgba(212,175,55,1)]"></span>
+                          <p className="font-serif text-[15px] font-bold text-[#EEEAD7] tracking-wide">QUEST SEALED: Solitude</p>
+                          <p className="font-mono text-[10px] text-[#8d9685] mt-1.5 leading-relaxed">Yielded +50 XP and +15 Crowns.</p>
+                        </div>
+                        <div className="relative pl-8">
+                          <span className="absolute left-[3px] top-1 w-3.5 h-3.5 rounded-full bg-[#1a0202] border-2 border-[#D4AF37] opacity-60"></span>
+                          <p className="font-serif text-[15px] font-bold text-[#EEEAD7] tracking-wide opacity-80">ASCENSION: Level 7</p>
+                          <p className="font-mono text-[10px] text-[#8d9685] mt-1.5 leading-relaxed opacity-80">Unlocked title Nightwalker.</p>
+                        </div>
+                        <div className="relative pl-8">
+                          <span className="absolute left-[3px] top-1 w-3.5 h-3.5 rounded-full bg-[#1a0202] border-2 border-[#D4AF37] opacity-40"></span>
+                          <p className="font-serif text-[15px] font-bold text-[#EEEAD7] tracking-wide opacity-60">ITEM FORGED: Raven Brooch</p>
+                          <p className="font-mono text-[10px] text-[#8d9685] mt-1.5 leading-relaxed opacity-60">Artifact secured in the Vault.</p>
+                        </div>
+                      </div>
+                    </motion.div>
+                  )}
+                  
                 </div>
               </div>
             </div>
 
-            {/* Middle Col (40%): Quests */}
-            <div className="lg:col-span-4 flex flex-col space-y-4 order-1 lg:order-2">
+            {/* Right Col (67%): Quests */}
+            <div className="lg:col-span-8 flex flex-col space-y-4">
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-[#1a0202] p-5 rounded-lg border border-[#D4AF37]/60 shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
                 <div className="flex items-center gap-4">
                   <div className="w-10 h-10 rounded border border-[#D4AF37] flex items-center justify-center text-[#D4AF37] shrink-0">
@@ -405,7 +478,7 @@ export function Sanctum() {
                     <span className="font-mono text-[10px] text-[#8d9685] uppercase tracking-widest">3 Pending Rites • 1 Sealed</span>
                   </div>
                 </div>
-                <button className="px-4 py-2 rounded border border-[#D4AF37] bg-[#6D0808] text-[#D4AF37] font-serif text-xs font-bold tracking-widest hover:brightness-125 flex items-center gap-2 shadow-[0_0_12px_rgba(109,8,8,0.8)] shrink-0">
+                <button className="px-4 py-2 rounded border border-[#D4AF37] bg-[#6D0808] text-[#D4AF37] font-serif text-xs font-bold tracking-widest hover:brightness-125 flex items-center gap-2 shadow-[0_0_12px_rgba(109,8,8,0.8)] shrink-0 transition-all">
                   <Plus size={16} /> FORGE QUEST
                 </button>
               </div>
@@ -420,7 +493,7 @@ export function Sanctum() {
                   <div className="absolute left-0 inset-y-0 w-1.5 bg-gradient-to-b from-[#F5D77F] to-[#6D0808]"></div>
                   
                   <div className="flex flex-1 items-center gap-5 pl-2">
-                    <div className="w-12 h-12 rounded border border-[#D4AF37] flex items-center justify-center text-[#D4AF37] shrink-0">
+                    <div className="w-12 h-12 rounded border border-[#D4AF37] flex items-center justify-center text-[#D4AF37] shrink-0 bg-[#1a0202]">
                       <q.icon size={24} />
                     </div>
                     <div className="flex flex-col space-y-2">
@@ -439,41 +512,12 @@ export function Sanctum() {
                   </div>
                   
                   <div className="flex items-center">
-                    <button className="px-5 py-2.5 rounded border border-[#D4AF37] bg-transparent text-[#D4AF37] font-serif text-xs font-bold uppercase tracking-widest hover:bg-[#6D0808] hover:text-[#EEEAD7] hover:border-[#ff4444] transition-all flex items-center gap-2 shrink-0">
+                    <button className="px-6 py-3 rounded border border-[#D4AF37] bg-transparent text-[#D4AF37] font-serif text-xs font-bold uppercase tracking-widest hover:bg-[#6D0808] hover:text-[#EEEAD7] hover:border-[#ff4444] transition-all flex items-center gap-2 shrink-0">
                       <CheckCircle size={16} /> COMPLETE QUEST
                     </button>
                   </div>
                 </article>
               ))}
-            </div>
-
-            {/* Right Col (30%): Chronicle */}
-            <div className="lg:col-span-3 flex flex-col h-full order-3">
-              {/* Chronicle of Deeds */}
-              <div className="bg-gradient-to-br from-[#1a0202] to-[#0a0000] rounded-lg p-6 border border-[#D4AF37]/60 border-b-4 border-b-[#D4AF37] shadow-[0_8px_24px_rgba(0,0,0,0.9)] relative overflow-hidden h-full">
-                {/* Subtle top glare */}
-                <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent"></div>
-                
-                <div className="flex items-center justify-between w-full mb-6 relative z-10">
-                  <h3 className="font-serif text-lg font-bold text-[#EEEAD7] flex items-center gap-2">
-                    <Archive size={18} className="text-[#D4AF37]" /> CHRONICLE
-                  </h3>
-                  <span className="font-mono text-[9px] text-[#8d9685] uppercase hover:text-[#D4AF37] cursor-pointer transition-colors hidden xl:block">Full Archive</span>
-                </div>
-                
-                <div className="space-y-6 relative before:absolute before:inset-y-1 before:left-[9px] before:w-px before:bg-gradient-to-b before:from-[#D4AF37] before:to-transparent z-10">
-                  <div className="relative pl-8">
-                    <span className="absolute left-[3px] top-1 w-3.5 h-3.5 rounded-full bg-[#1a0202] border-2 border-[#D4AF37] shadow-[0_0_12px_rgba(212,175,55,1)]"></span>
-                    <p className="font-serif text-[15px] font-bold text-[#EEEAD7] tracking-wide">QUEST SEALED: Solitude</p>
-                    <p className="font-mono text-[10px] text-[#8d9685] mt-1.5 leading-relaxed">Yielded +50 XP and +15 Crowns.</p>
-                  </div>
-                  <div className="relative pl-8">
-                    <span className="absolute left-[3px] top-1 w-3.5 h-3.5 rounded-full bg-[#1a0202] border-2 border-[#D4AF37] opacity-60"></span>
-                    <p className="font-serif text-[15px] font-bold text-[#EEEAD7] tracking-wide opacity-80">ASCENSION: Level 7</p>
-                    <p className="font-mono text-[10px] text-[#8d9685] mt-1.5 leading-relaxed opacity-80">Unlocked title Nightwalker.</p>
-                  </div>
-                </div>
-              </div>
             </div>
 
           </div>
