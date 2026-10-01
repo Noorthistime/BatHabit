@@ -165,35 +165,66 @@ const CornerFiligree = ({ className }: { className?: string }) => {
   );
 };
 
-const FloralHeaderDivider = () => (
-  <div className="absolute inset-0 flex items-center justify-between w-[95%] max-w-4xl mx-auto pointer-events-none text-[#D4AF37]/70 drop-shadow-[0_0_6px_rgba(212,175,55,0.4)]">
+const PrestigeHeaderDivider = () => (
+  <div className="absolute inset-0 flex items-center justify-between w-[95%] max-w-4xl mx-auto pointer-events-none text-[#D4AF37]/80">
     {/* Left Flourish */}
-    <div className="w-24 h-6">
-      <svg viewBox="0 0 96 24" fill="none" className="w-full h-full text-current">
-        <path d="M 96 12 L 24 12 C 16 12, 8 18, 12 6 C 16 -6, 28 6, 20 18 C 16 24, 4 18, 0 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-        <circle cx="6" cy="12" r="1.5" fill="currentColor" />
-        <circle cx="20" cy="12" r="1" fill="currentColor" />
+    <div className="w-32 h-6">
+      <svg viewBox="0 0 128 24" fill="none" className="w-full h-full text-current">
+        {/* Geometric central axis */}
+        <motion.path 
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ duration: 1.2, ease: "easeInOut", delay: 0.5 }}
+          d="M 128 12 L 24 12" stroke="currentColor" strokeWidth="1" 
+        />
+        {/* Diamond/Knot detail */}
+        <motion.path 
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ duration: 1, ease: "easeInOut", delay: 1.2 }}
+          d="M 24 12 L 18 6 L 8 6 L 12 12 L 8 18 L 18 18 Z M 6 12 L 0 12" 
+          stroke="currentColor" strokeWidth="1" 
+        />
+        <motion.path 
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 1.8 }}
+          d="M 12 9 L 15 12 L 12 15 L 9 12 Z" fill="currentColor" 
+        />
       </svg>
     </div>
     
-    {/* Continuous Thin Connecting Line (Masked by Text) */}
-    <div className="flex-1 h-px bg-[#D4AF37]/50 mx-1"></div>
-    
     {/* Right Flourish */}
-    <div className="w-24 h-6 transform scale-x-[-1]">
-      <svg viewBox="0 0 96 24" fill="none" className="w-full h-full text-current">
-        <path d="M 96 12 L 24 12 C 16 12, 8 18, 12 6 C 16 -6, 28 6, 20 18 C 16 24, 4 18, 0 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
-        <circle cx="6" cy="12" r="1.5" fill="currentColor" />
-        <circle cx="20" cy="12" r="1" fill="currentColor" />
+    <div className="w-32 h-6 transform scale-x-[-1]">
+      <svg viewBox="0 0 128 24" fill="none" className="w-full h-full text-current">
+        <motion.path 
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ duration: 1.2, ease: "easeInOut", delay: 0.5 }}
+          d="M 128 12 L 24 12" stroke="currentColor" strokeWidth="1" 
+        />
+        <motion.path 
+          initial={{ pathLength: 0, opacity: 0 }}
+          animate={{ pathLength: 1, opacity: 1 }}
+          transition={{ duration: 1, ease: "easeInOut", delay: 1.2 }}
+          d="M 24 12 L 18 6 L 8 6 L 12 12 L 8 18 L 18 18 Z M 6 12 L 0 12" 
+          stroke="currentColor" strokeWidth="1" 
+        />
+        <motion.path 
+          initial={{ scale: 0, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          transition={{ duration: 0.5, delay: 1.8 }}
+          d="M 12 9 L 15 12 L 12 15 L 9 12 Z" fill="currentColor" 
+        />
       </svg>
     </div>
   </div>
 );
 
-const FloralAttributeFrame = () => (
-  <div className="absolute inset-0 pointer-events-none z-10 text-[#D4AF37]/50 dark:text-[#D4AF37]/40 group-hover:text-[#D4AF37] transition-all duration-700">
-    {/* Base straight borders (subtle outer boundary) */}
-    <div className="absolute inset-[3px] border border-current opacity-30 group-hover:opacity-60 transition-opacity duration-700"></div>
+const PrestigeAttributeFrame = () => (
+  <div className="absolute inset-0 pointer-events-none z-10 text-[#D4AF37]/60 group-hover:text-[#D4AF37] transition-all duration-700">
+    {/* Base subtle outer boundary */}
+    <div className="absolute inset-[3px] border border-current opacity-10 group-hover:opacity-40 transition-opacity duration-700"></div>
     
     {/* Corner Ornaments */}
     {[
@@ -203,22 +234,39 @@ const FloralAttributeFrame = () => (
       "bottom-0 right-0 scale-x-[-1] scale-y-[-1]"
     ].map((pos, i) => (
       <div key={i} className={`absolute ${pos} w-16 h-16 overflow-hidden`}>
-        <svg viewBox="0 0 64 64" fill="none" className="w-full h-full text-current drop-shadow-[0_0_4px_currentColor]">
-          {/* Outer Corner Frame (Double Line) */}
-          <path d="M 0 48 L 0 0 L 48 0" stroke="currentColor" strokeWidth="1.5" />
-          <path d="M 5 44 L 5 5 L 44 5" stroke="currentColor" strokeWidth="1" className="opacity-60" />
-          
-          {/* Inner Floral Swoop & Spiraling Vines */}
-          <g stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
-            {/* Diagonal Stem */}
-            <path d="M 5 5 L 20 20" />
-            {/* Top Spiraling Leaf */}
-            <path d="M 20 20 C 30 15, 45 20, 40 35 C 35 30, 25 30, 20 20" />
-            {/* Bottom Spiraling Leaf */}
-            <path d="M 20 20 C 15 30, 20 45, 35 40 C 30 35, 30 25, 20 20" />
-          </g>
-          {/* Delicate Corner Teardrop */}
-          <path d="M 5 5 C 15 2, 25 2, 30 8 C 20 15, 8 15, 5 5 Z" fill="currentColor" className="opacity-90" />
+        <svg viewBox="0 0 64 64" fill="none" className="w-full h-full text-current drop-shadow-[0_0_2px_currentColor]">
+          {/* Outer Box Lines */}
+          <motion.path 
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 1 }}
+            transition={{ duration: 1.2, ease: "easeInOut", delay: 2.0 }}
+            d="M 0 64 L 0 0 L 64 0" 
+            stroke="currentColor" strokeWidth="1" 
+          />
+          {/* Inner Nested Lines */}
+          <motion.path 
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 1 }}
+            transition={{ duration: 1.2, ease: "easeInOut", delay: 2.2 }}
+            d="M 6 54 L 6 6 L 54 6" 
+            stroke="currentColor" strokeWidth="1" className="opacity-70"
+          />
+          {/* Corner Decorative Geometric Cut */}
+          <motion.path 
+            initial={{ pathLength: 0, opacity: 0 }}
+            animate={{ pathLength: 1, opacity: 1 }}
+            transition={{ duration: 0.8, ease: "easeInOut", delay: 2.5 }}
+            d="M 16 16 L 24 16 L 24 24 L 16 24 Z M 0 16 L 6 16 M 16 0 L 16 6" 
+            stroke="currentColor" strokeWidth="1" 
+          />
+          {/* Inner tiny diamond */}
+          <motion.path
+            initial={{ scale: 0, opacity: 0 }}
+            animate={{ scale: 1, opacity: 1 }}
+            transition={{ duration: 0.5, delay: 2.8 }}
+            d="M 20 18 L 22 20 L 20 22 L 18 20 Z"
+            fill="currentColor"
+          />
         </svg>
       </div>
     ))}
@@ -388,19 +436,22 @@ export function Sanctum() {
           </section>
 
           {/* Grimoire Attributes */}
-          <section className="space-y-4 relative">
-            <div className="flex flex-col items-center justify-center w-full relative py-6">
-              <FloralHeaderDivider />
-              <motion.h2 
-                initial={{ opacity: 0, y: 20, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                transition={{ duration: 1.2, ease: "easeOut" }}
-                className="font-serif text-sm md:text-base uppercase tracking-[0.3em] text-[#D4AF37] font-bold bg-[#110102] dark:bg-[#050000] px-8 relative z-10 drop-shadow-[0_0_12px_rgba(212,175,55,0.4)]"
-              >
+          <section className="space-y-6 relative overflow-hidden pb-4 pt-2">
+            
+            {/* Header Box */}
+            <motion.div 
+              initial={{ opacity: 0, y: -20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="flex flex-col items-center justify-center w-full relative py-6"
+            >
+              <PrestigeHeaderDivider />
+              <h2 className="font-serif text-sm md:text-base uppercase tracking-[0.3em] text-[#D4AF37] font-bold bg-[#110102] dark:bg-[#050000] px-8 py-2 relative z-10 drop-shadow-[0_0_12px_rgba(212,175,55,0.4)] border border-[#D4AF37]/20 rounded-sm">
                 Disciplines of Mastery <span className="text-[#8B0000] mx-2 dark:text-[#ff4444]">•</span> Grimoire Attributes
-              </motion.h2>
-            </div>
+              </h2>
+            </motion.div>
 
+            {/* Boxes */}
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
               {[
                 { label: 'Strength', val: attr.strengthXp, icon: Shield, desc: 'Physical resilience & cold vigils' },
@@ -409,10 +460,16 @@ export function Sanctum() {
                 { label: 'Focus', val: attr.focusXp, icon: Eye, desc: 'Deep continuous work sessions' },
                 { label: 'Vitality', val: attr.vitalityXp, icon: Heart, desc: 'Cardio & nocturnal nutrition' },
               ].map((a, i) => (
-                <div key={i} className="group bg-[#1a0202] dark:bg-[#0a0000] p-6 shadow-[0_4px_16px_rgba(0,0,0,0.9)] flex flex-col justify-between space-y-6 cursor-pointer transition-all duration-500 relative overflow-hidden hover:-translate-y-1.5 hover:shadow-[0_12px_30px_rgba(212,175,55,0.25)] hover:bg-[#250303] dark:hover:bg-[#110102]">
+                <motion.div 
+                  key={i} 
+                  initial={{ opacity: 0, x: i < 2 ? -60 : (i > 2 ? 60 : 0), y: i === 2 ? 40 : 0 }} 
+                  animate={{ opacity: 1, x: 0, y: 0 }}
+                  transition={{ duration: 0.8, ease: "easeOut", delay: (i === 0 || i === 4) ? 0.5 : ((i === 1 || i === 3) ? 0.7 : 0.9) }}
+                  className="group bg-[#1a0202] dark:bg-[#0a0000] p-6 shadow-[0_4px_16px_rgba(0,0,0,0.9)] flex flex-col justify-between space-y-6 cursor-pointer transition-all duration-500 relative overflow-hidden hover:-translate-y-1.5 hover:shadow-[0_12px_30px_rgba(212,175,55,0.25)] hover:bg-[#250303] dark:hover:bg-[#110102]"
+                >
                   
-                  {/* The Royal SVG Frame */}
-                  <FloralAttributeFrame />
+                  {/* The Royal Geometric SVG Frame */}
+                  <PrestigeAttributeFrame />
                   
                   <div className="flex items-start justify-between relative z-20">
                     <div className="w-10 h-10 rounded-sm border border-[#D4AF37]/50 group-hover:border-[#D4AF37] flex items-center justify-center text-[#D4AF37]/80 group-hover:text-[#D4AF37] shadow-inner transition-all duration-500">
@@ -426,10 +483,10 @@ export function Sanctum() {
                     <p className="font-sans text-[11px] text-[#8d9685] group-hover:text-[#EEEAD7] line-clamp-2 mt-1.5 transition-colors duration-500">{a.desc}</p>
                   </div>
                   
-                  <div className="w-full bg-[#0a0000] dark:bg-[#000] h-1.5 rounded-full overflow-hidden border border-[#D4AF37]/30 group-hover:border-[#D4AF37]/60 mt-1 relative z-20 transition-colors duration-500">
-                    <div className="bg-gradient-to-r from-[#947014] to-[#D4AF37] h-full rounded-full shadow-[0_0_8px_rgba(212,175,55,0.8)] transition-all duration-700 ease-out" style={{width: Math.min(100, Math.max(10, (a.val || 0) * 10)) + "%" }}></div>
+                  <div className="w-full bg-[#0a0000] dark:bg-[#000] h-1.5 rounded-sm overflow-hidden border border-[#D4AF37]/30 group-hover:border-[#D4AF37]/60 mt-1 relative z-20 transition-colors duration-500">
+                    <div className="bg-gradient-to-r from-[#947014] to-[#D4AF37] h-full rounded-sm shadow-[0_0_8px_rgba(212,175,55,0.8)] transition-all duration-700 ease-out" style={{width: Math.min(100, Math.max(10, (a.val || 0) * 10)) + "%" }}></div>
                   </div>
-                </div>
+                </motion.div>
               ))}
             </div>
           </section>
