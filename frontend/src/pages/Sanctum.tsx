@@ -479,7 +479,6 @@ export function Sanctum() {
           </div>
         </div>
       </div>
-      </div>
     </>
   );
 }
