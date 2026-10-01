@@ -165,6 +165,42 @@ const CornerFiligree = ({ className }: { className?: string }) => {
   );
 };
 
+const OrnateAttributeFrame = () => (
+  <div className="absolute inset-0 pointer-events-none z-10 text-[#D4AF37]/40 dark:text-[#D4AF37]/30 group-hover:text-[#D4AF37] transition-all duration-700">
+    {/* Base straight borders (slightly inset) */}
+    <div className="absolute inset-[3px] border border-current opacity-30 group-hover:opacity-60 transition-opacity duration-700"></div>
+    
+    {/* Corner Ornaments */}
+    {[
+      "top-0 left-0",
+      "top-0 right-0 scale-x-[-1]",
+      "bottom-0 left-0 scale-y-[-1]",
+      "bottom-0 right-0 scale-x-[-1] scale-y-[-1]"
+    ].map((pos, i) => (
+      <div key={i} className={`absolute ${pos} w-14 h-14 overflow-hidden`}>
+        <svg viewBox="0 0 56 56" fill="none" className="w-full h-full text-current drop-shadow-[0_0_6px_currentColor]">
+          {/* Main Corner Wing/Spike */}
+          <path d="M 0 0 L 32 0 C 24 8, 36 12, 56 10 L 56 13 C 36 16, 24 10, 16 16 C 10 24, 16 36, 13 56 L 10 56 C 12 36, 8 24, 0 32 Z" fill="currentColor" />
+          {/* Inner Sharp Diamond Spike */}
+          <path d="M 6 6 L 16 6 L 6 16 Z" fill="currentColor" className="opacity-90" />
+        </svg>
+      </div>
+    ))}
+
+    {/* Center Top/Bottom Spikes */}
+    {[
+      "top-[-1px] left-1/2 -translate-x-1/2",
+      "bottom-[-1px] left-1/2 -translate-x-1/2 scale-y-[-1]"
+    ].map((pos, i) => (
+      <div key={i} className={`absolute ${pos} w-24 h-4`}>
+        <svg viewBox="0 0 96 16" fill="none" className="w-full h-full text-current drop-shadow-[0_0_6px_currentColor]">
+          <path d="M 0 0 C 24 4, 36 12, 48 16 C 60 12, 72 4, 96 0 L 72 0 L 48 8 L 24 0 Z" fill="currentColor" />
+        </svg>
+      </div>
+    ))}
+  </div>
+);
+
 export function Sanctum() {
   const [profile, setProfile] = useState<any>(null);
   const { theme, toggleTheme } = useTheme();
@@ -328,11 +364,22 @@ export function Sanctum() {
           </section>
 
           {/* Grimoire Attributes */}
-          <section className="space-y-3">
-            <div className="flex items-center justify-between px-1">
-              <h2 className="font-serif text-xs uppercase tracking-[0.25em] text-[#D4AF37] dark:text-[#F5D77F] font-bold">Disciplines of Mastery • Grimoire Attributes</h2>
+          <section className="space-y-4 relative">
+            <div className="flex flex-col items-center justify-center w-full relative py-6">
+              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                <div className="w-[90%] max-w-4xl h-px bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent"></div>
+              </div>
+              <motion.h2 
+                initial={{ opacity: 0, y: 20, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                transition={{ duration: 1.2, ease: "easeOut" }}
+                className="font-serif text-sm md:text-base uppercase tracking-[0.3em] text-[#D4AF37] font-bold bg-[#110102] dark:bg-[#050000] px-8 relative z-10 drop-shadow-[0_0_12px_rgba(212,175,55,0.4)]"
+              >
+                Disciplines of Mastery <span className="text-[#8B0000] mx-2 dark:text-[#ff4444]">•</span> Grimoire Attributes
+              </motion.h2>
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3.5">
+
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
               {[
                 { label: 'Strength', val: attr.strengthXp, icon: Shield, desc: 'Physical resilience & cold vigils' },
                 { label: 'Intellect', val: attr.intellectXp, icon: Brain, desc: 'Architectural knowledge & code' },
@@ -340,19 +387,25 @@ export function Sanctum() {
                 { label: 'Focus', val: attr.focusXp, icon: Eye, desc: 'Deep continuous work sessions' },
                 { label: 'Vitality', val: attr.vitalityXp, icon: Heart, desc: 'Cardio & nocturnal nutrition' },
               ].map((a, i) => (
-                <div key={i} className="group bg-[#1a0202] rounded-lg p-5 border border-[#D4AF37]/60 shadow-[0_4px_12px_rgba(0,0,0,0.8)] flex flex-col justify-between space-y-4 cursor-pointer hover:border-[#D4AF37] transition-all relative overflow-hidden">
-                  <div className="flex items-start justify-between">
-                    <div className="w-10 h-10 rounded-md border border-[#D4AF37] flex items-center justify-center text-[#D4AF37] shadow-inner">
-                      <a.icon size={20} />
+                <div key={i} className="group bg-[#1a0202] dark:bg-[#0a0000] p-6 shadow-[0_4px_16px_rgba(0,0,0,0.9)] flex flex-col justify-between space-y-6 cursor-pointer transition-all duration-500 relative overflow-hidden hover:-translate-y-1.5 hover:shadow-[0_12px_30px_rgba(212,175,55,0.25)] hover:bg-[#250303] dark:hover:bg-[#110102]">
+                  
+                  {/* The Royal SVG Frame */}
+                  <OrnateAttributeFrame />
+                  
+                  <div className="flex items-start justify-between relative z-20">
+                    <div className="w-10 h-10 rounded-sm border border-[#D4AF37]/50 group-hover:border-[#D4AF37] flex items-center justify-center text-[#D4AF37]/80 group-hover:text-[#D4AF37] shadow-inner transition-all duration-500">
+                      <a.icon size={20} className="group-hover:scale-110 transition-transform duration-500" />
                     </div>
-                    <span className="font-serif text-2xl text-[#D4AF37] font-bold">{a.val || 0}</span>
+                    <span className="font-serif text-3xl text-[#D4AF37]/80 group-hover:text-[#D4AF37] font-bold transition-colors duration-500 drop-shadow-[0_0_8px_rgba(212,175,55,0.4)]">{a.val || 0}</span>
                   </div>
-                  <div>
-                    <h3 className="font-serif text-lg text-[#EEEAD7] font-bold">{a.label}</h3>
-                    <p className="font-sans text-[11px] text-[#8d9685] line-clamp-2 mt-1">{a.desc}</p>
+                  
+                  <div className="relative z-20">
+                    <h3 className="font-serif text-lg text-[#EEEAD7] font-bold group-hover:text-[#FFF] transition-colors duration-500 tracking-wide">{a.label}</h3>
+                    <p className="font-sans text-[11px] text-[#8d9685] group-hover:text-[#EEEAD7] line-clamp-2 mt-1.5 transition-colors duration-500">{a.desc}</p>
                   </div>
-                  <div className="w-full bg-[#0a0000] h-1.5 rounded-full overflow-hidden border border-[#D4AF37]/30 mt-1">
-                    <div className="bg-[#D4AF37] h-full rounded-full" style={{width: Math.min(100, Math.max(10, (a.val || 0) * 10)) + "%" }}></div>
+                  
+                  <div className="w-full bg-[#0a0000] dark:bg-[#000] h-1.5 rounded-full overflow-hidden border border-[#D4AF37]/30 group-hover:border-[#D4AF37]/60 mt-1 relative z-20 transition-colors duration-500">
+                    <div className="bg-gradient-to-r from-[#947014] to-[#D4AF37] h-full rounded-full shadow-[0_0_8px_rgba(212,175,55,0.8)] transition-all duration-700 ease-out" style={{width: Math.min(100, Math.max(10, (a.val || 0) * 10)) + "%" }}></div>
                   </div>
                 </div>
               ))}
