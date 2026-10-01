@@ -168,6 +168,7 @@ const CornerFiligree = ({ className }: { className?: string }) => {
 export function Sanctum() {
   const [profile, setProfile] = useState<any>(null);
   const { theme, toggleTheme } = useTheme();
+  const [activeLedgerTab, setActiveLedgerTab] = useState<'treasury' | 'chronicle'>('treasury');
 
   useEffect(() => {
     api.get('/auth/me').then(res => setProfile(res.data)).catch(console.error);
@@ -187,7 +188,6 @@ export function Sanctum() {
   const xpNeededForNext = nextLevelXpRequired - currentLevelXpRequired;
   const progressPercent = Math.min(100, Math.max(0, (xpIntoLevel / xpNeededForNext) * 100)) || 0;
   
-  const [activeLedgerTab, setActiveLedgerTab] = useState<'treasury' | 'chronicle'>('treasury');
   return (
     <>
       {/* Main Container */}
