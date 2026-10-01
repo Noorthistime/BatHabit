@@ -165,9 +165,34 @@ const CornerFiligree = ({ className }: { className?: string }) => {
   );
 };
 
-const OrnateAttributeFrame = () => (
-  <div className="absolute inset-0 pointer-events-none z-10 text-[#D4AF37]/40 dark:text-[#D4AF37]/30 group-hover:text-[#D4AF37] transition-all duration-700">
-    {/* Base straight borders (slightly inset) */}
+const FloralHeaderDivider = () => (
+  <div className="absolute inset-0 flex items-center justify-between w-[95%] max-w-4xl mx-auto pointer-events-none text-[#D4AF37]/70 drop-shadow-[0_0_6px_rgba(212,175,55,0.4)]">
+    {/* Left Flourish */}
+    <div className="w-24 h-6">
+      <svg viewBox="0 0 96 24" fill="none" className="w-full h-full text-current">
+        <path d="M 96 12 L 24 12 C 16 12, 8 18, 12 6 C 16 -6, 28 6, 20 18 C 16 24, 4 18, 0 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        <circle cx="6" cy="12" r="1.5" fill="currentColor" />
+        <circle cx="20" cy="12" r="1" fill="currentColor" />
+      </svg>
+    </div>
+    
+    {/* Continuous Thin Connecting Line (Masked by Text) */}
+    <div className="flex-1 h-px bg-[#D4AF37]/50 mx-1"></div>
+    
+    {/* Right Flourish */}
+    <div className="w-24 h-6 transform scale-x-[-1]">
+      <svg viewBox="0 0 96 24" fill="none" className="w-full h-full text-current">
+        <path d="M 96 12 L 24 12 C 16 12, 8 18, 12 6 C 16 -6, 28 6, 20 18 C 16 24, 4 18, 0 12" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" />
+        <circle cx="6" cy="12" r="1.5" fill="currentColor" />
+        <circle cx="20" cy="12" r="1" fill="currentColor" />
+      </svg>
+    </div>
+  </div>
+);
+
+const FloralAttributeFrame = () => (
+  <div className="absolute inset-0 pointer-events-none z-10 text-[#D4AF37]/50 dark:text-[#D4AF37]/40 group-hover:text-[#D4AF37] transition-all duration-700">
+    {/* Base straight borders (subtle outer boundary) */}
     <div className="absolute inset-[3px] border border-current opacity-30 group-hover:opacity-60 transition-opacity duration-700"></div>
     
     {/* Corner Ornaments */}
@@ -177,24 +202,23 @@ const OrnateAttributeFrame = () => (
       "bottom-0 left-0 scale-y-[-1]",
       "bottom-0 right-0 scale-x-[-1] scale-y-[-1]"
     ].map((pos, i) => (
-      <div key={i} className={`absolute ${pos} w-14 h-14 overflow-hidden`}>
-        <svg viewBox="0 0 56 56" fill="none" className="w-full h-full text-current drop-shadow-[0_0_6px_currentColor]">
-          {/* Main Corner Wing/Spike */}
-          <path d="M 0 0 L 32 0 C 24 8, 36 12, 56 10 L 56 13 C 36 16, 24 10, 16 16 C 10 24, 16 36, 13 56 L 10 56 C 12 36, 8 24, 0 32 Z" fill="currentColor" />
-          {/* Inner Sharp Diamond Spike */}
-          <path d="M 6 6 L 16 6 L 6 16 Z" fill="currentColor" className="opacity-90" />
-        </svg>
-      </div>
-    ))}
-
-    {/* Center Top/Bottom Spikes */}
-    {[
-      "top-[-1px] left-1/2 -translate-x-1/2",
-      "bottom-[-1px] left-1/2 -translate-x-1/2 scale-y-[-1]"
-    ].map((pos, i) => (
-      <div key={i} className={`absolute ${pos} w-24 h-4`}>
-        <svg viewBox="0 0 96 16" fill="none" className="w-full h-full text-current drop-shadow-[0_0_6px_currentColor]">
-          <path d="M 0 0 C 24 4, 36 12, 48 16 C 60 12, 72 4, 96 0 L 72 0 L 48 8 L 24 0 Z" fill="currentColor" />
+      <div key={i} className={`absolute ${pos} w-16 h-16 overflow-hidden`}>
+        <svg viewBox="0 0 64 64" fill="none" className="w-full h-full text-current drop-shadow-[0_0_4px_currentColor]">
+          {/* Outer Corner Frame (Double Line) */}
+          <path d="M 0 48 L 0 0 L 48 0" stroke="currentColor" strokeWidth="1.5" />
+          <path d="M 5 44 L 5 5 L 44 5" stroke="currentColor" strokeWidth="1" className="opacity-60" />
+          
+          {/* Inner Floral Swoop & Spiraling Vines */}
+          <g stroke="currentColor" strokeWidth="1.5" strokeLinecap="round">
+            {/* Diagonal Stem */}
+            <path d="M 5 5 L 20 20" />
+            {/* Top Spiraling Leaf */}
+            <path d="M 20 20 C 30 15, 45 20, 40 35 C 35 30, 25 30, 20 20" />
+            {/* Bottom Spiraling Leaf */}
+            <path d="M 20 20 C 15 30, 20 45, 35 40 C 30 35, 30 25, 20 20" />
+          </g>
+          {/* Delicate Corner Teardrop */}
+          <path d="M 5 5 C 15 2, 25 2, 30 8 C 20 15, 8 15, 5 5 Z" fill="currentColor" className="opacity-90" />
         </svg>
       </div>
     ))}
@@ -366,9 +390,7 @@ export function Sanctum() {
           {/* Grimoire Attributes */}
           <section className="space-y-4 relative">
             <div className="flex flex-col items-center justify-center w-full relative py-6">
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div className="w-[90%] max-w-4xl h-px bg-gradient-to-r from-transparent via-[#D4AF37]/50 to-transparent"></div>
-              </div>
+              <FloralHeaderDivider />
               <motion.h2 
                 initial={{ opacity: 0, y: 20, scale: 0.95 }}
                 animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -390,7 +412,7 @@ export function Sanctum() {
                 <div key={i} className="group bg-[#1a0202] dark:bg-[#0a0000] p-6 shadow-[0_4px_16px_rgba(0,0,0,0.9)] flex flex-col justify-between space-y-6 cursor-pointer transition-all duration-500 relative overflow-hidden hover:-translate-y-1.5 hover:shadow-[0_12px_30px_rgba(212,175,55,0.25)] hover:bg-[#250303] dark:hover:bg-[#110102]">
                   
                   {/* The Royal SVG Frame */}
-                  <OrnateAttributeFrame />
+                  <FloralAttributeFrame />
                   
                   <div className="flex items-start justify-between relative z-20">
                     <div className="w-10 h-10 rounded-sm border border-[#D4AF37]/50 group-hover:border-[#D4AF37] flex items-center justify-center text-[#D4AF37]/80 group-hover:text-[#D4AF37] shadow-inner transition-all duration-500">
