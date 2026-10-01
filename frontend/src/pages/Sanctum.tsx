@@ -553,9 +553,9 @@ export function Sanctum() {
                     </div>
                     
                     {/* Centered Text */}
-                    <div className="flex-grow flex flex-col items-center justify-center text-center mt-6 mb-4 px-2">
+                    <div className="flex-grow flex flex-col items-center justify-center text-center mt-6 mb-4 px-1">
                       <h3 className="font-serif text-lg text-[#EEEAD7] font-bold group-hover:text-[#FFF] transition-colors duration-150 tracking-wide">{a.label}</h3>
-                      <p className="font-sans text-[11px] text-[#8d9685] group-hover:text-[#EEEAD7] line-clamp-2 mt-1.5 transition-colors duration-150">{a.desc}</p>
+                      <p className="font-sans text-[10px] whitespace-nowrap text-[#8d9685] group-hover:text-[#EEEAD7] mt-1.5 transition-colors duration-150">{a.desc}</p>
                     </div>
                     
                     {/* Raised & Narrowed Progress Bar */}
