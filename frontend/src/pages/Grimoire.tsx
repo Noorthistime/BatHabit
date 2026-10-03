@@ -206,6 +206,58 @@ const SubtleGrimoireFrame = ({ delay = 0 }: { delay?: number }) => (
   </div>
 );
 
+const EvolutionGrimoireFrame = ({ borderColor, delay = 0, isCurrent = false }: { borderColor: string, delay?: number, isCurrent?: boolean }) => (
+  <div className="absolute inset-0 pointer-events-none z-0">
+    {/* Outer border straight edges (Bevel size: 12px) */}
+    <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1, delay }} className="absolute top-0 h-[1.5px] origin-center" style={{ left: 12, right: 12, backgroundColor: borderColor }} />
+    <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1, delay }} className="absolute bottom-0 h-[1.5px] origin-center" style={{ left: 12, right: 12, backgroundColor: borderColor }} />
+    <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 1, delay }} className="absolute left-0 w-[1.5px] origin-center" style={{ top: 12, bottom: 12, backgroundColor: borderColor }} />
+    <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 1, delay }} className="absolute right-0 w-[1.5px] origin-center" style={{ top: 12, bottom: 12, backgroundColor: borderColor }} />
+    
+    {/* Outer border bevels */}
+    <svg className="absolute top-0 left-0 w-[12px] h-[12px]" style={{ color: borderColor }}><motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: delay + 0.8 }} x1="0" y1="12" x2="12" y2="0" stroke="currentColor" strokeWidth="2.5" /></svg>
+    <svg className="absolute top-0 right-0 w-[12px] h-[12px]" style={{ color: borderColor }}><motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: delay + 0.8 }} x1="0" y1="0" x2="12" y2="12" stroke="currentColor" strokeWidth="2.5" /></svg>
+    <svg className="absolute bottom-0 left-0 w-[12px] h-[12px]" style={{ color: borderColor }}><motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: delay + 0.8 }} x1="0" y1="0" x2="12" y2="12" stroke="currentColor" strokeWidth="2.5" /></svg>
+    <svg className="absolute bottom-0 right-0 w-[12px] h-[12px]" style={{ color: borderColor }}><motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: delay + 0.8 }} x1="0" y1="12" x2="12" y2="0" stroke="currentColor" strokeWidth="2.5" /></svg>
+
+    {/* Horizontal Sweeping Flourishes */}
+    <div className="absolute top-[2px] left-8 right-8 h-2 flex justify-between px-4">
+      <motion.svg viewBox="0 0 100 8" fill="none" className="h-full w-24" style={{ color: borderColor }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: delay + 1.2 }}>
+        <path d="M 0 0 C 20 0 30 6 50 6 C 70 6 80 2 100 2" stroke="currentColor" strokeWidth="1" />
+        <circle cx="10" cy="0" r="1.5" fill="currentColor" />
+        <circle cx="50" cy="6" r="1.5" fill="currentColor" />
+      </motion.svg>
+      <motion.svg viewBox="0 0 100 8" fill="none" className="h-full w-24 scale-x-[-1]" style={{ color: borderColor }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: delay + 1.2 }}>
+        <path d="M 0 0 C 20 0 30 6 50 6 C 70 6 80 2 100 2" stroke="currentColor" strokeWidth="1" />
+        <circle cx="10" cy="0" r="1.5" fill="currentColor" />
+        <circle cx="50" cy="6" r="1.5" fill="currentColor" />
+      </motion.svg>
+    </div>
+    
+    <div className="absolute bottom-[2px] left-8 right-8 h-2 flex justify-between px-4 scale-y-[-1]">
+      <motion.svg viewBox="0 0 100 8" fill="none" className="h-full w-24" style={{ color: borderColor }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: delay + 1.2 }}>
+        <path d="M 0 0 C 20 0 30 6 50 6 C 70 6 80 2 100 2" stroke="currentColor" strokeWidth="1" />
+        <circle cx="10" cy="0" r="1.5" fill="currentColor" />
+        <circle cx="50" cy="6" r="1.5" fill="currentColor" />
+      </motion.svg>
+      <motion.svg viewBox="0 0 100 8" fill="none" className="h-full w-24 scale-x-[-1]" style={{ color: borderColor }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: delay + 1.2 }}>
+        <path d="M 0 0 C 20 0 30 6 50 6 C 70 6 80 2 100 2" stroke="currentColor" strokeWidth="1" />
+        <circle cx="10" cy="0" r="1.5" fill="currentColor" />
+        <circle cx="50" cy="6" r="1.5" fill="currentColor" />
+      </motion.svg>
+    </div>
+
+    {/* Current Rank Special Effect */}
+    {isCurrent && (
+      <motion.div 
+        className="absolute inset-0"
+        animate={{ boxShadow: ['inset 0 0 0px rgba(212,175,55,0)', 'inset 0 0 20px rgba(212,175,55,0.2)', 'inset 0 0 0px rgba(212,175,55,0)'] }}
+        transition={{ duration: 2, repeat: Infinity }}
+      />
+    )}
+  </div>
+);
+
 export function Grimoire() {
   const [activeTab, setActiveTab] = useState<'attributes' | 'evolution' | 'achievements'>('attributes');
   const currentXP = 4820;
@@ -465,7 +517,7 @@ export function Grimoire() {
                   
                   // Progressive Styling Variables
                   let bgStyle = '';
-                  let borderStyle = '';
+                  let borderColor = '';
                   let iconBg = '';
                   let iconColor = '';
                   let iconBorder = '';
@@ -475,7 +527,7 @@ export function Grimoire() {
                     // Rank I - Basic
                     animationProps = { animate: { opacity: [0.8, 1, 0.8] }, transition: { duration: 4, repeat: Infinity, ease: "easeInOut" } };
                     bgStyle = 'rgba(20,5,5,0.8)';
-                    borderStyle = '1px solid rgba(212,175,55,0.15)';
+                    borderColor = 'rgba(212,175,55,0.15)';
                     iconBg = '#2A0505';
                     iconColor = '#D4AF37';
                     iconBorder = '1px solid rgba(212,175,55,0.3)';
@@ -483,7 +535,7 @@ export function Grimoire() {
                     // Rank II - Richer
                     animationProps = { animate: { boxShadow: ['0 0 0px rgba(109,8,8,0)', '0 0 10px rgba(109,8,8,0.2)', '0 0 0px rgba(109,8,8,0)'] }, transition: { duration: 3, repeat: Infinity, ease: "easeInOut" } };
                     bgStyle = 'rgba(35,6,8,0.85)';
-                    borderStyle = '1px solid rgba(212,175,55,0.35)';
+                    borderColor = 'rgba(212,175,55,0.35)';
                     iconBg = '#4A0A0A';
                     iconColor = '#F5D77F';
                     iconBorder = '1px solid rgba(212,175,55,0.6)';
@@ -491,7 +543,7 @@ export function Grimoire() {
                     // Rank III - Bright & Imposing
                     animationProps = { animate: { boxShadow: ['0 0 5px rgba(212,175,55,0.1)', '0 0 20px rgba(212,175,55,0.3)', '0 0 5px rgba(212,175,55,0.1)'] }, transition: { duration: 2, repeat: Infinity, ease: "easeInOut" } };
                     bgStyle = 'rgba(50,8,12,0.9)';
-                    borderStyle = '1px solid rgba(212,175,55,0.6)';
+                    borderColor = 'rgba(212,175,55,0.6)';
                     iconBg = '#6D0808';
                     iconColor = '#F5D77F';
                     iconBorder = '1px solid #D4AF37';
@@ -507,12 +559,12 @@ export function Grimoire() {
                     };
                     glowEffect = (
                       <>
-                        <motion.div className="absolute inset-0 rounded-lg bg-gradient-to-t from-[#6D0808]/40 to-transparent mix-blend-overlay" animate={{ opacity: [0, 1, 0] }} transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }} />
-                        <motion.div className="absolute inset-0 rounded-lg border border-[#D4AF37]/60" animate={{ opacity: [0.3, 1, 0.3] }} transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }} />
+                        <motion.div className="absolute inset-0 bg-gradient-to-t from-[#6D0808]/40 to-transparent mix-blend-overlay" animate={{ opacity: [0, 1, 0] }} transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }} />
+                        <motion.div className="absolute inset-0 border border-[#D4AF37]/60" animate={{ opacity: [0.3, 1, 0.3] }} transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }} />
                       </>
                     );
                     bgStyle = 'rgba(35,6,8,0.95)';
-                    borderStyle = '1px solid rgba(212,175,55,0.8)';
+                    borderColor = 'rgba(212,175,55,0.8)';
                     iconBg = 'linear-gradient(135deg, #F5D77F 0%, #D4AF37 100%)';
                     iconColor = '#0c0608';
                     iconBorder = '2px solid #FFF';
@@ -521,7 +573,7 @@ export function Grimoire() {
                     // Rank V - Locked
                     animationProps = { animate: { opacity: [0.3, 0.5, 0.3] }, transition: { duration: 5, repeat: Infinity, ease: "easeInOut" } };
                     bgStyle = 'rgba(15,2,4,0.3)';
-                    borderStyle = '1px solid rgba(212,175,55,0.05)';
+                    borderColor = 'rgba(212,175,55,0.05)';
                     iconBg = '#0f0204';
                     iconColor = '#4a3c20';
                     iconBorder = '1px solid rgba(212,175,55,0.1)';
@@ -537,11 +589,13 @@ export function Grimoire() {
                     >
                       <motion.div
                         {...animationProps}
-                        className={`w-full h-full px-3 py-3 sm:px-4 sm:py-3.5 flex items-center gap-4 relative rounded-lg overflow-hidden ${stage.current ? 'ring-1 ring-[#D4AF37]' : ''}`}
-                        style={{ background: bgStyle, border: borderStyle }}
+                        className="w-full h-full px-3 py-3 sm:px-4 sm:py-3.5 flex items-center gap-4 relative overflow-hidden group"
+                        style={{ background: bgStyle, clipPath: 'polygon(12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0 calc(100% - 12px), 0 12px)' }}
                       >
+                        <EvolutionGrimoireFrame borderColor={borderColor} delay={i * 0.15} isCurrent={stage.current} />
                         {glowEffect}
                         <div
+
                           className="w-10 h-10 rounded-full flex items-center justify-center font-mono text-sm font-bold shrink-0 relative z-10"
                           style={{
                             background: iconBg,
