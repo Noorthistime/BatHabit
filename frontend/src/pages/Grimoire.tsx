@@ -69,36 +69,46 @@ const RARITY_COLORS: Record<string, { text: string, border: string, bg: string, 
   },
 };
 
-const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: string, isEarned: boolean }) => {
+const AchievementFrame = ({ rarity, color, isEarned, isActive = false }: { rarity: string, color: string, isEarned: boolean, isActive?: boolean }) => {
   if (!isEarned) return <div className="absolute inset-0 border border-[#333] opacity-50 z-0" />;
 
   if (rarity === 'Common') {
     return (
-      <div className="absolute inset-0 pointer-events-none z-0">
+      <motion.div className="absolute inset-0 pointer-events-none z-0"
+        animate={{ opacity: isActive ? [1, 0.5, 1] : 1 }}
+        transition={{ duration: 1.5, repeat: isActive ? Infinity : 0 }}
+      >
         <div className="absolute inset-0 border" style={{ borderColor: color, opacity: 0.6 }} />
-        <div className="absolute top-0 left-0 w-2 h-2 border-r border-b" style={{ borderColor: color }} />
-        <div className="absolute top-0 right-0 w-2 h-2 border-l border-b" style={{ borderColor: color }} />
-        <div className="absolute bottom-0 left-0 w-2 h-2 border-r border-t" style={{ borderColor: color }} />
-        <div className="absolute bottom-0 right-0 w-2 h-2 border-l border-t" style={{ borderColor: color }} />
-      </div>
+        <motion.div className="absolute top-0 left-0 w-2 h-2 border-r border-b" style={{ borderColor: color }} animate={{ scale: isActive ? [1, 1.2, 1] : 1 }} transition={{ repeat: Infinity, duration: 1.5 }} />
+        <motion.div className="absolute top-0 right-0 w-2 h-2 border-l border-b" style={{ borderColor: color }} animate={{ scale: isActive ? [1, 1.2, 1] : 1 }} transition={{ repeat: Infinity, duration: 1.5 }} />
+        <motion.div className="absolute bottom-0 left-0 w-2 h-2 border-r border-t" style={{ borderColor: color }} animate={{ scale: isActive ? [1, 1.2, 1] : 1 }} transition={{ repeat: Infinity, duration: 1.5 }} />
+        <motion.div className="absolute bottom-0 right-0 w-2 h-2 border-l border-t" style={{ borderColor: color }} animate={{ scale: isActive ? [1, 1.2, 1] : 1 }} transition={{ repeat: Infinity, duration: 1.5 }} />
+      </motion.div>
     );
   }
 
   if (rarity === 'Rare') {
     return (
-      <div className="absolute inset-0 pointer-events-none z-0">
+      <motion.div className="absolute inset-0 pointer-events-none z-0"
+        animate={{ opacity: isActive ? [1, 0.7, 1] : 1 }}
+        transition={{ duration: 1.5, repeat: isActive ? Infinity : 0 }}
+      >
         <div className="absolute inset-0 border" style={{ borderColor: color, opacity: 0.8 }} />
-        <div className="absolute inset-[3px] border border-dashed" style={{ borderColor: color, opacity: 0.3 }} />
+        <motion.div className="absolute inset-[3px] border border-dashed" style={{ borderColor: color, opacity: 0.3 }} 
+           animate={{ rotate: isActive ? 180 : 0 }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+        />
         {[
           'top-0 left-0', 'top-0 right-0 rotate-90',
           'bottom-0 right-0 rotate-180', 'bottom-0 left-0 -rotate-90'
         ].map((pos, i) => (
-          <svg key={i} className={`absolute ${pos} w-4 h-4`} viewBox="0 0 16 16" fill="none">
+          <motion.svg key={i} className={`absolute ${pos} w-4 h-4`} viewBox="0 0 16 16" fill="none"
+            animate={{ scale: isActive ? [1, 1.1, 1] : 1 }} transition={{ repeat: Infinity, duration: 1.5 }}
+          >
              <path d="M0 0h16v1H1v15H0V0z" fill={color} />
              <path d="M3 3h4v1H4v3H3V3z" fill={color} />
-          </svg>
+          </motion.svg>
         ))}
-      </div>
+      </motion.div>
     );
   }
 
@@ -106,7 +116,9 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
     return (
       <div className="absolute inset-0 pointer-events-none z-0">
         <div className="absolute inset-0 border-[1px]" style={{ borderColor: color, opacity: 0.9 }} />
-        <div className="absolute inset-[3px] border" style={{ borderColor: color, opacity: 0.4 }} />
+        <motion.div className="absolute inset-[3px] border" style={{ borderColor: color, opacity: 0.4 }} 
+           animate={{ opacity: isActive ? [0.4, 0.8, 0.4] : 0.4 }} transition={{ duration: 1.5, repeat: Infinity }}
+        />
         {[
           'top-0 left-0', 'top-0 right-0 rotate-90',
           'bottom-0 right-0 rotate-180', 'bottom-0 left-0 -rotate-90'
@@ -114,8 +126,14 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
           <svg key={i} className={`absolute ${pos} w-8 h-8`} viewBox="0 0 32 32" fill="none">
              <path d="M0 0h32v2H2v30H0V0z" fill={color} />
              <path d="M0 0C10 0 16 6 16 16C6 16 0 10 0 0Z" fill={color} fillOpacity="0.2" />
-             <path d="M4 4C12 4 16 8 16 16" stroke={color} strokeWidth="1.5" />
-             <circle cx="16" cy="16" r="2" fill={color} />
+             <motion.path d="M4 4C12 4 16 8 16 16" stroke={color} strokeWidth="1.5"
+                initial={{ pathLength: 1 }}
+                animate={{ pathLength: isActive ? [0, 1] : 1 }}
+                transition={{ duration: 1.5, ease: "easeInOut", repeat: isActive ? Infinity : 0, repeatType: "reverse" }}
+             />
+             <motion.circle cx="16" cy="16" r="2" fill={color} 
+                animate={{ scale: isActive ? [1, 1.5, 1] : 1 }} transition={{ duration: 1.5, repeat: Infinity }}
+             />
              <path d="M24 2L2 24" stroke={color} strokeWidth="1" opacity="0.5" />
           </svg>
         ))}
@@ -160,19 +178,33 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
         ].map((pos, i) => (
           <svg key={i} className={`absolute ${pos} w-10 h-10 drop-shadow-[0_0_3px_${color}]`} viewBox="0 0 40 40" fill="none">
              <path d="M2 2 L38 2 L2 38 Z" fill="none" stroke={color} strokeWidth="1" opacity="0.4" />
-             <path d="M6 6 C18 10 24 16 24 24" stroke={color} strokeWidth="1.5" />
-             <path d="M12 12 C20 15 23 18 23 23" stroke={color} strokeWidth="1" />
-             <rect x="23" y="23" width="4" height="4" fill={color} transform="rotate(45 25 25)" />
+             <motion.path d="M6 6 C18 10 24 16 24 24" stroke={color} strokeWidth="1.5" 
+                initial={{ pathLength: 1 }}
+                animate={{ pathLength: isActive ? [0, 1] : 1 }}
+                transition={{ duration: 1.5, ease: "easeInOut", repeat: isActive ? Infinity : 0, repeatType: "reverse" }}
+             />
+             <motion.path d="M12 12 C20 15 23 18 23 23" stroke={color} strokeWidth="1" 
+                initial={{ pathLength: 1 }}
+                animate={{ pathLength: isActive ? [0, 1] : 1 }}
+                transition={{ duration: 1.5, delay: 0.2, ease: "easeInOut", repeat: isActive ? Infinity : 0, repeatType: "reverse" }}
+             />
+             <motion.rect x="23" y="23" width="4" height="4" fill={color} transform="rotate(45 25 25)" 
+                animate={{ rotate: isActive ? [45, 135, 45] : 45 }} transition={{ duration: 3, repeat: Infinity }}
+             />
              <path d="M35 2 L2 35" stroke={color} strokeWidth="1" opacity="0.7" />
              <circle cx="6" cy="6" r="1.5" fill={color} />
-             <path d="M18 2 L24 8 M2 18 L8 24" stroke={color} strokeWidth="0.5" opacity="0.5" />
+             <motion.path d="M18 2 L24 8 M2 18 L8 24" stroke={color} strokeWidth="0.5" opacity="0.5" 
+                initial={{ pathLength: 1 }}
+                animate={{ pathLength: isActive ? [0, 1] : 1 }}
+                transition={{ duration: 1, repeat: isActive ? Infinity : 0 }}
+             />
           </svg>
         ))}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-10 h-3 flex justify-center">
-          <div className="w-2.5 h-2.5 rotate-45 border" style={{ borderColor: color, backgroundColor: '#000', boxShadow: `0 0 8px ${color}` }} />
+          <motion.div className="w-2.5 h-2.5 rotate-45 border" style={{ borderColor: color, backgroundColor: '#000', boxShadow: `0 0 8px ${color}` }} animate={{ rotate: isActive ? [45, 135, 45] : 45 }} transition={{ duration: 2, repeat: Infinity }} />
         </div>
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-10 h-3 flex justify-center items-end">
-          <div className="w-2.5 h-2.5 rotate-45 border translate-y-1.5" style={{ borderColor: color, backgroundColor: '#000', boxShadow: `0 0 8px ${color}` }} />
+          <motion.div className="w-2.5 h-2.5 rotate-45 border translate-y-1.5" style={{ borderColor: color, backgroundColor: '#000', boxShadow: `0 0 8px ${color}` }} animate={{ rotate: isActive ? [45, 135, 45] : 45 }} transition={{ duration: 2, repeat: Infinity }} />
         </div>
       </div>
     );
@@ -183,14 +215,20 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
     
     // Generative Paths for reusable Jewel and Chain symbols
     const Jewel = ({ x, y, scale = 1, showHalo = false }: { x: number, y: number, scale?: number, showHalo?: boolean }) => (
-      <g transform={`translate(${x}, ${y}) scale(${scale})`}>
+      <motion.g transform={`translate(${x}, ${y}) scale(${scale})`}
+        animate={{ scale: isActive ? [scale, scale * 1.05, scale] : scale }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+      >
         {showHalo && (
-          <g stroke={color} strokeWidth="0.2" fill="none" opacity="0.5">
+          <motion.g stroke={color} strokeWidth="0.2" fill="none" opacity="0.5"
+            animate={{ rotate: isActive ? 360 : 0 }}
+            transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+          >
             <circle cx="0" cy="0" r="14" strokeDasharray="1 3" />
             <circle cx="0" cy="0" r="18" strokeWidth="0.4" />
             <circle cx="0" cy="0" r="22" strokeDasharray="4 4" />
             <path d="M-24 0 L24 0 M0 -24 L0 24 M-17 -17 L17 17 M-17 17 L17 -17" strokeWidth="0.2" opacity="0.5" />
-          </g>
+          </motion.g>
         )}
         
         {/* Glow behind the gem */}
@@ -225,21 +263,37 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
         {/* Sharp Specular Highlight (The gleaming glass effect) */}
         <polygon points="-2,-4 0,-4 1,-2 -1,-2" fill="#ffffff" opacity="0.7" />
         <polygon points="-1,-2 1,-2 1,-1 -1,-1" fill="#ffffff" opacity="0.3" />
-      </g>
+      </motion.g>
     );
     
     // Simulates realistic interlocking chain links along any SVG path
     const ChainPath = ({ d }: { d: string }) => (
       <g>
         {/* Side link (connecting bead) */}
-        <path d={d} fill="none" stroke={color} strokeWidth="3" strokeDasharray="0 14" strokeLinecap="round" strokeDashoffset="-11" />
-        <path d={d} fill="none" stroke="#222" strokeWidth="1" strokeDasharray="0 14" strokeLinecap="round" strokeDashoffset="-11" />
+        <motion.path d={d} fill="none" stroke={color} strokeWidth="3" strokeDasharray="0 14" strokeLinecap="round"
+           initial={{ strokeDashoffset: -11 }}
+           animate={{ strokeDashoffset: isActive ? [-11, -25] : -11 }}
+           transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+        />
+        <motion.path d={d} fill="none" stroke="#222" strokeWidth="1" strokeDasharray="0 14" strokeLinecap="round"
+           initial={{ strokeDashoffset: -11 }}
+           animate={{ strokeDashoffset: isActive ? [-11, -25] : -11 }}
+           transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+        />
         
         {/* Main oval link outline */}
-        <path d={d} fill="none" stroke={color} strokeWidth="3" strokeDasharray="8 6" />
+        <motion.path d={d} fill="none" stroke={color} strokeWidth="3" strokeDasharray="8 6"
+           initial={{ strokeDashoffset: 0 }}
+           animate={{ strokeDashoffset: isActive ? [0, -14] : 0 }}
+           transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+        />
         
         {/* Main oval link hole (simulates shadow/transparency) */}
-        <path d={d} fill="none" stroke="#220505" strokeWidth="1.5" strokeDasharray="6 8" strokeDashoffset="-1" />
+        <motion.path d={d} fill="none" stroke="#220505" strokeWidth="1.5" strokeDasharray="6 8"
+           initial={{ strokeDashoffset: -1 }}
+           animate={{ strokeDashoffset: isActive ? [-1, -15] : -1 }}
+           transition={{ duration: 1.5, repeat: Infinity, ease: "linear" }}
+        />
       </g>
     );
     const Leaf = ({ x, y, rot, scale = 1 }: { x: number, y: number, rot: number, scale?: number }) => null; // Removed leaves for chain/jewel aesthetic
@@ -600,6 +654,7 @@ const EvolutionGrimoireFrame = ({ borderColor, delay = 0, isCurrent = false }: {
 
 export function Grimoire() {
   const [activeTab, setActiveTab] = useState<'attributes' | 'evolution' | 'achievements'>('attributes');
+  const [activeAchievement, setActiveAchievement] = useState<string | null>(null);
   const currentXP = 4820;
   const nextXP = 7000;
   const progress = ((currentXP - 3500) / (7000 - 3500)) * 100;
@@ -1008,14 +1063,15 @@ export function Grimoire() {
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.5, delay: i * 0.08 }}
                       whileHover={{ scale: 1.02, transition: { duration: 0.2, delay: 0 } }}
-                      className={`relative p-2 sm:p-2.5 flex flex-col h-full rounded-none overflow-hidden group ${!a.earned ? 'opacity-40 grayscale' : ''}`}
+                      onClick={() => setActiveAchievement(activeAchievement === a.title ? null : a.title)}
+                      className={`relative p-2 sm:p-2.5 flex flex-col h-full rounded-none overflow-hidden group cursor-pointer ${!a.earned ? 'opacity-40 grayscale' : ''} ${activeAchievement === a.title ? 'z-20 scale-[1.03] ring-1 ring-[#D4AF37] shadow-[0_0_25px_rgba(212,175,55,0.4)]' : ''}`}
                       style={{ 
                         backgroundColor: '#0a0a0a',
                         backgroundImage: `radial-gradient(ellipse at center, ${rStyle.bg} 0%, transparent 100%)`,
                         boxShadow: a.earned ? `inset 0 0 15px ${rStyle.bg}, 0 0 10px ${rStyle.glow || 'rgba(0,0,0,0.5)'}` : '0 0 10px rgba(0,0,0,0.5)'
                       }}
                     >
-                      <AchievementFrame rarity={a.rarity} color={rStyle.frame} isEarned={a.earned} />
+                      <AchievementFrame rarity={a.rarity} color={rStyle.frame} isEarned={a.earned} isActive={activeAchievement === a.title} />
                       
                       {/* Golden Sweep Hover Animation */}
                       <motion.div 
