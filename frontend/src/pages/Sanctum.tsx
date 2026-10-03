@@ -411,21 +411,16 @@ const VaultFrame = () => (
 const MajesticEdgeOrnament = ({ className }: { className?: string }) => (
   <div className={`absolute w-[120px] h-[16px] text-[#D4AF37] pointer-events-none ${className}`}>
      <motion.svg viewBox="0 0 120 16" fill="none" className="w-full h-full drop-shadow-[0_0_6px_rgba(212,175,55,0.6)]">
-       {/* Diamond centered around y=6 (between the 4px and 8px tracks) */}
-       <motion.path d="M 60 0 L 68 6 L 60 12 L 52 6 Z" fill="currentColor"
+       {/* Solid dark masks so lines don't show through the diamonds */}
+       <motion.path d="M 60 2 L 66 6 L 60 10 L 54 6 Z M 44 3 L 48 6 L 44 9 L 40 6 Z M 76 3 L 80 6 L 76 9 L 72 6 Z" fill="#0f0101" />
+         
+       {/* Main Gold Diamonds */}
+       <motion.path d="M 60 2 L 66 6 L 60 10 L 54 6 Z" fill="currentColor"
          initial={{ scale: 0 }} whileInView={{ scale: 1, transition: { duration: 0.5, delay: 1.2 } }} viewport={{ once: true }} />
-       <motion.path d="M 60 3 L 64 6 L 60 9 L 56 6 Z" fill="#0f0101"
+       <motion.path d="M 44 3 L 48 6 L 44 9 L 40 6 Z" fill="currentColor"
+         initial={{ scale: 0 }} whileInView={{ scale: 1, transition: { duration: 0.5, delay: 1.3 } }} viewport={{ once: true }} />
+       <motion.path d="M 76 3 L 80 6 L 76 9 L 72 6 Z" fill="currentColor"
          initial={{ scale: 0 }} whileInView={{ scale: 1, transition: { duration: 0.5, delay: 1.4 } }} viewport={{ once: true }} />
-         
-       {/* Small flanking geometric bracket lines around the tracks */}
-       <motion.path d="M 44 2 L 48 2 L 48 10 L 44 10" stroke="currentColor" strokeWidth="1"
-         initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 0.5, delay: 1.5 } }} viewport={{ once: true }} />
-       <motion.path d="M 76 2 L 72 2 L 72 10 L 76 10" stroke="currentColor" strokeWidth="1"
-         initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 0.5, delay: 1.5 } }} viewport={{ once: true }} />
-         
-       {/* Subtle dots vertically centered at y=6 */}
-       <motion.rect x="38" y="5.25" width="1.5" height="1.5" fill="currentColor" initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition: { delay: 1.6 } }} viewport={{ once: true }} />
-       <motion.rect x="80.5" y="5.25" width="1.5" height="1.5" fill="currentColor" initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition: { delay: 1.6 } }} viewport={{ once: true }} />
      </motion.svg>
   </div>
 );
