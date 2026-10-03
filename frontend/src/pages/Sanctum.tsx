@@ -329,6 +329,30 @@ const PrestigeAttributeFrame = ({ delay = 1.4 }: { delay?: number }) => (
   </div>
 );
 
+const EdgeOrnament = ({ className }: { className?: string }) => (
+  <div className={`absolute w-32 h-6 text-[#D4AF37] pointer-events-none ${className}`}>
+     <svg viewBox="0 0 128 24" fill="none" className="w-full h-full drop-shadow-[0_0_4px_rgba(212,175,55,0.4)]">
+       {/* Upper stepped lines */}
+       <path d="M 32 12 L 40 4 L 88 4 L 96 12" stroke="currentColor" strokeWidth="1.5" />
+       <path d="M 38 12 L 44 8 L 84 8 L 90 12" stroke="currentColor" strokeWidth="0.5" className="opacity-70" />
+       
+       {/* Lower stepped lines */}
+       <path d="M 32 12 L 40 20 L 88 20 L 96 12" stroke="currentColor" strokeWidth="1.5" />
+       <path d="M 38 12 L 44 16 L 84 16 L 90 12" stroke="currentColor" strokeWidth="0.5" className="opacity-70" />
+       
+       {/* Center Diamond that the spine pierces */}
+       <path d="M 56 12 L 64 4 L 72 12 L 64 20 Z" fill="#1a0202" stroke="currentColor" strokeWidth="1.5" />
+       <path d="M 60 12 L 64 8 L 68 12 L 64 16 Z" fill="currentColor" />
+       
+       {/* Outer dots on the spine */}
+       <circle cx="20" cy="12" r="2" fill="#1a0202" stroke="currentColor" strokeWidth="1" />
+       <circle cx="108" cy="12" r="2" fill="#1a0202" stroke="currentColor" strokeWidth="1" />
+       <circle cx="20" cy="12" r="0.5" fill="currentColor" />
+       <circle cx="108" cy="12" r="0.5" fill="currentColor" />
+     </svg>
+  </div>
+);
+
 const VaultFrame = () => (
   <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
     {/* Straight edge borders (inset from the absolute edge) */}
@@ -357,6 +381,12 @@ const VaultFrame = () => (
         </svg>
       </div>
     ))}
+    
+    {/* Center Edge Ornaments (Aligned to the inset-2 border which is 8px) */}
+    <EdgeOrnament className="top-[8px] left-1/2 -translate-x-1/2 -translate-y-1/2" />
+    <EdgeOrnament className="bottom-[8px] left-1/2 -translate-x-1/2 translate-y-1/2 scale-y-[-1]" />
+    <EdgeOrnament className="left-[8px] top-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-90" />
+    <EdgeOrnament className="right-[8px] top-1/2 translate-x-1/2 -translate-y-1/2 rotate-90" />
   </div>
 );
 
@@ -387,6 +417,12 @@ const CodexMasterFrame = () => (
         </svg>
       </div>
     ))}
+
+    {/* Center Edge Ornaments (Aligned to the inset-3 border which is 12px) */}
+    <EdgeOrnament className="top-[12px] left-1/2 -translate-x-1/2 -translate-y-1/2" />
+    <EdgeOrnament className="bottom-[12px] left-1/2 -translate-x-1/2 translate-y-1/2 scale-y-[-1]" />
+    <EdgeOrnament className="left-[12px] top-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-90" />
+    <EdgeOrnament className="right-[12px] top-1/2 translate-x-1/2 -translate-y-1/2 rotate-90" />
   </div>
 );
 
