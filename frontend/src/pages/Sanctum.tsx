@@ -409,79 +409,88 @@ const VaultFrame = () => (
 );
 
 const MajesticEdgeOrnament = ({ className }: { className?: string }) => (
-  <div className={`absolute w-32 h-8 text-[#D4AF37] pointer-events-none ${className}`}>
-     <motion.svg viewBox="0 0 128 32" fill="none" className="w-full h-full drop-shadow-[0_0_6px_rgba(212,175,55,0.6)]">
-       {/* Majestic Center Motif (Fleur-de-lis/Crown hybrid) - made thinner */}
-       <motion.path d="M 64 2 C 60 10 52 14 64 24 C 76 14 68 10 64 2 Z" fill="currentColor" opacity="0.9"
-         initial={{ scale: 0, opacity: 0 }} whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.8, delay: 1.2 } }} viewport={{ once: true }} />
-       <motion.path d="M 64 26 C 58 26 56 30 64 32 C 72 30 70 26 64 26 Z" fill="currentColor"
-         initial={{ scale: 0, opacity: 0 }} whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.5, delay: 1.5 } }} viewport={{ once: true }} />
-       {/* More majestic vines and swirls for the edges */}
-       <motion.path d="M 58 12 C 54 8 50 18 58 20 C 60 18 60 14 58 12 Z" fill="currentColor"
-         initial={{ scale: 0, opacity: 0 }} whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.5, delay: 1.4 } }} viewport={{ once: true }} />
-       <motion.path d="M 70 12 C 74 8 78 18 70 20 C 68 18 68 14 70 12 Z" fill="currentColor"
-         initial={{ scale: 0, opacity: 0 }} whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.5, delay: 1.4 } }} viewport={{ once: true }} />
-
-       {/* Left sweeping vines - tight to the edge */}
-       <motion.path d="M 54 16 Q 40 24 24 16 T 0 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"
-         initial={{ pathLength: 0, opacity: 0 }} whileInView={{ pathLength: 1, opacity: 1, transition: { duration: 1.5, ease: "easeOut", delay: 0.2 } }} viewport={{ once: true }} />
-       <motion.path d="M 44 18 Q 38 28 24 20" stroke="currentColor" strokeWidth="1" strokeLinecap="round"
-         initial={{ pathLength: 0, opacity: 0 }} whileInView={{ pathLength: 1, opacity: 1, transition: { duration: 1.2, ease: "easeOut", delay: 0.5 } }} viewport={{ once: true }} />
-       
-       {/* Right sweeping vines */}
-       <motion.path d="M 74 16 Q 88 24 104 16 T 128 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"
-         initial={{ pathLength: 0, opacity: 0 }} whileInView={{ pathLength: 1, opacity: 1, transition: { duration: 1.5, ease: "easeOut", delay: 0.2 } }} viewport={{ once: true }} />
-       <motion.path d="M 84 18 Q 90 28 104 20" stroke="currentColor" strokeWidth="1" strokeLinecap="round"
-         initial={{ pathLength: 0, opacity: 0 }} whileInView={{ pathLength: 1, opacity: 1, transition: { duration: 1.2, ease: "easeOut", delay: 0.5 } }} viewport={{ once: true }} />
+  <div className={`absolute w-[160px] h-[32px] text-[#D4AF37] pointer-events-none ${className}`}>
+     <motion.svg viewBox="0 0 160 32" fill="none" className="w-full h-full drop-shadow-[0_0_6px_rgba(212,175,55,0.6)]">
+       {/* Diamond Center Motif */}
+       <motion.path d="M 80 0 L 88 12 L 80 24 L 72 12 Z" fill="currentColor" opacity="0.9"
+         initial={{ scale: 0 }} whileInView={{ scale: 1, transition: { duration: 0.5, delay: 1.2 } }} viewport={{ once: true }} />
+       <motion.path d="M 80 4 L 84 12 L 80 20 L 76 12 Z" fill="#1a0202"
+         initial={{ scale: 0 }} whileInView={{ scale: 1, transition: { duration: 0.5, delay: 1.4 } }} viewport={{ once: true }} />
+         
+       {/* Sword blades pointing outward from the center */}
+       <motion.path d="M 72 12 L 40 12 M 88 12 L 120 12" stroke="currentColor" strokeWidth="1.5"
+         initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 1, delay: 0.5 } }} viewport={{ once: true }} />
+       {/* Chevron/Flower accents on the blades */}
+       <motion.path d="M 40 12 L 48 8 L 48 16 Z M 120 12 L 112 8 L 112 16 Z" fill="currentColor"
+         initial={{ scale: 0, opacity: 0 }} whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.5, delay: 1.2 } }} viewport={{ once: true }} />
+         
+       {/* Geometric Floral leaves */}
+       <motion.path d="M 56 12 L 60 18 L 64 12 M 104 12 L 100 18 L 96 12" stroke="currentColor" strokeWidth="1"
+         initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 0.5, delay: 1.4 } }} viewport={{ once: true }} />
+         
+       {/* Decorative tracks overlaying the frame */}
+       <motion.path d="M 52 4 L 108 4 M 56 8 L 104 8" stroke="currentColor" strokeWidth="0.5"
+         initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 0.5, delay: 0.8 } }} viewport={{ once: true }} />
      </motion.svg>
   </div>
 );
 
 const CodexMajesticFrame = () => (
   <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
-    {/* Outer Lines (4px inset, stopping 64px from corners) */}
-    <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut" }} className="absolute top-[4px] left-[64px] right-[64px] h-[1.5px] bg-[#D4AF37]/60 shadow-[0_0_8px_rgba(212,175,55,0.4)] origin-center"></motion.div>
-    <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut" }} className="absolute bottom-[4px] left-[64px] right-[64px] h-[1.5px] bg-[#D4AF37]/60 shadow-[0_0_8px_rgba(212,175,55,0.4)] origin-center"></motion.div>
-    <motion.div initial={{ scaleY: 0 }} whileInView={{ scaleY: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut" }} className="absolute left-[4px] top-[64px] bottom-[64px] w-[1.5px] bg-[#D4AF37]/60 shadow-[0_0_8px_rgba(212,175,55,0.4)] origin-center"></motion.div>
-    <motion.div initial={{ scaleY: 0 }} whileInView={{ scaleY: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut" }} className="absolute right-[4px] top-[64px] bottom-[64px] w-[1.5px] bg-[#D4AF37]/60 shadow-[0_0_8px_rgba(212,175,55,0.4)] origin-center"></motion.div>
+    {/* Outer Dual Tracks (4px and 8px inset, stopping 80px from corners) */}
+    <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut" }} className="absolute top-[4px] left-[80px] right-[80px] h-[1.5px] bg-[#D4AF37]/60 shadow-[0_0_8px_rgba(212,175,55,0.4)] origin-center"></motion.div>
+    <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut" }} className="absolute bottom-[4px] left-[80px] right-[80px] h-[1.5px] bg-[#D4AF37]/60 shadow-[0_0_8px_rgba(212,175,55,0.4)] origin-center"></motion.div>
+    <motion.div initial={{ scaleY: 0 }} whileInView={{ scaleY: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut" }} className="absolute left-[4px] top-[80px] bottom-[80px] w-[1.5px] bg-[#D4AF37]/60 shadow-[0_0_8px_rgba(212,175,55,0.4)] origin-center"></motion.div>
+    <motion.div initial={{ scaleY: 0 }} whileInView={{ scaleY: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut" }} className="absolute right-[4px] top-[80px] bottom-[80px] w-[1.5px] bg-[#D4AF37]/60 shadow-[0_0_8px_rgba(212,175,55,0.4)] origin-center"></motion.div>
+    
+    <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }} className="absolute top-[8px] left-[80px] right-[80px] h-[0.5px] bg-[#D4AF37]/60 origin-center"></motion.div>
+    <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }} className="absolute bottom-[8px] left-[80px] right-[80px] h-[0.5px] bg-[#D4AF37]/60 origin-center"></motion.div>
+    <motion.div initial={{ scaleY: 0 }} whileInView={{ scaleY: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }} className="absolute left-[8px] top-[80px] bottom-[80px] w-[0.5px] bg-[#D4AF37]/60 origin-center"></motion.div>
+    <motion.div initial={{ scaleY: 0 }} whileInView={{ scaleY: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }} className="absolute right-[8px] top-[80px] bottom-[80px] w-[0.5px] bg-[#D4AF37]/60 origin-center"></motion.div>
 
-    {/* The 4 Majestic Baroque Corners - Hugging the edges tightly */}
+    {/* The 4 Thematic Art Deco Corners (Swords, Diamonds, Floral) */}
     {[
       "top-0 left-0",
       "top-0 right-0 scale-x-[-1]",
       "bottom-0 left-0 scale-y-[-1]",
       "bottom-0 right-0 scale-x-[-1] scale-y-[-1]"
     ].map((pos, i) => (
-      <div key={i} className={`absolute ${pos} w-16 h-16 text-[#D4AF37]`}>
-        <motion.svg viewBox="0 0 64 64" fill="none" className="w-full h-full drop-shadow-[0_0_6px_rgba(212,175,55,0.6)]">
-          {/* Main Corner Spine - Very close to 4px inset */}
-          <motion.path d="M 4 64 C 4 32 16 16 32 4 C 48 4 60 4 64 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"
-            initial={{ pathLength: 0, opacity: 0 }} whileInView={{ pathLength: 1, opacity: 1, transition: { duration: 1.8, ease: "easeOut", delay: 0.1 } }} viewport={{ once: true }} />
+      <div key={i} className={`absolute ${pos} w-20 h-20 text-[#D4AF37]`}>
+        <motion.svg viewBox="0 0 80 80" fill="none" className="w-full h-full drop-shadow-[0_0_6px_rgba(212,175,55,0.6)]">
+          {/* Outer Frame Lines */}
+          <motion.path d="M 4 80 L 4 4 L 80 4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="square"
+            initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 1.5, ease: "easeOut" } }} viewport={{ once: true }} />
+          <motion.path d="M 8 80 L 8 8 L 80 8" stroke="currentColor" strokeWidth="0.5" strokeLinecap="square"
+            initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 1.5, delay: 0.2, ease: "easeOut" } }} viewport={{ once: true }} />
           
-          {/* Inner Swirling C-Curve */}
-          <motion.path d="M 12 40 C 6 28 16 16 28 16 C 36 16 40 24 32 30 C 24 36 16 28 20 20" stroke="currentColor" strokeWidth="1" strokeLinecap="round"
-            initial={{ pathLength: 0, opacity: 0 }} whileInView={{ pathLength: 1, opacity: 1, transition: { duration: 1.5, ease: "easeOut", delay: 0.5 } }} viewport={{ once: true }} />
+          {/* The Sword / Chevron Corner motif */}
+          <motion.path d="M 4 4 L 32 32 M 8 8 L 28 28" stroke="currentColor" strokeWidth="1"
+            initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 0.8, delay: 0.5 } }} viewport={{ once: true }} />
+          {/* Sword crossguard/hilt */}
+          <motion.path d="M 20 32 L 32 20 M 24 36 L 36 24" stroke="currentColor" strokeWidth="1"
+            initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 0.8, delay: 0.8 } }} viewport={{ once: true }} />
+          {/* Sword Blade tip */}
+          <motion.path d="M 32 32 L 44 44" stroke="currentColor" strokeWidth="1.5"
+            initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 0.8, delay: 1 } }} viewport={{ once: true }} />
+          
+          {/* Floral / Diamond Flourish at the blade tip */}
+          <motion.path d="M 44 44 L 40 48 L 44 52 L 48 48 Z" fill="currentColor"
+            initial={{ scale: 0, opacity: 0 }} whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.5, delay: 1.5 } }} viewport={{ once: true }} />
+          <motion.path d="M 52 44 L 48 40 L 52 36 L 56 40 Z" fill="currentColor"
+            initial={{ scale: 0, opacity: 0 }} whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.5, delay: 1.6 } }} viewport={{ once: true }} />
             
-          {/* Outer Corner Flourishes */}
-          <motion.path d="M 4 24 Q 16 16 24 4" stroke="currentColor" strokeWidth="1" strokeLinecap="round"
-            initial={{ pathLength: 0, opacity: 0 }} whileInView={{ pathLength: 1, opacity: 1, transition: { duration: 1.0, ease: "easeOut", delay: 0.8 } }} viewport={{ once: true }} />
-          <motion.path d="M 2 16 Q 16 2 32 2" stroke="currentColor" strokeWidth="1" strokeLinecap="round" className="opacity-60"
-            initial={{ pathLength: 0, opacity: 0 }} whileInView={{ pathLength: 1, opacity: 1, transition: { duration: 1.2, ease: "easeOut", delay: 0.6 } }} viewport={{ once: true }} />
-          
-          {/* Corner Leaves/Dots - Small and elegant */}
-          <motion.path d="M 24 24 C 22 26 26 30 28 28 Z" fill="currentColor"
-            initial={{ scale: 0, opacity: 0 }} whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.5, delay: 1.8 } }} viewport={{ once: true }} />
-          <motion.path d="M 32 32 C 30 34 34 38 36 36 Z" fill="currentColor"
-            initial={{ scale: 0, opacity: 0 }} whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.5, delay: 2.0 } }} viewport={{ once: true }} />
+          {/* Decorative geometric dots along the edge */}
+          <motion.rect x="3.25" y="40" width="1.5" height="1.5" fill="currentColor" initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition: { delay: 1.2 } }} viewport={{ once: true }} />
+          <motion.rect x="40" y="3.25" width="1.5" height="1.5" fill="currentColor" initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition: { delay: 1.2 } }} viewport={{ once: true }} />
         </motion.svg>
       </div>
     ))}
 
     {/* Center Majestic Edge Ornaments */}
-    <MajesticEdgeOrnament className="top-[4px] left-1/2 -translate-x-1/2 -translate-y-1/2" />
-    <MajesticEdgeOrnament className="bottom-[4px] left-1/2 -translate-x-1/2 translate-y-1/2 scale-y-[-1]" />
-    <MajesticEdgeOrnament className="left-[4px] top-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-90" />
-    <MajesticEdgeOrnament className="right-[4px] top-1/2 translate-x-1/2 -translate-y-1/2 rotate-90" />
+    <MajesticEdgeOrnament className="top-0 left-1/2 -translate-x-1/2" />
+    <MajesticEdgeOrnament className="bottom-0 left-1/2 -translate-x-1/2 scale-y-[-1]" />
+    <MajesticEdgeOrnament className="left-[-64px] top-1/2 -translate-y-1/2 -rotate-90" />
+    <MajesticEdgeOrnament className="right-[-64px] top-1/2 -translate-y-1/2 rotate-90" />
   </div>
 );
 
