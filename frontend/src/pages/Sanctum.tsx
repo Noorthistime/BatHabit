@@ -327,6 +327,8 @@ const PrestigeAttributeFrame = ({ delay = 1.4 }: { delay?: number }) => (
       </div>
     ))}
   </div>
+);
+
 const VaultFrame = () => (
   <svg 
     className="absolute inset-0 w-full h-full pointer-events-none text-[#D4AF37] opacity-60 z-0" 
