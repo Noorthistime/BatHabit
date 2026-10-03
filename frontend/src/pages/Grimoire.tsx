@@ -1008,7 +1008,7 @@ export function Grimoire() {
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.5, delay: i * 0.08 }}
                       whileHover={{ scale: 1.02, transition: { duration: 0.2, delay: 0 } }}
-                      className={`relative p-2 sm:p-2.5 flex flex-col gap-1.5 justify-between h-full rounded-none overflow-hidden group ${!a.earned ? 'opacity-40 grayscale' : ''}`}
+                      className={`relative p-2 sm:p-2.5 flex flex-col h-full rounded-none overflow-hidden group ${!a.earned ? 'opacity-40 grayscale' : ''}`}
                       style={{ 
                         backgroundColor: '#0a0a0a',
                         backgroundImage: `radial-gradient(ellipse at center, ${rStyle.bg} 0%, transparent 100%)`,
@@ -1022,25 +1022,31 @@ export function Grimoire() {
                         className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D4AF37]/10 to-transparent -translate-x-full group-hover:translate-x-full transition-all duration-700 ease-in-out pointer-events-none" 
                       />
 
-                      {/* Icon inside a metallic frame */}
-                      <div className="w-8 h-8 mx-auto flex items-center justify-center relative shrink-0">
-                        <svg className="absolute inset-0 w-full h-full opacity-60" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
-                          <path d="M 20 2 L 38 20 L 20 38 L 2 20 Z" stroke={rStyle.frame} strokeWidth="2" fill={rStyle.bg} />
-                        </svg>
-                        <Icon size={14} color={a.earned ? rStyle.text : '#8d9685'} className="relative z-10 drop-shadow-[0_0_5px_rgba(212,175,55,0.8)]" />
-                      </div>
+                      {/* Perfectly centered icon and text */}
+                      <div className="flex-1 flex flex-col justify-center items-center gap-1.5 relative z-10 pb-4">
+                        {/* Icon inside a metallic frame */}
+                        <div className="w-8 h-8 flex items-center justify-center relative shrink-0">
+                          <svg className="absolute inset-0 w-full h-full opacity-60" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M 20 2 L 38 20 L 20 38 L 2 20 Z" stroke={rStyle.frame} strokeWidth="2" fill={rStyle.bg} />
+                          </svg>
+                          <Icon size={14} color={a.earned ? rStyle.text : '#8d9685'} className="relative z-10 drop-shadow-[0_0_5px_rgba(212,175,55,0.8)]" />
+                        </div>
 
-                      <div className="text-center relative z-10">
-                        <p className={`font-serif text-[12px] font-bold`} style={{ color: a.earned ? rStyle.text : '#EEEAD7' }}>{a.title}</p>
-                        <p className="font-sans text-[9px] text-[#8d9685] mt-0.5 leading-tight">{a.desc}</p>
+                        <div className="text-center">
+                          <p className={`font-serif text-[12px] font-bold`} style={{ color: a.earned ? rStyle.text : '#EEEAD7' }}>{a.title}</p>
+                          <p className="font-sans text-[9px] text-[#8d9685] mt-0.5 leading-tight">{a.desc}</p>
+                        </div>
                       </div>
                       
-                      <span
-                        className={`font-mono text-[8px] uppercase tracking-widest px-1.5 py-0.5 self-center relative z-10 mt-auto ${a.rarity === 'Mythic' ? 'animate-pulse font-bold drop-shadow-[0_0_5px_rgba(212,175,55,0.8)]' : ''}`}
-                        style={{ color: rStyle.text, border: `1px solid ${rStyle.border}`, background: rStyle.bg }}
-                      >
-                        {a.rarity}
-                      </span>
+                      {/* Elevated Rarity Badge */}
+                      <div className="absolute bottom-5 left-0 w-full flex justify-center z-10 pointer-events-none">
+                        <span
+                          className={`font-mono text-[8px] uppercase tracking-widest px-1.5 py-0.5 pointer-events-auto ${a.rarity === 'Mythic' ? 'animate-pulse font-bold drop-shadow-[0_0_5px_rgba(212,175,55,0.8)]' : ''}`}
+                          style={{ color: rStyle.text, border: `1px solid ${rStyle.border}`, background: rStyle.bg }}
+                        >
+                          {a.rarity}
+                        </span>
+                      </div>
                     </motion.div>
                   );
                 })}
