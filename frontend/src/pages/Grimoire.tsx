@@ -631,7 +631,7 @@ export function Grimoire() {
                     >
                       <motion.div
                         {...animationProps}
-                        className="w-full h-full px-4 py-3 sm:py-3.5 flex items-center justify-center relative overflow-hidden group rounded-md"
+                        className="w-full h-full pl-14 sm:pl-28 pr-24 py-3 sm:py-3.5 flex items-center justify-start relative overflow-hidden group rounded-md"
                         style={{ background: bgStyle }}
                       >
                         <EvolutionGrimoireFrame borderColor={borderColor} delay={i * 0.15} isCurrent={stage.current} />
