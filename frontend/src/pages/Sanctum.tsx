@@ -567,7 +567,7 @@ const HeaderFiligreeFrame = () => (
 
 const QuestSubtleFrame = () => (
   <div className="absolute inset-0 pointer-events-none z-0 text-[#D4AF37]/80">
-    {/* Continuous Golden Border Lines */}
+    {/* Continuous Golden Border Lines Only */}
     <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
        <motion.rect 
          initial={{ pathLength: 0, opacity: 0 }}
@@ -585,41 +585,6 @@ const QuestSubtleFrame = () => (
          className="opacity-50"
        />
     </svg>
-
-    {/* Art Deco Corners - Scaled up but kept within padding bounds */}
-    {[
-      "top-0 left-0",
-      "top-0 right-0 scale-x-[-1]",
-      "bottom-0 left-0 scale-y-[-1]",
-      "bottom-0 right-0 scale-x-[-1] scale-y-[-1]"
-    ].map((pos, i) => (
-      <div key={i} className={`absolute ${pos} w-6 h-6`}>
-        <motion.svg viewBox="0 0 24 24" fill="none" className="w-full h-full"
-          initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1, transition: { duration: 0.5, delay: 1.2 } }} viewport={{ once: true }}>
-          <path d="M 0 6 L 6 6 L 6 0 M 0 10 L 10 10 L 10 0" stroke="currentColor" strokeWidth="1" />
-          <path d="M 3 3 L 12 12" stroke="currentColor" strokeWidth="1" />
-          <circle cx="14" cy="14" r="1.5" fill="currentColor" />
-        </motion.svg>
-      </div>
-    ))}
-
-    {/* Subtle Top/Bottom Center Flouishes - 8px deep, perfectly safe from text */}
-    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-2">
-      <motion.svg viewBox="0 0 48 8" fill="none" className="w-full h-full">
-        <motion.path d="M 0 0 L 8 4 L 16 4 L 24 8 L 32 4 L 40 4 L 48 0" stroke="currentColor" strokeWidth="1" 
-          initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 1, delay: 1.4 } }} viewport={{ once: true }} />
-        <circle cx="24" cy="4" r="1.5" fill="currentColor" 
-          initial={{ scale: 0 }} whileInView={{ scale: 1, transition: { duration: 0.5, delay: 1.6 } }} viewport={{ once: true }} />
-      </motion.svg>
-    </div>
-    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-12 h-2 scale-y-[-1]">
-      <motion.svg viewBox="0 0 48 8" fill="none" className="w-full h-full">
-        <motion.path d="M 0 0 L 8 4 L 16 4 L 24 8 L 32 4 L 40 4 L 48 0" stroke="currentColor" strokeWidth="1" 
-          initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 1, delay: 1.4 } }} viewport={{ once: true }} />
-        <circle cx="24" cy="4" r="1.5" fill="currentColor" 
-          initial={{ scale: 0 }} whileInView={{ scale: 1, transition: { duration: 0.5, delay: 1.6 } }} viewport={{ once: true }} />
-      </motion.svg>
-    </div>
   </div>
 );
 
