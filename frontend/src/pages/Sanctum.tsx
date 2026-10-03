@@ -755,44 +755,62 @@ export function Sanctum() {
               </div>
 
               <div className="lg:col-span-8 xl:col-span-9 flex flex-col justify-center space-y-4">
-                <div className="space-y-3 bg-[#0a0000] p-5 rounded border border-[#D4AF37]/30 shadow-inner relative overflow-hidden">
-                  <div className="flex justify-between items-baseline font-mono text-xs">
-                    <span className="text-[#D4AF37] flex items-center gap-2 uppercase tracking-[0.2em] font-bold">
-                      <span className="w-2.5 h-2.5 rounded-full bg-[#D4AF37] border border-[#D4AF37]/50"></span>
-                      Arcane Essence XP Gauge
-                    </span>
-                    <div className="flex items-center gap-2">
-                      <span className="font-serif text-lg font-bold text-[#D4AF37]">{char.totalXp}</span>
-                      <span className="text-[#8d9685]">/</span>
-                      <span className="font-mono text-xs text-[#8d9685]">{nextLevelXpRequired} XP</span>
-                      <span className="text-[#EEEAD7] font-bold ml-2 bg-[#1a0202] px-2 py-0.5 rounded border border-[#D4AF37]/40 text-[10px]">{progressPercent.toFixed(1)}%</span>
+                <div className="relative group bg-gradient-to-br from-[#1a0202] to-[#0a0000] p-6 rounded-sm border border-[#D4AF37]/50 shadow-[0_8px_24px_rgba(0,0,0,0.9),inset_0_0_20px_rgba(212,175,55,0.1)] overflow-hidden">
+                  <QuestSubtleFrame />
+                  <div className="relative z-10 space-y-4">
+                    <div className="flex justify-between items-baseline font-mono text-xs">
+                      <span className="text-[#D4AF37] flex items-center gap-2 uppercase tracking-[0.2em] font-bold">
+                        <span className="w-2.5 h-2.5 rounded-full bg-[#D4AF37] border border-[#D4AF37]/50 shadow-[0_0_8px_rgba(212,175,55,0.8)]"></span>
+                        Arcane Essence XP Gauge
+                      </span>
+                      <div className="flex items-center gap-2 bg-[#0a0000]/50 px-3 py-1 rounded-sm border border-[#D4AF37]/20">
+                        <span className="font-serif text-lg font-bold text-[#D4AF37]">{char.totalXp}</span>
+                        <span className="text-[#8d9685]">/</span>
+                        <span className="font-mono text-xs text-[#8d9685]">{nextLevelXpRequired} XP</span>
+                        <span className="text-[#1a0202] font-bold ml-2 bg-[#D4AF37] px-2 py-0.5 rounded-sm border border-[#D4AF37] text-[10px] shadow-[0_0_8px_rgba(212,175,55,0.4)]">{progressPercent.toFixed(1)}%</span>
+                      </div>
                     </div>
-                  </div>
-                  <div className="relative w-full h-3 bg-[#1a0202] rounded-full p-px shadow-inner border border-[#D4AF37]/20">
-                    <div className="h-full rounded-full bg-gradient-to-r from-[#6D0808] via-[#f59e0b] to-[#F5D77F]" style={{ width: progressPercent + "%" }}></div>
-                  </div>
-                  <div className="flex justify-between items-center text-xs font-mono pt-1">
-                    <span className="text-[10px] text-[#8d9685] uppercase tracking-wider"><span className="text-[#D4AF37]">✦</span> +{Math.floor(xpNeededForNext)} XP to Level {(char.level || 1) + 1}</span>
+                    <div className="relative w-full h-3.5 bg-[#0a0000] rounded-sm p-px shadow-inner border border-[#D4AF37]/40 overflow-hidden">
+                      <div className="absolute inset-0 bg-[url('https://www.transparenttextures.com/patterns/stardust.png')] opacity-20 pointer-events-none"></div>
+                      <div className="h-full rounded-sm bg-gradient-to-r from-[#6D0808] via-[#f59e0b] to-[#F5D77F] relative overflow-hidden shadow-[0_0_10px_rgba(245,215,127,0.5)]" style={{ width: progressPercent + "%" }}>
+                        <div className="absolute inset-0 bg-gradient-to-b from-white/30 to-transparent"></div>
+                      </div>
+                    </div>
+                    <div className="flex justify-between items-center text-xs font-mono pt-1">
+                      <span className="text-[10px] text-[#D4AF37] uppercase tracking-widest font-bold drop-shadow-sm">✦ +{Math.floor(xpNeededForNext)} XP to Level {(char.level || 1) + 1}</span>
+                    </div>
                   </div>
                 </div>
                 
                 {/* Stats Row */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 pt-2">
-                  <div className="px-4 py-3 rounded bg-[#0a0000] border border-[#D4AF37]/20 flex items-center justify-between shadow-inner">
-                    <span className="font-mono text-[9px] text-[#8d9685] uppercase tracking-widest">Active Vigor</span>
-                    <span className="font-serif text-sm font-bold text-[#D4AF37]">94 / 100</span>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 pt-2">
+                  <div className="relative group px-5 py-4 bg-gradient-to-br from-[#1a0202] to-[#0a0000] rounded-sm border border-[#D4AF37]/40 shadow-[0_4px_16px_rgba(0,0,0,0.8),inset_0_0_12px_rgba(212,175,55,0.05)] overflow-hidden transition-all hover:border-[#D4AF37]/80 hover:shadow-[0_4px_20px_rgba(212,175,55,0.2),inset_0_0_16px_rgba(212,175,55,0.1)]">
+                    <QuestSubtleFrame />
+                    <div className="relative z-10 flex flex-col justify-center items-center gap-1.5 h-full">
+                      <span className="font-mono text-[9px] text-[#8d9685] uppercase tracking-widest text-center">Active Vigor</span>
+                      <span className="font-serif text-base font-bold text-[#D4AF37] drop-shadow-md">94 / 100</span>
+                    </div>
                   </div>
-                  <div className="px-4 py-3 rounded bg-[#0a0000] border border-[#D4AF37]/20 flex items-center justify-between shadow-inner">
-                    <span className="font-mono text-[9px] text-[#8d9685] uppercase tracking-widest">Shadow Will</span>
-                    <span className="font-serif text-sm font-bold text-[#EEEAD7]">Tier III</span>
+                  <div className="relative group px-5 py-4 bg-gradient-to-br from-[#1a0202] to-[#0a0000] rounded-sm border border-[#D4AF37]/40 shadow-[0_4px_16px_rgba(0,0,0,0.8),inset_0_0_12px_rgba(212,175,55,0.05)] overflow-hidden transition-all hover:border-[#D4AF37]/80 hover:shadow-[0_4px_20px_rgba(212,175,55,0.2),inset_0_0_16px_rgba(212,175,55,0.1)]">
+                    <QuestSubtleFrame />
+                    <div className="relative z-10 flex flex-col justify-center items-center gap-1.5 h-full">
+                      <span className="font-mono text-[9px] text-[#8d9685] uppercase tracking-widest text-center">Shadow Will</span>
+                      <span className="font-serif text-base font-bold text-[#EEEAD7] drop-shadow-md">Tier III</span>
+                    </div>
                   </div>
-                  <div className="px-4 py-3 rounded bg-[#0a0000] border border-[#D4AF37]/20 flex items-center justify-between shadow-inner">
-                    <span className="font-mono text-[9px] text-[#8d9685] uppercase tracking-widest">Discipline</span>
-                    <span className="font-serif text-sm font-bold text-[#D4AF37]">1.25x</span>
+                  <div className="relative group px-5 py-4 bg-gradient-to-br from-[#1a0202] to-[#0a0000] rounded-sm border border-[#D4AF37]/40 shadow-[0_4px_16px_rgba(0,0,0,0.8),inset_0_0_12px_rgba(212,175,55,0.05)] overflow-hidden transition-all hover:border-[#D4AF37]/80 hover:shadow-[0_4px_20px_rgba(212,175,55,0.2),inset_0_0_16px_rgba(212,175,55,0.1)]">
+                    <QuestSubtleFrame />
+                    <div className="relative z-10 flex flex-col justify-center items-center gap-1.5 h-full">
+                      <span className="font-mono text-[9px] text-[#8d9685] uppercase tracking-widest text-center">Discipline</span>
+                      <span className="font-serif text-base font-bold text-[#D4AF37] drop-shadow-md">1.25x</span>
+                    </div>
                   </div>
-                  <div className="px-4 py-3 rounded bg-[#0a0000] border border-[#D4AF37]/20 flex items-center justify-between shadow-inner">
-                    <span className="font-mono text-[9px] text-[#8d9685] uppercase tracking-widest">Lunar Phase</span>
-                    <span className="font-serif text-sm font-bold text-[#EEEAD7]">Waxing</span>
+                  <div className="relative group px-5 py-4 bg-gradient-to-br from-[#1a0202] to-[#0a0000] rounded-sm border border-[#D4AF37]/40 shadow-[0_4px_16px_rgba(0,0,0,0.8),inset_0_0_12px_rgba(212,175,55,0.05)] overflow-hidden transition-all hover:border-[#D4AF37]/80 hover:shadow-[0_4px_20px_rgba(212,175,55,0.2),inset_0_0_16px_rgba(212,175,55,0.1)]">
+                    <QuestSubtleFrame />
+                    <div className="relative z-10 flex flex-col justify-center items-center gap-1.5 h-full">
+                      <span className="font-mono text-[9px] text-[#8d9685] uppercase tracking-widest text-center">Lunar Phase</span>
+                      <span className="font-serif text-base font-bold text-[#EEEAD7] drop-shadow-md">Waxing</span>
+                    </div>
                   </div>
                 </div>
               </div>
