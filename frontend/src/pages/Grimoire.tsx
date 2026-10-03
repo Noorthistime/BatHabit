@@ -278,8 +278,7 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
                <Jewel x={6} y={30} scale={0.8} />
              </pattern>
           </defs>
-          <rect x="64" y="0" width="calc(50% - 128px)" height="12" fill="url(#leg-x)" />
-          <rect x="calc(50% + 64px)" y="0" width="calc(50% - 128px)" height="12" fill="url(#leg-x)" />
+          <rect x="64" y="0" width="calc(100% - 128px)" height="12" fill="url(#leg-x)" />
           <rect x="64" y="calc(100% - 12px)" width="calc(50% - 128px)" height="12" fill="url(#leg-x)" />
           <rect x="calc(50% + 64px)" y="calc(100% - 12px)" width="calc(50% - 128px)" height="12" fill="url(#leg-x)" />
           <rect x="0" y="64" width="12" height="calc(100% - 128px)" fill="url(#leg-y)" />
@@ -312,26 +311,19 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
           </svg>
         ))}
 
-        {/* Center Floral Crests */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 flex justify-center">
-           <svg viewBox="0 0 128 24" className="w-full h-full" fill="none">
-             <path d="M40 0 C 40 12, 50 18, 64 18 C 78 18, 88 12, 88 0" fill="none" stroke={color} strokeWidth="0.5" opacity="0.4" />
-             
-             <ChainPath d="M0 6 Q 32 6, 52 12" />
-             <ChainPath d="M128 6 Q 96 6, 76 12" />
-             <Jewel x={64} y={12} scale={2} showHalo={true} />
-             
-             <polygon points="20,4 21,5 20,6 19,5" fill="#fff" opacity="0.7" />
-             <polygon points="108,4 109,5 108,6 107,5" fill="#fff" opacity="0.7" />
-           </svg>
-        </div>
+        {/* Center Floral Crests (Bottom Only) */}
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-32 h-6 flex justify-center items-end">
            <svg viewBox="0 0 128 24" className="w-full h-full rotate-180" fill="none">
              <path d="M40 0 C 40 12, 50 18, 64 18 C 78 18, 88 12, 88 0" fill="none" stroke={color} strokeWidth="0.5" opacity="0.4" />
              
-             <ChainPath d="M0 6 Q 32 6, 52 12" />
-             <ChainPath d="M128 6 Q 96 6, 76 12" />
-             <Jewel x={64} y={12} scale={2} showHalo={true} />
+             <ChainPath d="M0 6 Q 32 6, 57 12" />
+             <ChainPath d="M128 6 Q 96 6, 71 12" />
+             
+             {/* Extra glorious flourish arch */}
+             <path d="M45 16 Q 64 24, 83 16" fill="none" stroke={color} strokeWidth="1" />
+             <polygon points="64,19 65.5,21 64,23 62.5,21" fill="#fff" opacity="0.9" />
+             
+             <Jewel x={64} y={12} scale={1.2} showHalo={true} />
              
              <polygon points="20,4 21,5 20,6 19,5" fill="#fff" opacity="0.7" />
              <polygon points="108,4 109,5 108,6 107,5" fill="#fff" opacity="0.7" />
