@@ -408,54 +408,89 @@ const VaultFrame = () => (
   </div>
 );
 
-const CodexMasterFrame = () => (
+const MajesticEdgeOrnament = ({ className }: { className?: string }) => (
+  <div className={`absolute w-48 h-12 text-[#D4AF37] pointer-events-none ${className}`}>
+     <motion.svg viewBox="0 0 192 48" fill="none" className="w-full h-full drop-shadow-[0_0_6px_rgba(212,175,55,0.6)]">
+       {/* Majestic Center Motif (Fleur-de-lis/Crown hybrid) */}
+       <motion.path d="M 96 4 C 92 16 80 24 96 32 C 112 24 100 16 96 4 Z" fill="currentColor" opacity="0.9"
+         initial={{ scale: 0, opacity: 0 }} whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.8, delay: 1.2 } }} viewport={{ once: true }} />
+       <motion.path d="M 96 36 C 88 36 84 44 96 48 C 108 44 104 36 96 36 Z" fill="currentColor"
+         initial={{ scale: 0, opacity: 0 }} whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.5, delay: 1.5 } }} viewport={{ once: true }} />
+       <motion.path d="M 88 16 C 80 12 76 24 88 28 C 92 24 92 20 88 16 Z" fill="currentColor"
+         initial={{ scale: 0, opacity: 0 }} whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.5, delay: 1.4 } }} viewport={{ once: true }} />
+       <motion.path d="M 104 16 C 112 12 116 24 104 28 C 100 24 100 20 104 16 Z" fill="currentColor"
+         initial={{ scale: 0, opacity: 0 }} whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.5, delay: 1.4 } }} viewport={{ once: true }} />
+
+       {/* Left sweeping vines */}
+       <motion.path d="M 84 24 Q 64 36 44 24 T 16 24" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"
+         initial={{ pathLength: 0, opacity: 0 }} whileInView={{ pathLength: 1, opacity: 1, transition: { duration: 1.5, ease: "easeOut", delay: 0.2 } }} viewport={{ once: true }} />
+       <motion.path d="M 64 28 Q 54 44 34 32" stroke="currentColor" strokeWidth="1" strokeLinecap="round"
+         initial={{ pathLength: 0, opacity: 0 }} whileInView={{ pathLength: 1, opacity: 1, transition: { duration: 1.2, ease: "easeOut", delay: 0.5 } }} viewport={{ once: true }} />
+       <motion.path d="M 44 24 Q 34 8 24 16" stroke="currentColor" strokeWidth="1" strokeLinecap="round"
+         initial={{ pathLength: 0, opacity: 0 }} whileInView={{ pathLength: 1, opacity: 1, transition: { duration: 1.0, ease: "easeOut", delay: 0.7 } }} viewport={{ once: true }} />
+
+       {/* Right sweeping vines */}
+       <motion.path d="M 108 24 Q 128 36 148 24 T 176 24" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"
+         initial={{ pathLength: 0, opacity: 0 }} whileInView={{ pathLength: 1, opacity: 1, transition: { duration: 1.5, ease: "easeOut", delay: 0.2 } }} viewport={{ once: true }} />
+       <motion.path d="M 128 28 Q 138 44 158 32" stroke="currentColor" strokeWidth="1" strokeLinecap="round"
+         initial={{ pathLength: 0, opacity: 0 }} whileInView={{ pathLength: 1, opacity: 1, transition: { duration: 1.2, ease: "easeOut", delay: 0.5 } }} viewport={{ once: true }} />
+       <motion.path d="M 148 24 Q 158 8 168 16" stroke="currentColor" strokeWidth="1" strokeLinecap="round"
+         initial={{ pathLength: 0, opacity: 0 }} whileInView={{ pathLength: 1, opacity: 1, transition: { duration: 1.0, ease: "easeOut", delay: 0.7 } }} viewport={{ once: true }} />
+       
+       {/* Small floating diamond dots */}
+       <motion.path d="M 32 22 L 34 24 L 32 26 L 30 24 Z" fill="currentColor"
+         initial={{ scale: 0, opacity: 0 }} whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.5, delay: 1.8 } }} viewport={{ once: true }} />
+       <motion.path d="M 160 22 L 162 24 L 160 26 L 158 24 Z" fill="currentColor"
+         initial={{ scale: 0, opacity: 0 }} whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.5, delay: 1.8 } }} viewport={{ once: true }} />
+     </motion.svg>
+  </div>
+);
+
+const CodexMajesticFrame = () => (
   <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
-    {/* Outer Lines (16px inset, stopping 80px from edges) */}
-    <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut" }} className="absolute top-[16px] left-[80px] right-[80px] h-[1.5px] bg-[#D4AF37]/50 shadow-[0_0_8px_rgba(212,175,55,0.4)] origin-center"></motion.div>
-    <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut" }} className="absolute bottom-[16px] left-[80px] right-[80px] h-[1.5px] bg-[#D4AF37]/50 shadow-[0_0_8px_rgba(212,175,55,0.4)] origin-center"></motion.div>
-    <motion.div initial={{ scaleY: 0 }} whileInView={{ scaleY: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut" }} className="absolute left-[16px] top-[80px] bottom-[80px] w-[1.5px] bg-[#D4AF37]/50 shadow-[0_0_8px_rgba(212,175,55,0.4)] origin-center"></motion.div>
-    <motion.div initial={{ scaleY: 0 }} whileInView={{ scaleY: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut" }} className="absolute right-[16px] top-[80px] bottom-[80px] w-[1.5px] bg-[#D4AF37]/50 shadow-[0_0_8px_rgba(212,175,55,0.4)] origin-center"></motion.div>
+    {/* Outer Lines (16px inset, stopping 96px from corners) */}
+    <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut" }} className="absolute top-[16px] left-[96px] right-[96px] h-[1.5px] bg-[#D4AF37]/60 shadow-[0_0_8px_rgba(212,175,55,0.4)] origin-center"></motion.div>
+    <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut" }} className="absolute bottom-[16px] left-[96px] right-[96px] h-[1.5px] bg-[#D4AF37]/60 shadow-[0_0_8px_rgba(212,175,55,0.4)] origin-center"></motion.div>
+    <motion.div initial={{ scaleY: 0 }} whileInView={{ scaleY: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut" }} className="absolute left-[16px] top-[96px] bottom-[96px] w-[1.5px] bg-[#D4AF37]/60 shadow-[0_0_8px_rgba(212,175,55,0.4)] origin-center"></motion.div>
+    <motion.div initial={{ scaleY: 0 }} whileInView={{ scaleY: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut" }} className="absolute right-[16px] top-[96px] bottom-[96px] w-[1.5px] bg-[#D4AF37]/60 shadow-[0_0_8px_rgba(212,175,55,0.4)] origin-center"></motion.div>
 
-    {/* Inner Lines (20px inset) */}
-    <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut", delay: 0.1 }} className="absolute top-[20px] left-[80px] right-[80px] h-px bg-[#D4AF37]/20 origin-center"></motion.div>
-    <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut", delay: 0.1 }} className="absolute bottom-[20px] left-[80px] right-[80px] h-px bg-[#D4AF37]/20 origin-center"></motion.div>
-    <motion.div initial={{ scaleY: 0 }} whileInView={{ scaleY: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut", delay: 0.1 }} className="absolute left-[20px] top-[80px] bottom-[80px] w-px bg-[#D4AF37]/20 origin-center"></motion.div>
-    <motion.div initial={{ scaleY: 0 }} whileInView={{ scaleY: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut", delay: 0.1 }} className="absolute right-[20px] top-[80px] bottom-[80px] w-px bg-[#D4AF37]/20 origin-center"></motion.div>
-
-    {/* The 4 Grand Corners */}
+    {/* The 4 Majestic Baroque Corners */}
     {[
       "top-0 left-0",
       "top-0 right-0 scale-x-[-1]",
       "bottom-0 left-0 scale-y-[-1]",
       "bottom-0 right-0 scale-x-[-1] scale-y-[-1]"
     ].map((pos, i) => (
-      <div key={i} className={`absolute ${pos} w-20 h-20 text-[#D4AF37]`}>
-        <motion.svg viewBox="0 0 80 80" fill="none" className="w-full h-full drop-shadow-[0_0_8px_rgba(212,175,55,0.6)]">
-          {/* Multiple concentric L brackets aligned to 16px and 20px */}
-          <motion.path d="M 16 80 L 16 16 L 80 16" stroke="currentColor" strokeWidth="1.5" 
-            initial={{ pathLength: 0, opacity: 0 }} whileInView={{ pathLength: 1, opacity: 1, transition: { duration: 1.5, ease: "easeOut", delay: 0.2 } }} viewport={{ once: true }} />
-          <motion.path d="M 20 80 L 20 20 L 80 20" stroke="currentColor" strokeWidth="1" className="opacity-40" 
-            initial={{ pathLength: 0, opacity: 0 }} whileInView={{ pathLength: 1, opacity: 1, transition: { duration: 1.5, ease: "easeOut", delay: 0.3 } }} viewport={{ once: true }} />
+      <div key={i} className={`absolute ${pos} w-24 h-24 text-[#D4AF37]`}>
+        <motion.svg viewBox="0 0 96 96" fill="none" className="w-full h-full drop-shadow-[0_0_6px_rgba(212,175,55,0.6)]">
+          {/* Main Corner Spine */}
+          <motion.path d="M 16 96 C 16 64 32 32 64 16 C 76 10 96 16 96 16" stroke="currentColor" strokeWidth="2" strokeLinecap="round"
+            initial={{ pathLength: 0, opacity: 0 }} whileInView={{ pathLength: 1, opacity: 1, transition: { duration: 1.8, ease: "easeOut", delay: 0.1 } }} viewport={{ once: true }} />
           
-          {/* Stepped Corner Block */}
-          <motion.path d="M 16 40 L 40 40 L 40 16 L 16 16 Z" fill="currentColor" fillOpacity="0.05" 
-            initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition: { duration: 1, delay: 1.2 } }} viewport={{ once: true }} />
-          {/* Diagonal cut lines (Sunburst style) */}
-          <motion.path d="M 16 40 L 40 16 M 16 32 L 32 16 M 16 24 L 24 16" stroke="currentColor" strokeWidth="1" className="opacity-90" 
-            initial={{ pathLength: 0, opacity: 0 }} whileInView={{ pathLength: 1, opacity: 1, transition: { duration: 1.5, ease: "easeOut", delay: 0.4 } }} viewport={{ once: true }} />
+          {/* Inner Swirling C-Curve */}
+          <motion.path d="M 28 64 C 20 48 36 28 56 32 C 68 34 76 48 64 56 C 52 64 40 52 48 40" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"
+            initial={{ pathLength: 0, opacity: 0 }} whileInView={{ pathLength: 1, opacity: 1, transition: { duration: 1.5, ease: "easeOut", delay: 0.5 } }} viewport={{ once: true }} />
+            
+          {/* Outer Corner Flourishes */}
+          <motion.path d="M 16 48 Q 24 24 48 16" stroke="currentColor" strokeWidth="1" strokeLinecap="round"
+            initial={{ pathLength: 0, opacity: 0 }} whileInView={{ pathLength: 1, opacity: 1, transition: { duration: 1.0, ease: "easeOut", delay: 0.8 } }} viewport={{ once: true }} />
+          <motion.path d="M 6 32 Q 24 6 52 6" stroke="currentColor" strokeWidth="1" strokeLinecap="round" className="opacity-60"
+            initial={{ pathLength: 0, opacity: 0 }} whileInView={{ pathLength: 1, opacity: 1, transition: { duration: 1.2, ease: "easeOut", delay: 0.6 } }} viewport={{ once: true }} />
           
-          {/* Corner Diamond */}
-          <motion.path d="M 24 24 L 28 28 L 24 32 L 20 28 Z" fill="currentColor" 
-            initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1, transition: { duration: 0.5, delay: 1.5 } }} viewport={{ once: true }} />
+          {/* Corner Leaves/Dots */}
+          <motion.path d="M 40 40 C 38 42 42 46 44 44 Z" fill="currentColor"
+            initial={{ scale: 0, opacity: 0 }} whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.5, delay: 1.8 } }} viewport={{ once: true }} />
+          <motion.path d="M 52 52 C 50 54 54 58 56 56 Z" fill="currentColor"
+            initial={{ scale: 0, opacity: 0 }} whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.5, delay: 2.0 } }} viewport={{ once: true }} />
         </motion.svg>
       </div>
     ))}
 
-    {/* Center Edge Ornaments (Aligned to the 16px inset border) */}
-    <EdgeOrnament className="top-[16px] left-1/2 -translate-x-1/2 -translate-y-1/2" />
-    <EdgeOrnament className="bottom-[16px] left-1/2 -translate-x-1/2 translate-y-1/2 scale-y-[-1]" />
-    <EdgeOrnament className="left-[16px] top-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-90" />
-    <EdgeOrnament className="right-[16px] top-1/2 translate-x-1/2 -translate-y-1/2 rotate-90" />
+    {/* Center Majestic Edge Ornaments */}
+    <MajesticEdgeOrnament className="top-[16px] left-1/2 -translate-x-1/2 -translate-y-1/2" />
+    <MajesticEdgeOrnament className="bottom-[16px] left-1/2 -translate-x-1/2 translate-y-1/2 scale-y-[-1]" />
+    <MajesticEdgeOrnament className="left-[16px] top-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-90" />
+    <MajesticEdgeOrnament className="right-[16px] top-1/2 translate-x-1/2 -translate-y-1/2 rotate-90" />
   </div>
 );
 
@@ -832,6 +867,8 @@ export function Sanctum() {
             <div className="lg:col-span-8 flex flex-col h-full">
               <div className="relative bg-gradient-to-br from-[#1a0202] to-[#0a0000] shadow-[0_12px_40px_rgba(0,0,0,0.9)] flex flex-col overflow-hidden h-full rounded-lg">
                 
+                {/* The Majestic Baroque Filigree Layer */}
+                <CodexMajesticFrame />
                 {/* Inner Padded Content */}
                 <div className="p-8 flex-1 flex flex-col relative z-10 h-full">
                   
