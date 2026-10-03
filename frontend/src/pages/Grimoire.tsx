@@ -31,13 +31,168 @@ const ACHIEVEMENTS = [
   { icon: Swords, title: 'Blood Ritual', desc: 'Sacrificed 500 XP to upgrade a relic', rarity: 'Mythic', earned: false },
 ];
 
-const RARITY_COLORS: Record<string, { text: string, border: string, bg: string, frame: string }> = {
-  Common: { text: '#a69052', border: 'rgba(166,144,82,0.4)', bg: 'rgba(166,144,82,0.05)', frame: 'rgba(166,144,82,0.3)' },
-  Rare: { text: '#D4AF37', border: 'rgba(212,175,55,0.6)', bg: 'rgba(212,175,55,0.1)', frame: 'rgba(212,175,55,0.5)' },
-  Epic: { text: '#ff4d4d', border: 'rgba(255,77,77,0.5)', bg: 'rgba(255,77,77,0.1)', frame: 'rgba(255,77,77,0.4)' },
-  Legendary: { text: '#F5D77F', border: '#D4AF37', bg: 'rgba(245,215,127,0.15)', frame: '#D4AF37' },
-  Mythic: { text: '#F5D77F', border: '#D4AF37', bg: 'rgba(245,215,127,0.2)', frame: '#ff4d4d' },
+const RARITY_COLORS: Record<string, { text: string, border: string, bg: string, frame: string, glow: string }> = {
+  Legendary: { 
+    text: '#F5D77F', 
+    border: '#D4AF37', 
+    bg: 'rgba(109,8,8,0.5)', 
+    frame: '#D4AF37', 
+    glow: 'rgba(212,175,55,0.8)' 
+  },
+  Mythic: { 
+    text: '#FFF5D1', 
+    border: '#FFD700', 
+    bg: 'rgba(212,175,55,0.15)', 
+    frame: '#F5D77F', 
+    glow: 'rgba(255,215,0,0.6)' 
+  },
+  Epic: { 
+    text: '#D4AF37', 
+    border: '#C5A028', 
+    bg: 'rgba(197,160,40,0.1)', 
+    frame: '#C5A028', 
+    glow: 'rgba(197,160,40,0.3)' 
+  },
+  Rare: { 
+    text: '#B8860B', 
+    border: '#8B6508', 
+    bg: 'rgba(139,101,8,0.1)', 
+    frame: '#8B6508', 
+    glow: 'rgba(139,101,8,0.2)' 
+  },
+  Common: { 
+    text: '#8B4513', 
+    border: '#5C3317', 
+    bg: 'rgba(92,51,23,0.1)', 
+    frame: '#5C3317', 
+    glow: 'transparent' 
+  },
 };
+
+const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: string, isEarned: boolean }) => {
+  if (!isEarned) return <div className="absolute inset-0 border border-[#333] opacity-50 z-0" />;
+
+  if (rarity === 'Common') {
+    return (
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div className="absolute inset-0 border" style={{ borderColor: color, opacity: 0.6 }} />
+        <div className="absolute top-0 left-0 w-2 h-2 border-r border-b" style={{ borderColor: color }} />
+        <div className="absolute top-0 right-0 w-2 h-2 border-l border-b" style={{ borderColor: color }} />
+        <div className="absolute bottom-0 left-0 w-2 h-2 border-r border-t" style={{ borderColor: color }} />
+        <div className="absolute bottom-0 right-0 w-2 h-2 border-l border-t" style={{ borderColor: color }} />
+      </div>
+    );
+  }
+
+  if (rarity === 'Rare') {
+    return (
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div className="absolute inset-0 border" style={{ borderColor: color, opacity: 0.8 }} />
+        <div className="absolute inset-[3px] border border-dashed" style={{ borderColor: color, opacity: 0.3 }} />
+        {[
+          'top-0 left-0', 'top-0 right-0 rotate-90',
+          'bottom-0 right-0 rotate-180', 'bottom-0 left-0 -rotate-90'
+        ].map((pos, i) => (
+          <svg key={i} className={`absolute ${pos} w-4 h-4`} viewBox="0 0 16 16" fill="none">
+             <path d="M0 0h16v1H1v15H0V0z" fill={color} />
+             <path d="M3 3h4v1H4v3H3V3z" fill={color} />
+          </svg>
+        ))}
+      </div>
+    );
+  }
+
+  if (rarity === 'Epic') {
+    return (
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div className="absolute inset-0 border-[1px]" style={{ borderColor: color, opacity: 0.9 }} />
+        <div className="absolute inset-[3px] border" style={{ borderColor: color, opacity: 0.4 }} />
+        {[
+          'top-0 left-0', 'top-0 right-0 rotate-90',
+          'bottom-0 right-0 rotate-180', 'bottom-0 left-0 -rotate-90'
+        ].map((pos, i) => (
+          <svg key={i} className={`absolute ${pos} w-8 h-8`} viewBox="0 0 32 32" fill="none">
+             <path d="M0 0h32v2H2v30H0V0z" fill={color} />
+             <path d="M0 0C10 0 16 6 16 16C6 16 0 10 0 0Z" fill={color} fillOpacity="0.2" />
+             <path d="M4 4C12 4 16 8 16 16" stroke={color} strokeWidth="1.5" />
+             <circle cx="16" cy="16" r="2" fill={color} />
+             <path d="M24 2L2 24" stroke={color} strokeWidth="1" opacity="0.5" />
+          </svg>
+        ))}
+      </div>
+    );
+  }
+
+  if (rarity === 'Mythic') {
+    return (
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div className="absolute inset-0 border-[1.5px]" style={{ borderColor: color, boxShadow: `0 0 10px ${color}` }} />
+        <div className="absolute inset-[4px] border border-dashed" style={{ borderColor: color, opacity: 0.6 }} />
+        {[
+          'top-0 left-0', 'top-0 right-0 rotate-90',
+          'bottom-0 right-0 rotate-180', 'bottom-0 left-0 -rotate-90'
+        ].map((pos, i) => (
+          <svg key={i} className={`absolute ${pos} w-10 h-10 drop-shadow-[0_0_3px_${color}]`} viewBox="0 0 40 40" fill="none">
+             <path d="M0 0h40v2H2v38H0V0z" fill={color} />
+             <path d="M0 0C15 5 25 15 25 25C15 25 5 15 0 0Z" fill={color} fillOpacity="0.3" />
+             <path d="M6 6C18 10 24 16 24 24" stroke={color} strokeWidth="2" />
+             <path d="M12 12C20 15 23 18 23 23" stroke={color} strokeWidth="1" />
+             <rect x="23" y="23" width="4" height="4" fill={color} transform="rotate(45 25 25)" />
+             <path d="M35 2L2 35" stroke={color} strokeWidth="1" opacity="0.6" />
+          </svg>
+        ))}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-10 h-3 flex justify-center">
+          <div className="w-2.5 h-2.5 rotate-45 border" style={{ borderColor: color, backgroundColor: '#000', boxShadow: `0 0 8px ${color}` }} />
+        </div>
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-10 h-3 flex justify-center items-end">
+          <div className="w-2.5 h-2.5 rotate-45 border translate-y-1.5" style={{ borderColor: color, backgroundColor: '#000', boxShadow: `0 0 8px ${color}` }} />
+        </div>
+      </div>
+    );
+  }
+
+  if (rarity === 'Legendary') {
+    const redAccent = '#8A0F0F';
+    return (
+      <div className="absolute inset-0 pointer-events-none z-0">
+        <div className="absolute inset-0 border-[2px]" style={{ borderColor: color, boxShadow: `0 0 12px ${color}, inset 0 0 20px ${redAccent}` }} />
+        <div className="absolute inset-[3px] border border-solid" style={{ borderColor: redAccent }} />
+        <div className="absolute inset-[5px] border border-dashed" style={{ borderColor: color, opacity: 0.5 }} />
+        {[
+          'top-0 left-0', 'top-0 right-0 rotate-90',
+          'bottom-0 right-0 rotate-180', 'bottom-0 left-0 -rotate-90'
+        ].map((pos, i) => (
+          <svg key={i} className={`absolute ${pos} w-12 h-12`} viewBox="0 0 48 48" fill="none">
+             <path d="M0 0h48v3H3v45H0V0z" fill={color} />
+             <path d="M3 3h20v3H6v17H3V3z" fill={redAccent} />
+             <path d="M0 0C15 10 30 20 30 30C20 30 10 15 0 0Z" fill={color} fillOpacity="0.4" />
+             <path d="M8 8C20 15 28 22 28 30" stroke={color} strokeWidth="2.5" />
+             <path d="M12 12C22 18 26 24 26 30" stroke={redAccent} strokeWidth="1.5" />
+             <path d="M42 6L6 42" stroke={color} strokeWidth="1.5" />
+             <path d="M38 10L10 38" stroke={redAccent} strokeWidth="1" />
+             <rect x="28" y="28" width="6" height="6" fill={redAccent} stroke={color} strokeWidth="1" transform="rotate(45 31 31)" />
+          </svg>
+        ))}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-4 flex justify-center">
+           <svg viewBox="0 0 64 16" className="w-full h-full" fill="none">
+             <path d="M0 0L32 16L64 0Z" fill={color} fillOpacity="0.3" />
+             <path d="M16 0L32 12L48 0" stroke={color} strokeWidth="2" />
+             <circle cx="32" cy="6" r="4" fill={redAccent} stroke={color} strokeWidth="1" />
+           </svg>
+        </div>
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-16 h-4 flex justify-center items-end">
+           <svg viewBox="0 0 64 16" className="w-full h-full rotate-180" fill="none">
+             <path d="M0 0L32 16L64 0Z" fill={color} fillOpacity="0.3" />
+             <path d="M16 0L32 12L48 0" stroke={color} strokeWidth="2" />
+             <circle cx="32" cy="6" r="4" fill={redAccent} stroke={color} strokeWidth="1" />
+           </svg>
+        </div>
+      </div>
+    );
+  }
+
+  return null;
+}
 
 const AnimatedNumber = ({ value, duration = 1000 }: { value: number, duration?: number }) => {
   const [count, setCount] = React.useState(0);
@@ -711,18 +866,18 @@ export function Grimoire() {
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.5, delay: i * 0.08 }}
                       whileHover={{ scale: 1.02, transition: { duration: 0.2, delay: 0 } }}
-                      className={`relative p-2 sm:p-2.5 flex flex-col gap-1.5 justify-between h-full rounded-none bg-[radial-gradient(ellipse_at_center,_rgba(35,6,8,0.9)_0%,_rgba(15,2,4,0.95)_100%)] overflow-hidden group ${!a.earned ? 'opacity-40 grayscale' : ''}`}
-                      style={{ border: `1px solid ${rStyle.frame}`, boxShadow: a.rarity === 'Mythic' || a.rarity === 'Legendary' ? `inset 0 0 15px ${rStyle.bg}, 0 0 10px rgba(0,0,0,0.5)` : '0 0 10px rgba(0,0,0,0.5)' }}
+                      className={`relative p-2 sm:p-2.5 flex flex-col gap-1.5 justify-between h-full rounded-none overflow-hidden group ${!a.earned ? 'opacity-40 grayscale' : ''}`}
+                      style={{ 
+                        backgroundColor: '#0a0a0a',
+                        backgroundImage: `radial-gradient(ellipse at center, ${rStyle.bg} 0%, transparent 100%)`,
+                        boxShadow: a.earned ? `inset 0 0 15px ${rStyle.bg}, 0 0 10px ${rStyle.glow || 'rgba(0,0,0,0.5)'}` : '0 0 10px rgba(0,0,0,0.5)'
+                      }}
                     >
-                      {/* Gothic cut corners (pseudo-elements via span) */}
-                      <span className="absolute top-0 left-0 w-2 h-2 border-t border-l" style={{ borderColor: rStyle.frame }} />
-                      <span className="absolute top-0 right-0 w-2 h-2 border-t border-r" style={{ borderColor: rStyle.frame }} />
-                      <span className="absolute bottom-0 left-0 w-2 h-2 border-b border-l" style={{ borderColor: rStyle.frame }} />
-                      <span className="absolute bottom-0 right-0 w-2 h-2 border-b border-r" style={{ borderColor: rStyle.frame }} />
+                      <AchievementFrame rarity={a.rarity} color={rStyle.frame} isEarned={a.earned} />
                       
                       {/* Golden Sweep Hover Animation */}
                       <motion.div 
-                        className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D4AF37]/10 to-transparent -translate-x-full group-hover:translate-x-full transition-all duration-700 ease-in-out" 
+                        className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D4AF37]/10 to-transparent -translate-x-full group-hover:translate-x-full transition-all duration-700 ease-in-out pointer-events-none" 
                       />
 
                       {/* Icon inside a metallic frame */}
@@ -730,11 +885,11 @@ export function Grimoire() {
                         <svg className="absolute inset-0 w-full h-full opacity-60" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
                           <path d="M 20 2 L 38 20 L 20 38 L 2 20 Z" stroke={rStyle.frame} strokeWidth="2" fill={rStyle.bg} />
                         </svg>
-                        <Icon size={14} color={a.earned ? (a.rarity === 'Epic' || a.rarity === 'Mythic' ? '#ff4d4d' : '#D4AF37') : '#8d9685'} className="relative z-10 drop-shadow-[0_0_5px_rgba(212,175,55,0.8)]" />
+                        <Icon size={14} color={a.earned ? rStyle.text : '#8d9685'} className="relative z-10 drop-shadow-[0_0_5px_rgba(212,175,55,0.8)]" />
                       </div>
 
-                      <div className="text-center">
-                        <p className={`font-serif text-[12px] font-bold ${a.rarity === 'Mythic' && a.earned ? 'text-[#F5D77F] drop-shadow-[0_0_8px_rgba(212,175,55,0.8)]' : 'text-[#EEEAD7]'}`}>{a.title}</p>
+                      <div className="text-center relative z-10">
+                        <p className={`font-serif text-[12px] font-bold`} style={{ color: a.earned ? rStyle.text : '#EEEAD7' }}>{a.title}</p>
                         <p className="font-sans text-[9px] text-[#8d9685] mt-0.5 leading-tight">{a.desc}</p>
                       </div>
                       
