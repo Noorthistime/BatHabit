@@ -266,17 +266,28 @@ const EvolutionGrimoireFrame = ({ borderColor, delay = 0, isCurrent = false }: {
       <SwordCorner className="-bottom-1 -left-1 scale-y-[-1]" d={delay + 0.8} />
       <SwordCorner className="-bottom-1 -right-1 scale-[-1]" d={delay + 0.8} />
 
-      {/* Thin Connecting Razor Lines */}
-      <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1, delay }} className="absolute top-[11px] h-[0.5px] origin-center opacity-60" style={{ left: 63, right: 63, backgroundColor: borderColor }} />
-      <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1, delay }} className="absolute bottom-[11px] h-[0.5px] origin-center opacity-60" style={{ left: 63, right: 63, backgroundColor: borderColor }} />
-      <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 1, delay }} className="absolute left-[11px] w-[0.5px] origin-center opacity-60" style={{ top: 63, bottom: 63, backgroundColor: borderColor }} />
-      <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 1, delay }} className="absolute right-[11px] w-[0.5px] origin-center opacity-60" style={{ top: 63, bottom: 63, backgroundColor: borderColor }} />
+      {/* Thin Connecting Razor Lines - Broken up to perfectly merge with diamonds */}
+      {/* Top Edge */}
+      <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1, delay }} className="absolute top-[8px] h-[0.5px] origin-left opacity-60" style={{ left: 60, right: 'calc(50% + 8px)', backgroundColor: borderColor }} />
+      <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1, delay }} className="absolute top-[8px] h-[0.5px] origin-right opacity-60" style={{ left: 'calc(50% + 8px)', right: 60, backgroundColor: borderColor }} />
+      
+      {/* Bottom Edge */}
+      <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1, delay }} className="absolute bottom-[8px] h-[0.5px] origin-left opacity-60" style={{ left: 60, right: 'calc(50% + 8px)', backgroundColor: borderColor }} />
+      <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1, delay }} className="absolute bottom-[8px] h-[0.5px] origin-right opacity-60" style={{ left: 'calc(50% + 8px)', right: 60, backgroundColor: borderColor }} />
+
+      {/* Left Edge */}
+      <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 1, delay }} className="absolute left-[8px] w-[0.5px] origin-top opacity-60" style={{ top: 60, bottom: 'calc(50% + 8px)', backgroundColor: borderColor }} />
+      <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 1, delay }} className="absolute left-[8px] w-[0.5px] origin-bottom opacity-60" style={{ top: 'calc(50% + 8px)', bottom: 60, backgroundColor: borderColor }} />
+
+      {/* Right Edge */}
+      <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 1, delay }} className="absolute right-[8px] w-[0.5px] origin-top opacity-60" style={{ top: 60, bottom: 'calc(50% + 8px)', backgroundColor: borderColor }} />
+      <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 1, delay }} className="absolute right-[8px] w-[0.5px] origin-bottom opacity-60" style={{ top: 'calc(50% + 8px)', bottom: 60, backgroundColor: borderColor }} />
 
       {/* Center Crest Diamonds */}
-      <CenterDiamond className="top-[11px] left-1/2" d={delay + 1.2} />
-      <CenterDiamond className="bottom-[11px] left-1/2" d={delay + 1.2} />
-      <CenterDiamond className="left-[11px] top-1/2" d={delay + 1.2} />
-      <CenterDiamond className="right-[11px] top-1/2" d={delay + 1.2} />
+      <CenterDiamond className="top-[8px] left-1/2" d={delay + 1.2} />
+      <CenterDiamond className="bottom-[8px] left-1/2" d={delay + 1.2} />
+      <CenterDiamond className="left-[8px] top-1/2" d={delay + 1.2} />
+      <CenterDiamond className="right-[8px] top-1/2" d={delay + 1.2} />
 
       {/* Current Rank Special Effect */}
       {isCurrent && (
