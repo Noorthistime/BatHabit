@@ -23,12 +23,12 @@ const ACHIEVEMENTS = [
   { icon: Flame, title: 'Iron Resolve', desc: '7-day unbroken streak', rarity: 'Rare', earned: true },
   { icon: Zap, title: 'Mind Forge', desc: 'Completed 50 Intellect quests', rarity: 'Epic', earned: true },
   { icon: Moon, title: 'Nocturnal Rite', desc: 'Completed quest past midnight', rarity: 'Common', earned: true },
-  { icon: Eye, title: 'The Watcher', desc: '30-day login streak', rarity: 'Legendary', earned: false },
-  { icon: Skull, title: 'Obsidian Will', desc: '100-day streak', rarity: 'Mythic', earned: false },
-  { icon: Award, title: 'Relic Forged', desc: 'Reached Rank IV', rarity: 'Epic', earned: false },
-  { icon: Crown, title: 'Golden Sovereign', desc: 'Mastered all basic attributes', rarity: 'Legendary', earned: false },
-  { icon: Shield, title: 'Silent Guardian', desc: 'Maintained 100% focus for 10 days', rarity: 'Epic', earned: false },
-  { icon: Swords, title: 'Blood Ritual', desc: 'Sacrificed 500 XP to upgrade a relic', rarity: 'Mythic', earned: false },
+  { icon: Eye, title: 'The Watcher', desc: '30-day login streak', rarity: 'Legendary', earned: true },
+  { icon: Skull, title: 'Obsidian Will', desc: '100-day streak', rarity: 'Mythic', earned: true },
+  { icon: Award, title: 'Relic Forged', desc: 'Reached Rank IV', rarity: 'Epic', earned: true },
+  { icon: Crown, title: 'Golden Sovereign', desc: 'Mastered all basic attributes', rarity: 'Legendary', earned: true },
+  { icon: Shield, title: 'Silent Guardian', desc: 'Maintained 100% focus for 10 days', rarity: 'Epic', earned: true },
+  { icon: Swords, title: 'Blood Ritual', desc: 'Sacrificed 500 XP to upgrade a relic', rarity: 'Mythic', earned: true },
 ];
 
 const RARITY_COLORS: Record<string, { text: string, border: string, bg: string, frame: string, glow: string }> = {
