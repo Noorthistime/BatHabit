@@ -894,7 +894,7 @@ export function Grimoire() {
                       </div>
                       
                       <span
-                        className={`font-mono text-[8px] uppercase tracking-widest px-1.5 py-0.5 self-start mt-auto ${a.rarity === 'Mythic' ? 'animate-pulse font-bold drop-shadow-[0_0_5px_rgba(212,175,55,0.8)]' : ''}`}
+                        className={`font-mono text-[8px] uppercase tracking-widest px-1.5 py-0.5 self-center relative z-10 mt-auto ${a.rarity === 'Mythic' ? 'animate-pulse font-bold drop-shadow-[0_0_5px_rgba(212,175,55,0.8)]' : ''}`}
                         style={{ color: rStyle.text, border: `1px solid ${rStyle.border}`, background: rStyle.bg }}
                       >
                         {a.rarity}
