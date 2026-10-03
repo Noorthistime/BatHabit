@@ -504,65 +504,61 @@ const HeaderFiligreeFrame = () => (
          initial={{ pathLength: 0, opacity: 0 }}
          whileInView={{ pathLength: 1, opacity: 1, transition: { duration: 1.5, ease: "easeInOut", delay: 0.7 } }}
          viewport={{ once: true }}
-         x="4" y="4" width="calc(100% - 8px)" height="calc(100% - 8px)" fill="none" stroke="currentColor" strokeWidth="0.5" strokeDasharray="4 2"
+         x="4" y="4" width="calc(100% - 8px)" height="calc(100% - 8px)" fill="none" stroke="currentColor" strokeWidth="0.5" 
          vectorEffect="non-scaling-stroke"
          className="opacity-60"
        />
     </svg>
 
-    {/* Corner Brackets - Made more ornate */}
+    {/* Art Deco Corners - Clean, geometric, strictly bounded */}
     {[
       "top-0 left-0",
       "top-0 right-0 scale-x-[-1]",
       "bottom-0 left-0 scale-y-[-1]",
       "bottom-0 right-0 scale-x-[-1] scale-y-[-1]"
     ].map((pos, i) => (
-      <div key={i} className={`absolute ${pos} w-10 h-10 overflow-hidden`}>
-        <motion.svg viewBox="0 0 40 40" fill="none" className="w-full h-full bg-[#1a0202]/90"
+      <div key={i} className={`absolute ${pos} w-8 h-8 overflow-hidden`}>
+        <motion.svg viewBox="0 0 32 32" fill="none" className="w-full h-full bg-[#1a0202]/90"
           initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition: { duration: 1, delay: 1 } }} viewport={{ once: true }}>
-          <path d="M 0 12 Q 12 12 12 0 M 0 16 Q 16 16 16 0 M 4 4 L 8 8 M 8 4 L 4 8" stroke="currentColor" strokeWidth="1" />
-          <circle cx="8" cy="8" r="2" fill="currentColor" />
-          <circle cx="12" cy="12" r="1" fill="currentColor" className="opacity-60" />
+          <path d="M 0 6 L 6 6 L 6 0 M 0 10 L 10 10 L 10 0" stroke="currentColor" strokeWidth="1" />
+          <path d="M 4 4 L 14 14" stroke="currentColor" strokeWidth="1" />
+          <circle cx="16" cy="16" r="1.5" fill="currentColor" />
         </motion.svg>
       </div>
     ))}
 
-    {/* Top/Bottom Center Flouishes - Widened and enhanced */}
-    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-24 h-5">
-      <motion.svg viewBox="0 0 96 20" fill="none" className="w-full h-full bg-[#1a0202]">
-        <motion.path d="M 0 10 C 20 10 30 0 48 0 C 66 0 76 10 96 10" stroke="currentColor" strokeWidth="1" 
+    {/* Top/Bottom Center Flouishes - Growing INWARDS to prevent overlap */}
+    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-4">
+      <motion.svg viewBox="0 0 64 16" fill="none" className="w-full h-full bg-[#1a0202]">
+        <motion.path d="M 0 0 L 8 8 L 24 8 L 32 16 L 40 8 L 56 8 L 64 0" stroke="currentColor" strokeWidth="1" 
           initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 1, delay: 1.2 } }} viewport={{ once: true }} />
-        <motion.path d="M 16 10 Q 32 16 48 4 Q 64 16 80 10" stroke="currentColor" strokeWidth="0.5" className="opacity-60"
-          initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 1, delay: 1.4 } }} viewport={{ once: true }} />
-        <motion.path d="M 48 3 L 51 8 L 45 8 Z M 48 12 L 50 10 L 46 10 Z" fill="currentColor" 
+        <motion.path d="M 32 4 L 36 8 L 32 12 L 28 8 Z" fill="currentColor" 
           initial={{ scale: 0 }} whileInView={{ scale: 1, transition: { duration: 0.5, delay: 1.8 } }} viewport={{ once: true }} />
       </motion.svg>
     </div>
-    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-24 h-5 scale-y-[-1]">
-      <motion.svg viewBox="0 0 96 20" fill="none" className="w-full h-full bg-[#1a0202]">
-        <motion.path d="M 0 10 C 20 10 30 0 48 0 C 66 0 76 10 96 10" stroke="currentColor" strokeWidth="1" 
+    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-16 h-4 scale-y-[-1]">
+      <motion.svg viewBox="0 0 64 16" fill="none" className="w-full h-full bg-[#1a0202]">
+        <motion.path d="M 0 0 L 8 8 L 24 8 L 32 16 L 40 8 L 56 8 L 64 0" stroke="currentColor" strokeWidth="1" 
           initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 1, delay: 1.2 } }} viewport={{ once: true }} />
-        <motion.path d="M 16 10 Q 32 16 48 4 Q 64 16 80 10" stroke="currentColor" strokeWidth="0.5" className="opacity-60"
-          initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 1, delay: 1.4 } }} viewport={{ once: true }} />
-        <motion.path d="M 48 3 L 51 8 L 45 8 Z M 48 12 L 50 10 L 46 10 Z" fill="currentColor" 
+        <motion.path d="M 32 4 L 36 8 L 32 12 L 28 8 Z" fill="currentColor" 
           initial={{ scale: 0 }} whileInView={{ scale: 1, transition: { duration: 0.5, delay: 1.8 } }} viewport={{ once: true }} />
       </motion.svg>
     </div>
 
-    {/* Side Center Flourishes (Enhancing the side plain lines) */}
-    <div className="absolute top-1/2 left-0 -translate-x-1/2 -translate-y-1/2 w-4 h-12">
-      <motion.svg viewBox="0 0 16 48" fill="none" className="w-full h-full bg-[#1a0202]">
-        <motion.path d="M 8 0 C 8 12 0 16 0 24 C 0 32 8 36 8 48" stroke="currentColor" strokeWidth="1"
+    {/* Side Center Flourishes - Growing INWARDS to prevent overlap */}
+    <div className="absolute top-1/2 left-0 -translate-y-1/2 w-4 h-16">
+      <motion.svg viewBox="0 0 16 64" fill="none" className="w-full h-full bg-[#1a0202]">
+        <motion.path d="M 0 0 L 8 8 L 8 24 L 16 32 L 8 40 L 8 56 L 0 64" stroke="currentColor" strokeWidth="1"
           initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 1, delay: 1.2 } }} viewport={{ once: true }} />
-        <circle cx="4" cy="24" r="1.5" fill="currentColor" 
+        <motion.path d="M 4 32 L 8 36 L 12 32 L 8 28 Z" fill="currentColor" 
           initial={{ scale: 0 }} whileInView={{ scale: 1, transition: { duration: 0.5, delay: 1.8 } }} viewport={{ once: true }} />
       </motion.svg>
     </div>
-    <div className="absolute top-1/2 right-0 translate-x-1/2 -translate-y-1/2 w-4 h-12 scale-x-[-1]">
-      <motion.svg viewBox="0 0 16 48" fill="none" className="w-full h-full bg-[#1a0202]">
-        <motion.path d="M 8 0 C 8 12 0 16 0 24 C 0 32 8 36 8 48" stroke="currentColor" strokeWidth="1"
+    <div className="absolute top-1/2 right-0 -translate-y-1/2 w-4 h-16 scale-x-[-1]">
+      <motion.svg viewBox="0 0 16 64" fill="none" className="w-full h-full bg-[#1a0202]">
+        <motion.path d="M 0 0 L 8 8 L 8 24 L 16 32 L 8 40 L 8 56 L 0 64" stroke="currentColor" strokeWidth="1"
           initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 1, delay: 1.2 } }} viewport={{ once: true }} />
-        <circle cx="4" cy="24" r="1.5" fill="currentColor" 
+        <motion.path d="M 4 32 L 8 36 L 12 32 L 8 28 Z" fill="currentColor" 
           initial={{ scale: 0 }} whileInView={{ scale: 1, transition: { duration: 0.5, delay: 1.8 } }} viewport={{ once: true }} />
       </motion.svg>
     </div>
