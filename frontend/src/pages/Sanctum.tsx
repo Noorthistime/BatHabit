@@ -679,16 +679,20 @@ export function Sanctum() {
                 </div>
 
                 {/* Tab Content Container */}
-                <div className="p-6 flex-1 flex flex-col relative overflow-hidden">
+                <div className="flex-1 flex flex-col relative overflow-hidden">
                   
-                  {/* Treasury View */}
-                  {activeLedgerTab === 'treasury' && (
-                    <motion.div 
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      className="flex flex-col items-center flex-1 h-full relative"
-                    >
-                      <VaultFrame />
+                  {activeLedgerTab === 'treasury' && <VaultFrame />}
+                  
+                  {/* Inner Padded Container for Content */}
+                  <div className="p-6 flex-1 flex flex-col relative z-10 h-full">
+                    
+                    {/* Treasury View */}
+                    {activeLedgerTab === 'treasury' && (
+                      <motion.div 
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        className="flex flex-col items-center flex-1 h-full relative"
+                      >
                       
                       <div className="flex flex-col items-center w-full mb-10 relative z-10 pt-4">
                         <h3 className="font-serif text-2xl font-bold text-[#EEEAD7] tracking-[0.3em]">THE VAULT</h3>
@@ -754,22 +758,27 @@ export function Sanctum() {
                           <p className="font-mono text-[10px] text-[#8d9685] mt-1.5 leading-relaxed opacity-60">Artifact secured in the Vault.</p>
                         </div>
                       </div>
+                      </div>
                     </motion.div>
                   )}
                   
+                  </div>
                 </div>
               </div>
             </div>
 
             {/* Right Col (67%): Quests */}
             <div className="lg:col-span-8 flex flex-col h-full">
-              <div className="relative bg-gradient-to-br from-[#1a0202] to-[#0a0000] shadow-[0_12px_40px_rgba(0,0,0,0.9)] flex flex-col p-8 overflow-hidden h-full rounded-lg">
+              <div className="relative bg-gradient-to-br from-[#1a0202] to-[#0a0000] shadow-[0_12px_40px_rgba(0,0,0,0.9)] flex flex-col overflow-hidden h-full rounded-lg">
                 
                 {/* The serious outer filigree */}
                 <CodexMasterFrame />
 
-                {/* Header */}
-                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 relative z-10 mb-8 pb-6">
+                {/* Inner Padded Content */}
+                <div className="p-8 flex-1 flex flex-col relative z-10 h-full">
+                  
+                  {/* Header */}
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 relative z-10 mb-8 pb-6">
                   <div className="flex items-center gap-4">
                     <div className="w-10 h-10 rounded-sm border border-[#D4AF37]/50 flex items-center justify-center text-[#D4AF37] shrink-0 bg-[#0a0000] shadow-inner">
                       <Book size={20} />
@@ -826,6 +835,8 @@ export function Sanctum() {
                       {i < arr.length - 1 && <QuestRowDivider />}
                     </React.Fragment>
                   ))}
+                </div>
+                
                 </div>
               </div>
             </div>
