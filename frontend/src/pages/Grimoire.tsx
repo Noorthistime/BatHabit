@@ -641,7 +641,7 @@ export function Grimoire() {
                         <div className="flex-1 w-full flex flex-col md:grid md:grid-cols-[1fr_auto_1fr] items-start md:items-center relative z-10 min-w-0">
                           
                           {/* Column 1: Left Block */}
-                          <div className="flex items-center justify-start md:justify-end gap-3 sm:gap-4 w-full md:pr-5 lg:pr-8">
+                          <div className="flex items-center justify-start md:justify-end gap-3 sm:gap-4 w-full md:pr-6 lg:pr-8">
                             {/* Rank Circle */}
                             <div
                               className="w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center font-serif text-base sm:text-lg font-bold shrink-0 shadow-[0_0_10px_rgba(0,0,0,0.8)]"
@@ -661,7 +661,7 @@ export function Grimoire() {
                             </span>
                             
                             {/* Badge */}
-                            <div className="w-[72px] sm:w-[84px] shrink-0 flex items-center">
+                            <div className="w-[72px] sm:w-[84px] shrink-0 flex items-center justify-end">
                               {stage.current && <span className="font-mono text-[9px] sm:text-[10px] px-1.5 py-0.5 bg-[#D4AF37]/20 text-[#D4AF37] border border-[#D4AF37]/60 uppercase tracking-wider font-bold shadow-[0_0_8px_rgba(212,175,55,0.4)]">CURRENT</span>}
                               {stage.achieved && !stage.current && <span className="font-mono text-[9px] sm:text-[10px] px-1.5 py-0.5 bg-[#6D0808]/40 text-[#D4AF37]/60 border border-[#6D0808]/40 uppercase tracking-wider">ACHIEVED</span>}
                             </div>
@@ -673,7 +673,7 @@ export function Grimoire() {
                           </div>
 
                           {/* Column 3: Class Name */}
-                          <div className="w-full flex items-center justify-start overflow-hidden min-w-0 mt-1 md:mt-0 md:pl-4 lg:pl-6 pr-12 sm:pr-16">
+                          <div className="w-full flex items-center justify-start overflow-hidden min-w-0 mt-1 md:mt-0 md:pl-6 lg:pl-8 pr-12 sm:pr-16">
                              {/* Mobile Hyphen */}
                              <span className={`md:hidden mr-2 font-mono text-sm ${stage.current ? 'text-[#D4AF37]' : 'text-[#8d9685]/50'}`}>—</span>
                              
