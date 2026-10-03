@@ -128,6 +128,33 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
       <div className="absolute inset-0 pointer-events-none z-0">
         <div className="absolute inset-0 border-[1.5px]" style={{ borderColor: color, boxShadow: `0 0 10px ${color}` }} />
         <div className="absolute inset-[4px] border border-dashed" style={{ borderColor: color, opacity: 0.6 }} />
+        
+        {/* Continuous Filigree Pattern */}
+        <svg className="absolute inset-0 w-full h-full opacity-80">
+          <defs>
+             <pattern id="mythic-x" width="40" height="10" patternUnits="userSpaceOnUse">
+               <path d="M0 5 L10 2 L20 5 L10 8 Z" fill="none" stroke={color} strokeWidth="1" />
+               <path d="M20 5 L30 2 L40 5 L30 8 Z" fill="none" stroke={color} strokeWidth="1" />
+               <path d="M0 5 Q10 10 20 5 T40 5" fill="none" stroke={color} strokeWidth="0.5" opacity="0.8"/>
+               <path d="M0 5 Q10 0 20 5 T40 5" fill="none" stroke={color} strokeWidth="0.5" opacity="0.8"/>
+               <rect x="9.5" y="4.5" width="1" height="1" fill="#000" stroke={color} strokeWidth="0.5" transform="rotate(45 10 5)" />
+               <rect x="29.5" y="4.5" width="1" height="1" fill="#000" stroke={color} strokeWidth="0.5" transform="rotate(45 30 5)" />
+             </pattern>
+             <pattern id="mythic-y" width="10" height="40" patternUnits="userSpaceOnUse">
+               <path d="M5 0 L2 10 L5 20 L8 10 Z" fill="none" stroke={color} strokeWidth="1" />
+               <path d="M5 20 L2 30 L5 40 L8 30 Z" fill="none" stroke={color} strokeWidth="1" />
+               <path d="M5 0 Q10 10 5 20 T5 40" fill="none" stroke={color} strokeWidth="0.5" opacity="0.8"/>
+               <path d="M5 0 Q0 10 5 20 T5 40" fill="none" stroke={color} strokeWidth="0.5" opacity="0.8"/>
+               <rect x="4.5" y="9.5" width="1" height="1" fill="#000" stroke={color} strokeWidth="0.5" transform="rotate(45 5 10)" />
+               <rect x="4.5" y="29.5" width="1" height="1" fill="#000" stroke={color} strokeWidth="0.5" transform="rotate(45 5 30)" />
+             </pattern>
+          </defs>
+          <rect x="0" y="0" width="100%" height="10" fill="url(#mythic-x)" />
+          <rect x="0" y="calc(100% - 10px)" width="100%" height="10" fill="url(#mythic-x)" />
+          <rect x="0" y="0" width="10" height="100%" fill="url(#mythic-y)" />
+          <rect x="calc(100% - 10px)" y="0" width="10" height="100%" fill="url(#mythic-y)" />
+        </svg>
+
         {[
           'top-0 left-0', 'top-0 right-0 rotate-90',
           'bottom-0 right-0 rotate-180', 'bottom-0 left-0 -rotate-90'
@@ -158,6 +185,30 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
         <div className="absolute inset-0 border-[2px]" style={{ borderColor: color, boxShadow: `0 0 12px ${color}, inset 0 0 20px ${redAccent}` }} />
         <div className="absolute inset-[3px] border border-solid" style={{ borderColor: redAccent }} />
         <div className="absolute inset-[5px] border border-dashed" style={{ borderColor: color, opacity: 0.5 }} />
+        
+        {/* Continuous Thorny Vine Pattern */}
+        <svg className="absolute inset-0 w-full h-full opacity-90">
+          <defs>
+             <pattern id="leg-x" width="60" height="10" patternUnits="userSpaceOnUse">
+               <path d="M0 5 C15 0, 45 10, 60 5" fill="none" stroke={color} strokeWidth="1" />
+               <path d="M0 5 C15 10, 45 0, 60 5" fill="none" stroke={color} strokeWidth="0.5" />
+               <path d="M15 4 L17 2 L16 5 Z M45 6 L47 8 L46 5 Z" fill={color} />
+               <circle cx="30" cy="5" r="2" fill={redAccent} stroke={color} strokeWidth="0.5" />
+               <path d="M28 5 Q30 2 32 5 Q30 8 28 5" fill="none" stroke={color} strokeWidth="0.5" />
+             </pattern>
+             <pattern id="leg-y" width="10" height="60" patternUnits="userSpaceOnUse">
+               <path d="M5 0 C0 15, 10 45, 5 60" fill="none" stroke={color} strokeWidth="1" />
+               <path d="M5 0 C10 15, 0 45, 5 60" fill="none" stroke={color} strokeWidth="0.5" />
+               <path d="M4 15 L2 17 L5 16 Z M6 45 L8 47 L5 46 Z" fill={color} />
+               <circle cx="5" cy="30" r="2" fill={redAccent} stroke={color} strokeWidth="0.5" />
+               <path d="M5 28 Q2 30 5 32 Q8 30 5 28" fill="none" stroke={color} strokeWidth="0.5" />
+             </pattern>
+          </defs>
+          <rect x="0" y="0" width="100%" height="10" fill="url(#leg-x)" />
+          <rect x="0" y="calc(100% - 10px)" width="100%" height="10" fill="url(#leg-x)" />
+          <rect x="0" y="0" width="10" height="100%" fill="url(#leg-y)" />
+          <rect x="calc(100% - 10px)" y="0" width="10" height="100%" fill="url(#leg-y)" />
+        </svg>
         {[
           'top-0 left-0', 'top-0 right-0 rotate-90',
           'bottom-0 right-0 rotate-180', 'bottom-0 left-0 -rotate-90'
