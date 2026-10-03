@@ -207,52 +207,76 @@ const SubtleGrimoireFrame = ({ delay = 0 }: { delay?: number }) => (
 );
 
 const EvolutionGrimoireFrame = ({ borderColor, delay = 0, isCurrent = false }: { borderColor: string, delay?: number, isCurrent?: boolean }) => {
-  const starPath = "M12 0 L13.5 10.5 L24 12 L13.5 13.5 L12 24 L10.5 13.5 L0 12 L10.5 10.5 Z";
-  
+  const SwordCorner = ({ className, d }: { className: string, d: number }) => (
+    <motion.svg 
+      className={`absolute ${className} w-16 h-16`} 
+      style={{ color: borderColor }}
+      viewBox="0 0 64 64" 
+      initial={{ opacity: 0, scale: 0.8 }} 
+      animate={{ opacity: 1, scale: 1 }} 
+      transition={{ duration: 0.6, delay: d }}
+    >
+      <g style={{ stroke: "currentColor", fill: "currentColor" }}>
+        {/* Guard Diamond (hollow) */}
+        <path d="M 12 4 L 20 12 L 12 20 L 4 12 Z" fill="none" strokeWidth="1.5" />
+        <path d="M 12 8 L 16 12 L 12 16 L 8 12 Z" fill="currentColor" />
+        
+        {/* Left Pommel */}
+        <path d="M 2 12 L 4 10 L 6 12 L 4 14 Z" fill="currentColor" />
+        {/* Left Grip */}
+        <line x1="5" y1="12" x2="9" y2="12" strokeWidth="1.5" />
+        
+        {/* Top Pommel */}
+        <path d="M 12 2 L 14 4 L 12 6 L 10 4 Z" fill="currentColor" />
+        {/* Top Grip */}
+        <line x1="12" y1="5" x2="12" y2="9" strokeWidth="1.5" />
+        
+        {/* Right Blade */}
+        <path d="M 20 10.5 L 54 10.5 L 64 12 L 54 13.5 L 20 13.5 Z" fill="none" strokeWidth="1" />
+        <line x1="20" y1="12" x2="56" y2="12" strokeWidth="0.5" />
+        
+        {/* Down Blade */}
+        <path d="M 10.5 20 L 10.5 54 L 12 64 L 13.5 54 L 13.5 20 Z" fill="none" strokeWidth="1" />
+        <line x1="12" y1="20" x2="12" y2="56" strokeWidth="0.5" />
+      </g>
+    </motion.svg>
+  );
+
+  const CenterDiamond = ({ className, d }: { className: string, d: number }) => (
+    <motion.svg
+      className={`absolute ${className} w-4 h-4 -translate-x-1/2 -translate-y-1/2`}
+      style={{ color: borderColor }}
+      viewBox="0 0 16 16"
+      initial={{ opacity: 0, rotate: -45, scale: 0 }}
+      animate={{ opacity: 1, rotate: 0, scale: 1 }}
+      transition={{ duration: 0.6, delay: d }}
+    >
+      <g style={{ stroke: "currentColor", fill: "currentColor" }}>
+        <path d="M 8 0 L 16 8 L 8 16 L 0 8 Z" fill="none" strokeWidth="1" />
+        <path d="M 8 4 L 12 8 L 8 12 L 4 8 Z" fill="currentColor" />
+      </g>
+    </motion.svg>
+  );
+
   return (
     <div className="absolute inset-0 pointer-events-none z-0">
-      {/* Top-Left Thick Gold Block */}
-      <motion.svg className="absolute top-0 left-0 w-10 h-10" style={{ color: borderColor }} viewBox="0 0 40 40" initial={{ opacity: 0, x: -10, y: -10 }} animate={{ opacity: 0.9, x: 0, y: 0 }} transition={{ duration: 0.6, delay: delay + 0.8 }}>
-        <path d="M 0 0 L 40 0 L 40 4 L 16 28 L 4 28 L 4 40 L 0 40 Z" fill="currentColor" />
-      </motion.svg>
-      
-      {/* Bottom-Right Thick Gold Block */}
-      <motion.svg className="absolute bottom-0 right-0 w-10 h-10" style={{ color: borderColor }} viewBox="0 0 40 40" initial={{ opacity: 0, x: 10, y: 10 }} animate={{ opacity: 0.9, x: 0, y: 0 }} transition={{ duration: 0.6, delay: delay + 0.8 }}>
-        <path d="M 40 40 L 0 40 L 0 36 L 24 12 L 36 12 L 36 0 L 40 0 Z" fill="currentColor" />
-      </motion.svg>
+      {/* 4 Corners (Swords crossed) */}
+      <SwordCorner className="-top-1 -left-1" d={delay + 0.8} />
+      <SwordCorner className="-top-1 -right-1 scale-x-[-1]" d={delay + 0.8} />
+      <SwordCorner className="-bottom-1 -left-1 scale-y-[-1]" d={delay + 0.8} />
+      <SwordCorner className="-bottom-1 -right-1 scale-[-1]" d={delay + 0.8} />
 
-      {/* Top-Right Sunburst Fan */}
-      <motion.svg className="absolute top-0 right-0 w-12 h-12" style={{ color: borderColor }} viewBox="0 0 48 48" initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 0.8, scale: 1 }} transition={{ duration: 0.6, delay: delay + 1.0 }}>
-        <path d="M 48 48 A 48 48 0 0 0 0 0 L 48 0 Z" fill="none" stroke="currentColor" strokeWidth="1.5" />
-        <line x1="48" y1="0" x2="14" y2="34" stroke="currentColor" strokeWidth="1" />
-        <line x1="48" y1="0" x2="4" y2="18" stroke="currentColor" strokeWidth="0.5" />
-        <line x1="48" y1="0" x2="30" y2="44" stroke="currentColor" strokeWidth="0.5" />
-      </motion.svg>
+      {/* Thin Connecting Razor Lines */}
+      <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1, delay }} className="absolute top-[11px] h-[0.5px] origin-center opacity-60" style={{ left: 63, right: 63, backgroundColor: borderColor }} />
+      <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1, delay }} className="absolute bottom-[11px] h-[0.5px] origin-center opacity-60" style={{ left: 63, right: 63, backgroundColor: borderColor }} />
+      <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 1, delay }} className="absolute left-[11px] w-[0.5px] origin-center opacity-60" style={{ top: 63, bottom: 63, backgroundColor: borderColor }} />
+      <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 1, delay }} className="absolute right-[11px] w-[0.5px] origin-center opacity-60" style={{ top: 63, bottom: 63, backgroundColor: borderColor }} />
 
-      {/* Bottom-Left Sunburst Fan */}
-      <motion.svg className="absolute bottom-0 left-0 w-12 h-12" style={{ color: borderColor }} viewBox="0 0 48 48" initial={{ opacity: 0, scale: 0.5 }} animate={{ opacity: 0.8, scale: 1 }} transition={{ duration: 0.6, delay: delay + 1.0 }}>
-        <path d="M 0 0 A 48 48 0 0 0 48 48 L 0 48 Z" fill="none" stroke="currentColor" strokeWidth="1.5" />
-        <line x1="0" y1="48" x2="34" y2="14" stroke="currentColor" strokeWidth="1" />
-        <line x1="0" y1="48" x2="44" y2="30" stroke="currentColor" strokeWidth="0.5" />
-        <line x1="0" y1="48" x2="18" y2="4" stroke="currentColor" strokeWidth="0.5" />
-      </motion.svg>
-
-      {/* Thin Connecting Borders */}
-      <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1, delay }} className="absolute top-[2px] h-[0.5px] origin-center opacity-60" style={{ left: 40, right: 48, backgroundColor: borderColor }} />
-      <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1, delay }} className="absolute bottom-[2px] h-[0.5px] origin-center opacity-60" style={{ left: 48, right: 40, backgroundColor: borderColor }} />
-      <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 1, delay }} className="absolute left-[2px] w-[0.5px] origin-center opacity-60" style={{ top: 40, bottom: 48, backgroundColor: borderColor }} />
-      <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 1, delay }} className="absolute right-[2px] w-[0.5px] origin-center opacity-60" style={{ top: 48, bottom: 40, backgroundColor: borderColor }} />
-
-      {/* Starry Accents */}
-      {[
-        "top-[2px] left-[35%]", "top-[2px] left-[65%]", 
-        "bottom-[2px] right-[35%]", "bottom-[2px] right-[65%]",
-      ].map((pos, i) => (
-        <motion.svg key={i} className={`absolute ${pos} w-2.5 h-2.5 -translate-x-1/2 -translate-y-1/2`} style={{ color: borderColor }} viewBox="0 0 24 24"
-          initial={{ opacity: 0, scale: 0, rotate: -45 }} animate={{ opacity: 0.9, scale: 1, rotate: 0 }} transition={{ duration: 0.8, delay: delay + 1.5 + (i * 0.1) }}>
-          <path d={starPath} fill="currentColor" />
-        </motion.svg>
-      ))}
+      {/* Center Crest Diamonds */}
+      <CenterDiamond className="top-[11px] left-1/2" d={delay + 1.2} />
+      <CenterDiamond className="bottom-[11px] left-1/2" d={delay + 1.2} />
+      <CenterDiamond className="left-[11px] top-1/2" d={delay + 1.2} />
+      <CenterDiamond className="right-[11px] top-1/2" d={delay + 1.2} />
 
       {/* Current Rank Special Effect */}
       {isCurrent && (
