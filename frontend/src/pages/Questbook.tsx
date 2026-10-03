@@ -218,6 +218,71 @@ const GothicButton = ({ active, onClick, children, pulse = false }: any) => (
   </button>
 );
 
+const QuestItemFiligreeFrame = () => (
+  <div className="absolute inset-0 pointer-events-none z-0 text-[#D4AF37]/80">
+    {/* Continuous Golden Border Lines with Rounded Corners */}
+    <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
+       <motion.rect 
+         initial={{ pathLength: 0, opacity: 0 }}
+         whileInView={{ pathLength: 1, opacity: 1, transition: { duration: 1.2, ease: "easeInOut", delay: 0.8 } }}
+         viewport={{ once: true }}
+         x="1" y="1" width="calc(100% - 2px)" height="calc(100% - 2px)" rx="12" ry="12" fill="none" stroke="currentColor" strokeWidth="1" 
+         vectorEffect="non-scaling-stroke"
+       />
+       <motion.rect 
+         initial={{ pathLength: 0, opacity: 0 }}
+         whileInView={{ pathLength: 1, opacity: 1, transition: { duration: 1.2, ease: "easeInOut", delay: 1 } }}
+         viewport={{ once: true }}
+         x="4" y="4" width="calc(100% - 8px)" height="calc(100% - 8px)" rx="9" ry="9" fill="none" stroke="currentColor" strokeWidth="0.5" 
+         vectorEffect="non-scaling-stroke"
+         className="opacity-50"
+       />
+    </svg>
+
+    {/* Vintage Corner Sweeps */}
+    {[
+      "top-0 left-0",
+      "top-0 right-0 scale-x-[-1]",
+      "bottom-0 left-0 scale-y-[-1]",
+      "bottom-0 right-0 scale-x-[-1] scale-y-[-1]"
+    ].map((pos, i) => (
+      <div key={i} className={`absolute ${pos} w-8 h-8`}>
+        <motion.svg viewBox="0 0 32 32" fill="none" className="w-full h-full"
+          initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition: { duration: 0.8, delay: 1.2 } }} viewport={{ once: true }}>
+          <motion.path d="M 0 12 C 4 12 10 10 12 0" stroke="currentColor" strokeWidth="1" 
+             initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 1, delay: 1.2 } }} viewport={{ once: true }} />
+          <motion.path d="M 3 15 C 6 15 12 12 15 3" stroke="currentColor" strokeWidth="0.5" 
+             initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 1, delay: 1.4 } }} viewport={{ once: true }} />
+          <circle cx="10" cy="10" r="1.5" fill="currentColor" />
+          <circle cx="14" cy="14" r="1" fill="currentColor" opacity="0.5" />
+        </motion.svg>
+      </div>
+    ))}
+
+    {/* Classic Top/Bottom Center Scrollwork */}
+    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-4">
+      <motion.svg viewBox="0 0 96 16" fill="none" className="w-full h-full">
+        <motion.path d="M 0 0 C 16 0 24 8 36 10 C 44 11 48 4 48 4 C 48 4 52 11 60 10 C 72 8 80 0 96 0" stroke="currentColor" strokeWidth="1" 
+          initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 1.5, delay: 1 } }} viewport={{ once: true }} />
+        <motion.path d="M 32 0 C 40 0 44 8 48 8 C 52 8 56 0 64 0" stroke="currentColor" strokeWidth="0.5" 
+          initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 1.2, delay: 1.2 } }} viewport={{ once: true }} />
+        <circle cx="48" cy="12" r="1.5" fill="currentColor" 
+          initial={{ scale: 0 }} whileInView={{ scale: 1, transition: { duration: 0.5, delay: 1.8 } }} viewport={{ once: true }} />
+      </motion.svg>
+    </div>
+    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-4 scale-y-[-1]">
+      <motion.svg viewBox="0 0 96 16" fill="none" className="w-full h-full">
+        <motion.path d="M 0 0 C 16 0 24 8 36 10 C 44 11 48 4 48 4 C 48 4 52 11 60 10 C 72 8 80 0 96 0" stroke="currentColor" strokeWidth="1" 
+          initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 1.5, delay: 1 } }} viewport={{ once: true }} />
+        <motion.path d="M 32 0 C 40 0 44 8 48 8 C 52 8 56 0 64 0" stroke="currentColor" strokeWidth="0.5" 
+          initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 1.2, delay: 1.2 } }} viewport={{ once: true }} />
+        <circle cx="48" cy="12" r="1.5" fill="currentColor" 
+          initial={{ scale: 0 }} whileInView={{ scale: 1, transition: { duration: 0.5, delay: 1.8 } }} viewport={{ once: true }} />
+      </motion.svg>
+    </div>
+  </div>
+);
+
 export default function Questbook() {
   const [activeTab, setActiveTab] = useState('ACTIVE VOWS');
   const [selectedDisc, setSelectedDisc] = useState('ALL');
@@ -463,6 +528,7 @@ export default function Questbook() {
                 : 'border-[#415A77]/60 dark:border-[#D4AF37]/35 hover:border-[#415A77] dark:hover:border-[#F5D77F] shadow-[0_4px_20px_rgba(0,0,0,0.5)]'
                 }`}
             >
+              <QuestItemFiligreeFrame />
               {/* Ambient Glow for Active Quests */}
               {!quest.isSealed && (
                 <div className="absolute top-0 right-0 w-32 h-32 bg-[#D4AF37]/5 dark:bg-[#F5D77F]/5 rounded-bl-full blur-[40px] pointer-events-none"></div>
