@@ -638,10 +638,10 @@ export function Grimoire() {
                         {glowEffect}
 
                         {/* Main Content Grid */}
-                        <div className="flex-1 w-full flex flex-col xl:grid xl:grid-cols-[auto_60px_1fr] items-start xl:items-center gap-2 xl:gap-0 pr-20 sm:pr-24 z-10 relative">
+                        <div className="flex-1 w-full flex flex-col md:grid md:grid-cols-[1fr_auto_1fr] items-start md:items-center relative z-10 min-w-0">
                           
                           {/* Column 1: Left Block */}
-                          <div className="flex items-center gap-3 sm:gap-4">
+                          <div className="flex items-center justify-start md:justify-end gap-3 sm:gap-4 w-full md:pr-5 lg:pr-8">
                             {/* Rank Circle */}
                             <div
                               className="w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center font-serif text-base sm:text-lg font-bold shrink-0 shadow-[0_0_10px_rgba(0,0,0,0.8)]"
@@ -667,15 +667,15 @@ export function Grimoire() {
                             </div>
                           </div>
 
-                          {/* Column 2: Hyphen (Desktop Only) */}
-                          <div className="hidden xl:flex justify-center items-center">
+                          {/* Column 2: Hyphen (Dead Center) */}
+                          <div className="hidden md:flex justify-center items-center">
                              <span className={`font-mono text-base ${stage.current ? 'text-[#D4AF37]' : 'text-[#8d9685]/50'}`}>—</span>
                           </div>
 
                           {/* Column 3: Class Name */}
-                          <div className="w-full flex items-center justify-start overflow-hidden min-w-0">
+                          <div className="w-full flex items-center justify-start overflow-hidden min-w-0 mt-1 md:mt-0 md:pl-5 lg:pl-8 pr-16 sm:pr-24">
                              {/* Mobile Hyphen */}
-                             <span className={`xl:hidden mr-2 font-mono text-sm ${stage.current ? 'text-[#D4AF37]' : 'text-[#8d9685]/50'}`}>—</span>
+                             <span className={`md:hidden mr-2 font-mono text-sm ${stage.current ? 'text-[#D4AF37]' : 'text-[#8d9685]/50'}`}>—</span>
                              
                              <span className={`font-mono text-xs sm:text-sm tracking-wide uppercase truncate ${stage.current ? 'text-[#D4AF37] drop-shadow-[0_0_2px_rgba(212,175,55,0.5)]' : stage.achieved ? 'text-[#EEEAD7]/90' : 'text-[#8d9685]'}`}>
                                {stage.class}
