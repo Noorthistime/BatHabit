@@ -631,47 +631,57 @@ export function Grimoire() {
                     >
                       <motion.div
                         {...animationProps}
-                        className="w-full h-full pl-14 sm:pl-28 pr-24 py-3 sm:py-3.5 flex items-center justify-start relative overflow-hidden group rounded-md"
+                        className="w-full h-full px-4 sm:px-8 py-3 sm:py-3.5 flex items-center relative overflow-hidden group rounded-md"
                         style={{ background: bgStyle }}
                       >
                         <EvolutionGrimoireFrame borderColor={borderColor} delay={i * 0.15} isCurrent={stage.current} />
                         {glowEffect}
 
-                        {/* Centered Main Block - Inline Format */}
-                        <div className="flex items-center gap-3 sm:gap-4 z-10 relative">
-                          {/* Rank Circle */}
-                          <div
-                            className="w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center font-serif text-base sm:text-lg font-bold shrink-0 shadow-[0_0_10px_rgba(0,0,0,0.8)]"
-                            style={{
-                              background: iconBg,
-                              color: iconColor,
-                              border: iconBorder,
-                              boxShadow: iconShadow
-                            }}
-                          >
-                            {stage.rank}
-                          </div>
+                        {/* Main Content Grid */}
+                        <div className="flex-1 w-full flex flex-col xl:grid xl:grid-cols-[auto_60px_1fr] items-start xl:items-center gap-2 xl:gap-0 pr-20 sm:pr-24 z-10 relative">
                           
-                          {/* Inline Text Content */}
-                          <div className="flex items-center flex-wrap sm:flex-nowrap gap-2 sm:gap-3">
+                          {/* Column 1: Left Block */}
+                          <div className="flex items-center gap-3 sm:gap-4">
+                            {/* Rank Circle */}
+                            <div
+                              className="w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center font-serif text-base sm:text-lg font-bold shrink-0 shadow-[0_0_10px_rgba(0,0,0,0.8)]"
+                              style={{
+                                background: iconBg,
+                                color: iconColor,
+                                border: iconBorder,
+                                boxShadow: iconShadow
+                              }}
+                            >
+                              {stage.rank}
+                            </div>
+                            
+                            {/* Title */}
                             <span className={`w-28 sm:w-36 shrink-0 text-left font-serif text-lg sm:text-xl font-bold tracking-widest ${stage.current ? 'text-[#F5D77F] drop-shadow-[0_0_8px_rgba(212,175,55,0.8)]' : stage.achieved ? 'text-[#F5D77F]' : 'text-[#EEEAD7]'}`}>
                               {stage.title}
                             </span>
                             
-                            <div className="flex items-center gap-2 mt-1 sm:mt-0">
-                              <div className="w-[72px] sm:w-[84px] shrink-0 flex items-center">
-                                {stage.current && <span className="font-mono text-[9px] sm:text-[10px] px-1.5 py-0.5 bg-[#D4AF37]/20 text-[#D4AF37] border border-[#D4AF37]/60 uppercase tracking-wider font-bold shadow-[0_0_8px_rgba(212,175,55,0.4)]">CURRENT</span>}
-                                {stage.achieved && !stage.current && <span className="font-mono text-[9px] sm:text-[10px] px-1.5 py-0.5 bg-[#6D0808]/40 text-[#D4AF37]/60 border border-[#6D0808]/40 uppercase tracking-wider">ACHIEVED</span>}
-                              </div>
-                              
-                              {/* Separator Dash */}
-                              <span className={`hidden sm:inline-block font-mono text-sm ${stage.current ? 'text-[#D4AF37]' : 'text-[#8d9685]/50'}`}>—</span>
-                              
-                              <span className={`font-mono text-[10px] sm:text-[11px] tracking-wide uppercase ${stage.current ? 'text-[#D4AF37] drop-shadow-[0_0_2px_rgba(212,175,55,0.5)]' : stage.achieved ? 'text-[#EEEAD7]/90' : 'text-[#8d9685]'}`}>
-                                {stage.class}
-                              </span>
+                            {/* Badge */}
+                            <div className="w-[72px] sm:w-[84px] shrink-0 flex items-center">
+                              {stage.current && <span className="font-mono text-[9px] sm:text-[10px] px-1.5 py-0.5 bg-[#D4AF37]/20 text-[#D4AF37] border border-[#D4AF37]/60 uppercase tracking-wider font-bold shadow-[0_0_8px_rgba(212,175,55,0.4)]">CURRENT</span>}
+                              {stage.achieved && !stage.current && <span className="font-mono text-[9px] sm:text-[10px] px-1.5 py-0.5 bg-[#6D0808]/40 text-[#D4AF37]/60 border border-[#6D0808]/40 uppercase tracking-wider">ACHIEVED</span>}
                             </div>
                           </div>
+
+                          {/* Column 2: Hyphen (Desktop Only) */}
+                          <div className="hidden xl:flex justify-center items-center">
+                             <span className={`font-mono text-base ${stage.current ? 'text-[#D4AF37]' : 'text-[#8d9685]/50'}`}>—</span>
+                          </div>
+
+                          {/* Column 3: Class Name */}
+                          <div className="w-full flex items-center justify-start overflow-hidden min-w-0">
+                             {/* Mobile Hyphen */}
+                             <span className={`xl:hidden mr-2 font-mono text-sm ${stage.current ? 'text-[#D4AF37]' : 'text-[#8d9685]/50'}`}>—</span>
+                             
+                             <span className={`font-mono text-xs sm:text-sm tracking-wide uppercase truncate ${stage.current ? 'text-[#D4AF37] drop-shadow-[0_0_2px_rgba(212,175,55,0.5)]' : stage.achieved ? 'text-[#EEEAD7]/90' : 'text-[#8d9685]'}`}>
+                               {stage.class}
+                             </span>
+                          </div>
+
                         </div>
 
                         {/* XP Block (Absolute Right Aligned) */}
