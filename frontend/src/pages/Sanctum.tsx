@@ -438,7 +438,7 @@ const CodexMajesticFrame = () => (
     <motion.div initial={{ scaleY: 0 }} whileInView={{ scaleY: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }} className="absolute left-[8px] top-[80px] bottom-[80px] w-[0.5px] bg-[#D4AF37]/60 origin-center"></motion.div>
     <motion.div initial={{ scaleY: 0 }} whileInView={{ scaleY: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut", delay: 0.2 }} className="absolute right-[8px] top-[80px] bottom-[80px] w-[0.5px] bg-[#D4AF37]/60 origin-center"></motion.div>
 
-    {/* The 4 Thematic Art Deco Corners (Swords, Diamonds, Floral) */}
+    {/* The 4 Majestic, Slim Edge-Hugging Corners */}
     {[
       "top-0 left-0",
       "top-0 right-0 scale-x-[-1]",
@@ -453,25 +453,29 @@ const CodexMajesticFrame = () => (
           <motion.path d="M 8 80 L 8 8 L 80 8" stroke="currentColor" strokeWidth="0.5" strokeLinecap="square"
             initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 1.5, delay: 0.2, ease: "easeOut" } }} viewport={{ once: true }} />
           
-          {/* The Sword / Chevron Corner motif */}
-          <motion.path d="M 4 4 L 32 32 M 8 8 L 28 28" stroke="currentColor" strokeWidth="1"
-            initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 0.8, delay: 0.5 } }} viewport={{ once: true }} />
-          {/* Sword crossguard/hilt */}
-          <motion.path d="M 20 32 L 32 20 M 24 36 L 36 24" stroke="currentColor" strokeWidth="1"
-            initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 0.8, delay: 0.8 } }} viewport={{ once: true }} />
-          {/* Sword Blade tip */}
-          <motion.path d="M 32 32 L 44 44" stroke="currentColor" strokeWidth="1.5"
-            initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 0.8, delay: 1 } }} viewport={{ once: true }} />
-          
-          {/* Floral / Diamond Flourish at the blade tip */}
-          <motion.path d="M 44 44 L 40 48 L 44 52 L 48 48 Z" fill="currentColor"
-            initial={{ scale: 0, opacity: 0 }} whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.5, delay: 1.5 } }} viewport={{ once: true }} />
-          <motion.path d="M 52 44 L 48 40 L 52 36 L 56 40 Z" fill="currentColor"
-            initial={{ scale: 0, opacity: 0 }} whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.5, delay: 1.6 } }} viewport={{ once: true }} />
+          {/* Majestic, slim edge-hugging primary curves */}
+          <motion.path d="M 12 12 Q 24 24 12 40" stroke="currentColor" strokeWidth="1" strokeLinecap="round"
+            initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 1, delay: 0.5 } }} viewport={{ once: true }} />
+          <motion.path d="M 12 12 Q 24 24 40 12" stroke="currentColor" strokeWidth="1" strokeLinecap="round"
+            initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 1, delay: 0.5 } }} viewport={{ once: true }} />
             
-          {/* Decorative geometric dots along the edge */}
-          <motion.rect x="3.25" y="40" width="1.5" height="1.5" fill="currentColor" initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition: { delay: 1.2 } }} viewport={{ once: true }} />
-          <motion.rect x="40" y="3.25" width="1.5" height="1.5" fill="currentColor" initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition: { delay: 1.2 } }} viewport={{ once: true }} />
+          {/* Secondary delicate sweeping inner curves */}
+          <motion.path d="M 16 16 C 24 32 20 48 12 56" stroke="currentColor" strokeWidth="0.5" strokeLinecap="round"
+            initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 1.2, delay: 0.7 } }} viewport={{ once: true }} />
+          <motion.path d="M 16 16 C 32 24 48 20 56 12" stroke="currentColor" strokeWidth="0.5" strokeLinecap="round"
+            initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 1.2, delay: 0.7 } }} viewport={{ once: true }} />
+
+          {/* Elegant floral/diamond nodes at the primary curve tips */}
+          <motion.path d="M 12 40 L 14 44 L 12 48 L 10 44 Z" fill="currentColor"
+            initial={{ scale: 0 }} whileInView={{ scale: 1, transition: { duration: 0.5, delay: 1.5 } }} viewport={{ once: true }} />
+          <motion.path d="M 40 12 L 44 14 L 48 12 L 44 10 Z" fill="currentColor"
+            initial={{ scale: 0 }} whileInView={{ scale: 1, transition: { duration: 0.5, delay: 1.5 } }} viewport={{ once: true }} />
+            
+          {/* Small jewel dots for that regal finishing touch */}
+          <motion.circle cx="12" cy="12" r="1.5" fill="currentColor"
+            initial={{ scale: 0 }} whileInView={{ scale: 1, transition: { duration: 0.5, delay: 1.7 } }} viewport={{ once: true }} />
+          <motion.circle cx="20" cy="20" r="1" fill="currentColor" className="opacity-60"
+            initial={{ scale: 0 }} whileInView={{ scale: 1, transition: { duration: 0.5, delay: 1.8 } }} viewport={{ once: true }} />
         </motion.svg>
       </div>
     ))}
