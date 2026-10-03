@@ -758,7 +758,6 @@ export function Sanctum() {
                           <p className="font-mono text-[10px] text-[#8d9685] mt-1.5 leading-relaxed opacity-60">Artifact secured in the Vault.</p>
                         </div>
                       </div>
-                      </div>
                     </motion.div>
                   )}
                   
