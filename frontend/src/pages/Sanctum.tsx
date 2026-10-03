@@ -749,9 +749,7 @@ export function Sanctum() {
 
                 {/* Tab Content Container */}
                 <div className="flex-1 flex flex-col relative overflow-hidden">
-                  
-                  {activeLedgerTab === 'treasury' && <VaultFrame />}
-                  
+                  <VaultFrame />
                   {/* Inner Padded Container for Content */}
                   <div className="p-6 flex-1 flex flex-col relative z-10 h-full">
                     
@@ -801,9 +799,8 @@ export function Sanctum() {
                       animate={{ opacity: 1, x: 0 }}
                       className="flex flex-col flex-1"
                     >
-                      <div className="flex items-center justify-between mb-6">
-                        <h3 className="font-serif text-lg font-bold text-[#EEEAD7]">THE ARCHIVE</h3>
-                        <span className="font-mono text-[9px] text-[#8d9685] uppercase hover:text-[#D4AF37] cursor-pointer transition-colors">Full History</span>
+                      <div className="flex flex-col items-center w-full mb-10 relative z-10 pt-4">
+                        <h3 className="font-serif text-2xl font-bold text-[#EEEAD7] tracking-[0.3em]">THE ARCHIVE</h3>
                       </div>
                       
                       <div className="space-y-6 relative before:absolute before:inset-y-1 before:left-[9px] before:w-px before:bg-gradient-to-b before:from-[#D4AF37] before:to-transparent z-10 flex-1">
