@@ -181,13 +181,15 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
   if (rarity === 'Legendary') {
     const redAccent = '#8A0F0F';
     
-    // Generative Paths for reusable Rose and Leaf symbols
-    const Flower = ({ x, y, scale = 1 }: { x: number, y: number, scale?: number }) => (
+    // Generative Paths for reusable Jewel and Leaf symbols
+    const Jewel = ({ x, y, scale = 1 }: { x: number, y: number, scale?: number }) => (
       <g transform={`translate(${x}, ${y}) scale(${scale})`}>
-        {[0, 72, 144, 216, 288].map(a => (
-          <path key={a} d="M0,0 C-3,-6 -6,-2 0,-1 C6,-2 3,-6 0,0" fill={redAccent} stroke={color} strokeWidth="0.5" transform={`rotate(${a})`} />
-        ))}
-        <circle cx="0" cy="0" r="1.5" fill="#222" stroke={color} strokeWidth="0.5" />
+        <path d="M0 -5 L5 0 L0 5 L-5 0 Z" fill={redAccent} stroke={color} strokeWidth="1" />
+        <path d="M0 -2.5 L2.5 0 L0 2.5 L-2.5 0 Z" stroke="#fff" strokeWidth="0.3" opacity="0.5" fill="none" />
+        <circle cx="0" cy="-5" r="0.8" fill={color} />
+        <circle cx="0" cy="5" r="0.8" fill={color} />
+        <circle cx="-5" cy="0" r="0.8" fill={color} />
+        <circle cx="5" cy="0" r="0.8" fill={color} />
       </g>
     );
     const Leaf = ({ x, y, rot, scale = 1 }: { x: number, y: number, rot: number, scale?: number }) => (
@@ -209,14 +211,14 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
                <path d="M0 6 C15 0, 15 12, 30 6 C45 0, 45 12, 60 6" fill="none" stroke={color} strokeWidth="1" />
                <Leaf x={12} y={3} rot={-30} scale={0.6} />
                <Leaf x={42} y={9} rot={150} scale={0.6} />
-               <Flower x={30} y={6} scale={0.8} />
+               <Jewel x={30} y={6} scale={0.8} />
              </pattern>
              <pattern id="leg-y" width="12" height="60" patternUnits="userSpaceOnUse">
                <path d="M3 0 L3 60 M5 0 L5 60 M7 0 L7 60 M9 0 L9 60" stroke={color} strokeWidth="0.5" opacity="0.6" />
                <path d="M6 0 C0 15, 12 15, 6 30 C0 45, 12 45, 6 60" fill="none" stroke={color} strokeWidth="1" />
                <Leaf x={3} y={12} rot={-120} scale={0.6} />
                <Leaf x={9} y={42} rot={60} scale={0.6} />
-               <Flower x={6} y={30} scale={0.8} />
+               <Jewel x={6} y={30} scale={0.8} />
              </pattern>
           </defs>
           <rect x="0" y="0" width="100%" height="12" fill="url(#leg-x)" />
@@ -239,8 +241,8 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
              <path d="M2 40 C18 35, 30 25, 40 2" fill="none" stroke={color} strokeWidth="0.5" />
              <Leaf x={10} y={30} rot={-45} scale={0.8} />
              <Leaf x={30} y={10} rot={-135} scale={0.8} />
-             <Flower x={16} y={16} scale={1.5} />
-             <Flower x={32} y={32} scale={1} />
+             <Jewel x={16} y={16} scale={1.5} />
+             <Jewel x={32} y={32} scale={1} />
           </svg>
         ))}
 
@@ -253,7 +255,7 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
              <path d="M48 8 C52 16, 58 18, 64 18 C70 18, 76 16, 80 8" fill="none" stroke={color} strokeWidth="1" />
              <Leaf x={48} y={14} rot={30} />
              <Leaf x={80} y={14} rot={150} />
-             <Flower x={64} y={12} scale={2} />
+             <Jewel x={64} y={12} scale={2} />
            </svg>
         </div>
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-32 h-6 flex justify-center items-end">
@@ -264,7 +266,7 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
              <path d="M48 8 C52 16, 58 18, 64 18 C70 18, 76 16, 80 8" fill="none" stroke={color} strokeWidth="1" />
              <Leaf x={48} y={14} rot={30} />
              <Leaf x={80} y={14} rot={150} />
-             <Flower x={64} y={12} scale={2} />
+             <Jewel x={64} y={12} scale={2} />
            </svg>
         </div>
       </div>
