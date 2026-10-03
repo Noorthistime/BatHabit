@@ -244,7 +244,7 @@ const EvolutionGrimoireFrame = ({ borderColor, delay = 0, isCurrent = false }: {
 
   const CenterDiamond = ({ className, d }: { className: string, d: number }) => (
     <motion.svg
-      className={`absolute ${className} w-4 h-4 -translate-x-1/2 -translate-y-1/2`}
+      className={`absolute ${className} w-4 h-4`}
       style={{ color: borderColor }}
       viewBox="0 0 16 16"
       initial={{ opacity: 0, rotate: -45, scale: 0 }}
@@ -284,10 +284,10 @@ const EvolutionGrimoireFrame = ({ borderColor, delay = 0, isCurrent = false }: {
       <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 1, delay }} className="absolute right-[8px] w-[0.5px] origin-bottom opacity-60" style={{ top: 'calc(50% + 8px)', bottom: 60, backgroundColor: borderColor }} />
 
       {/* Center Crest Diamonds */}
-      <CenterDiamond className="top-[8px] left-1/2" d={delay + 1.2} />
-      <CenterDiamond className="bottom-[8px] left-1/2" d={delay + 1.2} />
-      <CenterDiamond className="left-[8px] top-1/2" d={delay + 1.2} />
-      <CenterDiamond className="right-[8px] top-1/2" d={delay + 1.2} />
+      <CenterDiamond className="top-[8px] left-1/2 -translate-x-1/2 -translate-y-1/2" d={delay + 1.2} />
+      <CenterDiamond className="bottom-[8px] left-1/2 -translate-x-1/2 translate-y-1/2" d={delay + 1.2} />
+      <CenterDiamond className="left-[8px] top-1/2 -translate-x-1/2 -translate-y-1/2" d={delay + 1.2} />
+      <CenterDiamond className="right-[8px] top-1/2 translate-x-1/2 -translate-y-1/2" d={delay + 1.2} />
 
       {/* Current Rank Special Effect */}
       {isCurrent && (
