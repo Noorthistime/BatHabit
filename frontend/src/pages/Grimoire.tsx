@@ -209,41 +209,54 @@ const SubtleGrimoireFrame = ({ delay = 0 }: { delay?: number }) => (
 const EvolutionGrimoireFrame = ({ borderColor, delay = 0, isCurrent = false }: { borderColor: string, delay?: number, isCurrent?: boolean }) => (
   <div className="absolute inset-0 pointer-events-none z-0">
     {/* Outer border straight edges (Bevel size: 12px) */}
-    <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1, delay }} className="absolute top-0 h-[2px] origin-center" style={{ left: 12, right: 12, backgroundColor: borderColor }} />
-    <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1, delay }} className="absolute bottom-0 h-[2px] origin-center" style={{ left: 12, right: 12, backgroundColor: borderColor }} />
-    <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 1, delay }} className="absolute left-0 w-[2px] origin-center" style={{ top: 12, bottom: 12, backgroundColor: borderColor }} />
-    <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 1, delay }} className="absolute right-0 w-[2px] origin-center" style={{ top: 12, bottom: 12, backgroundColor: borderColor }} />
+    <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1, delay }} className="absolute top-0 h-[1.5px] origin-center" style={{ left: 12, right: 12, backgroundColor: borderColor }} />
+    <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1, delay }} className="absolute bottom-0 h-[1.5px] origin-center" style={{ left: 12, right: 12, backgroundColor: borderColor }} />
+    <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 1, delay }} className="absolute left-0 w-[1.5px] origin-center" style={{ top: 12, bottom: 12, backgroundColor: borderColor }} />
+    <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 1, delay }} className="absolute right-0 w-[1.5px] origin-center" style={{ top: 12, bottom: 12, backgroundColor: borderColor }} />
     
     {/* Outer border bevels */}
-    <svg className="absolute top-0 left-0 w-[12px] h-[12px]" style={{ color: borderColor }}><motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: delay + 0.8 }} x1="0" y1="12" x2="12" y2="0" stroke="currentColor" strokeWidth="3" /></svg>
-    <svg className="absolute top-0 right-0 w-[12px] h-[12px]" style={{ color: borderColor }}><motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: delay + 0.8 }} x1="0" y1="0" x2="12" y2="12" stroke="currentColor" strokeWidth="3" /></svg>
-    <svg className="absolute bottom-0 left-0 w-[12px] h-[12px]" style={{ color: borderColor }}><motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: delay + 0.8 }} x1="0" y1="0" x2="12" y2="12" stroke="currentColor" strokeWidth="3" /></svg>
-    <svg className="absolute bottom-0 right-0 w-[12px] h-[12px]" style={{ color: borderColor }}><motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: delay + 0.8 }} x1="0" y1="12" x2="12" y2="0" stroke="currentColor" strokeWidth="3" /></svg>
+    <svg className="absolute top-0 left-0 w-[12px] h-[12px]" style={{ color: borderColor }}><motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: delay + 0.8 }} x1="0" y1="12" x2="12" y2="0" stroke="currentColor" strokeWidth="2.5" /></svg>
+    <svg className="absolute top-0 right-0 w-[12px] h-[12px]" style={{ color: borderColor }}><motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: delay + 0.8 }} x1="0" y1="0" x2="12" y2="12" stroke="currentColor" strokeWidth="2.5" /></svg>
+    <svg className="absolute bottom-0 left-0 w-[12px] h-[12px]" style={{ color: borderColor }}><motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: delay + 0.8 }} x1="0" y1="0" x2="12" y2="12" stroke="currentColor" strokeWidth="2.5" /></svg>
+    <svg className="absolute bottom-0 right-0 w-[12px] h-[12px]" style={{ color: borderColor }}><motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: delay + 0.8 }} x1="0" y1="12" x2="12" y2="0" stroke="currentColor" strokeWidth="2.5" /></svg>
 
-    {/* Horizontal Sweeping Flourishes (Thicker and with inner diamond) */}
-    <div className="absolute top-[3px] left-10 right-10 h-2.5 flex justify-between px-2">
-      <motion.svg viewBox="0 0 120 10" fill="none" className="h-full w-32" style={{ color: borderColor }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: delay + 1.2 }}>
-        <path d="M 0 0 C 30 0 40 8 60 8 C 80 8 90 2 120 2" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M 0 3 L 5 0 L 10 3 L 5 6 Z" fill="currentColor" />
-        <circle cx="60" cy="8" r="2" fill="currentColor" />
+    {/* Inner border (Inset by 4px, Bevel size: 8px) - Reduced opacity for subtle depth */}
+    <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1, delay: delay + 0.2 }} className="absolute top-[4px] h-[0.5px] origin-center opacity-40" style={{ left: 12, right: 12, backgroundColor: borderColor }} />
+    <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1, delay: delay + 0.2 }} className="absolute bottom-[4px] h-[0.5px] origin-center opacity-40" style={{ left: 12, right: 12, backgroundColor: borderColor }} />
+    <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 1, delay: delay + 0.2 }} className="absolute left-[4px] w-[0.5px] origin-center opacity-40" style={{ top: 12, bottom: 12, backgroundColor: borderColor }} />
+    <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 1, delay: delay + 0.2 }} className="absolute right-[4px] w-[0.5px] origin-center opacity-40" style={{ top: 12, bottom: 12, backgroundColor: borderColor }} />
+    
+    {/* Inner border bevels */}
+    <svg className="absolute top-[4px] left-[4px] w-[8px] h-[8px] opacity-40" style={{ color: borderColor }}><motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: delay + 1.0 }} x1="0" y1="8" x2="8" y2="0" stroke="currentColor" strokeWidth="1" /></svg>
+    <svg className="absolute top-[4px] right-[4px] w-[8px] h-[8px] opacity-40" style={{ color: borderColor }}><motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: delay + 1.0 }} x1="0" y1="0" x2="8" y2="8" stroke="currentColor" strokeWidth="1" /></svg>
+    <svg className="absolute bottom-[4px] left-[4px] w-[8px] h-[8px] opacity-40" style={{ color: borderColor }}><motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: delay + 1.0 }} x1="0" y1="0" x2="8" y2="8" stroke="currentColor" strokeWidth="1" /></svg>
+    <svg className="absolute bottom-[4px] right-[4px] w-[8px] h-[8px] opacity-40" style={{ color: borderColor }}><motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: delay + 1.0 }} x1="0" y1="8" x2="8" y2="0" stroke="currentColor" strokeWidth="1" /></svg>
+
+    {/* Corner Arrows (Exact geometry from Character Card) */}
+    {[
+      "top-[6px] left-[6px]",
+      "top-[6px] right-[6px] scale-x-[-1]",
+      "bottom-[6px] left-[6px] scale-y-[-1]",
+      "bottom-[6px] right-[6px] scale-[-1]"
+    ].map((pos, i) => (
+      <motion.svg key={i} className={`absolute ${pos} w-4 h-4`} style={{ color: borderColor }} viewBox="0 0 24 24"
+        initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: delay + 1.2 }}>
+        <path d="M 0 12 L 12 0 L 14 2 L 2 14 Z" fill="currentColor" />
+        <circle cx="16" cy="16" r="2.5" fill="currentColor" />
       </motion.svg>
-      <motion.svg viewBox="0 0 120 10" fill="none" className="h-full w-32 scale-x-[-1]" style={{ color: borderColor }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: delay + 1.2 }}>
-        <path d="M 0 0 C 30 0 40 8 60 8 C 80 8 90 2 120 2" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M 0 3 L 5 0 L 10 3 L 5 6 Z" fill="currentColor" />
-        <circle cx="60" cy="8" r="2" fill="currentColor" />
+    ))}
+
+    {/* Side Crests (Sharp, geometric framing pointing inwards) */}
+    <div className="absolute left-0 top-1/2 -translate-y-1/2 w-4 h-8 flex items-center justify-start overflow-hidden opacity-80">
+      <motion.svg viewBox="0 0 16 32" fill="none" className="h-full w-full" style={{ color: borderColor }} initial={{ x: -10, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.6, delay: delay + 1.4 }}>
+        <path d="M 0 4 L 8 16 L 0 28 L 2 28 L 10 16 L 2 4 Z" fill="currentColor" />
+        <path d="M 0 10 L 4 16 L 0 22 Z" fill="currentColor" />
       </motion.svg>
     </div>
-    
-    <div className="absolute bottom-[3px] left-10 right-10 h-2.5 flex justify-between px-2 scale-y-[-1]">
-      <motion.svg viewBox="0 0 120 10" fill="none" className="h-full w-32" style={{ color: borderColor }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: delay + 1.2 }}>
-        <path d="M 0 0 C 30 0 40 8 60 8 C 80 8 90 2 120 2" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M 0 3 L 5 0 L 10 3 L 5 6 Z" fill="currentColor" />
-        <circle cx="60" cy="8" r="2" fill="currentColor" />
-      </motion.svg>
-      <motion.svg viewBox="0 0 120 10" fill="none" className="h-full w-32 scale-x-[-1]" style={{ color: borderColor }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: delay + 1.2 }}>
-        <path d="M 0 0 C 30 0 40 8 60 8 C 80 8 90 2 120 2" stroke="currentColor" strokeWidth="1.5" />
-        <path d="M 0 3 L 5 0 L 10 3 L 5 6 Z" fill="currentColor" />
-        <circle cx="60" cy="8" r="2" fill="currentColor" />
+    <div className="absolute right-0 top-1/2 -translate-y-1/2 w-4 h-8 flex items-center justify-end overflow-hidden opacity-80 scale-x-[-1]">
+      <motion.svg viewBox="0 0 16 32" fill="none" className="h-full w-full" style={{ color: borderColor }} initial={{ x: -10, opacity: 0 }} animate={{ x: 0, opacity: 1 }} transition={{ duration: 0.6, delay: delay + 1.4 }}>
+        <path d="M 0 4 L 8 16 L 0 28 L 2 28 L 10 16 L 2 4 Z" fill="currentColor" />
+        <path d="M 0 10 L 4 16 L 0 22 Z" fill="currentColor" />
       </motion.svg>
     </div>
 
@@ -594,10 +607,11 @@ export function Grimoire() {
                         <EvolutionGrimoireFrame borderColor={borderColor} delay={i * 0.15} isCurrent={stage.current} />
                         {glowEffect}
 
-                        {/* Centered Main Block */}
-                        <div className="flex items-center gap-5 z-10 relative">
+                        {/* Centered Main Block - Inline Format */}
+                        <div className="flex items-center gap-3 sm:gap-4 z-10 relative">
+                          {/* Rank Circle */}
                           <div
-                            className="w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center font-serif text-base sm:text-lg font-bold shrink-0 shadow-[0_0_10px_rgba(0,0,0,0.8)]"
+                            className="w-10 h-10 sm:w-11 sm:h-11 rounded-full flex items-center justify-center font-serif text-base sm:text-lg font-bold shrink-0 shadow-[0_0_10px_rgba(0,0,0,0.8)]"
                             style={{
                               background: iconBg,
                               color: iconColor,
@@ -607,13 +621,24 @@ export function Grimoire() {
                           >
                             {stage.rank}
                           </div>
-                          <div className="flex flex-col items-center">
-                            <div className="flex items-center gap-2">
-                              <span className={`font-serif text-base sm:text-lg font-bold tracking-wide ${stage.current ? 'text-[#F5D77F] drop-shadow-[0_0_5px_rgba(212,175,55,0.8)]' : stage.achieved ? 'text-[#F5D77F]' : 'text-[#EEEAD7]'}`}>{stage.title}</span>
-                              {stage.current && <span className="font-mono text-[9px] px-1.5 py-0.5 bg-[#D4AF37]/20 text-[#D4AF37] border border-[#D4AF37]/60 uppercase tracking-wider font-bold shadow-[0_0_8px_rgba(212,175,55,0.4)]">CURRENT</span>}
-                              {stage.achieved && !stage.current && <span className="font-mono text-[9px] px-1.5 py-0.5 bg-[#6D0808]/40 text-[#D4AF37]/60 border border-[#6D0808]/40 uppercase tracking-wider">ACHIEVED</span>}
+                          
+                          {/* Inline Text Content */}
+                          <div className="flex items-center flex-wrap sm:flex-nowrap gap-2 sm:gap-3">
+                            <span className={`font-serif text-2xl sm:text-3xl font-bold tracking-widest ${stage.current ? 'text-[#F5D77F] drop-shadow-[0_0_8px_rgba(212,175,55,0.8)]' : stage.achieved ? 'text-[#F5D77F]' : 'text-[#EEEAD7]'}`}>
+                              {stage.title}
+                            </span>
+                            
+                            <div className="flex items-center gap-2 mt-1 sm:mt-0">
+                              {stage.current && <span className="font-mono text-[9px] sm:text-[10px] px-1.5 py-0.5 bg-[#D4AF37]/20 text-[#D4AF37] border border-[#D4AF37]/60 uppercase tracking-wider font-bold shadow-[0_0_8px_rgba(212,175,55,0.4)]">CURRENT</span>}
+                              {stage.achieved && !stage.current && <span className="font-mono text-[9px] sm:text-[10px] px-1.5 py-0.5 bg-[#6D0808]/40 text-[#D4AF37]/60 border border-[#6D0808]/40 uppercase tracking-wider">ACHIEVED</span>}
+                              
+                              {/* Separator Dash */}
+                              <span className={`hidden sm:inline-block font-mono text-sm ${stage.current ? 'text-[#D4AF37]' : 'text-[#8d9685]/50'}`}>—</span>
+                              
+                              <span className={`font-mono text-[10px] sm:text-xs tracking-wide uppercase ${stage.current ? 'text-[#D4AF37] drop-shadow-[0_0_2px_rgba(212,175,55,0.5)]' : stage.achieved ? 'text-[#EEEAD7]/90' : 'text-[#8d9685]'}`}>
+                                {stage.class}
+                              </span>
                             </div>
-                            <p className={`font-mono text-[10.5px] mt-0.5 tracking-wide ${stage.current ? 'text-[#D4AF37] drop-shadow-[0_0_2px_rgba(212,175,55,0.5)]' : stage.achieved ? 'text-[#EEEAD7]' : 'text-[#8d9685]'}`}>{stage.class}</p>
                           </div>
                         </div>
 
