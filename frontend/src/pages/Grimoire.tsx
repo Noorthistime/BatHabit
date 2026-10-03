@@ -664,10 +664,16 @@ export function Grimoire() {
                                 {stage.achieved && !stage.current && <span className="font-mono text-[9px] sm:text-[10px] px-1.5 py-0.5 bg-[#6D0808]/40 text-[#D4AF37]/60 border border-[#6D0808]/40 uppercase tracking-wider">ACHIEVED</span>}
                               </div>
                               
-                              {/* Separator Dash */}
-                              <span className={`hidden sm:inline-block font-mono text-sm ${stage.current ? 'text-[#D4AF37]' : 'text-[#8d9685]/50'}`}>—</span>
+                              {/* Spacer 1 */}
+                              <div className="hidden sm:block sm:w-[20px] md:w-[40px] lg:w-[80px] shrink-0" />
                               
-                              <span className={`font-mono text-[10px] sm:text-[11px] tracking-wide uppercase ${stage.current ? 'text-[#D4AF37] drop-shadow-[0_0_2px_rgba(212,175,55,0.5)]' : stage.achieved ? 'text-[#EEEAD7]/90' : 'text-[#8d9685]'}`}>
+                              {/* Separator Dash */}
+                              <span className={`hidden sm:inline-block font-mono text-base ${stage.current ? 'text-[#D4AF37]' : 'text-[#8d9685]/50'}`}>—</span>
+                              
+                              {/* Spacer 2 */}
+                              <div className="hidden sm:block sm:w-[20px] md:w-[40px] lg:w-[80px] shrink-0" />
+                              
+                              <span className={`font-mono text-xs sm:text-sm tracking-wide uppercase ${stage.current ? 'text-[#D4AF37] drop-shadow-[0_0_2px_rgba(212,175,55,0.5)]' : stage.achieved ? 'text-[#EEEAD7]/90' : 'text-[#8d9685]'}`}>
                                 {stage.class}
                               </span>
                             </div>
