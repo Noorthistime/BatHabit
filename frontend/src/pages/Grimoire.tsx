@@ -654,13 +654,15 @@ export function Grimoire() {
                           
                           {/* Inline Text Content */}
                           <div className="flex items-center flex-wrap sm:flex-nowrap gap-2 sm:gap-3">
-                            <span className={`font-serif text-lg sm:text-xl font-bold tracking-widest ${stage.current ? 'text-[#F5D77F] drop-shadow-[0_0_8px_rgba(212,175,55,0.8)]' : stage.achieved ? 'text-[#F5D77F]' : 'text-[#EEEAD7]'}`}>
+                            <span className={`w-28 sm:w-36 shrink-0 text-left font-serif text-lg sm:text-xl font-bold tracking-widest ${stage.current ? 'text-[#F5D77F] drop-shadow-[0_0_8px_rgba(212,175,55,0.8)]' : stage.achieved ? 'text-[#F5D77F]' : 'text-[#EEEAD7]'}`}>
                               {stage.title}
                             </span>
                             
                             <div className="flex items-center gap-2 mt-1 sm:mt-0">
-                              {stage.current && <span className="font-mono text-[9px] sm:text-[10px] px-1.5 py-0.5 bg-[#D4AF37]/20 text-[#D4AF37] border border-[#D4AF37]/60 uppercase tracking-wider font-bold shadow-[0_0_8px_rgba(212,175,55,0.4)]">CURRENT</span>}
-                              {stage.achieved && !stage.current && <span className="font-mono text-[9px] sm:text-[10px] px-1.5 py-0.5 bg-[#6D0808]/40 text-[#D4AF37]/60 border border-[#6D0808]/40 uppercase tracking-wider">ACHIEVED</span>}
+                              <div className="w-[72px] sm:w-[84px] shrink-0 flex items-center">
+                                {stage.current && <span className="font-mono text-[9px] sm:text-[10px] px-1.5 py-0.5 bg-[#D4AF37]/20 text-[#D4AF37] border border-[#D4AF37]/60 uppercase tracking-wider font-bold shadow-[0_0_8px_rgba(212,175,55,0.4)]">CURRENT</span>}
+                                {stage.achieved && !stage.current && <span className="font-mono text-[9px] sm:text-[10px] px-1.5 py-0.5 bg-[#6D0808]/40 text-[#D4AF37]/60 border border-[#6D0808]/40 uppercase tracking-wider">ACHIEVED</span>}
+                              </div>
                               
                               {/* Separator Dash */}
                               <span className={`hidden sm:inline-block font-mono text-sm ${stage.current ? 'text-[#D4AF37]' : 'text-[#8d9685]/50'}`}>—</span>
