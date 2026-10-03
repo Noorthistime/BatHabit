@@ -673,11 +673,11 @@ export function Grimoire() {
                           </div>
 
                           {/* Column 3: Class Name */}
-                          <div className="w-full flex items-center justify-start overflow-hidden min-w-0 mt-1 md:mt-0 md:pl-5 lg:pl-8 pr-16 sm:pr-24">
+                          <div className="w-full flex items-center justify-start overflow-hidden min-w-0 mt-1 md:mt-0 md:pl-4 lg:pl-6 pr-12 sm:pr-16">
                              {/* Mobile Hyphen */}
                              <span className={`md:hidden mr-2 font-mono text-sm ${stage.current ? 'text-[#D4AF37]' : 'text-[#8d9685]/50'}`}>—</span>
                              
-                             <span className={`font-mono text-xs sm:text-sm tracking-wide uppercase truncate ${stage.current ? 'text-[#D4AF37] drop-shadow-[0_0_2px_rgba(212,175,55,0.5)]' : stage.achieved ? 'text-[#EEEAD7]/90' : 'text-[#8d9685]'}`}>
+                             <span className={`font-mono text-[10px] sm:text-xs xl:text-sm whitespace-nowrap uppercase ${stage.current ? 'text-[#D4AF37] drop-shadow-[0_0_2px_rgba(212,175,55,0.5)]' : stage.achieved ? 'text-[#EEEAD7]/90' : 'text-[#8d9685]'}`}>
                                {stage.class}
                              </span>
                           </div>
