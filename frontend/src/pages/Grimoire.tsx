@@ -119,94 +119,89 @@ const GrimoireFrame = () => (
 );
 
 const RoyalGrimoireFrame = () => (
-  <div className="absolute inset-0 pointer-events-none z-0 text-[#D4AF37]/80">
-    <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
-       {/* Majestic Outer Thin Border */}
-       <motion.rect 
-         initial={{ pathLength: 0, opacity: 0 }}
-         animate={{ pathLength: 1, opacity: 1 }}
-         transition={{ duration: 1.5, ease: "easeInOut" }}
-         x="1" y="1" width="calc(100% - 2px)" height="calc(100% - 2px)" rx="11" ry="11" fill="none" stroke="currentColor" strokeWidth="1" 
-         vectorEffect="non-scaling-stroke"
-       />
-       {/* Inner Border */}
-       <motion.rect 
-         initial={{ pathLength: 0, opacity: 0 }}
-         animate={{ pathLength: 1, opacity: 1 }}
-         transition={{ duration: 1.5, ease: "easeInOut", delay: 0.2 }}
-         x="4" y="4" width="calc(100% - 8px)" height="calc(100% - 8px)" rx="8" ry="8" fill="none" stroke="currentColor" strokeWidth="0.5" 
-         vectorEffect="non-scaling-stroke"
-         className="opacity-50"
-       />
-    </svg>
+  <div className="absolute inset-0 pointer-events-none z-0">
+    {/* Outer border straight edges (Bevel size: 10px) */}
+    <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1 }} className="absolute top-0 h-[1.5px] bg-[#D4AF37]/60 origin-center" style={{ left: 10, right: 10 }} />
+    <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1 }} className="absolute bottom-0 h-[1.5px] bg-[#D4AF37]/60 origin-center" style={{ left: 10, right: 10 }} />
+    <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 1 }} className="absolute left-0 w-[1.5px] bg-[#D4AF37]/60 origin-center" style={{ top: 10, bottom: 10 }} />
+    <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 1 }} className="absolute right-0 w-[1.5px] bg-[#D4AF37]/60 origin-center" style={{ top: 10, bottom: 10 }} />
+    
+    {/* Outer border bevels */}
+    <svg className="absolute top-0 left-0 w-[10px] h-[10px] text-[#D4AF37]/60"><motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: 1 }} x1="0" y1="10" x2="10" y2="0" stroke="currentColor" strokeWidth="2.5" /></svg>
+    <svg className="absolute top-0 right-0 w-[10px] h-[10px] text-[#D4AF37]/60"><motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: 1 }} x1="0" y1="0" x2="10" y2="10" stroke="currentColor" strokeWidth="2.5" /></svg>
+    <svg className="absolute bottom-0 left-0 w-[10px] h-[10px] text-[#D4AF37]/60"><motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: 1 }} x1="0" y1="0" x2="10" y2="10" stroke="currentColor" strokeWidth="2.5" /></svg>
+    <svg className="absolute bottom-0 right-0 w-[10px] h-[10px] text-[#D4AF37]/60"><motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: 1 }} x1="0" y1="10" x2="10" y2="0" stroke="currentColor" strokeWidth="2.5" /></svg>
 
-    {/* Vintage Delicate Corners (No thicker than 8px) */}
+    {/* Inner border straight edges (Inset: 4px, Bevel size: 8px) */}
+    <div className="absolute inset-[4px]">
+      <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1, delay: 0.2 }} className="absolute top-0 h-[0.5px] bg-[#D4AF37]/30 origin-center" style={{ left: 8, right: 8 }} />
+      <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1, delay: 0.2 }} className="absolute bottom-0 h-[0.5px] bg-[#D4AF37]/30 origin-center" style={{ left: 8, right: 8 }} />
+      <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 1, delay: 0.2 }} className="absolute left-0 w-[0.5px] bg-[#D4AF37]/30 origin-center" style={{ top: 8, bottom: 8 }} />
+      <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 1, delay: 0.2 }} className="absolute right-0 w-[0.5px] bg-[#D4AF37]/30 origin-center" style={{ top: 8, bottom: 8 }} />
+      
+      {/* Inner border bevels */}
+      <svg className="absolute top-0 left-0 w-[8px] h-[8px] text-[#D4AF37]/30"><motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: 1.2 }} x1="0" y1="8" x2="8" y2="0" stroke="currentColor" strokeWidth="1" /></svg>
+      <svg className="absolute top-0 right-0 w-[8px] h-[8px] text-[#D4AF37]/30"><motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: 1.2 }} x1="0" y1="0" x2="8" y2="8" stroke="currentColor" strokeWidth="1" /></svg>
+      <svg className="absolute bottom-0 left-0 w-[8px] h-[8px] text-[#D4AF37]/30"><motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: 1.2 }} x1="0" y1="0" x2="8" y2="8" stroke="currentColor" strokeWidth="1" /></svg>
+      <svg className="absolute bottom-0 right-0 w-[8px] h-[8px] text-[#D4AF37]/30"><motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: 1.2 }} x1="0" y1="8" x2="8" y2="0" stroke="currentColor" strokeWidth="1" /></svg>
+    </div>
+
+    {/* Elegant Corner Flourishes (Exact from Character Card) */}
     {[
-      "top-0 left-0",
-      "top-0 right-0 scale-x-[-1]",
-      "bottom-0 left-0 scale-y-[-1]",
-      "bottom-0 right-0 scale-x-[-1] scale-y-[-1]"
+      "top-[5px] left-[5px]",
+      "top-[5px] right-[5px] scale-x-[-1]",
+      "bottom-[5px] left-[5px] scale-y-[-1]",
+      "bottom-[5px] right-[5px] scale-[-1]"
     ].map((pos, i) => (
-      <div key={i} className={`absolute ${pos} w-4 h-4`}>
-        <motion.svg viewBox="0 0 16 16" fill="none" className="w-full h-full"
-          initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.5 }}>
-          <motion.path d="M 1 12 C 4 12 8 8 12 1" stroke="currentColor" strokeWidth="1" 
-             initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1, delay: 0.5 }} />
-          <motion.path d="M 4 14 C 8 14 12 10 14 4" stroke="currentColor" strokeWidth="0.5" 
-             initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1, delay: 0.7 }} />
-          <circle cx="8" cy="8" r="1" fill="currentColor" />
-        </motion.svg>
-      </div>
+      <motion.svg key={i} className={`absolute ${pos} w-4 h-4 text-[#F5D77F] drop-shadow-[0_0_2px_rgba(212,175,55,0.8)]`} viewBox="0 0 24 24"
+        initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 1.4 }}>
+        <path d="M 0 12 L 12 0 L 14 2 L 2 14 Z" fill="currentColor" />
+        <circle cx="16" cy="16" r="2" fill="currentColor" />
+      </motion.svg>
     ))}
 
-    {/* Horizontal Center Dividers (Strictly horizontal, 4px thick) */}
-    <div className="absolute top-[1px] left-1/2 -translate-x-1/2 w-32 h-1.5 flex items-center justify-center">
-      <motion.svg viewBox="0 0 128 6" fill="none" className="w-full h-full">
-        <motion.path d="M 0 3 L 56 3 L 64 0 L 72 3 L 128 3" stroke="currentColor" strokeWidth="1" 
-          initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.5, delay: 0.4 }} />
-        <motion.path d="M 64 0 L 68 3 L 64 6 L 60 3 Z" fill="currentColor" opacity="0.8"
-          initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ duration: 0.5, delay: 1 }} />
+    {/* Center Crests */}
+    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-10 h-2.5 flex items-center justify-center">
+      <motion.svg viewBox="0 0 40 10" className="h-full text-[#F5D77F]"
+        initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 1.5 }}>
+        <path d="M 0 0 L 20 10 L 40 0 L 20 4 Z" fill="currentColor" />
       </motion.svg>
     </div>
-    <div className="absolute bottom-[1px] left-1/2 -translate-x-1/2 w-32 h-1.5 flex items-center justify-center scale-y-[-1]">
-      <motion.svg viewBox="0 0 128 6" fill="none" className="w-full h-full">
-        <motion.path d="M 0 3 L 56 3 L 64 0 L 72 3 L 128 3" stroke="currentColor" strokeWidth="1" 
-          initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.5, delay: 0.4 }} />
-        <motion.path d="M 64 0 L 68 3 L 64 6 L 60 3 Z" fill="currentColor" opacity="0.8"
-          initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ duration: 0.5, delay: 1 }} />
+    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-10 h-2.5 flex items-center justify-center scale-y-[-1]">
+      <motion.svg viewBox="0 0 40 10" className="h-full text-[#F5D77F]"
+        initial={{ opacity: 0, y: -5 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.5, delay: 1.5 }}>
+        <path d="M 0 0 L 20 10 L 40 0 L 20 4 Z" fill="currentColor" />
       </motion.svg>
     </div>
   </div>
 );
 
 const SubtleGrimoireFrame = ({ delay = 0 }: { delay?: number }) => (
-  <div className="absolute inset-0 pointer-events-none z-0 text-[#D4AF37]/50">
-    {/* Single razor-thin border */}
-    <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
-       <motion.rect 
-         initial={{ pathLength: 0, opacity: 0 }}
-         animate={{ pathLength: 1, opacity: 1 }}
-         transition={{ duration: 1.2, ease: "easeInOut", delay: delay }}
-         x="1" y="1" width="calc(100% - 2px)" height="calc(100% - 2px)" rx="11" ry="11" fill="none" stroke="currentColor" strokeWidth="0.5" 
-         vectorEffect="non-scaling-stroke"
-       />
-    </svg>
+  <div className="absolute inset-0 pointer-events-none z-0">
+    {/* Outer border straight edges (Bevel size: 8px) */}
+    <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 0.8, delay }} className="absolute top-0 h-[1px] bg-[#D4AF37]/50 origin-center" style={{ left: 8, right: 8 }} />
+    <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 0.8, delay }} className="absolute bottom-0 h-[1px] bg-[#D4AF37]/50 origin-center" style={{ left: 8, right: 8 }} />
+    <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 0.8, delay }} className="absolute left-0 w-[1px] bg-[#D4AF37]/50 origin-center" style={{ top: 8, bottom: 8 }} />
+    <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 0.8, delay }} className="absolute right-0 w-[1px] bg-[#D4AF37]/50 origin-center" style={{ top: 8, bottom: 8 }} />
+    
+    {/* Outer border bevels */}
+    <svg className="absolute top-0 left-0 w-[8px] h-[8px] text-[#D4AF37]/50"><motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.4, delay: delay + 0.8 }} x1="0" y1="8" x2="8" y2="0" stroke="currentColor" strokeWidth="1.5" /></svg>
+    <svg className="absolute top-0 right-0 w-[8px] h-[8px] text-[#D4AF37]/50"><motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.4, delay: delay + 0.8 }} x1="0" y1="0" x2="8" y2="8" stroke="currentColor" strokeWidth="1.5" /></svg>
+    <svg className="absolute bottom-0 left-0 w-[8px] h-[8px] text-[#D4AF37]/50"><motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.4, delay: delay + 0.8 }} x1="0" y1="0" x2="8" y2="8" stroke="currentColor" strokeWidth="1.5" /></svg>
+    <svg className="absolute bottom-0 right-0 w-[8px] h-[8px] text-[#D4AF37]/50"><motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.4, delay: delay + 0.8 }} x1="0" y1="8" x2="8" y2="0" stroke="currentColor" strokeWidth="1.5" /></svg>
 
-    {/* Minimalist 6px Corner Geometry */}
+    {/* Elegant Corner Flourishes (Exact from Character Card, slightly scaled down) */}
     {[
-      "top-0 left-0",
-      "top-0 right-0 scale-x-[-1]",
-      "bottom-0 left-0 scale-y-[-1]",
-      "bottom-0 right-0 scale-x-[-1] scale-y-[-1]"
+      "top-[4px] left-[4px]",
+      "top-[4px] right-[4px] scale-x-[-1]",
+      "bottom-[4px] left-[4px] scale-y-[-1]",
+      "bottom-[4px] right-[4px] scale-[-1]"
     ].map((pos, i) => (
-      <div key={i} className={`absolute ${pos} w-2.5 h-2.5`}>
-        <motion.svg viewBox="0 0 10 10" fill="none" className="w-full h-full"
-          initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: delay + 0.4 }}>
-          <motion.path d="M 0 10 L 4 6 L 10 0" stroke="currentColor" strokeWidth="0.5" 
-             initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.6, delay: delay + 0.4 }} />
-          <circle cx="5" cy="5" r="0.75" fill="currentColor" />
-        </motion.svg>
-      </div>
+      <motion.svg key={i} className={`absolute ${pos} w-3 h-3 text-[#D4AF37]/80`} viewBox="0 0 24 24"
+        initial={{ opacity: 0, scale: 0 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: delay + 1.0 }}>
+        <path d="M 0 12 L 12 0 L 14 2 L 2 14 Z" fill="currentColor" />
+        <circle cx="16" cy="16" r="2.5" fill="currentColor" />
+      </motion.svg>
     ))}
   </div>
 );
@@ -393,8 +388,12 @@ export function Grimoire() {
               <div className="flex flex-col gap-2 flex-1 min-h-0">
                 {/* Total Power (Moved to top) */}
                 <div
-                  className="px-4 py-3 flex flex-col sm:flex-row items-center justify-between rounded-xl relative overflow-hidden group gap-2 mt-1"
-                  style={{ background: 'radial-gradient(circle at center, rgba(109,8,8,0.6) 0%, rgba(15,2,4,0.9) 100%)', border: '1px solid rgba(212,175,55,0.5)', boxShadow: 'inset 0 0 40px rgba(0,0,0,0.8), 0 0 20px rgba(212,175,55,0.1)' }}
+                  className="px-4 py-3 flex flex-col sm:flex-row items-center justify-between relative overflow-hidden group gap-2 mt-1"
+                  style={{ 
+                    clipPath: 'polygon(10px 0, calc(100% - 10px) 0, 100% 10px, 100% calc(100% - 10px), calc(100% - 10px) 100%, 10px 100%, 0 calc(100% - 10px), 0 10px)',
+                    background: 'radial-gradient(circle at center, rgba(109,8,8,0.6) 0%, rgba(15,2,4,0.9) 100%)', 
+                    boxShadow: 'inset 0 0 40px rgba(0,0,0,0.8), 0 0 20px rgba(212,175,55,0.1)' 
+                  }}
                 >
                   <RoyalGrimoireFrame />
                   {/* Subtle Obsidian Texture */}
@@ -424,7 +423,10 @@ export function Grimoire() {
                       key={attr.key} 
                       className={index === 4 ? "col-span-1 sm:col-span-2 flex justify-center" : ""}
                     >
-                      <div className={`p-3 flex flex-col gap-2 justify-between h-full relative rounded-xl bg-[#1B263B]/40 dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-sm shadow-[0_4px_20px_rgba(0,0,0,0.5)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(212,175,55,0.2)] group ${index === 4 ? 'w-full sm:w-[calc(50%-0.25rem)]' : 'w-full'}`}>
+                      <div 
+                        className={`p-3 flex flex-col gap-2 justify-between h-full relative bg-[#1B263B]/40 dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-sm shadow-[0_4px_20px_rgba(0,0,0,0.5)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(212,175,55,0.2)] group ${index === 4 ? 'w-full sm:w-[calc(50%-0.25rem)]' : 'w-full'}`}
+                        style={{ clipPath: 'polygon(8px 0, calc(100% - 8px) 0, 100% 8px, 100% calc(100% - 8px), calc(100% - 8px) 100%, 8px 100%, 0 calc(100% - 8px), 0 8px)' }}
+                      >
                         <SubtleGrimoireFrame delay={index * 0.15} />
                         <div className="flex items-center justify-between relative z-10">
                           <div className="flex items-center gap-2">
