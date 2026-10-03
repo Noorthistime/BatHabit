@@ -518,7 +518,7 @@ const HeaderFiligreeFrame = () => (
       "bottom-0 right-0 scale-x-[-1] scale-y-[-1]"
     ].map((pos, i) => (
       <div key={i} className={`absolute ${pos} w-8 h-8 overflow-hidden`}>
-        <motion.svg viewBox="0 0 32 32" fill="none" className="w-full h-full bg-[#1a0202]/90"
+        <motion.svg viewBox="0 0 32 32" fill="none" className="w-full h-full"
           initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition: { duration: 1, delay: 1 } }} viewport={{ once: true }}>
           <path d="M 0 6 L 6 6 L 6 0 M 0 10 L 10 10 L 10 0" stroke="currentColor" strokeWidth="1" />
           <path d="M 4 4 L 14 14" stroke="currentColor" strokeWidth="1" />
@@ -529,7 +529,7 @@ const HeaderFiligreeFrame = () => (
 
     {/* Top/Bottom Center Flouishes - Growing INWARDS to prevent overlap */}
     <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-4">
-      <motion.svg viewBox="0 0 64 16" fill="none" className="w-full h-full bg-[#1a0202]">
+      <motion.svg viewBox="0 0 64 16" fill="none" className="w-full h-full">
         <motion.path d="M 0 0 L 8 8 L 24 8 L 32 16 L 40 8 L 56 8 L 64 0" stroke="currentColor" strokeWidth="1" 
           initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 1, delay: 1.2 } }} viewport={{ once: true }} />
         <motion.path d="M 32 4 L 36 8 L 32 12 L 28 8 Z" fill="currentColor" 
@@ -537,7 +537,7 @@ const HeaderFiligreeFrame = () => (
       </motion.svg>
     </div>
     <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-16 h-4 scale-y-[-1]">
-      <motion.svg viewBox="0 0 64 16" fill="none" className="w-full h-full bg-[#1a0202]">
+      <motion.svg viewBox="0 0 64 16" fill="none" className="w-full h-full">
         <motion.path d="M 0 0 L 8 8 L 24 8 L 32 16 L 40 8 L 56 8 L 64 0" stroke="currentColor" strokeWidth="1" 
           initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 1, delay: 1.2 } }} viewport={{ once: true }} />
         <motion.path d="M 32 4 L 36 8 L 32 12 L 28 8 Z" fill="currentColor" 
@@ -547,7 +547,7 @@ const HeaderFiligreeFrame = () => (
 
     {/* Side Center Flourishes - Growing INWARDS to prevent overlap */}
     <div className="absolute top-1/2 left-0 -translate-y-1/2 w-4 h-16">
-      <motion.svg viewBox="0 0 16 64" fill="none" className="w-full h-full bg-[#1a0202]">
+      <motion.svg viewBox="0 0 16 64" fill="none" className="w-full h-full">
         <motion.path d="M 0 0 L 8 8 L 8 24 L 16 32 L 8 40 L 8 56 L 0 64" stroke="currentColor" strokeWidth="1"
           initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 1, delay: 1.2 } }} viewport={{ once: true }} />
         <motion.path d="M 4 32 L 8 36 L 12 32 L 8 28 Z" fill="currentColor" 
@@ -555,7 +555,7 @@ const HeaderFiligreeFrame = () => (
       </motion.svg>
     </div>
     <div className="absolute top-1/2 right-0 -translate-y-1/2 w-4 h-16 scale-x-[-1]">
-      <motion.svg viewBox="0 0 16 64" fill="none" className="w-full h-full bg-[#1a0202]">
+      <motion.svg viewBox="0 0 16 64" fill="none" className="w-full h-full">
         <motion.path d="M 0 0 L 8 8 L 8 24 L 16 32 L 8 40 L 8 56 L 0 64" stroke="currentColor" strokeWidth="1"
           initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 1, delay: 1.2 } }} viewport={{ once: true }} />
         <motion.path d="M 4 32 L 8 36 L 12 32 L 8 28 Z" fill="currentColor" 
