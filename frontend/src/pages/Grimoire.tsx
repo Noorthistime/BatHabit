@@ -181,15 +181,41 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
   if (rarity === 'Legendary') {
     const redAccent = '#8A0F0F';
     
-    // Generative Paths for reusable Jewel and Leaf symbols
+    // Generative Paths for reusable Jewel and Chain symbols
     const Jewel = ({ x, y, scale = 1 }: { x: number, y: number, scale?: number }) => (
       <g transform={`translate(${x}, ${y}) scale(${scale})`}>
-        <path d="M0 -5 L5 0 L0 5 L-5 0 Z" fill={redAccent} stroke={color} strokeWidth="1" />
-        <path d="M0 -2.5 L2.5 0 L0 2.5 L-2.5 0 Z" stroke="#fff" strokeWidth="0.3" opacity="0.5" fill="none" />
-        <circle cx="0" cy="-5" r="0.8" fill={color} />
-        <circle cx="0" cy="5" r="0.8" fill={color} />
-        <circle cx="-5" cy="0" r="0.8" fill={color} />
-        <circle cx="5" cy="0" r="0.8" fill={color} />
+        {/* Gold Prongs */}
+        <path d="M-6 0 L0 -8 L6 0 L0 8 Z" fill={color} stroke="#fff" strokeWidth="0.5" />
+        <circle cx="0" cy="-8" r="1.5" fill={color} />
+        <circle cx="0" cy="8" r="1.5" fill={color} />
+        <circle cx="-6" cy="0" r="1.5" fill={color} />
+        <circle cx="6" cy="0" r="1.5" fill={color} />
+        
+        {/* Octagon Ruby */}
+        <path d="M-4 -2 L-2 -6 L2 -6 L4 -2 L4 2 L2 6 L-2 6 L-4 2 Z" fill={redAccent} />
+        
+        {/* 3D Facets */}
+        <path d="M-4 -2 L-2 -6 L0 -2 Z" fill="#ff7777" opacity="0.6" />
+        <path d="M2 -6 L4 -2 L0 -2 Z" fill="#440000" opacity="0.6" />
+        <path d="M-2 -2 L2 -2 L2 2 L-2 2 Z" fill="#cc0000" />
+        <path d="M-4 2 L-2 2 L0 6 Z" fill="#ff4444" opacity="0.4" />
+        <path d="M4 2 L2 2 L0 6 Z" fill="#220000" opacity="0.8" />
+        <polygon points="-1,-1 1,-1 1,1 -1,1" fill="#fff" opacity="0.3" />
+      </g>
+    );
+    
+    // Simulates realistic interlocking chain links along any SVG path
+    const ChainPath = ({ d }: { d: string }) => (
+      <g>
+        {/* Side link (connecting bead) */}
+        <path d={d} fill="none" stroke={color} strokeWidth="3" strokeDasharray="0 14" strokeLinecap="round" strokeDashoffset="-11" />
+        <path d={d} fill="none" stroke="#222" strokeWidth="1" strokeDasharray="0 14" strokeLinecap="round" strokeDashoffset="-11" />
+        
+        {/* Main oval link outline */}
+        <path d={d} fill="none" stroke={color} strokeWidth="3" strokeDasharray="8 6" />
+        
+        {/* Main oval link hole (simulates shadow/transparency) */}
+        <path d={d} fill="none" stroke="#220505" strokeWidth="1.5" strokeDasharray="6 8" strokeDashoffset="-1" />
       </g>
     );
     const Leaf = ({ x, y, rot, scale = 1 }: { x: number, y: number, rot: number, scale?: number }) => null; // Removed leaves for chain/jewel aesthetic
@@ -203,14 +229,14 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
           <defs>
              <pattern id="leg-x" width="60" height="12" patternUnits="userSpaceOnUse">
                <path d="M0 3 L60 3 M0 5 L60 5 M0 7 L60 7 M0 9 L60 9" stroke={color} strokeWidth="0.5" opacity="0.6" />
-               <path d="M0 6 C15 0, 15 12, 30 6 C45 0, 45 12, 60 6" fill="none" stroke={color} strokeWidth="1" strokeDasharray="3 2" />
+               <ChainPath d="M0 6 C15 0, 15 12, 30 6 C45 0, 45 12, 60 6" />
                <Leaf x={12} y={3} rot={-30} scale={0.6} />
                <Leaf x={42} y={9} rot={150} scale={0.6} />
                <Jewel x={30} y={6} scale={0.8} />
              </pattern>
              <pattern id="leg-y" width="12" height="60" patternUnits="userSpaceOnUse">
                <path d="M3 0 L3 60 M5 0 L5 60 M7 0 L7 60 M9 0 L9 60" stroke={color} strokeWidth="0.5" opacity="0.6" />
-               <path d="M6 0 C0 15, 12 15, 6 30 C0 45, 12 45, 6 60" fill="none" stroke={color} strokeWidth="1" strokeDasharray="3 2" />
+               <ChainPath d="M6 0 C0 15, 12 15, 6 30 C0 45, 12 45, 6 60" />
                <Leaf x={3} y={12} rot={-120} scale={0.6} />
                <Leaf x={9} y={42} rot={60} scale={0.6} />
                <Jewel x={6} y={30} scale={0.8} />
@@ -232,8 +258,8 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
              <path d="M8 46 L8 8 L46 8" stroke={color} strokeWidth="1" />
              <path d="M8 24 C20 24, 24 16, 20 12 C16 8, 12 12, 14 16" fill="none" stroke={color} strokeWidth="1.5" />
              <path d="M24 8 C24 20, 16 24, 12 20 C8 16, 12 12, 16 14" fill="none" stroke={color} strokeWidth="1.5" />
-             <path d="M2 30 C12 25, 20 15, 30 2" fill="none" stroke={color} strokeWidth="1" strokeDasharray="3 2" />
-             <path d="M2 40 C18 35, 30 25, 40 2" fill="none" stroke={color} strokeWidth="0.5" strokeDasharray="2 2" />
+             <ChainPath d="M2 30 C12 25, 20 15, 30 2" />
+             <ChainPath d="M2 40 C18 35, 30 25, 40 2" />
              <Leaf x={10} y={30} rot={-45} scale={0.8} />
              <Leaf x={30} y={10} rot={-135} scale={0.8} />
              <Jewel x={16} y={16} scale={1.5} />
@@ -246,8 +272,8 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
            <svg viewBox="0 0 128 24" className="w-full h-full" fill="none">
              <path d="M30 4 L98 4" stroke={color} strokeWidth="3" />
              <path d="M30 8 L98 8" stroke={color} strokeWidth="1" />
-             <path d="M40 8 C45 20, 55 24, 64 24 C73 24, 83 20, 88 8" fill="none" stroke={color} strokeWidth="1.5" strokeDasharray="4 2" />
-             <path d="M48 8 C52 16, 58 18, 64 18 C70 18, 76 16, 80 8" fill="none" stroke={color} strokeWidth="1" strokeDasharray="3 2" />
+             <ChainPath d="M40 8 C45 20, 55 24, 64 24 C73 24, 83 20, 88 8" />
+             <ChainPath d="M48 8 C52 16, 58 18, 64 18 C70 18, 76 16, 80 8" />
              <Leaf x={48} y={14} rot={30} />
              <Leaf x={80} y={14} rot={150} />
              <Jewel x={64} y={12} scale={2} />
@@ -257,8 +283,8 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
            <svg viewBox="0 0 128 24" className="w-full h-full rotate-180" fill="none">
              <path d="M30 4 L98 4" stroke={color} strokeWidth="3" />
              <path d="M30 8 L98 8" stroke={color} strokeWidth="1" />
-             <path d="M40 8 C45 20, 55 24, 64 24 C73 24, 83 20, 88 8" fill="none" stroke={color} strokeWidth="1.5" strokeDasharray="4 2" />
-             <path d="M48 8 C52 16, 58 18, 64 18 C70 18, 76 16, 80 8" fill="none" stroke={color} strokeWidth="1" strokeDasharray="3 2" />
+             <ChainPath d="M40 8 C45 20, 55 24, 64 24 C73 24, 83 20, 88 8" />
+             <ChainPath d="M48 8 C52 16, 58 18, 64 18 C70 18, 76 16, 80 8" />
              <Leaf x={48} y={14} rot={30} />
              <Leaf x={80} y={14} rot={150} />
              <Jewel x={64} y={12} scale={2} />
