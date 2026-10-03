@@ -127,7 +127,6 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
     return (
       <div className="absolute inset-0 pointer-events-none z-0">
         <div className="absolute inset-0 border-[1.5px]" style={{ borderColor: color, boxShadow: `0 0 10px ${color}` }} />
-        <div className="absolute inset-[4px] border border-dashed" style={{ borderColor: color, opacity: 0.6 }} />
         
         {/* Continuous Filigree Pattern */}
         <svg className="absolute inset-0 w-full h-full opacity-80">
@@ -160,12 +159,13 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
           'bottom-0 right-0 rotate-180', 'bottom-0 left-0 -rotate-90'
         ].map((pos, i) => (
           <svg key={i} className={`absolute ${pos} w-10 h-10 drop-shadow-[0_0_3px_${color}]`} viewBox="0 0 40 40" fill="none">
-             <path d="M0 0h40v2H2v38H0V0z" fill={color} />
-             <path d="M0 0C15 5 25 15 25 25C15 25 5 15 0 0Z" fill={color} fillOpacity="0.3" />
-             <path d="M6 6C18 10 24 16 24 24" stroke={color} strokeWidth="2" />
-             <path d="M12 12C20 15 23 18 23 23" stroke={color} strokeWidth="1" />
+             <path d="M2 2 L38 2 L2 38 Z" fill="none" stroke={color} strokeWidth="1" opacity="0.4" />
+             <path d="M6 6 C18 10 24 16 24 24" stroke={color} strokeWidth="1.5" />
+             <path d="M12 12 C20 15 23 18 23 23" stroke={color} strokeWidth="1" />
              <rect x="23" y="23" width="4" height="4" fill={color} transform="rotate(45 25 25)" />
-             <path d="M35 2L2 35" stroke={color} strokeWidth="1" opacity="0.6" />
+             <path d="M35 2 L2 35" stroke={color} strokeWidth="1" opacity="0.7" />
+             <circle cx="6" cy="6" r="1.5" fill={color} />
+             <path d="M18 2 L24 8 M2 18 L8 24" stroke={color} strokeWidth="0.5" opacity="0.5" />
           </svg>
         ))}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-10 h-3 flex justify-center">
@@ -184,22 +184,23 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
       <div className="absolute inset-0 pointer-events-none z-0">
         <div className="absolute inset-0 border-[2px]" style={{ borderColor: color, boxShadow: `0 0 12px ${color}, inset 0 0 20px ${redAccent}` }} />
         <div className="absolute inset-[3px] border border-solid" style={{ borderColor: redAccent }} />
-        <div className="absolute inset-[5px] border border-dashed" style={{ borderColor: color, opacity: 0.5 }} />
         
         {/* Continuous Thorny Vine Pattern */}
         <svg className="absolute inset-0 w-full h-full opacity-90">
           <defs>
              <pattern id="leg-x" width="60" height="10" patternUnits="userSpaceOnUse">
-               <path d="M0 5 C15 0, 45 10, 60 5" fill="none" stroke={color} strokeWidth="1" />
-               <path d="M0 5 C15 10, 45 0, 60 5" fill="none" stroke={color} strokeWidth="0.5" />
+               <path d="M0 5 C15 0, 45 10, 60 5" fill="none" stroke={color} strokeWidth="1.5" />
+               <path d="M0 5 C15 10, 45 0, 60 5" fill="none" stroke={color} strokeWidth="1" />
                <path d="M15 4 L17 2 L16 5 Z M45 6 L47 8 L46 5 Z" fill={color} />
+               <path d="M22 6 L24 8 L25 5 Z M38 4 L36 2 L35 5 Z" fill={redAccent} />
                <circle cx="30" cy="5" r="2" fill={redAccent} stroke={color} strokeWidth="0.5" />
                <path d="M28 5 Q30 2 32 5 Q30 8 28 5" fill="none" stroke={color} strokeWidth="0.5" />
              </pattern>
              <pattern id="leg-y" width="10" height="60" patternUnits="userSpaceOnUse">
-               <path d="M5 0 C0 15, 10 45, 5 60" fill="none" stroke={color} strokeWidth="1" />
-               <path d="M5 0 C10 15, 0 45, 5 60" fill="none" stroke={color} strokeWidth="0.5" />
+               <path d="M5 0 C0 15, 10 45, 5 60" fill="none" stroke={color} strokeWidth="1.5" />
+               <path d="M5 0 C10 15, 0 45, 5 60" fill="none" stroke={color} strokeWidth="1" />
                <path d="M4 15 L2 17 L5 16 Z M6 45 L8 47 L5 46 Z" fill={color} />
+               <path d="M6 22 L8 24 L5 25 Z M4 38 L2 36 L5 35 Z" fill={redAccent} />
                <circle cx="5" cy="30" r="2" fill={redAccent} stroke={color} strokeWidth="0.5" />
                <path d="M5 28 Q2 30 5 32 Q8 30 5 28" fill="none" stroke={color} strokeWidth="0.5" />
              </pattern>
@@ -209,33 +210,41 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
           <rect x="0" y="0" width="10" height="100%" fill="url(#leg-y)" />
           <rect x="calc(100% - 10px)" y="0" width="10" height="100%" fill="url(#leg-y)" />
         </svg>
+
         {[
           'top-0 left-0', 'top-0 right-0 rotate-90',
           'bottom-0 right-0 rotate-180', 'bottom-0 left-0 -rotate-90'
         ].map((pos, i) => (
-          <svg key={i} className={`absolute ${pos} w-12 h-12`} viewBox="0 0 48 48" fill="none">
-             <path d="M0 0h48v3H3v45H0V0z" fill={color} />
-             <path d="M3 3h20v3H6v17H3V3z" fill={redAccent} />
-             <path d="M0 0C15 10 30 20 30 30C20 30 10 15 0 0Z" fill={color} fillOpacity="0.4" />
-             <path d="M8 8C20 15 28 22 28 30" stroke={color} strokeWidth="2.5" />
-             <path d="M12 12C22 18 26 24 26 30" stroke={redAccent} strokeWidth="1.5" />
-             <path d="M42 6L6 42" stroke={color} strokeWidth="1.5" />
-             <path d="M38 10L10 38" stroke={redAccent} strokeWidth="1" />
-             <rect x="28" y="28" width="6" height="6" fill={redAccent} stroke={color} strokeWidth="1" transform="rotate(45 31 31)" />
+          <svg key={i} className={`absolute ${pos} w-14 h-14 drop-shadow-[0_0_5px_${color}]`} viewBox="0 0 56 56" fill="none">
+             <path d="M8 8 C25 15 35 25 35 40" stroke={color} strokeWidth="2" />
+             <path d="M12 12 C28 20 32 28 32 40" stroke={redAccent} strokeWidth="1.5" />
+             <path d="M2 2 C30 5 50 25 54 54" stroke={color} strokeWidth="1" opacity="0.6" />
+             <path d="M50 6 L6 50" stroke={color} strokeWidth="1.5" />
+             <path d="M44 12 L12 44" stroke={redAccent} strokeWidth="1" />
+             <rect x="33" y="33" width="8" height="8" fill={redAccent} stroke={color} strokeWidth="1" transform="rotate(45 37 37)" />
+             <circle cx="37" cy="37" r="2" fill={color} />
+             <path d="M4 16 Q8 10 16 4" fill="none" stroke={color} strokeWidth="1" />
+             <circle cx="10" cy="10" r="1.5" fill={redAccent} />
           </svg>
         ))}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-16 h-4 flex justify-center">
-           <svg viewBox="0 0 64 16" className="w-full h-full" fill="none">
-             <path d="M0 0L32 16L64 0Z" fill={color} fillOpacity="0.3" />
-             <path d="M16 0L32 12L48 0" stroke={color} strokeWidth="2" />
-             <circle cx="32" cy="6" r="4" fill={redAccent} stroke={color} strokeWidth="1" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-20 h-5 flex justify-center">
+           <svg viewBox="0 0 80 20" className="w-full h-full" fill="none">
+             <path d="M0 0 L40 20 L80 0 Z" fill={color} fillOpacity="0.1" />
+             <path d="M20 0 L40 15 L60 0" stroke={color} strokeWidth="2" />
+             <path d="M30 0 L40 10 L50 0" stroke={redAccent} strokeWidth="1.5" />
+             <circle cx="40" cy="6" r="5" fill={redAccent} stroke={color} strokeWidth="1.5" />
+             <circle cx="40" cy="6" r="2" fill={color} />
+             <path d="M32 4 L48 4" stroke={color} strokeWidth="0.5" />
            </svg>
         </div>
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-16 h-4 flex justify-center items-end">
-           <svg viewBox="0 0 64 16" className="w-full h-full rotate-180" fill="none">
-             <path d="M0 0L32 16L64 0Z" fill={color} fillOpacity="0.3" />
-             <path d="M16 0L32 12L48 0" stroke={color} strokeWidth="2" />
-             <circle cx="32" cy="6" r="4" fill={redAccent} stroke={color} strokeWidth="1" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-20 h-5 flex justify-center items-end">
+           <svg viewBox="0 0 80 20" className="w-full h-full rotate-180" fill="none">
+             <path d="M0 0 L40 20 L80 0 Z" fill={color} fillOpacity="0.1" />
+             <path d="M20 0 L40 15 L60 0" stroke={color} strokeWidth="2" />
+             <path d="M30 0 L40 10 L50 0" stroke={redAccent} strokeWidth="1.5" />
+             <circle cx="40" cy="6" r="5" fill={redAccent} stroke={color} strokeWidth="1.5" />
+             <circle cx="40" cy="6" r="2" fill={color} />
+             <path d="M32 4 L48 4" stroke={color} strokeWidth="0.5" />
            </svg>
         </div>
       </div>
