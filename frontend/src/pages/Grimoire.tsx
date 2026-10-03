@@ -228,24 +228,20 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
         <svg className="absolute inset-0 w-full h-full opacity-95">
           <defs>
              <pattern id="leg-x" width="60" height="12" patternUnits="userSpaceOnUse">
-               <path d="M0 3 L60 3 M0 5 L60 5 M0 7 L60 7 M0 9 L60 9" stroke={color} strokeWidth="0.5" opacity="0.6" />
-               <ChainPath d="M0 6 C15 0, 15 12, 30 6 C45 0, 45 12, 60 6" />
-               <Leaf x={12} y={3} rot={-30} scale={0.6} />
-               <Leaf x={42} y={9} rot={150} scale={0.6} />
+               <ChainPath d="M0 6 Q 12 0, 25 6 M 35 6 Q 48 12, 60 6" />
                <Jewel x={30} y={6} scale={0.8} />
              </pattern>
              <pattern id="leg-y" width="12" height="60" patternUnits="userSpaceOnUse">
-               <path d="M3 0 L3 60 M5 0 L5 60 M7 0 L7 60 M9 0 L9 60" stroke={color} strokeWidth="0.5" opacity="0.6" />
-               <ChainPath d="M6 0 C0 15, 12 15, 6 30 C0 45, 12 45, 6 60" />
-               <Leaf x={3} y={12} rot={-120} scale={0.6} />
-               <Leaf x={9} y={42} rot={60} scale={0.6} />
+               <ChainPath d="M6 0 Q 0 12, 6 24 M 6 36 Q 12 48, 6 60" />
                <Jewel x={6} y={30} scale={0.8} />
              </pattern>
           </defs>
-          <rect x="0" y="0" width="100%" height="12" fill="url(#leg-x)" />
-          <rect x="0" y="calc(100% - 12px)" width="100%" height="12" fill="url(#leg-x)" />
-          <rect x="0" y="0" width="12" height="100%" fill="url(#leg-y)" />
-          <rect x="calc(100% - 12px)" y="0" width="12" height="100%" fill="url(#leg-y)" />
+          <rect x="64" y="0" width="calc(50% - 128px)" height="12" fill="url(#leg-x)" />
+          <rect x="calc(50% + 64px)" y="0" width="calc(50% - 128px)" height="12" fill="url(#leg-x)" />
+          <rect x="64" y="calc(100% - 12px)" width="calc(50% - 128px)" height="12" fill="url(#leg-x)" />
+          <rect x="calc(50% + 64px)" y="calc(100% - 12px)" width="calc(50% - 128px)" height="12" fill="url(#leg-x)" />
+          <rect x="0" y="64" width="12" height="calc(100% - 128px)" fill="url(#leg-y)" />
+          <rect x="calc(100% - 12px)" y="64" width="12" height="calc(100% - 128px)" fill="url(#leg-y)" />
         </svg>
 
         {/* Column Capital Corners */}
@@ -254,39 +250,25 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
           'bottom-0 right-0 rotate-180', 'bottom-0 left-0 -rotate-90'
         ].map((pos, i) => (
           <svg key={i} className={`absolute ${pos} w-16 h-16 drop-shadow-[0_0_4px_${color}]`} viewBox="0 0 64 64" fill="none">
-             <path d="M2 46 L2 2 L46 2" stroke={color} strokeWidth="3" />
-             <path d="M8 46 L8 8 L46 8" stroke={color} strokeWidth="1" />
-             <path d="M8 24 C20 24, 24 16, 20 12 C16 8, 12 12, 14 16" fill="none" stroke={color} strokeWidth="1.5" />
-             <path d="M24 8 C24 20, 16 24, 12 20 C8 16, 12 12, 16 14" fill="none" stroke={color} strokeWidth="1.5" />
-             <ChainPath d="M2 30 C12 25, 20 15, 30 2" />
-             <ChainPath d="M2 40 C18 35, 30 25, 40 2" />
-             <Leaf x={10} y={30} rot={-45} scale={0.8} />
-             <Leaf x={30} y={10} rot={-135} scale={0.8} />
-             <Jewel x={16} y={16} scale={1.5} />
-             <Jewel x={32} y={32} scale={1} />
+             <ChainPath d="M64 6 C 50 6, 45 24, 33 24" />
+             <ChainPath d="M6 64 C 6 50, 24 45, 24 36" />
+             <ChainPath d="M24 12 Q 12 12, 15 24" />
+             <Jewel x={24} y={24} scale={1.5} />
           </svg>
         ))}
 
         {/* Center Floral Crests */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 flex justify-center">
            <svg viewBox="0 0 128 24" className="w-full h-full" fill="none">
-             <path d="M30 4 L98 4" stroke={color} strokeWidth="3" />
-             <path d="M30 8 L98 8" stroke={color} strokeWidth="1" />
-             <ChainPath d="M40 8 C45 20, 55 24, 64 24 C73 24, 83 20, 88 8" />
-             <ChainPath d="M48 8 C52 16, 58 18, 64 18 C70 18, 76 16, 80 8" />
-             <Leaf x={48} y={14} rot={30} />
-             <Leaf x={80} y={14} rot={150} />
+             <ChainPath d="M0 6 Q 32 6, 52 12" />
+             <ChainPath d="M128 6 Q 96 6, 76 12" />
              <Jewel x={64} y={12} scale={2} />
            </svg>
         </div>
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-32 h-6 flex justify-center items-end">
            <svg viewBox="0 0 128 24" className="w-full h-full rotate-180" fill="none">
-             <path d="M30 4 L98 4" stroke={color} strokeWidth="3" />
-             <path d="M30 8 L98 8" stroke={color} strokeWidth="1" />
-             <ChainPath d="M40 8 C45 20, 55 24, 64 24 C73 24, 83 20, 88 8" />
-             <ChainPath d="M48 8 C52 16, 58 18, 64 18 C70 18, 76 16, 80 8" />
-             <Leaf x={48} y={14} rot={30} />
-             <Leaf x={80} y={14} rot={150} />
+             <ChainPath d="M0 6 Q 32 6, 52 12" />
+             <ChainPath d="M128 6 Q 96 6, 76 12" />
              <Jewel x={64} y={12} scale={2} />
            </svg>
         </div>
