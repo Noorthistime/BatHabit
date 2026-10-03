@@ -330,49 +330,64 @@ const PrestigeAttributeFrame = ({ delay = 1.4 }: { delay?: number }) => (
 );
 
 const VaultFrame = () => (
-  <svg 
-    className="absolute inset-0 w-full h-full pointer-events-none text-[#D4AF37] opacity-60 z-0" 
-    preserveAspectRatio="none" 
-    viewBox="0 0 100 100"
-  >
-    {/* Outer border */}
-    <rect x="2" y="2" width="96" height="96" fill="none" stroke="currentColor" strokeWidth="0.5" vectorEffect="non-scaling-stroke" />
-    {/* Inner border */}
-    <rect x="4" y="4" width="92" height="92" fill="none" stroke="currentColor" strokeWidth="0.2" vectorEffect="non-scaling-stroke" />
+  <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
+    {/* Straight edge borders (inset from the absolute edge) */}
+    <div className="absolute inset-2 border border-[#D4AF37]/30"></div>
+    <div className="absolute inset-3 border border-[#D4AF37]/10"></div>
     
-    {/* Corner Flourishes */}
-    <path d="M 4 10 C 6 8, 8 6, 10 4" fill="none" stroke="currentColor" strokeWidth="0.5" vectorEffect="non-scaling-stroke" />
-    <path d="M 96 10 C 94 8, 92 6, 90 4" fill="none" stroke="currentColor" strokeWidth="0.5" vectorEffect="non-scaling-stroke" />
-    <path d="M 4 90 C 6 92, 8 94, 10 96" fill="none" stroke="currentColor" strokeWidth="0.5" vectorEffect="non-scaling-stroke" />
-    <path d="M 96 90 C 94 92, 92 94, 90 96" fill="none" stroke="currentColor" strokeWidth="0.5" vectorEffect="non-scaling-stroke" />
-  </svg>
+    {/* The 4 Geometric Corners */}
+    {[
+      "top-0 left-0",
+      "top-0 right-0 scale-x-[-1]",
+      "bottom-0 left-0 scale-y-[-1]",
+      "bottom-0 right-0 scale-x-[-1] scale-y-[-1]"
+    ].map((pos, i) => (
+      <div key={i} className={`absolute ${pos} w-12 h-12 text-[#D4AF37]`}>
+        <svg viewBox="0 0 48 48" fill="none" className="w-full h-full drop-shadow-[0_0_4px_rgba(212,175,55,0.4)]">
+          {/* Outer L bracket */}
+          <path d="M 2 46 L 2 2 L 46 2" stroke="currentColor" strokeWidth="1.5" />
+          {/* Inner L bracket */}
+          <path d="M 6 42 L 6 6 L 42 6" stroke="currentColor" strokeWidth="0.5" className="opacity-60" />
+          {/* Stepped geometric corner block */}
+          <path d="M 2 16 L 16 16 L 16 2 L 2 2 Z" fill="currentColor" fillOpacity="0.1" />
+          {/* Geometric slashes */}
+          <path d="M 8 2 L 2 8 M 12 2 L 2 12 M 16 2 L 2 16" stroke="currentColor" strokeWidth="1" className="opacity-80" />
+          {/* Diamond accent */}
+          <path d="M 10 8 L 12 10 L 10 12 L 8 10 Z" fill="currentColor" />
+        </svg>
+      </div>
+    ))}
+  </div>
 );
 
 const CodexMasterFrame = () => (
-  <svg 
-    className="absolute inset-0 w-full h-full pointer-events-none text-[#D4AF37] opacity-60 z-0" 
-    preserveAspectRatio="none" 
-    viewBox="0 0 100 100"
-  >
-    <rect x="1.5" y="1.5" width="97" height="97" fill="none" stroke="currentColor" strokeWidth="1" vectorEffect="non-scaling-stroke" />
-    <rect x="3" y="3" width="94" height="94" fill="none" stroke="currentColor" strokeWidth="0.3" vectorEffect="non-scaling-stroke" />
-    
-    {/* Top Left Swirl */}
-    <path d="M 1.5 12 Q 6 12 12 1.5 Q 6 6 1.5 1.5" fill="currentColor" />
-    <path d="M 3 16 C 8 16 12 12 12 6 C 12 9 9 12 6 12 Z" fill="none" stroke="currentColor" strokeWidth="0.4" vectorEffect="non-scaling-stroke" />
-    
-    {/* Top Right Swirl */}
-    <path d="M 98.5 12 Q 94 12 88 1.5 Q 94 6 98.5 1.5" fill="currentColor" />
-    <path d="M 97 16 C 92 16 88 12 88 6 C 88 9 91 12 94 12 Z" fill="none" stroke="currentColor" strokeWidth="0.4" vectorEffect="non-scaling-stroke" />
-    
-    {/* Bottom Left Swirl */}
-    <path d="M 1.5 88 Q 6 88 12 98.5 Q 6 94 1.5 98.5" fill="currentColor" />
-    <path d="M 3 84 C 8 84 12 88 12 94 C 12 91 9 88 6 88 Z" fill="none" stroke="currentColor" strokeWidth="0.4" vectorEffect="non-scaling-stroke" />
-    
-    {/* Bottom Right Swirl */}
-    <path d="M 98.5 88 Q 94 88 88 98.5 Q 94 94 98.5 98.5" fill="currentColor" />
-    <path d="M 97 84 C 92 84 88 88 88 94 C 88 91 91 88 94 88 Z" fill="none" stroke="currentColor" strokeWidth="0.4" vectorEffect="non-scaling-stroke" />
-  </svg>
+  <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
+    {/* Thick main border */}
+    <div className="absolute inset-3 border-2 border-[#D4AF37]/40 shadow-[0_0_15px_rgba(212,175,55,0.1)_inset]"></div>
+    <div className="absolute inset-[18px] border border-[#D4AF37]/20"></div>
+
+    {/* The 4 Grand Corners */}
+    {[
+      "top-0 left-0",
+      "top-0 right-0 scale-x-[-1]",
+      "bottom-0 left-0 scale-y-[-1]",
+      "bottom-0 right-0 scale-x-[-1] scale-y-[-1]"
+    ].map((pos, i) => (
+      <div key={i} className={`absolute ${pos} w-20 h-20 text-[#D4AF37]`}>
+        <svg viewBox="0 0 80 80" fill="none" className="w-full h-full drop-shadow-[0_0_8px_rgba(212,175,55,0.5)]">
+          {/* Multiple concentric L brackets */}
+          <path d="M 12 68 L 12 12 L 68 12" stroke="currentColor" strokeWidth="2" />
+          <path d="M 18 62 L 18 18 L 62 18" stroke="currentColor" strokeWidth="1" className="opacity-60" />
+          {/* Stepped Corner Block */}
+          <path d="M 12 12 L 32 12 L 32 24 L 24 24 L 24 32 L 12 32 Z" fill="currentColor" fillOpacity="0.1" stroke="currentColor" strokeWidth="1" />
+          {/* Diagonal cut lines (Sunburst style) */}
+          <path d="M 12 32 L 32 12 M 12 24 L 24 12 M 12 18 L 18 12" stroke="currentColor" strokeWidth="1" />
+          {/* Corner Diamond */}
+          <path d="M 18 18 L 22 22 L 18 26 L 14 22 Z" fill="currentColor" />
+        </svg>
+      </div>
+    ))}
+  </div>
 );
 
 const QuestRowDivider = () => (
@@ -675,10 +690,12 @@ export function Sanctum() {
                     >
                       <VaultFrame />
                       
-                      <div className="flex flex-col items-center w-full mb-8 relative z-10">
-                        <PrestigeHeaderDivider />
-                        <h3 className="font-serif text-xl font-bold text-[#EEEAD7] tracking-[0.2em] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#1a0202] px-6">THE VAULT</h3>
-                        <span className="font-mono text-[9px] text-[#8d9685] uppercase border border-[#D4AF37]/40 px-2 py-0.5 rounded-sm absolute right-0 top-1/2 -translate-y-1/2 bg-[#1a0202]">Secure</span>
+                      <div className="flex flex-col items-center w-full mb-10 relative z-10 pt-4">
+                        <h3 className="font-serif text-2xl font-bold text-[#EEEAD7] tracking-[0.3em]">THE VAULT</h3>
+                        <div className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center gap-2">
+                           <Shield size={12} className="text-[#D4AF37]" />
+                           <span className="font-mono text-[9px] text-[#8d9685] uppercase border border-[#D4AF37]/40 px-2 py-0.5 rounded-sm bg-[#1a0202]">Secure</span>
+                        </div>
                       </div>
                       
                       <div className="relative z-10 w-28 h-28 rounded-full bg-[radial-gradient(ellipse_at_center,_#F5D77F_0%,_#D4AF37_50%,_#947014_100%)] flex items-center justify-center text-[#1a0202] shadow-[0_0_60px_rgba(212,175,55,0.4)] mb-8 shrink-0 mt-4 border border-[#F5D77F]/50">
@@ -688,20 +705,20 @@ export function Sanctum() {
                       <span className="font-serif text-5xl font-bold text-[#D4AF37] drop-shadow-[0_2px_10px_rgba(212,175,55,0.5)] relative z-10">{currency?.balance || 0}</span>
                       <span className="font-mono text-[10px] text-[#8d9685] uppercase text-center mt-3 tracking-[0.3em] relative z-10">Gilded Crowns • Obsidian Gold</span>
                       
-                      <div className="w-full mt-auto pt-6 relative z-10">
-                        <div className="flex items-center gap-4 mb-4">
+                      <div className="w-full mt-auto pt-8 pb-4 relative z-10 px-4">
+                        <div className="flex items-center gap-4 mb-5">
                           <div className="h-px flex-1 bg-gradient-to-r from-transparent to-[#D4AF37]/30"></div>
-                          <span className="font-mono text-[9px] text-[#D4AF37] uppercase tracking-[0.2em]">Recent Influx</span>
+                          <span className="font-mono text-[9px] text-[#D4AF37] uppercase tracking-[0.2em] font-bold">Recent Influx</span>
                           <div className="h-px flex-1 bg-gradient-to-l from-transparent to-[#D4AF37]/30"></div>
                         </div>
-                        <div className="flex flex-col gap-2">
-                          <div className="flex justify-between items-center px-3 py-2 border-b border-[#D4AF37]/10 hover:bg-[#D4AF37]/5 transition-colors">
+                        <div className="flex flex-col gap-3">
+                          <div className="flex justify-between items-center bg-[#1a0202] p-3.5 rounded-sm border border-[#D4AF37]/30 shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
                             <span className="font-mono text-[10px] text-[#EEEAD7] tracking-wide">+ Solitude Rite</span>
-                            <span className="font-mono text-[10px] font-bold text-[#D4AF37]">+15 Crowns</span>
+                            <span className="font-mono text-[11px] font-bold text-[#D4AF37]">+15 Crowns</span>
                           </div>
-                          <div className="flex justify-between items-center px-3 py-2 border-b border-[#D4AF37]/10 hover:bg-[#D4AF37]/5 transition-colors">
+                          <div className="flex justify-between items-center bg-[#1a0202] p-3.5 rounded-sm border border-[#D4AF37]/30 shadow-[0_2px_8px_rgba(0,0,0,0.5)]">
                             <span className="font-mono text-[10px] text-[#8d9685] tracking-wide">- Raven Brooch</span>
-                            <span className="font-mono text-[10px] font-bold text-[#ff4444]">-450 Crowns</span>
+                            <span className="font-mono text-[11px] font-bold text-[#ff4444]">-450 Crowns</span>
                           </div>
                         </div>
                       </div>
