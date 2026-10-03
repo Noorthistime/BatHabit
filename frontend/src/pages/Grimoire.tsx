@@ -118,6 +118,111 @@ const GrimoireFrame = () => (
   </div>
 );
 
+const RoyalGrimoireFrame = () => (
+  <div className="absolute inset-0 pointer-events-none z-0 text-[#D4AF37]/80">
+    <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
+       {/* Majestic Outer Dual-Track Borders */}
+       <motion.rect 
+         initial={{ pathLength: 0, opacity: 0 }}
+         animate={{ pathLength: 1, opacity: 1 }}
+         transition={{ duration: 1.5, ease: "easeInOut" }}
+         x="2" y="2" width="calc(100% - 4px)" height="calc(100% - 4px)" rx="10" ry="10" fill="none" stroke="currentColor" strokeWidth="1.5" 
+         vectorEffect="non-scaling-stroke"
+       />
+       <motion.rect 
+         initial={{ pathLength: 0, opacity: 0 }}
+         animate={{ pathLength: 1, opacity: 1 }}
+         transition={{ duration: 1.5, ease: "easeInOut", delay: 0.2 }}
+         x="6" y="6" width="calc(100% - 12px)" height="calc(100% - 12px)" rx="8" ry="8" fill="none" stroke="currentColor" strokeWidth="0.5" 
+         vectorEffect="non-scaling-stroke"
+         className="opacity-50"
+       />
+    </svg>
+
+    {/* Majestic Vintage Corners */}
+    {[
+      "top-0 left-0",
+      "top-0 right-0 scale-x-[-1]",
+      "bottom-0 left-0 scale-y-[-1]",
+      "bottom-0 right-0 scale-x-[-1] scale-y-[-1]"
+    ].map((pos, i) => (
+      <div key={i} className={`absolute ${pos} w-10 h-10`}>
+        <motion.svg viewBox="0 0 40 40" fill="none" className="w-full h-full"
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.5 }}>
+          <motion.path d="M 2 20 C 8 20 16 16 20 2" stroke="currentColor" strokeWidth="1.5" 
+             initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1, delay: 0.5 }} />
+          <motion.path d="M 6 24 C 12 24 20 18 24 6" stroke="currentColor" strokeWidth="0.5" 
+             initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1, delay: 0.7 }} />
+          <motion.path d="M 2 28 C 14 28 28 14 28 2" stroke="currentColor" strokeWidth="0.5" opacity="0.5"
+             initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1, delay: 0.9 }} />
+          <circle cx="16" cy="16" r="2" fill="currentColor" />
+          <circle cx="22" cy="22" r="1" fill="currentColor" opacity="0.6" />
+        </motion.svg>
+      </div>
+    ))}
+
+    {/* Grand Top/Bottom Center Scrollwork */}
+    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-6">
+      <motion.svg viewBox="0 0 192 24" fill="none" className="w-full h-full">
+        <motion.path d="M 0 2 C 32 2 48 16 72 20 C 88 22 96 6 96 6 C 96 6 104 22 120 20 C 144 16 160 2 192 2" stroke="currentColor" strokeWidth="1.5" 
+          initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.5, delay: 0.4 }} />
+        <motion.path d="M 48 2 C 64 2 72 12 84 12 C 92 12 96 6 96 6 C 96 6 100 12 108 12 C 120 12 128 2 144 2" stroke="currentColor" strokeWidth="0.5" 
+          initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.2, delay: 0.6 }} />
+        <circle cx="96" cy="18" r="2.5" fill="currentColor" 
+          initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ duration: 0.5, delay: 1.2 }} />
+      </motion.svg>
+    </div>
+    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-48 h-6 scale-y-[-1]">
+      <motion.svg viewBox="0 0 192 24" fill="none" className="w-full h-full">
+        <motion.path d="M 0 2 C 32 2 48 16 72 20 C 88 22 96 6 96 6 C 96 6 104 22 120 20 C 144 16 160 2 192 2" stroke="currentColor" strokeWidth="1.5" 
+          initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.5, delay: 0.4 }} />
+        <motion.path d="M 48 2 C 64 2 72 12 84 12 C 92 12 96 6 96 6 C 96 6 100 12 108 12 C 120 12 128 2 144 2" stroke="currentColor" strokeWidth="0.5" 
+          initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.2, delay: 0.6 }} />
+        <circle cx="96" cy="18" r="2.5" fill="currentColor" 
+          initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ duration: 0.5, delay: 1.2 }} />
+      </motion.svg>
+    </div>
+  </div>
+);
+
+const SubtleGrimoireFrame = ({ delay = 0 }: { delay?: number }) => (
+  <div className="absolute inset-0 pointer-events-none z-0 text-[#D4AF37]/60">
+    <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
+       <motion.rect 
+         initial={{ pathLength: 0, opacity: 0 }}
+         animate={{ pathLength: 1, opacity: 1 }}
+         transition={{ duration: 1.2, ease: "easeInOut", delay: delay }}
+         x="1" y="1" width="calc(100% - 2px)" height="calc(100% - 2px)" rx="11" ry="11" fill="none" stroke="currentColor" strokeWidth="1" 
+         vectorEffect="non-scaling-stroke"
+       />
+       <motion.rect 
+         initial={{ pathLength: 0, opacity: 0 }}
+         animate={{ pathLength: 1, opacity: 1 }}
+         transition={{ duration: 1.2, ease: "easeInOut", delay: delay + 0.2 }}
+         x="4" y="4" width="calc(100% - 8px)" height="calc(100% - 8px)" rx="8" ry="8" fill="none" stroke="currentColor" strokeWidth="0.5" 
+         vectorEffect="non-scaling-stroke"
+         className="opacity-40"
+       />
+    </svg>
+
+    {[
+      "top-0 left-0",
+      "top-0 right-0 scale-x-[-1]",
+      "bottom-0 left-0 scale-y-[-1]",
+      "bottom-0 right-0 scale-x-[-1] scale-y-[-1]"
+    ].map((pos, i) => (
+      <div key={i} className={`absolute ${pos} w-6 h-6`}>
+        <motion.svg viewBox="0 0 24 24" fill="none" className="w-full h-full"
+          initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: delay + 0.4 }}>
+          <motion.path d="M 2 12 C 4 12 8 10 12 2" stroke="currentColor" strokeWidth="1" 
+             initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.8, delay: delay + 0.4 }} />
+          <circle cx="8" cy="8" r="1" fill="currentColor" />
+        </motion.svg>
+      </div>
+    ))}
+  </div>
+);
+
 export function Grimoire() {
   const [activeTab, setActiveTab] = useState<'attributes' | 'evolution' | 'achievements'>('attributes');
   const currentXP = 4820;
@@ -303,6 +408,7 @@ export function Grimoire() {
                   className="px-4 py-3 flex flex-col sm:flex-row items-center justify-between rounded-xl relative overflow-hidden group gap-2 mt-1"
                   style={{ background: 'radial-gradient(circle at center, rgba(109,8,8,0.6) 0%, rgba(15,2,4,0.9) 100%)', border: '1px solid rgba(212,175,55,0.5)', boxShadow: 'inset 0 0 40px rgba(0,0,0,0.8), 0 0 20px rgba(212,175,55,0.1)' }}
                 >
+                  <RoyalGrimoireFrame />
                   {/* Subtle Obsidian Texture */}
                   <div className="absolute inset-0 opacity-20 mix-blend-overlay" style={{ backgroundImage: "url('data:image/svg+xml,%3Csvg width=\\'60\\' height=\\'60\\' viewBox=\\'0 0 60 60\\' xmlns=\\'http://www.w3.org/2000/svg\\'%3E%3Cg fill=\\'none\\' fill-rule=\\'evenodd\\'%3E%3Cg fill=\\'%23d4af37\\' fill-opacity=\\'0.15\\'%3E%3Cpath d=\\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E')" }}></div>
 
@@ -330,8 +436,9 @@ export function Grimoire() {
                       key={attr.key} 
                       className={index === 4 ? "col-span-1 sm:col-span-2 flex justify-center" : ""}
                     >
-                      <div className={`p-3 flex flex-col gap-2 justify-between h-full relative rounded-xl bg-[#1B263B]/40 dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-sm border border-[#415A77]/60 dark:border-[#D4AF37]/35 shadow-[0_4px_20px_rgba(0,0,0,0.5)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(212,175,55,0.2)] hover:border-[#415A77] dark:hover:border-[#F5D77F] group ${index === 4 ? 'w-full sm:w-[calc(50%-0.25rem)]' : 'w-full'}`}>
-                        <div className="flex items-center justify-between">
+                      <div className={`p-3 flex flex-col gap-2 justify-between h-full relative rounded-xl bg-[#1B263B]/40 dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-sm shadow-[0_4px_20px_rgba(0,0,0,0.5)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(212,175,55,0.2)] group ${index === 4 ? 'w-full sm:w-[calc(50%-0.25rem)]' : 'w-full'}`}>
+                        <SubtleGrimoireFrame delay={index * 0.15} />
+                        <div className="flex items-center justify-between relative z-10">
                           <div className="flex items-center gap-2">
                             <attr.icon size={14} style={{ color: attr.color }} className="group-hover:scale-110 transition-transform" />
                             <span className="font-mono text-xs uppercase tracking-widest text-[#EEEAD7]">{attr.label}</span>
