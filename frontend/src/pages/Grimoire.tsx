@@ -209,41 +209,41 @@ const SubtleGrimoireFrame = ({ delay = 0 }: { delay?: number }) => (
 const EvolutionGrimoireFrame = ({ borderColor, delay = 0, isCurrent = false }: { borderColor: string, delay?: number, isCurrent?: boolean }) => (
   <div className="absolute inset-0 pointer-events-none z-0">
     {/* Outer border straight edges (Bevel size: 12px) */}
-    <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1, delay }} className="absolute top-0 h-[1.5px] origin-center" style={{ left: 12, right: 12, backgroundColor: borderColor }} />
-    <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1, delay }} className="absolute bottom-0 h-[1.5px] origin-center" style={{ left: 12, right: 12, backgroundColor: borderColor }} />
-    <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 1, delay }} className="absolute left-0 w-[1.5px] origin-center" style={{ top: 12, bottom: 12, backgroundColor: borderColor }} />
-    <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 1, delay }} className="absolute right-0 w-[1.5px] origin-center" style={{ top: 12, bottom: 12, backgroundColor: borderColor }} />
+    <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1, delay }} className="absolute top-0 h-[2px] origin-center" style={{ left: 12, right: 12, backgroundColor: borderColor }} />
+    <motion.div initial={{ scaleX: 0 }} animate={{ scaleX: 1 }} transition={{ duration: 1, delay }} className="absolute bottom-0 h-[2px] origin-center" style={{ left: 12, right: 12, backgroundColor: borderColor }} />
+    <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 1, delay }} className="absolute left-0 w-[2px] origin-center" style={{ top: 12, bottom: 12, backgroundColor: borderColor }} />
+    <motion.div initial={{ scaleY: 0 }} animate={{ scaleY: 1 }} transition={{ duration: 1, delay }} className="absolute right-0 w-[2px] origin-center" style={{ top: 12, bottom: 12, backgroundColor: borderColor }} />
     
     {/* Outer border bevels */}
-    <svg className="absolute top-0 left-0 w-[12px] h-[12px]" style={{ color: borderColor }}><motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: delay + 0.8 }} x1="0" y1="12" x2="12" y2="0" stroke="currentColor" strokeWidth="2.5" /></svg>
-    <svg className="absolute top-0 right-0 w-[12px] h-[12px]" style={{ color: borderColor }}><motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: delay + 0.8 }} x1="0" y1="0" x2="12" y2="12" stroke="currentColor" strokeWidth="2.5" /></svg>
-    <svg className="absolute bottom-0 left-0 w-[12px] h-[12px]" style={{ color: borderColor }}><motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: delay + 0.8 }} x1="0" y1="0" x2="12" y2="12" stroke="currentColor" strokeWidth="2.5" /></svg>
-    <svg className="absolute bottom-0 right-0 w-[12px] h-[12px]" style={{ color: borderColor }}><motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: delay + 0.8 }} x1="0" y1="12" x2="12" y2="0" stroke="currentColor" strokeWidth="2.5" /></svg>
+    <svg className="absolute top-0 left-0 w-[12px] h-[12px]" style={{ color: borderColor }}><motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: delay + 0.8 }} x1="0" y1="12" x2="12" y2="0" stroke="currentColor" strokeWidth="3" /></svg>
+    <svg className="absolute top-0 right-0 w-[12px] h-[12px]" style={{ color: borderColor }}><motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: delay + 0.8 }} x1="0" y1="0" x2="12" y2="12" stroke="currentColor" strokeWidth="3" /></svg>
+    <svg className="absolute bottom-0 left-0 w-[12px] h-[12px]" style={{ color: borderColor }}><motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: delay + 0.8 }} x1="0" y1="0" x2="12" y2="12" stroke="currentColor" strokeWidth="3" /></svg>
+    <svg className="absolute bottom-0 right-0 w-[12px] h-[12px]" style={{ color: borderColor }}><motion.line initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.5, delay: delay + 0.8 }} x1="0" y1="12" x2="12" y2="0" stroke="currentColor" strokeWidth="3" /></svg>
 
-    {/* Horizontal Sweeping Flourishes */}
-    <div className="absolute top-[2px] left-8 right-8 h-2 flex justify-between px-4">
-      <motion.svg viewBox="0 0 100 8" fill="none" className="h-full w-24" style={{ color: borderColor }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: delay + 1.2 }}>
-        <path d="M 0 0 C 20 0 30 6 50 6 C 70 6 80 2 100 2" stroke="currentColor" strokeWidth="1" />
-        <circle cx="10" cy="0" r="1.5" fill="currentColor" />
-        <circle cx="50" cy="6" r="1.5" fill="currentColor" />
+    {/* Horizontal Sweeping Flourishes (Thicker and with inner diamond) */}
+    <div className="absolute top-[3px] left-10 right-10 h-2.5 flex justify-between px-2">
+      <motion.svg viewBox="0 0 120 10" fill="none" className="h-full w-32" style={{ color: borderColor }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: delay + 1.2 }}>
+        <path d="M 0 0 C 30 0 40 8 60 8 C 80 8 90 2 120 2" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M 0 3 L 5 0 L 10 3 L 5 6 Z" fill="currentColor" />
+        <circle cx="60" cy="8" r="2" fill="currentColor" />
       </motion.svg>
-      <motion.svg viewBox="0 0 100 8" fill="none" className="h-full w-24 scale-x-[-1]" style={{ color: borderColor }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: delay + 1.2 }}>
-        <path d="M 0 0 C 20 0 30 6 50 6 C 70 6 80 2 100 2" stroke="currentColor" strokeWidth="1" />
-        <circle cx="10" cy="0" r="1.5" fill="currentColor" />
-        <circle cx="50" cy="6" r="1.5" fill="currentColor" />
+      <motion.svg viewBox="0 0 120 10" fill="none" className="h-full w-32 scale-x-[-1]" style={{ color: borderColor }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: delay + 1.2 }}>
+        <path d="M 0 0 C 30 0 40 8 60 8 C 80 8 90 2 120 2" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M 0 3 L 5 0 L 10 3 L 5 6 Z" fill="currentColor" />
+        <circle cx="60" cy="8" r="2" fill="currentColor" />
       </motion.svg>
     </div>
     
-    <div className="absolute bottom-[2px] left-8 right-8 h-2 flex justify-between px-4 scale-y-[-1]">
-      <motion.svg viewBox="0 0 100 8" fill="none" className="h-full w-24" style={{ color: borderColor }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: delay + 1.2 }}>
-        <path d="M 0 0 C 20 0 30 6 50 6 C 70 6 80 2 100 2" stroke="currentColor" strokeWidth="1" />
-        <circle cx="10" cy="0" r="1.5" fill="currentColor" />
-        <circle cx="50" cy="6" r="1.5" fill="currentColor" />
+    <div className="absolute bottom-[3px] left-10 right-10 h-2.5 flex justify-between px-2 scale-y-[-1]">
+      <motion.svg viewBox="0 0 120 10" fill="none" className="h-full w-32" style={{ color: borderColor }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: delay + 1.2 }}>
+        <path d="M 0 0 C 30 0 40 8 60 8 C 80 8 90 2 120 2" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M 0 3 L 5 0 L 10 3 L 5 6 Z" fill="currentColor" />
+        <circle cx="60" cy="8" r="2" fill="currentColor" />
       </motion.svg>
-      <motion.svg viewBox="0 0 100 8" fill="none" className="h-full w-24 scale-x-[-1]" style={{ color: borderColor }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: delay + 1.2 }}>
-        <path d="M 0 0 C 20 0 30 6 50 6 C 70 6 80 2 100 2" stroke="currentColor" strokeWidth="1" />
-        <circle cx="10" cy="0" r="1.5" fill="currentColor" />
-        <circle cx="50" cy="6" r="1.5" fill="currentColor" />
+      <motion.svg viewBox="0 0 120 10" fill="none" className="h-full w-32 scale-x-[-1]" style={{ color: borderColor }} initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.6, delay: delay + 1.2 }}>
+        <path d="M 0 0 C 30 0 40 8 60 8 C 80 8 90 2 120 2" stroke="currentColor" strokeWidth="1.5" />
+        <path d="M 0 3 L 5 0 L 10 3 L 5 6 Z" fill="currentColor" />
+        <circle cx="60" cy="8" r="2" fill="currentColor" />
       </motion.svg>
     </div>
 
@@ -251,7 +251,7 @@ const EvolutionGrimoireFrame = ({ borderColor, delay = 0, isCurrent = false }: {
     {isCurrent && (
       <motion.div 
         className="absolute inset-0"
-        animate={{ boxShadow: ['inset 0 0 0px rgba(212,175,55,0)', 'inset 0 0 20px rgba(212,175,55,0.2)', 'inset 0 0 0px rgba(212,175,55,0)'] }}
+        animate={{ boxShadow: ['inset 0 0 0px rgba(212,175,55,0)', 'inset 0 0 25px rgba(212,175,55,0.25)', 'inset 0 0 0px rgba(212,175,55,0)'] }}
         transition={{ duration: 2, repeat: Infinity }}
       />
     )}
@@ -552,8 +552,7 @@ export function Grimoire() {
                     // Rank IV (CURRENT) - Blazing Gold
                     animationProps = {
                       animate: {
-                        boxShadow: ['0 0 15px rgba(212,175,55,0.4), inset 0 0 15px rgba(212,175,55,0.2)', '0 0 30px rgba(212,175,55,0.8), inset 0 0 20px rgba(109,8,8,0.4)', '0 0 15px rgba(212,175,55,0.4), inset 0 0 15px rgba(212,175,55,0.2)'],
-                        scale: [1, 1.015, 1]
+                        boxShadow: ['0 0 15px rgba(212,175,55,0.4), inset 0 0 15px rgba(212,175,55,0.2)', '0 0 30px rgba(212,175,55,0.8), inset 0 0 20px rgba(109,8,8,0.4)', '0 0 15px rgba(212,175,55,0.4), inset 0 0 15px rgba(212,175,55,0.2)']
                       },
                       transition: { duration: 1.5, repeat: Infinity, ease: "easeInOut" }
                     };
@@ -581,41 +580,46 @@ export function Grimoire() {
 
                   return (
                     <motion.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      transition={{ duration: 0.6, delay: i * 0.15 }}
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.6, delay: i * 0.15, ease: "easeOut" }}
                       key={stage.rank}
                       className="flex-1 min-h-0 flex"
                     >
                       <motion.div
                         {...animationProps}
-                        className="w-full h-full px-3 py-3 sm:px-4 sm:py-3.5 flex items-center gap-4 relative overflow-hidden group"
+                        className="w-full h-full px-3 py-3 sm:px-4 sm:py-3.5 flex items-center justify-center relative overflow-hidden group"
                         style={{ background: bgStyle, clipPath: 'polygon(12px 0, calc(100% - 12px) 0, 100% 12px, 100% calc(100% - 12px), calc(100% - 12px) 100%, 12px 100%, 0 calc(100% - 12px), 0 12px)' }}
                       >
                         <EvolutionGrimoireFrame borderColor={borderColor} delay={i * 0.15} isCurrent={stage.current} />
                         {glowEffect}
-                        <div
 
-                          className="w-10 h-10 rounded-full flex items-center justify-center font-mono text-sm font-bold shrink-0 relative z-10"
-                          style={{
-                            background: iconBg,
-                            color: iconColor,
-                            border: iconBorder,
-                            boxShadow: iconShadow
-                          }}
-                        >
-                          {stage.rank}
-                        </div>
-                        <div className="flex-1 relative z-10">
-                          <div className="flex items-center gap-2">
-                            <span className={`font-serif text-sm font-bold ${stage.current ? 'text-[#F5D77F] drop-shadow-[0_0_5px_rgba(212,175,55,0.8)]' : stage.achieved ? 'text-[#F5D77F]' : 'text-[#EEEAD7]'}`}>{stage.title}</span>
-                            {stage.current && <span className="font-mono text-[9px] px-1.5 py-0.5 bg-[#D4AF37]/20 text-[#D4AF37] border border-[#D4AF37]/60 uppercase tracking-wider font-bold shadow-[0_0_8px_rgba(212,175,55,0.4)]">CURRENT</span>}
-                            {stage.achieved && !stage.current && <span className="font-mono text-[9px] px-1.5 py-0.5 bg-[#6D0808]/40 text-[#D4AF37]/60 border border-[#6D0808]/40 uppercase tracking-wider">ACHIEVED</span>}
+                        {/* Centered Main Block */}
+                        <div className="flex items-center gap-5 z-10 relative">
+                          <div
+                            className="w-11 h-11 sm:w-12 sm:h-12 rounded-full flex items-center justify-center font-serif text-base sm:text-lg font-bold shrink-0 shadow-[0_0_10px_rgba(0,0,0,0.8)]"
+                            style={{
+                              background: iconBg,
+                              color: iconColor,
+                              border: iconBorder,
+                              boxShadow: iconShadow
+                            }}
+                          >
+                            {stage.rank}
                           </div>
-                          <p className={`font-mono text-[10px] mt-0.5 ${stage.current ? 'text-[#D4AF37] drop-shadow-[0_0_2px_rgba(212,175,55,0.5)]' : stage.achieved ? 'text-[#EEEAD7]' : 'text-[#8d9685]'}`}>{stage.class}</p>
+                          <div className="flex flex-col items-center">
+                            <div className="flex items-center gap-2">
+                              <span className={`font-serif text-base sm:text-lg font-bold tracking-wide ${stage.current ? 'text-[#F5D77F] drop-shadow-[0_0_5px_rgba(212,175,55,0.8)]' : stage.achieved ? 'text-[#F5D77F]' : 'text-[#EEEAD7]'}`}>{stage.title}</span>
+                              {stage.current && <span className="font-mono text-[9px] px-1.5 py-0.5 bg-[#D4AF37]/20 text-[#D4AF37] border border-[#D4AF37]/60 uppercase tracking-wider font-bold shadow-[0_0_8px_rgba(212,175,55,0.4)]">CURRENT</span>}
+                              {stage.achieved && !stage.current && <span className="font-mono text-[9px] px-1.5 py-0.5 bg-[#6D0808]/40 text-[#D4AF37]/60 border border-[#6D0808]/40 uppercase tracking-wider">ACHIEVED</span>}
+                            </div>
+                            <p className={`font-mono text-[10.5px] mt-0.5 tracking-wide ${stage.current ? 'text-[#D4AF37] drop-shadow-[0_0_2px_rgba(212,175,55,0.5)]' : stage.achieved ? 'text-[#EEEAD7]' : 'text-[#8d9685]'}`}>{stage.class}</p>
+                          </div>
                         </div>
-                        <div className="text-right shrink-0 relative z-10">
-                          <p className={`font-mono text-xs ${stage.current ? 'text-[#F5D77F] font-bold drop-shadow-[0_0_8px_rgba(212,175,55,0.8)]' : 'text-[#D4AF37]'}`}>
+
+                        {/* XP Block (Absolute Right Aligned) */}
+                        <div className="absolute right-6 top-1/2 -translate-y-1/2 text-right shrink-0 z-10">
+                          <p className={`font-mono text-xs sm:text-sm ${stage.current ? 'text-[#F5D77F] font-bold drop-shadow-[0_0_8px_rgba(212,175,55,0.8)]' : 'text-[#D4AF37]'}`}>
                             {stage.xpRequired > 0 ? <AnimatedNumber value={stage.xpRequired} /> : '0'}
                           </p>
                           <p className={`font-mono text-[9px] ${stage.current ? 'text-[#D4AF37]' : 'text-[#8d9685]'}`}>XP REQ</p>
