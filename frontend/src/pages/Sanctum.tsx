@@ -333,31 +333,37 @@ const EdgeOrnament = ({ className }: { className?: string }) => (
   <div className={`absolute w-32 h-6 text-[#D4AF37] pointer-events-none ${className}`}>
      <svg viewBox="0 0 128 24" fill="none" className="w-full h-full drop-shadow-[0_0_4px_rgba(212,175,55,0.4)]">
        {/* Upper stepped lines */}
-       <path d="M 32 12 L 40 4 L 88 4 L 96 12" stroke="currentColor" strokeWidth="1.5" />
-       <path d="M 38 12 L 44 8 L 84 8 L 90 12" stroke="currentColor" strokeWidth="0.5" className="opacity-70" />
+       <path d="M 16 12 L 24 4 L 104 4 L 112 12" stroke="currentColor" strokeWidth="1" />
        
        {/* Lower stepped lines */}
-       <path d="M 32 12 L 40 20 L 88 20 L 96 12" stroke="currentColor" strokeWidth="1.5" />
-       <path d="M 38 12 L 44 16 L 84 16 L 90 12" stroke="currentColor" strokeWidth="0.5" className="opacity-70" />
+       <path d="M 16 12 L 24 20 L 104 20 L 112 12" stroke="currentColor" strokeWidth="1" />
        
-       {/* Center Diamond that the spine pierces */}
-       <path d="M 56 12 L 64 4 L 72 12 L 64 20 Z" fill="#1a0202" stroke="currentColor" strokeWidth="1.5" />
-       <path d="M 60 12 L 64 8 L 68 12 L 64 16 Z" fill="currentColor" />
+       {/* Center Solid Diamond (hides the spine) */}
+       <path d="M 56 12 L 64 4 L 72 12 L 64 20 Z" fill="currentColor" stroke="currentColor" strokeWidth="1" />
+       
+       {/* Diamond cutouts */}
+       <path d="M 64 8 L 68 12 L 64 16 L 60 12 Z" fill="#1a0202" />
        
        {/* Outer dots on the spine */}
-       <circle cx="20" cy="12" r="2" fill="#1a0202" stroke="currentColor" strokeWidth="1" />
-       <circle cx="108" cy="12" r="2" fill="#1a0202" stroke="currentColor" strokeWidth="1" />
-       <circle cx="20" cy="12" r="0.5" fill="currentColor" />
-       <circle cx="108" cy="12" r="0.5" fill="currentColor" />
+       <circle cx="8" cy="12" r="2" fill="currentColor" />
+       <circle cx="120" cy="12" r="2" fill="currentColor" />
      </svg>
   </div>
 );
 
 const VaultFrame = () => (
   <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
-    {/* Straight edge borders (inset from the absolute edge) */}
-    <div className="absolute inset-2 border border-[#D4AF37]/30"></div>
-    <div className="absolute inset-3 border border-[#D4AF37]/10"></div>
+    {/* Outer Lines (12px inset, stopping exactly 64px from edges to merge with corner SVGs) */}
+    <div className="absolute top-[12px] left-[64px] right-[64px] h-[1.5px] bg-[#D4AF37]/50"></div>
+    <div className="absolute bottom-[12px] left-[64px] right-[64px] h-[1.5px] bg-[#D4AF37]/50"></div>
+    <div className="absolute left-[12px] top-[64px] bottom-[64px] w-[1.5px] bg-[#D4AF37]/50"></div>
+    <div className="absolute right-[12px] top-[64px] bottom-[64px] w-[1.5px] bg-[#D4AF37]/50"></div>
+
+    {/* Inner Lines (16px inset) */}
+    <div className="absolute top-[16px] left-[64px] right-[64px] h-px bg-[#D4AF37]/20"></div>
+    <div className="absolute bottom-[16px] left-[64px] right-[64px] h-px bg-[#D4AF37]/20"></div>
+    <div className="absolute left-[16px] top-[64px] bottom-[64px] w-px bg-[#D4AF37]/20"></div>
+    <div className="absolute right-[16px] top-[64px] bottom-[64px] w-px bg-[#D4AF37]/20"></div>
     
     {/* The 4 Geometric Corners */}
     {[
@@ -366,35 +372,44 @@ const VaultFrame = () => (
       "bottom-0 left-0 scale-y-[-1]",
       "bottom-0 right-0 scale-x-[-1] scale-y-[-1]"
     ].map((pos, i) => (
-      <div key={i} className={`absolute ${pos} w-12 h-12 text-[#D4AF37]`}>
-        <svg viewBox="0 0 48 48" fill="none" className="w-full h-full drop-shadow-[0_0_4px_rgba(212,175,55,0.4)]">
-          {/* Outer L bracket */}
-          <path d="M 2 46 L 2 2 L 46 2" stroke="currentColor" strokeWidth="1.5" />
-          {/* Inner L bracket */}
-          <path d="M 6 42 L 6 6 L 42 6" stroke="currentColor" strokeWidth="0.5" className="opacity-60" />
+      <div key={i} className={`absolute ${pos} w-16 h-16 text-[#D4AF37]`}>
+        <svg viewBox="0 0 64 64" fill="none" className="w-full h-full drop-shadow-[0_0_4px_rgba(212,175,55,0.4)]">
+          {/* Outer L bracket perfectly aligned to 12px */}
+          <path d="M 12 64 L 12 12 L 64 12" stroke="currentColor" strokeWidth="1.5" />
+          {/* Inner L bracket perfectly aligned to 16px */}
+          <path d="M 16 64 L 16 16 L 64 16" stroke="currentColor" strokeWidth="1" className="opacity-40" />
+          
           {/* Stepped geometric corner block */}
-          <path d="M 2 16 L 16 16 L 16 2 L 2 2 Z" fill="currentColor" fillOpacity="0.1" />
-          {/* Geometric slashes */}
-          <path d="M 8 2 L 2 8 M 12 2 L 2 12 M 16 2 L 2 16" stroke="currentColor" strokeWidth="1" className="opacity-80" />
+          <path d="M 12 32 L 32 32 L 32 12 L 12 12 Z" fill="currentColor" fillOpacity="0.05" />
+          <path d="M 20 12 L 12 20 M 26 12 L 12 26 M 32 12 L 12 32" stroke="currentColor" strokeWidth="1" className="opacity-80" />
+          
           {/* Diamond accent */}
-          <path d="M 10 8 L 12 10 L 10 12 L 8 10 Z" fill="currentColor" />
+          <path d="M 22 20 L 24 22 L 22 24 L 20 22 Z" fill="currentColor" />
         </svg>
       </div>
     ))}
     
-    {/* Center Edge Ornaments (Aligned to the inset-2 border which is 8px) */}
-    <EdgeOrnament className="top-[8px] left-1/2 -translate-x-1/2 -translate-y-1/2" />
-    <EdgeOrnament className="bottom-[8px] left-1/2 -translate-x-1/2 translate-y-1/2 scale-y-[-1]" />
-    <EdgeOrnament className="left-[8px] top-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-90" />
-    <EdgeOrnament className="right-[8px] top-1/2 translate-x-1/2 -translate-y-1/2 rotate-90" />
+    {/* Center Edge Ornaments (Aligned to the inset-3 border which is 12px) */}
+    <EdgeOrnament className="top-[12px] left-1/2 -translate-x-1/2 -translate-y-1/2" />
+    <EdgeOrnament className="bottom-[12px] left-1/2 -translate-x-1/2 translate-y-1/2 scale-y-[-1]" />
+    <EdgeOrnament className="left-[12px] top-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-90" />
+    <EdgeOrnament className="right-[12px] top-1/2 translate-x-1/2 -translate-y-1/2 rotate-90" />
   </div>
 );
 
 const CodexMasterFrame = () => (
   <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
-    {/* Thick main border */}
-    <div className="absolute inset-3 border-2 border-[#D4AF37]/40 shadow-[0_0_15px_rgba(212,175,55,0.1)_inset]"></div>
-    <div className="absolute inset-[18px] border border-[#D4AF37]/20"></div>
+    {/* Outer Lines (16px inset, stopping 80px from edges) */}
+    <div className="absolute top-[16px] left-[80px] right-[80px] h-[1.5px] bg-[#D4AF37]/50 shadow-[0_0_8px_rgba(212,175,55,0.4)]"></div>
+    <div className="absolute bottom-[16px] left-[80px] right-[80px] h-[1.5px] bg-[#D4AF37]/50 shadow-[0_0_8px_rgba(212,175,55,0.4)]"></div>
+    <div className="absolute left-[16px] top-[80px] bottom-[80px] w-[1.5px] bg-[#D4AF37]/50 shadow-[0_0_8px_rgba(212,175,55,0.4)]"></div>
+    <div className="absolute right-[16px] top-[80px] bottom-[80px] w-[1.5px] bg-[#D4AF37]/50 shadow-[0_0_8px_rgba(212,175,55,0.4)]"></div>
+
+    {/* Inner Lines (20px inset) */}
+    <div className="absolute top-[20px] left-[80px] right-[80px] h-px bg-[#D4AF37]/20"></div>
+    <div className="absolute bottom-[20px] left-[80px] right-[80px] h-px bg-[#D4AF37]/20"></div>
+    <div className="absolute left-[20px] top-[80px] bottom-[80px] w-px bg-[#D4AF37]/20"></div>
+    <div className="absolute right-[20px] top-[80px] bottom-[80px] w-px bg-[#D4AF37]/20"></div>
 
     {/* The 4 Grand Corners */}
     {[
@@ -404,25 +419,27 @@ const CodexMasterFrame = () => (
       "bottom-0 right-0 scale-x-[-1] scale-y-[-1]"
     ].map((pos, i) => (
       <div key={i} className={`absolute ${pos} w-20 h-20 text-[#D4AF37]`}>
-        <svg viewBox="0 0 80 80" fill="none" className="w-full h-full drop-shadow-[0_0_8px_rgba(212,175,55,0.5)]">
-          {/* Multiple concentric L brackets */}
-          <path d="M 12 68 L 12 12 L 68 12" stroke="currentColor" strokeWidth="2" />
-          <path d="M 18 62 L 18 18 L 62 18" stroke="currentColor" strokeWidth="1" className="opacity-60" />
+        <svg viewBox="0 0 80 80" fill="none" className="w-full h-full drop-shadow-[0_0_8px_rgba(212,175,55,0.6)]">
+          {/* Multiple concentric L brackets aligned to 16px and 20px */}
+          <path d="M 16 80 L 16 16 L 80 16" stroke="currentColor" strokeWidth="1.5" />
+          <path d="M 20 80 L 20 20 L 80 20" stroke="currentColor" strokeWidth="1" className="opacity-40" />
+          
           {/* Stepped Corner Block */}
-          <path d="M 12 12 L 32 12 L 32 24 L 24 24 L 24 32 L 12 32 Z" fill="currentColor" fillOpacity="0.1" stroke="currentColor" strokeWidth="1" />
+          <path d="M 16 40 L 40 40 L 40 16 L 16 16 Z" fill="currentColor" fillOpacity="0.05" />
           {/* Diagonal cut lines (Sunburst style) */}
-          <path d="M 12 32 L 32 12 M 12 24 L 24 12 M 12 18 L 18 12" stroke="currentColor" strokeWidth="1" />
+          <path d="M 16 40 L 40 16 M 16 32 L 32 16 M 16 24 L 24 16" stroke="currentColor" strokeWidth="1" className="opacity-90" />
+          
           {/* Corner Diamond */}
-          <path d="M 18 18 L 22 22 L 18 26 L 14 22 Z" fill="currentColor" />
+          <path d="M 24 24 L 28 28 L 24 32 L 20 28 Z" fill="currentColor" />
         </svg>
       </div>
     ))}
 
-    {/* Center Edge Ornaments (Aligned to the inset-3 border which is 12px) */}
-    <EdgeOrnament className="top-[12px] left-1/2 -translate-x-1/2 -translate-y-1/2" />
-    <EdgeOrnament className="bottom-[12px] left-1/2 -translate-x-1/2 translate-y-1/2 scale-y-[-1]" />
-    <EdgeOrnament className="left-[12px] top-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-90" />
-    <EdgeOrnament className="right-[12px] top-1/2 translate-x-1/2 -translate-y-1/2 rotate-90" />
+    {/* Center Edge Ornaments (Aligned to the 16px inset border) */}
+    <EdgeOrnament className="top-[16px] left-1/2 -translate-x-1/2 -translate-y-1/2" />
+    <EdgeOrnament className="bottom-[16px] left-1/2 -translate-x-1/2 translate-y-1/2 scale-y-[-1]" />
+    <EdgeOrnament className="left-[16px] top-1/2 -translate-x-1/2 -translate-y-1/2 -rotate-90" />
+    <EdgeOrnament className="right-[16px] top-1/2 translate-x-1/2 -translate-y-1/2 rotate-90" />
   </div>
 );
 
