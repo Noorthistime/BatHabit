@@ -185,77 +185,72 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
         <div className="absolute inset-0 border-[2px]" style={{ borderColor: color, boxShadow: `0 0 12px ${color}, inset 0 0 20px ${redAccent}` }} />
         <div className="absolute inset-[3px] border border-solid" style={{ borderColor: redAccent }} />
         
-        {/* Continuous Looping Jewel Pattern */}
+        {/* Crisp Structured Jewel Pattern */}
         <svg className="absolute inset-0 w-full h-full opacity-95">
           <defs>
-             <pattern id="leg-x" width="40" height="12" patternUnits="userSpaceOnUse">
-               <path d="M-5 6 C5 -4, 15 -4, 25 6 C35 16, 45 16, 55 6" fill="none" stroke={color} strokeWidth="1.5" />
-               <path d="M-5 6 C5 16, 15 16, 25 6 C35 -4, 45 -4, 55 6" fill="none" stroke={color} strokeWidth="1.5" />
-               <path d="M5 6 L35 6" stroke={redAccent} strokeWidth="0.5" opacity="0.6"/>
-               <circle cx="5" cy="6" r="2.5" fill={redAccent} stroke={color} strokeWidth="1" />
-               <circle cx="25" cy="6" r="2.5" fill={redAccent} stroke={color} strokeWidth="1" />
-               <path d="M15 2 Q15 4 17 4 Q15 4 15 6" fill="none" stroke={color} strokeWidth="1" />
-               <path d="M35 10 Q35 8 33 8 Q35 8 35 6" fill="none" stroke={color} strokeWidth="1" />
+             <pattern id="leg-x" width="40" height="8" patternUnits="userSpaceOnUse">
+               <path d="M0 2 L40 2" stroke={color} strokeWidth="1.5" />
+               <path d="M0 6 L40 6" stroke={color} strokeWidth="0.5" />
+               <path d="M15 4 L20 1 L25 4 L20 7 Z" fill={redAccent} stroke={color} strokeWidth="0.5" />
+               <path d="M10 4 L15 4 M25 4 L30 4" stroke={color} strokeWidth="1" />
+               <circle cx="5" cy="4" r="1" fill={color} />
+               <circle cx="35" cy="4" r="1" fill={color} />
              </pattern>
-             <pattern id="leg-y" width="12" height="40" patternUnits="userSpaceOnUse">
-               <path d="M6 -5 C-4 5, -4 15, 6 25 C16 35, 16 45, 6 55" fill="none" stroke={color} strokeWidth="1.5" />
-               <path d="M6 -5 C16 5, 16 15, 6 25 C-4 35, -4 45, 6 55" fill="none" stroke={color} strokeWidth="1.5" />
-               <path d="M6 5 L6 35" stroke={redAccent} strokeWidth="0.5" opacity="0.6"/>
-               <circle cx="6" cy="5" r="2.5" fill={redAccent} stroke={color} strokeWidth="1" />
-               <circle cx="6" cy="25" r="2.5" fill={redAccent} stroke={color} strokeWidth="1" />
-               <path d="M2 15 Q4 15 4 17 Q4 15 6 15" fill="none" stroke={color} strokeWidth="1" />
-               <path d="M10 35 Q8 35 8 33 Q8 35 6 35" fill="none" stroke={color} strokeWidth="1" />
+             <pattern id="leg-y" width="8" height="40" patternUnits="userSpaceOnUse">
+               <path d="M2 0 L2 40" stroke={color} strokeWidth="1.5" />
+               <path d="M6 0 L6 40" stroke={color} strokeWidth="0.5" />
+               <path d="M4 15 L1 20 L4 25 L7 20 Z" fill={redAccent} stroke={color} strokeWidth="0.5" />
+               <path d="M4 10 L4 15 M4 25 L4 30" stroke={color} strokeWidth="1" />
+               <circle cx="4" cy="5" r="1" fill={color} />
+               <circle cx="4" cy="35" r="1" fill={color} />
              </pattern>
           </defs>
-          <rect x="0" y="0" width="100%" height="12" fill="url(#leg-x)" />
-          <rect x="0" y="calc(100% - 12px)" width="100%" height="12" fill="url(#leg-x)" />
-          <rect x="0" y="0" width="12" height="100%" fill="url(#leg-y)" />
-          <rect x="calc(100% - 12px)" y="0" width="12" height="100%" fill="url(#leg-y)" />
+          <rect x="0" y="0" width="100%" height="8" fill="url(#leg-x)" />
+          <rect x="0" y="calc(100% - 8px)" width="100%" height="8" fill="url(#leg-x)" />
+          <rect x="0" y="0" width="8" height="100%" fill="url(#leg-y)" />
+          <rect x="calc(100% - 8px)" y="0" width="8" height="100%" fill="url(#leg-y)" />
         </svg>
 
-        {/* Ornate Swirling Corners */}
+        {/* Structured Geometric Corners */}
         {[
           'top-0 left-0', 'top-0 right-0 rotate-90',
           'bottom-0 right-0 rotate-180', 'bottom-0 left-0 -rotate-90'
         ].map((pos, i) => (
-          <svg key={i} className={`absolute ${pos} w-16 h-16 drop-shadow-[0_0_6px_${color}]`} viewBox="0 0 64 64" fill="none">
-             <path d="M2 2 C30 2, 45 10, 50 30 C55 50, 40 60, 2 62" stroke={color} strokeWidth="2" fill="none" />
-             <path d="M6 6 C20 15, 25 30, 20 45 C15 60, 5 62, 5 62" stroke={redAccent} strokeWidth="1.5" fill="none" />
-             <path d="M2 2 C40 10, 60 20, 62 2" stroke={color} strokeWidth="1.5" opacity="0.8" />
-             <path d="M20 20 C35 30, 30 45, 20 50 C10 55, 10 40, 20 35" stroke={color} strokeWidth="1.5" />
-             <g transform="translate(16, 16)">
-               <rect x="-6" y="-6" width="12" height="12" fill={redAccent} stroke={color} strokeWidth="1.5" transform="rotate(45)" />
-               <circle cx="0" cy="0" r="2.5" fill={color} />
-               <path d="M-8 0L-12 0 M8 0L12 0 M0 -8L0 -12 M0 8L0 12" stroke={color} strokeWidth="1" />
-             </g>
-             <path d="M2 30 L10 30 M30 2 L30 10" stroke={redAccent} strokeWidth="1.5" />
-             <circle cx="45" cy="45" r="2" fill={redAccent} />
+          <svg key={i} className={`absolute ${pos} w-12 h-12 drop-shadow-[0_0_4px_${color}]`} viewBox="0 0 48 48" fill="none">
+             <path d="M2 46 L2 2 L46 2" stroke={color} strokeWidth="2" />
+             <path d="M6 46 L6 6 L46 6" stroke={color} strokeWidth="1" />
+             <path d="M2 16 L16 2" stroke={color} strokeWidth="1.5" />
+             <path d="M6 22 L22 6" stroke={color} strokeWidth="1" />
+             <path d="M10 28 L28 10" stroke={color} strokeWidth="0.5" />
+             <rect x="11" y="11" width="6" height="6" fill={redAccent} stroke={color} strokeWidth="1.5" transform="rotate(45 14 14)" />
+             <circle cx="14" cy="14" r="1.5" fill={color} />
+             <circle cx="20" cy="20" r="1" fill={redAccent} />
           </svg>
         ))}
 
-        {/* Elaborate Winged Crests */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-28 h-7 flex justify-center">
-           <svg viewBox="0 0 112 28" className="w-full h-full" fill="none">
-             <path d="M56 2 L66 14 L56 26 L46 14 Z" fill={redAccent} stroke={color} strokeWidth="2" />
-             <circle cx="56" cy="14" r="3" fill={color} />
-             <path d="M46 14 C35 20, 20 28, 5 20 C-5 15, 10 5, 25 10 C35 13, 40 10, 46 14" stroke={color} strokeWidth="1.5" />
-             <path d="M35 14 C25 18, 15 22, 10 14" stroke={redAccent} strokeWidth="1" />
-             <path d="M66 14 C77 20, 92 28, 107 20 C117 15, 102 5, 87 10 C77 13, 72 10, 66 14" stroke={color} strokeWidth="1.5" />
-             <path d="M77 14 C87 18, 97 22, 102 14" stroke={redAccent} strokeWidth="1" />
-             <circle cx="15" cy="10" r="2" fill={redAccent} />
-             <circle cx="97" cy="10" r="2" fill={redAccent} />
+        {/* Crisp Diamond Crests */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-5 flex justify-center">
+           <svg viewBox="0 0 96 20" className="w-full h-full" fill="none">
+             <path d="M48 2 L58 10 L48 18 L38 10 Z" fill={redAccent} stroke={color} strokeWidth="2" />
+             <circle cx="48" cy="10" r="2.5" fill={color} />
+             <path d="M38 10 L14 10" stroke={color} strokeWidth="2" />
+             <path d="M58 10 L82 10" stroke={color} strokeWidth="2" />
+             <path d="M30 6 L18 6 M66 6 L78 6" stroke={color} strokeWidth="1" />
+             <path d="M30 14 L18 14 M66 14 L78 14" stroke={color} strokeWidth="1" />
+             <circle cx="14" cy="10" r="2" fill={redAccent} stroke={color} strokeWidth="1" />
+             <circle cx="82" cy="10" r="2" fill={redAccent} stroke={color} strokeWidth="1" />
            </svg>
         </div>
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-28 h-7 flex justify-center items-end">
-           <svg viewBox="0 0 112 28" className="w-full h-full rotate-180" fill="none">
-             <path d="M56 2 L66 14 L56 26 L46 14 Z" fill={redAccent} stroke={color} strokeWidth="2" />
-             <circle cx="56" cy="14" r="3" fill={color} />
-             <path d="M46 14 C35 20, 20 28, 5 20 C-5 15, 10 5, 25 10 C35 13, 40 10, 46 14" stroke={color} strokeWidth="1.5" />
-             <path d="M35 14 C25 18, 15 22, 10 14" stroke={redAccent} strokeWidth="1" />
-             <path d="M66 14 C77 20, 92 28, 107 20 C117 15, 102 5, 87 10 C77 13, 72 10, 66 14" stroke={color} strokeWidth="1.5" />
-             <path d="M77 14 C87 18, 97 22, 102 14" stroke={redAccent} strokeWidth="1" />
-             <circle cx="15" cy="10" r="2" fill={redAccent} />
-             <circle cx="97" cy="10" r="2" fill={redAccent} />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-5 flex justify-center items-end">
+           <svg viewBox="0 0 96 20" className="w-full h-full rotate-180" fill="none">
+             <path d="M48 2 L58 10 L48 18 L38 10 Z" fill={redAccent} stroke={color} strokeWidth="2" />
+             <circle cx="48" cy="10" r="2.5" fill={color} />
+             <path d="M38 10 L14 10" stroke={color} strokeWidth="2" />
+             <path d="M58 10 L82 10" stroke={color} strokeWidth="2" />
+             <path d="M30 6 L18 6 M66 6 L78 6" stroke={color} strokeWidth="1" />
+             <path d="M30 14 L18 14 M66 14 L78 14" stroke={color} strokeWidth="1" />
+             <circle cx="14" cy="10" r="2" fill={redAccent} stroke={color} strokeWidth="1" />
+             <circle cx="82" cy="10" r="2" fill={redAccent} stroke={color} strokeWidth="1" />
            </svg>
         </div>
       </div>
