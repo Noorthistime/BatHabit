@@ -494,6 +494,83 @@ const CodexMajesticFrame = () => (
   </div>
 );
 
+const HeaderFiligreeFrame = () => (
+  <div className="absolute inset-0 pointer-events-none z-0 text-[#D4AF37]/60">
+    {/* Continuous Border Line */}
+    <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
+       <motion.rect 
+         initial={{ pathLength: 0, opacity: 0 }}
+         whileInView={{ pathLength: 1, opacity: 1, transition: { duration: 1.5, ease: "easeInOut", delay: 0.5 } }}
+         viewport={{ once: true }}
+         x="0" y="0" width="100%" height="100%" fill="none" stroke="currentColor" strokeWidth="1" 
+         vectorEffect="non-scaling-stroke"
+       />
+    </svg>
+    {/* Corner Brackets */}
+    {[
+      "top-0 left-0",
+      "top-0 right-0 scale-x-[-1]",
+      "bottom-0 left-0 scale-y-[-1]",
+      "bottom-0 right-0 scale-x-[-1] scale-y-[-1]"
+    ].map((pos, i) => (
+      <div key={i} className={`absolute ${pos} w-8 h-8 overflow-hidden`}>
+        <motion.svg viewBox="0 0 32 32" fill="none" className="w-full h-full"
+          initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition: { duration: 1, delay: 1 } }} viewport={{ once: true }}>
+          <path d="M 0 8 Q 8 8 8 0 M 0 12 Q 12 12 12 0" stroke="currentColor" strokeWidth="1" />
+          <circle cx="6" cy="6" r="1.5" fill="currentColor" />
+        </motion.svg>
+      </div>
+    ))}
+    {/* Top/Bottom Center Flouishes */}
+    <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 w-16 h-4">
+      <motion.svg viewBox="0 0 64 16" fill="none" className="w-full h-full bg-[#1a0202]">
+        <motion.path d="M 0 8 C 20 8 24 0 32 0 C 40 0 44 8 64 8" stroke="currentColor" strokeWidth="1" 
+          initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 1, delay: 1.2 } }} viewport={{ once: true }} />
+        <motion.path d="M 32 2 L 34 6 L 30 6 Z" fill="currentColor" 
+          initial={{ scale: 0 }} whileInView={{ scale: 1, transition: { duration: 0.5, delay: 1.8 } }} viewport={{ once: true }} />
+      </motion.svg>
+    </div>
+    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-16 h-4 scale-y-[-1]">
+      <motion.svg viewBox="0 0 64 16" fill="none" className="w-full h-full bg-[#1a0202]">
+        <motion.path d="M 0 8 C 20 8 24 0 32 0 C 40 0 44 8 64 8" stroke="currentColor" strokeWidth="1" 
+          initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 1, delay: 1.2 } }} viewport={{ once: true }} />
+        <motion.path d="M 32 2 L 34 6 L 30 6 Z" fill="currentColor" 
+          initial={{ scale: 0 }} whileInView={{ scale: 1, transition: { duration: 0.5, delay: 1.8 } }} viewport={{ once: true }} />
+      </motion.svg>
+    </div>
+  </div>
+);
+
+const QuestSubtleFrame = () => (
+  <div className="absolute inset-0 pointer-events-none z-0 text-[#D4AF37]/30">
+    {/* Continuous Subtle Border Line */}
+    <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
+       <motion.rect 
+         initial={{ pathLength: 0, opacity: 0 }}
+         whileInView={{ pathLength: 1, opacity: 1, transition: { duration: 1.2, ease: "easeInOut", delay: 1 } }}
+         viewport={{ once: true }}
+         x="0" y="0" width="100%" height="100%" fill="none" stroke="currentColor" strokeWidth="0.5" 
+         vectorEffect="non-scaling-stroke"
+       />
+    </svg>
+    {/* Minimalist Art Deco Corners */}
+    {[
+      "top-0 left-0",
+      "top-0 right-0 scale-x-[-1]",
+      "bottom-0 left-0 scale-y-[-1]",
+      "bottom-0 right-0 scale-x-[-1] scale-y-[-1]"
+    ].map((pos, i) => (
+      <div key={i} className={`absolute ${pos} w-4 h-4`}>
+        <motion.svg viewBox="0 0 16 16" fill="none" className="w-full h-full"
+          initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1, transition: { duration: 0.5, delay: 1.5 } }} viewport={{ once: true }}>
+          <path d="M 0 4 L 4 0 L 8 4 L 4 8 Z" fill="currentColor" fillOpacity="0.5" />
+          <path d="M 4 8 L 4 16 M 8 4 L 16 4" stroke="currentColor" strokeWidth="0.5" />
+        </motion.svg>
+      </div>
+    ))}
+  </div>
+);
+
 const QuestRowDivider = () => (
   <div className="flex items-center justify-center my-2 opacity-40">
     <div className="h-px w-32 bg-gradient-to-r from-transparent to-[#D4AF37]"></div>
@@ -867,11 +944,15 @@ export function Sanctum() {
             <div className="lg:col-span-8 flex flex-col h-full">
               <div className="relative bg-gradient-to-br from-[#1a0202] to-[#0a0000] shadow-[0_12px_40px_rgba(0,0,0,0.9)] flex flex-col overflow-hidden h-full rounded-lg">
                 
+                {/* The Majestic Baroque Filigree Layer */}
+                <CodexMajesticFrame />
+                
                 {/* Inner Padded Content */}
                 <div className="p-8 flex-1 flex flex-col relative z-10 h-full">
                   
                   {/* Header */}
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 relative z-10 mb-8 p-5 bg-[#1a0202]/60 border border-[#D4AF37]/20 rounded-md shadow-[inset_0_0_20px_rgba(0,0,0,0.5)]">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 relative z-10 mb-8 p-5 bg-[#1a0202]/60 rounded-md shadow-[inset_0_0_20px_rgba(0,0,0,0.5)]">
+                    <HeaderFiligreeFrame />
                   <div className="flex items-center gap-4">
                     <div className="w-10 h-10 rounded-sm border border-[#D4AF37]/50 flex items-center justify-center text-[#D4AF37] shrink-0 bg-[#0a0000] shadow-inner">
                       <Book size={20} />
@@ -895,7 +976,8 @@ export function Sanctum() {
                     { title: "Review 3 Algorithmic Systems", icon: Focus, tag: "Focus • Essential", xp: 68, crowns: 20, stat: "Focus +1" }
                   ].map((q, i, arr) => (
                     <React.Fragment key={i}>
-                      <article className="group relative transition-all flex flex-col md:flex-row justify-between items-center gap-4 p-5 mb-4 bg-[#1a0202]/40 border border-[#D4AF37]/15 hover:border-[#D4AF37]/40 hover:bg-[#D4AF37]/10 rounded-md shadow-sm overflow-hidden">
+                      <article className="group relative transition-all flex flex-col md:flex-row justify-between items-center gap-4 p-5 mb-4 bg-[#1a0202]/40 hover:bg-[#D4AF37]/10 rounded-md shadow-sm overflow-hidden">
+                        <QuestSubtleFrame />
                         
                         <div className="flex flex-1 items-center gap-5 pl-2">
                           <div className="w-12 h-12 flex items-center justify-center text-[#D4AF37]/80 shrink-0 border border-transparent group-hover:border-[#D4AF37]/30 transition-colors">
