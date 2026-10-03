@@ -749,10 +749,6 @@ export function Sanctum() {
                       
                       <div className="flex flex-col items-center w-full mb-10 relative z-10 pt-4">
                         <h3 className="font-serif text-2xl font-bold text-[#EEEAD7] tracking-[0.3em]">THE VAULT</h3>
-                        <div className="absolute right-0 top-1/2 -translate-y-1/2 flex items-center gap-2">
-                           <Shield size={12} className="text-[#D4AF37]" />
-                           <span className="font-mono text-[9px] text-[#8d9685] uppercase border border-[#D4AF37]/40 px-2 py-0.5 rounded-sm bg-[#1a0202]">Secure</span>
-                        </div>
                       </div>
                       
                       <div className="relative z-10 w-28 h-28 rounded-full bg-[radial-gradient(ellipse_at_center,_#F5D77F_0%,_#D4AF37_50%,_#947014_100%)] flex items-center justify-center text-[#1a0202] shadow-[0_0_60px_rgba(212,175,55,0.4)] mb-8 shrink-0 mt-4 border border-[#F5D77F]/50">
