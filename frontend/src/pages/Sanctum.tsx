@@ -867,8 +867,6 @@ export function Sanctum() {
             <div className="lg:col-span-8 flex flex-col h-full">
               <div className="relative bg-gradient-to-br from-[#1a0202] to-[#0a0000] shadow-[0_12px_40px_rgba(0,0,0,0.9)] flex flex-col overflow-hidden h-full rounded-lg">
                 
-                {/* The Majestic Baroque Filigree Layer */}
-                <CodexMajesticFrame />
                 {/* Inner Padded Content */}
                 <div className="p-8 flex-1 flex flex-col relative z-10 h-full">
                   
