@@ -327,6 +327,64 @@ const PrestigeAttributeFrame = ({ delay = 1.4 }: { delay?: number }) => (
       </div>
     ))}
   </div>
+const VaultFrame = () => (
+  <svg 
+    className="absolute inset-0 w-full h-full pointer-events-none text-[#D4AF37] opacity-60 z-0" 
+    preserveAspectRatio="none" 
+    viewBox="0 0 100 100"
+  >
+    {/* Outer border */}
+    <rect x="2" y="2" width="96" height="96" fill="none" stroke="currentColor" strokeWidth="0.5" vectorEffect="non-scaling-stroke" />
+    {/* Inner border */}
+    <rect x="4" y="4" width="92" height="92" fill="none" stroke="currentColor" strokeWidth="0.2" vectorEffect="non-scaling-stroke" />
+    
+    {/* Corner Flourishes */}
+    <path d="M 4 10 C 6 8, 8 6, 10 4" fill="none" stroke="currentColor" strokeWidth="0.5" vectorEffect="non-scaling-stroke" />
+    <path d="M 96 10 C 94 8, 92 6, 90 4" fill="none" stroke="currentColor" strokeWidth="0.5" vectorEffect="non-scaling-stroke" />
+    <path d="M 4 90 C 6 92, 8 94, 10 96" fill="none" stroke="currentColor" strokeWidth="0.5" vectorEffect="non-scaling-stroke" />
+    <path d="M 96 90 C 94 92, 92 94, 90 96" fill="none" stroke="currentColor" strokeWidth="0.5" vectorEffect="non-scaling-stroke" />
+  </svg>
+);
+
+const CodexMasterFrame = () => (
+  <svg 
+    className="absolute inset-0 w-full h-full pointer-events-none text-[#D4AF37] opacity-60 z-0" 
+    preserveAspectRatio="none" 
+    viewBox="0 0 100 100"
+  >
+    <rect x="1.5" y="1.5" width="97" height="97" fill="none" stroke="currentColor" strokeWidth="1" vectorEffect="non-scaling-stroke" />
+    <rect x="3" y="3" width="94" height="94" fill="none" stroke="currentColor" strokeWidth="0.3" vectorEffect="non-scaling-stroke" />
+    
+    {/* Top Left Swirl */}
+    <path d="M 1.5 12 Q 6 12 12 1.5 Q 6 6 1.5 1.5" fill="currentColor" />
+    <path d="M 3 16 C 8 16 12 12 12 6 C 12 9 9 12 6 12 Z" fill="none" stroke="currentColor" strokeWidth="0.4" vectorEffect="non-scaling-stroke" />
+    
+    {/* Top Right Swirl */}
+    <path d="M 98.5 12 Q 94 12 88 1.5 Q 94 6 98.5 1.5" fill="currentColor" />
+    <path d="M 97 16 C 92 16 88 12 88 6 C 88 9 91 12 94 12 Z" fill="none" stroke="currentColor" strokeWidth="0.4" vectorEffect="non-scaling-stroke" />
+    
+    {/* Bottom Left Swirl */}
+    <path d="M 1.5 88 Q 6 88 12 98.5 Q 6 94 1.5 98.5" fill="currentColor" />
+    <path d="M 3 84 C 8 84 12 88 12 94 C 12 91 9 88 6 88 Z" fill="none" stroke="currentColor" strokeWidth="0.4" vectorEffect="non-scaling-stroke" />
+    
+    {/* Bottom Right Swirl */}
+    <path d="M 98.5 88 Q 94 88 88 98.5 Q 94 94 98.5 98.5" fill="currentColor" />
+    <path d="M 97 84 C 92 84 88 88 88 94 C 88 91 91 88 94 88 Z" fill="none" stroke="currentColor" strokeWidth="0.4" vectorEffect="non-scaling-stroke" />
+  </svg>
+);
+
+const QuestRowDivider = () => (
+  <div className="flex items-center justify-center my-2 opacity-40">
+    <div className="h-px w-32 bg-gradient-to-r from-transparent to-[#D4AF37]"></div>
+    <div className="mx-4 text-[#D4AF37]">
+      <svg width="24" height="8" viewBox="0 0 24 8" fill="currentColor">
+         <path d="M 12 0 L 16 4 L 12 8 L 8 4 Z" />
+         <circle cx="4" cy="4" r="1.5" />
+         <circle cx="20" cy="4" r="1.5" />
+      </svg>
+    </div>
+    <div className="h-px w-32 bg-gradient-to-l from-transparent to-[#D4AF37]"></div>
+  </div>
 );
 
 export function Sanctum() {
@@ -604,36 +662,45 @@ export function Sanctum() {
                 </div>
 
                 {/* Tab Content Container */}
-                <div className="p-6 flex-1 flex flex-col relative">
+                <div className="p-6 flex-1 flex flex-col relative overflow-hidden">
                   
                   {/* Treasury View */}
                   {activeLedgerTab === 'treasury' && (
                     <motion.div 
                       initial={{ opacity: 0, x: -20 }}
                       animate={{ opacity: 1, x: 0 }}
-                      className="flex flex-col items-center flex-1"
+                      className="flex flex-col items-center flex-1 h-full relative"
                     >
-                      <div className="flex items-center justify-between w-full mb-6">
-                        <h3 className="font-serif text-lg font-bold text-[#EEEAD7]">THE VAULT</h3>
-                        <span className="font-mono text-[9px] text-[#8d9685] uppercase border border-[#D4AF37]/40 px-2 py-1 rounded">Secure</span>
+                      <VaultFrame />
+                      
+                      <div className="flex flex-col items-center w-full mb-8 relative z-10">
+                        <PrestigeHeaderDivider />
+                        <h3 className="font-serif text-xl font-bold text-[#EEEAD7] tracking-[0.2em] absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#1a0202] px-6">THE VAULT</h3>
+                        <span className="font-mono text-[9px] text-[#8d9685] uppercase border border-[#D4AF37]/40 px-2 py-0.5 rounded-sm absolute right-0 top-1/2 -translate-y-1/2 bg-[#1a0202]">Secure</span>
                       </div>
                       
-                      <div className="w-24 h-24 rounded-full bg-[radial-gradient(ellipse_at_center,_#F5D77F_0%,_#D4AF37_50%,_#947014_100%)] flex items-center justify-center text-[#1a0202] shadow-[0_0_40px_rgba(212,175,55,0.6)] mb-6 shrink-0 mt-4">
-                        <span className="font-serif text-5xl font-bold">✦</span>
+                      <div className="relative z-10 w-28 h-28 rounded-full bg-[radial-gradient(ellipse_at_center,_#F5D77F_0%,_#D4AF37_50%,_#947014_100%)] flex items-center justify-center text-[#1a0202] shadow-[0_0_60px_rgba(212,175,55,0.4)] mb-8 shrink-0 mt-4 border border-[#F5D77F]/50">
+                        <span className="font-serif text-6xl font-bold">✦</span>
                       </div>
                       
-                      <span className="font-serif text-4xl font-bold text-[#D4AF37]">{currency?.balance || 0}</span>
-                      <span className="font-mono text-[10px] text-[#8d9685] uppercase text-center mt-2 tracking-widest">Gilded Crowns • Obsidian Gold</span>
+                      <span className="font-serif text-5xl font-bold text-[#D4AF37] drop-shadow-[0_2px_10px_rgba(212,175,55,0.5)] relative z-10">{currency?.balance || 0}</span>
+                      <span className="font-mono text-[10px] text-[#8d9685] uppercase text-center mt-3 tracking-[0.3em] relative z-10">Gilded Crowns • Obsidian Gold</span>
                       
-                      <div className="w-full mt-auto pt-6 space-y-2 border-t border-[#D4AF37]/20">
-                        <span className="font-mono text-[9px] text-[#8d9685] uppercase tracking-widest block mb-3">Recent Influx</span>
-                        <div className="flex justify-between items-center bg-[#6D0808]/20 p-2.5 rounded border border-[#6D0808]">
-                          <span className="font-mono text-[11px] text-[#EEEAD7]">+ Solitude Rite</span>
-                          <span className="font-mono text-[11px] font-bold text-[#D4AF37]">+15 Crowns</span>
+                      <div className="w-full mt-auto pt-6 relative z-10">
+                        <div className="flex items-center gap-4 mb-4">
+                          <div className="h-px flex-1 bg-gradient-to-r from-transparent to-[#D4AF37]/30"></div>
+                          <span className="font-mono text-[9px] text-[#D4AF37] uppercase tracking-[0.2em]">Recent Influx</span>
+                          <div className="h-px flex-1 bg-gradient-to-l from-transparent to-[#D4AF37]/30"></div>
                         </div>
-                        <div className="flex justify-between items-center bg-[#6D0808]/20 p-2.5 rounded border border-[#6D0808]">
-                          <span className="font-mono text-[11px] text-[#8d9685]">- Raven Brooch</span>
-                          <span className="font-mono text-[11px] font-bold text-[#ff4444]">-450 Crowns</span>
+                        <div className="flex flex-col gap-2">
+                          <div className="flex justify-between items-center px-3 py-2 border-b border-[#D4AF37]/10 hover:bg-[#D4AF37]/5 transition-colors">
+                            <span className="font-mono text-[10px] text-[#EEEAD7] tracking-wide">+ Solitude Rite</span>
+                            <span className="font-mono text-[10px] font-bold text-[#D4AF37]">+15 Crowns</span>
+                          </div>
+                          <div className="flex justify-between items-center px-3 py-2 border-b border-[#D4AF37]/10 hover:bg-[#D4AF37]/5 transition-colors">
+                            <span className="font-mono text-[10px] text-[#8d9685] tracking-wide">- Raven Brooch</span>
+                            <span className="font-mono text-[10px] font-bold text-[#ff4444]">-450 Crowns</span>
+                          </div>
                         </div>
                       </div>
                     </motion.div>
@@ -676,57 +743,72 @@ export function Sanctum() {
             </div>
 
             {/* Right Col (67%): Quests */}
-            <div className="lg:col-span-8 flex flex-col space-y-4">
-              <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 bg-[#1a0202] p-5 rounded-lg border border-[#D4AF37]/60 shadow-[0_4px_12px_rgba(0,0,0,0.8)]">
-                <div className="flex items-center gap-4">
-                  <div className="w-10 h-10 rounded border border-[#D4AF37] flex items-center justify-center text-[#D4AF37] shrink-0">
-                    <Book size={20} />
-                  </div>
-                  <div>
-                    <h2 className="font-serif text-xl font-bold text-[#EEEAD7]">Codex of Active Quests</h2>
-                    <span className="font-mono text-[10px] text-[#8d9685] uppercase tracking-widest">3 Pending Rites • 1 Sealed</span>
-                  </div>
-                </div>
-                <button className="px-4 py-2 rounded border border-[#D4AF37] bg-[#6D0808] text-[#D4AF37] font-serif text-xs font-bold tracking-widest hover:brightness-125 flex items-center gap-2 shadow-[0_0_12px_rgba(109,8,8,0.8)] shrink-0 transition-all">
-                  <Plus size={16} /> FORGE QUEST
-                </button>
-              </div>
+            <div className="lg:col-span-8 flex flex-col h-full">
+              <div className="relative bg-gradient-to-br from-[#1a0202] to-[#0a0000] shadow-[0_12px_40px_rgba(0,0,0,0.9)] flex flex-col p-8 overflow-hidden h-full rounded-lg">
+                
+                {/* The serious outer filigree */}
+                <CodexMasterFrame />
 
-              {/* Quest Items */}
-              {[
-                { title: "Master 30 Minutes of React", icon: Terminal, tag: "Intellect • Epic Quest", xp: 120, crowns: 40, stat: "Intellect +2" },
-                { title: "Deep Focus: 5 km Dawn Run", icon: Activity, tag: "Vitality • Daily Ritual", xp: 80, crowns: 25, stat: "Vitality +3" },
-                { title: "Review 3 Algorithmic Systems", icon: Focus, tag: "Focus • Essential", xp: 68, crowns: 20, stat: "Focus +1" }
-              ].map((q, i) => (
-                <article key={i} className="relative bg-[#0a0000] rounded-lg p-5 border border-[#D4AF37]/60 shadow-[0_4px_12px_rgba(0,0,0,0.8)] hover:border-[#D4AF37] transition-all flex flex-col md:flex-row justify-between items-center gap-4 overflow-hidden">
-                  <div className="absolute left-0 inset-y-0 w-1.5 bg-gradient-to-b from-[#F5D77F] to-[#6D0808]"></div>
-                  
-                  <div className="flex flex-1 items-center gap-5 pl-2">
-                    <div className="w-12 h-12 rounded border border-[#D4AF37] flex items-center justify-center text-[#D4AF37] shrink-0 bg-[#1a0202]">
-                      <q.icon size={24} />
+                {/* Header */}
+                <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 relative z-10 mb-8 pb-6">
+                  <div className="flex items-center gap-4">
+                    <div className="w-10 h-10 rounded-sm border border-[#D4AF37]/50 flex items-center justify-center text-[#D4AF37] shrink-0 bg-[#0a0000] shadow-inner">
+                      <Book size={20} />
                     </div>
-                    <div className="flex flex-col space-y-2">
-                      <span className="font-mono text-[10px] text-[#D4AF37] uppercase tracking-widest font-bold bg-[#1a0202] px-2 py-0.5 rounded border border-[#D4AF37]/40 w-fit">{q.tag}</span>
-                      <h3 className="font-serif text-lg font-bold text-[#EEEAD7]">{q.title}</h3>
-                      <div className="flex flex-wrap items-center gap-3">
-                        <span className="px-2 py-0.5 rounded bg-[#6D0808] text-[#EEEAD7] font-mono text-[10px] font-bold border border-[#ff4444]/40">
-                           +{q.xp} XP
-                        </span>
-                        <span className="px-2 py-0.5 rounded bg-[#1a0202] text-[#D4AF37] font-mono text-[10px] font-bold border border-[#D4AF37]/40">
-                           +{q.crowns} Crowns
-                        </span>
-                        <span className="font-mono text-[10px] text-[#8d9685]">{q.stat}</span>
-                      </div>
+                    <div>
+                      <h2 className="font-serif text-2xl font-bold text-[#EEEAD7] tracking-wide">Codex of Active Quests</h2>
+                      <span className="font-mono text-[10px] text-[#8d9685] uppercase tracking-[0.2em]">3 Pending Rites • 1 Sealed</span>
                     </div>
                   </div>
-                  
-                  <div className="flex items-center">
-                    <button className="px-6 py-3 rounded border border-[#D4AF37] bg-transparent text-[#D4AF37] font-serif text-xs font-bold uppercase tracking-widest hover:bg-[#6D0808] hover:text-[#EEEAD7] hover:border-[#ff4444] transition-all flex items-center gap-2 shrink-0">
-                      <CheckCircle size={16} /> COMPLETE QUEST
-                    </button>
-                  </div>
-                </article>
-              ))}
+                  <button className="px-5 py-2.5 rounded-sm border border-[#D4AF37] bg-transparent text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#1a0202] font-serif text-xs font-bold tracking-[0.1em] flex items-center gap-2 shadow-[0_0_12px_rgba(212,175,55,0.2)] hover:shadow-[0_0_20px_rgba(212,175,55,0.6)] shrink-0 transition-all">
+                    <Plus size={16} /> FORGE QUEST
+                  </button>
+                </div>
+
+                <div className="relative z-10 mb-4 opacity-50">
+                   <PrestigeHeaderDivider />
+                </div>
+
+                {/* Quest Items List */}
+                <div className="relative z-10 flex-1 flex flex-col">
+                  {[
+                    { title: "Master 30 Minutes of React", icon: Terminal, tag: "Intellect • Epic Quest", xp: 120, crowns: 40, stat: "Intellect +2" },
+                    { title: "Deep Focus: 5 km Dawn Run", icon: Activity, tag: "Vitality • Daily Ritual", xp: 80, crowns: 25, stat: "Vitality +3" },
+                    { title: "Review 3 Algorithmic Systems", icon: Focus, tag: "Focus • Essential", xp: 68, crowns: 20, stat: "Focus +1" }
+                  ].map((q, i, arr) => (
+                    <React.Fragment key={i}>
+                      <article className="group relative transition-all flex flex-col md:flex-row justify-between items-center gap-4 py-4 px-2 hover:bg-[#D4AF37]/5 rounded-sm overflow-hidden">
+                        
+                        <div className="flex flex-1 items-center gap-5 pl-2">
+                          <div className="w-12 h-12 flex items-center justify-center text-[#D4AF37]/80 shrink-0 border border-transparent group-hover:border-[#D4AF37]/30 transition-colors">
+                            <q.icon size={26} className="group-hover:scale-110 transition-transform" />
+                          </div>
+                          <div className="flex flex-col space-y-1.5">
+                            <span className="font-mono text-[9px] text-[#D4AF37] uppercase tracking-[0.2em] font-bold opacity-80">{q.tag}</span>
+                            <h3 className="font-serif text-lg font-bold text-[#EEEAD7] group-hover:text-white transition-colors">{q.title}</h3>
+                            <div className="flex flex-wrap items-center gap-3">
+                              <span className="px-2 py-0.5 rounded-sm bg-[#6D0808]/40 text-[#EEEAD7] font-mono text-[9px] font-bold border border-[#ff4444]/20">
+                                 +{q.xp} XP
+                              </span>
+                              <span className="px-2 py-0.5 rounded-sm bg-[#1a0202] text-[#D4AF37] font-mono text-[9px] font-bold border border-[#D4AF37]/20">
+                                 +{q.crowns} Crowns
+                              </span>
+                              <span className="font-mono text-[9px] text-[#8d9685] tracking-wide">{q.stat}</span>
+                            </div>
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-center">
+                          <button className="px-5 py-2.5 rounded-sm border border-[#D4AF37]/50 bg-transparent text-[#D4AF37]/80 font-serif text-[10px] font-bold uppercase tracking-[0.1em] group-hover:border-[#D4AF37] group-hover:text-[#D4AF37] hover:bg-[#6D0808] hover:text-[#EEEAD7] hover:border-[#ff4444] transition-all flex items-center gap-2 shrink-0">
+                            <CheckCircle size={14} /> COMPLETE QUEST
+                          </button>
+                        </div>
+                      </article>
+                      {i < arr.length - 1 && <QuestRowDivider />}
+                    </React.Fragment>
+                  ))}
+                </div>
+              </div>
             </div>
 
           </div>
