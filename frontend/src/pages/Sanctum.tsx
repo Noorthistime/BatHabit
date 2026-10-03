@@ -851,9 +851,6 @@ export function Sanctum() {
                   </button>
                 </div>
 
-                <div className="relative z-10 mb-4 opacity-50">
-                   <PrestigeHeaderDivider />
-                </div>
 
                 {/* Quest Items List */}
                 <div className="relative z-10 flex-1 flex flex-col">
@@ -890,7 +887,6 @@ export function Sanctum() {
                           </button>
                         </div>
                       </article>
-                      {i < arr.length - 1 && <QuestRowDivider />}
                     </React.Fragment>
                   ))}
                 </div>
