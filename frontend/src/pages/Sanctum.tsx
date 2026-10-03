@@ -331,39 +331,45 @@ const PrestigeAttributeFrame = ({ delay = 1.4 }: { delay?: number }) => (
 
 const EdgeOrnament = ({ className }: { className?: string }) => (
   <div className={`absolute w-32 h-6 text-[#D4AF37] pointer-events-none ${className}`}>
-     <svg viewBox="0 0 128 24" fill="none" className="w-full h-full drop-shadow-[0_0_4px_rgba(212,175,55,0.4)]">
+     <motion.svg viewBox="0 0 128 24" fill="none" className="w-full h-full drop-shadow-[0_0_4px_rgba(212,175,55,0.4)]">
        {/* Upper stepped lines */}
-       <path d="M 16 12 L 24 4 L 104 4 L 112 12" stroke="currentColor" strokeWidth="1" />
+       <motion.path d="M 16 12 L 24 4 L 104 4 L 112 12" stroke="currentColor" strokeWidth="1" 
+         initial={{ pathLength: 0, opacity: 0 }} whileInView={{ pathLength: 1, opacity: 1, transition: { duration: 1.5, ease: "easeOut", delay: 0.2 } }} viewport={{ once: true }} />
        
        {/* Lower stepped lines */}
-       <path d="M 16 12 L 24 20 L 104 20 L 112 12" stroke="currentColor" strokeWidth="1" />
+       <motion.path d="M 16 12 L 24 20 L 104 20 L 112 12" stroke="currentColor" strokeWidth="1" 
+         initial={{ pathLength: 0, opacity: 0 }} whileInView={{ pathLength: 1, opacity: 1, transition: { duration: 1.5, ease: "easeOut", delay: 0.2 } }} viewport={{ once: true }} />
        
        {/* Center Solid Diamond (hides the spine) */}
-       <path d="M 56 12 L 64 4 L 72 12 L 64 20 Z" fill="currentColor" stroke="currentColor" strokeWidth="1" />
+       <motion.path d="M 56 12 L 64 4 L 72 12 L 64 20 Z" fill="currentColor" stroke="currentColor" strokeWidth="1" 
+         initial={{ pathLength: 0, opacity: 0, fillOpacity: 0 }} whileInView={{ pathLength: 1, opacity: 1, fillOpacity: 1, transition: { duration: 1.5, ease: "easeOut", delay: 0.2 } }} viewport={{ once: true }} />
        
        {/* Diamond cutouts */}
-       <path d="M 64 8 L 68 12 L 64 16 L 60 12 Z" fill="#1a0202" />
+       <motion.path d="M 64 8 L 68 12 L 64 16 L 60 12 Z" fill="#1a0202" 
+         initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition: { duration: 0.5, delay: 1.5 } }} viewport={{ once: true }} />
        
        {/* Outer dots on the spine */}
-       <circle cx="8" cy="12" r="2" fill="currentColor" />
-       <circle cx="120" cy="12" r="2" fill="currentColor" />
-     </svg>
+       <motion.circle cx="8" cy="12" r="2" fill="currentColor" 
+         initial={{ scale: 0, opacity: 0 }} whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.5, delay: 1.5 } }} viewport={{ once: true }} />
+       <motion.circle cx="120" cy="12" r="2" fill="currentColor" 
+         initial={{ scale: 0, opacity: 0 }} whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.5, delay: 1.5 } }} viewport={{ once: true }} />
+     </motion.svg>
   </div>
 );
 
 const VaultFrame = () => (
   <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
     {/* Outer Lines (12px inset, stopping exactly 64px from edges to merge with corner SVGs) */}
-    <div className="absolute top-[12px] left-[64px] right-[64px] h-[1.5px] bg-[#D4AF37]/50"></div>
-    <div className="absolute bottom-[12px] left-[64px] right-[64px] h-[1.5px] bg-[#D4AF37]/50"></div>
-    <div className="absolute left-[12px] top-[64px] bottom-[64px] w-[1.5px] bg-[#D4AF37]/50"></div>
-    <div className="absolute right-[12px] top-[64px] bottom-[64px] w-[1.5px] bg-[#D4AF37]/50"></div>
+    <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut" }} className="absolute top-[12px] left-[64px] right-[64px] h-[1.5px] bg-[#D4AF37]/50 origin-center"></motion.div>
+    <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut" }} className="absolute bottom-[12px] left-[64px] right-[64px] h-[1.5px] bg-[#D4AF37]/50 origin-center"></motion.div>
+    <motion.div initial={{ scaleY: 0 }} whileInView={{ scaleY: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut" }} className="absolute left-[12px] top-[64px] bottom-[64px] w-[1.5px] bg-[#D4AF37]/50 origin-center"></motion.div>
+    <motion.div initial={{ scaleY: 0 }} whileInView={{ scaleY: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut" }} className="absolute right-[12px] top-[64px] bottom-[64px] w-[1.5px] bg-[#D4AF37]/50 origin-center"></motion.div>
 
     {/* Inner Lines (16px inset) */}
-    <div className="absolute top-[16px] left-[64px] right-[64px] h-px bg-[#D4AF37]/20"></div>
-    <div className="absolute bottom-[16px] left-[64px] right-[64px] h-px bg-[#D4AF37]/20"></div>
-    <div className="absolute left-[16px] top-[64px] bottom-[64px] w-px bg-[#D4AF37]/20"></div>
-    <div className="absolute right-[16px] top-[64px] bottom-[64px] w-px bg-[#D4AF37]/20"></div>
+    <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut", delay: 0.1 }} className="absolute top-[16px] left-[64px] right-[64px] h-px bg-[#D4AF37]/20 origin-center"></motion.div>
+    <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut", delay: 0.1 }} className="absolute bottom-[16px] left-[64px] right-[64px] h-px bg-[#D4AF37]/20 origin-center"></motion.div>
+    <motion.div initial={{ scaleY: 0 }} whileInView={{ scaleY: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut", delay: 0.1 }} className="absolute left-[16px] top-[64px] bottom-[64px] w-px bg-[#D4AF37]/20 origin-center"></motion.div>
+    <motion.div initial={{ scaleY: 0 }} whileInView={{ scaleY: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut", delay: 0.1 }} className="absolute right-[16px] top-[64px] bottom-[64px] w-px bg-[#D4AF37]/20 origin-center"></motion.div>
     
     {/* The 4 Geometric Corners */}
     {[
@@ -373,19 +379,24 @@ const VaultFrame = () => (
       "bottom-0 right-0 scale-x-[-1] scale-y-[-1]"
     ].map((pos, i) => (
       <div key={i} className={`absolute ${pos} w-16 h-16 text-[#D4AF37]`}>
-        <svg viewBox="0 0 64 64" fill="none" className="w-full h-full drop-shadow-[0_0_4px_rgba(212,175,55,0.4)]">
+        <motion.svg viewBox="0 0 64 64" fill="none" className="w-full h-full drop-shadow-[0_0_4px_rgba(212,175,55,0.4)]">
           {/* Outer L bracket perfectly aligned to 12px */}
-          <path d="M 12 64 L 12 12 L 64 12" stroke="currentColor" strokeWidth="1.5" />
+          <motion.path d="M 12 64 L 12 12 L 64 12" stroke="currentColor" strokeWidth="1.5" 
+            initial={{ pathLength: 0, opacity: 0 }} whileInView={{ pathLength: 1, opacity: 1, transition: { duration: 1.5, ease: "easeOut", delay: 0.2 } }} viewport={{ once: true }} />
           {/* Inner L bracket perfectly aligned to 16px */}
-          <path d="M 16 64 L 16 16 L 64 16" stroke="currentColor" strokeWidth="1" className="opacity-40" />
+          <motion.path d="M 16 64 L 16 16 L 64 16" stroke="currentColor" strokeWidth="1" className="opacity-40" 
+            initial={{ pathLength: 0, opacity: 0 }} whileInView={{ pathLength: 1, opacity: 1, transition: { duration: 1.5, ease: "easeOut", delay: 0.3 } }} viewport={{ once: true }} />
           
           {/* Stepped geometric corner block */}
-          <path d="M 12 32 L 32 32 L 32 12 L 12 12 Z" fill="currentColor" fillOpacity="0.05" />
-          <path d="M 20 12 L 12 20 M 26 12 L 12 26 M 32 12 L 12 32" stroke="currentColor" strokeWidth="1" className="opacity-80" />
+          <motion.path d="M 12 32 L 32 32 L 32 12 L 12 12 Z" fill="currentColor" fillOpacity="0.05" 
+            initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition: { duration: 1, delay: 1.2 } }} viewport={{ once: true }} />
+          <motion.path d="M 20 12 L 12 20 M 26 12 L 12 26 M 32 12 L 12 32" stroke="currentColor" strokeWidth="1" className="opacity-80" 
+            initial={{ pathLength: 0, opacity: 0 }} whileInView={{ pathLength: 1, opacity: 1, transition: { duration: 1.5, ease: "easeOut", delay: 0.4 } }} viewport={{ once: true }} />
           
           {/* Diamond accent */}
-          <path d="M 22 20 L 24 22 L 22 24 L 20 22 Z" fill="currentColor" />
-        </svg>
+          <motion.path d="M 22 20 L 24 22 L 22 24 L 20 22 Z" fill="currentColor" 
+            initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1, transition: { duration: 0.5, delay: 1.5 } }} viewport={{ once: true }} />
+        </motion.svg>
       </div>
     ))}
     
@@ -400,16 +411,16 @@ const VaultFrame = () => (
 const CodexMasterFrame = () => (
   <div className="absolute inset-0 w-full h-full pointer-events-none z-0">
     {/* Outer Lines (16px inset, stopping 80px from edges) */}
-    <div className="absolute top-[16px] left-[80px] right-[80px] h-[1.5px] bg-[#D4AF37]/50 shadow-[0_0_8px_rgba(212,175,55,0.4)]"></div>
-    <div className="absolute bottom-[16px] left-[80px] right-[80px] h-[1.5px] bg-[#D4AF37]/50 shadow-[0_0_8px_rgba(212,175,55,0.4)]"></div>
-    <div className="absolute left-[16px] top-[80px] bottom-[80px] w-[1.5px] bg-[#D4AF37]/50 shadow-[0_0_8px_rgba(212,175,55,0.4)]"></div>
-    <div className="absolute right-[16px] top-[80px] bottom-[80px] w-[1.5px] bg-[#D4AF37]/50 shadow-[0_0_8px_rgba(212,175,55,0.4)]"></div>
+    <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut" }} className="absolute top-[16px] left-[80px] right-[80px] h-[1.5px] bg-[#D4AF37]/50 shadow-[0_0_8px_rgba(212,175,55,0.4)] origin-center"></motion.div>
+    <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut" }} className="absolute bottom-[16px] left-[80px] right-[80px] h-[1.5px] bg-[#D4AF37]/50 shadow-[0_0_8px_rgba(212,175,55,0.4)] origin-center"></motion.div>
+    <motion.div initial={{ scaleY: 0 }} whileInView={{ scaleY: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut" }} className="absolute left-[16px] top-[80px] bottom-[80px] w-[1.5px] bg-[#D4AF37]/50 shadow-[0_0_8px_rgba(212,175,55,0.4)] origin-center"></motion.div>
+    <motion.div initial={{ scaleY: 0 }} whileInView={{ scaleY: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut" }} className="absolute right-[16px] top-[80px] bottom-[80px] w-[1.5px] bg-[#D4AF37]/50 shadow-[0_0_8px_rgba(212,175,55,0.4)] origin-center"></motion.div>
 
     {/* Inner Lines (20px inset) */}
-    <div className="absolute top-[20px] left-[80px] right-[80px] h-px bg-[#D4AF37]/20"></div>
-    <div className="absolute bottom-[20px] left-[80px] right-[80px] h-px bg-[#D4AF37]/20"></div>
-    <div className="absolute left-[20px] top-[80px] bottom-[80px] w-px bg-[#D4AF37]/20"></div>
-    <div className="absolute right-[20px] top-[80px] bottom-[80px] w-px bg-[#D4AF37]/20"></div>
+    <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut", delay: 0.1 }} className="absolute top-[20px] left-[80px] right-[80px] h-px bg-[#D4AF37]/20 origin-center"></motion.div>
+    <motion.div initial={{ scaleX: 0 }} whileInView={{ scaleX: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut", delay: 0.1 }} className="absolute bottom-[20px] left-[80px] right-[80px] h-px bg-[#D4AF37]/20 origin-center"></motion.div>
+    <motion.div initial={{ scaleY: 0 }} whileInView={{ scaleY: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut", delay: 0.1 }} className="absolute left-[20px] top-[80px] bottom-[80px] w-px bg-[#D4AF37]/20 origin-center"></motion.div>
+    <motion.div initial={{ scaleY: 0 }} whileInView={{ scaleY: 1 }} viewport={{ once: true }} transition={{ duration: 1.5, ease: "easeOut", delay: 0.1 }} className="absolute right-[20px] top-[80px] bottom-[80px] w-px bg-[#D4AF37]/20 origin-center"></motion.div>
 
     {/* The 4 Grand Corners */}
     {[
@@ -419,19 +430,24 @@ const CodexMasterFrame = () => (
       "bottom-0 right-0 scale-x-[-1] scale-y-[-1]"
     ].map((pos, i) => (
       <div key={i} className={`absolute ${pos} w-20 h-20 text-[#D4AF37]`}>
-        <svg viewBox="0 0 80 80" fill="none" className="w-full h-full drop-shadow-[0_0_8px_rgba(212,175,55,0.6)]">
+        <motion.svg viewBox="0 0 80 80" fill="none" className="w-full h-full drop-shadow-[0_0_8px_rgba(212,175,55,0.6)]">
           {/* Multiple concentric L brackets aligned to 16px and 20px */}
-          <path d="M 16 80 L 16 16 L 80 16" stroke="currentColor" strokeWidth="1.5" />
-          <path d="M 20 80 L 20 20 L 80 20" stroke="currentColor" strokeWidth="1" className="opacity-40" />
+          <motion.path d="M 16 80 L 16 16 L 80 16" stroke="currentColor" strokeWidth="1.5" 
+            initial={{ pathLength: 0, opacity: 0 }} whileInView={{ pathLength: 1, opacity: 1, transition: { duration: 1.5, ease: "easeOut", delay: 0.2 } }} viewport={{ once: true }} />
+          <motion.path d="M 20 80 L 20 20 L 80 20" stroke="currentColor" strokeWidth="1" className="opacity-40" 
+            initial={{ pathLength: 0, opacity: 0 }} whileInView={{ pathLength: 1, opacity: 1, transition: { duration: 1.5, ease: "easeOut", delay: 0.3 } }} viewport={{ once: true }} />
           
           {/* Stepped Corner Block */}
-          <path d="M 16 40 L 40 40 L 40 16 L 16 16 Z" fill="currentColor" fillOpacity="0.05" />
+          <motion.path d="M 16 40 L 40 40 L 40 16 L 16 16 Z" fill="currentColor" fillOpacity="0.05" 
+            initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition: { duration: 1, delay: 1.2 } }} viewport={{ once: true }} />
           {/* Diagonal cut lines (Sunburst style) */}
-          <path d="M 16 40 L 40 16 M 16 32 L 32 16 M 16 24 L 24 16" stroke="currentColor" strokeWidth="1" className="opacity-90" />
+          <motion.path d="M 16 40 L 40 16 M 16 32 L 32 16 M 16 24 L 24 16" stroke="currentColor" strokeWidth="1" className="opacity-90" 
+            initial={{ pathLength: 0, opacity: 0 }} whileInView={{ pathLength: 1, opacity: 1, transition: { duration: 1.5, ease: "easeOut", delay: 0.4 } }} viewport={{ once: true }} />
           
           {/* Corner Diamond */}
-          <path d="M 24 24 L 28 28 L 24 32 L 20 28 Z" fill="currentColor" />
-        </svg>
+          <motion.path d="M 24 24 L 28 28 L 24 32 L 20 28 Z" fill="currentColor" 
+            initial={{ opacity: 0, scale: 0 }} whileInView={{ opacity: 1, scale: 1, transition: { duration: 0.5, delay: 1.5 } }} viewport={{ once: true }} />
+        </motion.svg>
       </div>
     ))}
 
