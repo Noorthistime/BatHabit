@@ -180,77 +180,91 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
 
   if (rarity === 'Legendary') {
     const redAccent = '#8A0F0F';
+    
+    // Generative Paths for reusable Rose and Leaf symbols
+    const Flower = ({ x, y, scale = 1 }: { x: number, y: number, scale?: number }) => (
+      <g transform={`translate(${x}, ${y}) scale(${scale})`}>
+        {[0, 72, 144, 216, 288].map(a => (
+          <path key={a} d="M0,0 C-3,-6 -6,-2 0,-1 C6,-2 3,-6 0,0" fill={redAccent} stroke={color} strokeWidth="0.5" transform={`rotate(${a})`} />
+        ))}
+        <circle cx="0" cy="0" r="1.5" fill="#222" stroke={color} strokeWidth="0.5" />
+      </g>
+    );
+    const Leaf = ({ x, y, rot, scale = 1 }: { x: number, y: number, rot: number, scale?: number }) => (
+      <g transform={`translate(${x}, ${y}) rotate(${rot}) scale(${scale})`}>
+        <path d="M0,0 Q5,-3 10,0 Q5,3 0,0 Z" fill="#111" stroke={color} strokeWidth="0.5" />
+        <path d="M0,0 L9,0" stroke={color} strokeWidth="0.2" />
+      </g>
+    );
+
     return (
       <div className="absolute inset-0 pointer-events-none z-0">
         <div className="absolute inset-0 border-[2px]" style={{ borderColor: color, boxShadow: `0 0 12px ${color}, inset 0 0 20px ${redAccent}` }} />
-        <div className="absolute inset-[3px] border border-solid" style={{ borderColor: redAccent }} />
         
-        {/* Crisp Structured Jewel Pattern */}
+        {/* Continuous Pillar & Vine Pattern */}
         <svg className="absolute inset-0 w-full h-full opacity-95">
           <defs>
-             <pattern id="leg-x" width="40" height="8" patternUnits="userSpaceOnUse">
-               <path d="M0 2 L40 2" stroke={color} strokeWidth="1.5" />
-               <path d="M0 6 L40 6" stroke={color} strokeWidth="0.5" />
-               <path d="M15 4 L20 1 L25 4 L20 7 Z" fill={redAccent} stroke={color} strokeWidth="0.5" />
-               <path d="M10 4 L15 4 M25 4 L30 4" stroke={color} strokeWidth="1" />
-               <circle cx="5" cy="4" r="1" fill={color} />
-               <circle cx="35" cy="4" r="1" fill={color} />
+             <pattern id="leg-x" width="60" height="12" patternUnits="userSpaceOnUse">
+               <path d="M0 3 L60 3 M0 5 L60 5 M0 7 L60 7 M0 9 L60 9" stroke={color} strokeWidth="0.5" opacity="0.6" />
+               <path d="M0 6 C15 0, 15 12, 30 6 C45 0, 45 12, 60 6" fill="none" stroke={color} strokeWidth="1" />
+               <Leaf x={12} y={3} rot={-30} scale={0.6} />
+               <Leaf x={42} y={9} rot={150} scale={0.6} />
+               <Flower x={30} y={6} scale={0.8} />
              </pattern>
-             <pattern id="leg-y" width="8" height="40" patternUnits="userSpaceOnUse">
-               <path d="M2 0 L2 40" stroke={color} strokeWidth="1.5" />
-               <path d="M6 0 L6 40" stroke={color} strokeWidth="0.5" />
-               <path d="M4 15 L1 20 L4 25 L7 20 Z" fill={redAccent} stroke={color} strokeWidth="0.5" />
-               <path d="M4 10 L4 15 M4 25 L4 30" stroke={color} strokeWidth="1" />
-               <circle cx="4" cy="5" r="1" fill={color} />
-               <circle cx="4" cy="35" r="1" fill={color} />
+             <pattern id="leg-y" width="12" height="60" patternUnits="userSpaceOnUse">
+               <path d="M3 0 L3 60 M5 0 L5 60 M7 0 L7 60 M9 0 L9 60" stroke={color} strokeWidth="0.5" opacity="0.6" />
+               <path d="M6 0 C0 15, 12 15, 6 30 C0 45, 12 45, 6 60" fill="none" stroke={color} strokeWidth="1" />
+               <Leaf x={3} y={12} rot={-120} scale={0.6} />
+               <Leaf x={9} y={42} rot={60} scale={0.6} />
+               <Flower x={6} y={30} scale={0.8} />
              </pattern>
           </defs>
-          <rect x="0" y="0" width="100%" height="8" fill="url(#leg-x)" />
-          <rect x="0" y="calc(100% - 8px)" width="100%" height="8" fill="url(#leg-x)" />
-          <rect x="0" y="0" width="8" height="100%" fill="url(#leg-y)" />
-          <rect x="calc(100% - 8px)" y="0" width="8" height="100%" fill="url(#leg-y)" />
+          <rect x="0" y="0" width="100%" height="12" fill="url(#leg-x)" />
+          <rect x="0" y="calc(100% - 12px)" width="100%" height="12" fill="url(#leg-x)" />
+          <rect x="0" y="0" width="12" height="100%" fill="url(#leg-y)" />
+          <rect x="calc(100% - 12px)" y="0" width="12" height="100%" fill="url(#leg-y)" />
         </svg>
 
-        {/* Structured Geometric Corners */}
+        {/* Column Capital Corners */}
         {[
           'top-0 left-0', 'top-0 right-0 rotate-90',
           'bottom-0 right-0 rotate-180', 'bottom-0 left-0 -rotate-90'
         ].map((pos, i) => (
-          <svg key={i} className={`absolute ${pos} w-12 h-12 drop-shadow-[0_0_4px_${color}]`} viewBox="0 0 48 48" fill="none">
-             <path d="M2 46 L2 2 L46 2" stroke={color} strokeWidth="2" />
-             <path d="M6 46 L6 6 L46 6" stroke={color} strokeWidth="1" />
-             <path d="M2 16 L16 2" stroke={color} strokeWidth="1.5" />
-             <path d="M6 22 L22 6" stroke={color} strokeWidth="1" />
-             <path d="M10 28 L28 10" stroke={color} strokeWidth="0.5" />
-             <rect x="11" y="11" width="6" height="6" fill={redAccent} stroke={color} strokeWidth="1.5" transform="rotate(45 14 14)" />
-             <circle cx="14" cy="14" r="1.5" fill={color} />
-             <circle cx="20" cy="20" r="1" fill={redAccent} />
+          <svg key={i} className={`absolute ${pos} w-16 h-16 drop-shadow-[0_0_4px_${color}]`} viewBox="0 0 64 64" fill="none">
+             <path d="M2 46 L2 2 L46 2" stroke={color} strokeWidth="3" />
+             <path d="M8 46 L8 8 L46 8" stroke={color} strokeWidth="1" />
+             <path d="M8 24 C20 24, 24 16, 20 12 C16 8, 12 12, 14 16" fill="none" stroke={color} strokeWidth="1.5" />
+             <path d="M24 8 C24 20, 16 24, 12 20 C8 16, 12 12, 16 14" fill="none" stroke={color} strokeWidth="1.5" />
+             <path d="M2 30 C12 25, 20 15, 30 2" fill="none" stroke={color} strokeWidth="1" />
+             <path d="M2 40 C18 35, 30 25, 40 2" fill="none" stroke={color} strokeWidth="0.5" />
+             <Leaf x={10} y={30} rot={-45} scale={0.8} />
+             <Leaf x={30} y={10} rot={-135} scale={0.8} />
+             <Flower x={16} y={16} scale={1.5} />
+             <Flower x={32} y={32} scale={1} />
           </svg>
         ))}
 
-        {/* Crisp Diamond Crests */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-24 h-5 flex justify-center">
-           <svg viewBox="0 0 96 20" className="w-full h-full" fill="none">
-             <path d="M48 2 L58 10 L48 18 L38 10 Z" fill={redAccent} stroke={color} strokeWidth="2" />
-             <circle cx="48" cy="10" r="2.5" fill={color} />
-             <path d="M38 10 L14 10" stroke={color} strokeWidth="2" />
-             <path d="M58 10 L82 10" stroke={color} strokeWidth="2" />
-             <path d="M30 6 L18 6 M66 6 L78 6" stroke={color} strokeWidth="1" />
-             <path d="M30 14 L18 14 M66 14 L78 14" stroke={color} strokeWidth="1" />
-             <circle cx="14" cy="10" r="2" fill={redAccent} stroke={color} strokeWidth="1" />
-             <circle cx="82" cy="10" r="2" fill={redAccent} stroke={color} strokeWidth="1" />
+        {/* Center Floral Crests */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 flex justify-center">
+           <svg viewBox="0 0 128 24" className="w-full h-full" fill="none">
+             <path d="M30 4 L98 4" stroke={color} strokeWidth="3" />
+             <path d="M30 8 L98 8" stroke={color} strokeWidth="1" />
+             <path d="M40 8 C45 20, 55 24, 64 24 C73 24, 83 20, 88 8" fill="none" stroke={color} strokeWidth="1.5" />
+             <path d="M48 8 C52 16, 58 18, 64 18 C70 18, 76 16, 80 8" fill="none" stroke={color} strokeWidth="1" />
+             <Leaf x={48} y={14} rot={30} />
+             <Leaf x={80} y={14} rot={150} />
+             <Flower x={64} y={12} scale={2} />
            </svg>
         </div>
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-5 flex justify-center items-end">
-           <svg viewBox="0 0 96 20" className="w-full h-full rotate-180" fill="none">
-             <path d="M48 2 L58 10 L48 18 L38 10 Z" fill={redAccent} stroke={color} strokeWidth="2" />
-             <circle cx="48" cy="10" r="2.5" fill={color} />
-             <path d="M38 10 L14 10" stroke={color} strokeWidth="2" />
-             <path d="M58 10 L82 10" stroke={color} strokeWidth="2" />
-             <path d="M30 6 L18 6 M66 6 L78 6" stroke={color} strokeWidth="1" />
-             <path d="M30 14 L18 14 M66 14 L78 14" stroke={color} strokeWidth="1" />
-             <circle cx="14" cy="10" r="2" fill={redAccent} stroke={color} strokeWidth="1" />
-             <circle cx="82" cy="10" r="2" fill={redAccent} stroke={color} strokeWidth="1" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-32 h-6 flex justify-center items-end">
+           <svg viewBox="0 0 128 24" className="w-full h-full rotate-180" fill="none">
+             <path d="M30 4 L98 4" stroke={color} strokeWidth="3" />
+             <path d="M30 8 L98 8" stroke={color} strokeWidth="1" />
+             <path d="M40 8 C45 20, 55 24, 64 24 C73 24, 83 20, 88 8" fill="none" stroke={color} strokeWidth="1.5" />
+             <path d="M48 8 C52 16, 58 18, 64 18 C70 18, 76 16, 80 8" fill="none" stroke={color} strokeWidth="1" />
+             <Leaf x={48} y={14} rot={30} />
+             <Leaf x={80} y={14} rot={150} />
+             <Flower x={64} y={12} scale={2} />
            </svg>
         </div>
       </div>
