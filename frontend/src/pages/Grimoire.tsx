@@ -182,25 +182,49 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
     const redAccent = '#8A0F0F';
     
     // Generative Paths for reusable Jewel and Chain symbols
-    const Jewel = ({ x, y, scale = 1 }: { x: number, y: number, scale?: number }) => (
+    const Jewel = ({ x, y, scale = 1, showHalo = false }: { x: number, y: number, scale?: number, showHalo?: boolean }) => (
       <g transform={`translate(${x}, ${y}) scale(${scale})`}>
-        {/* Gold Prongs */}
+        {showHalo && (
+          <g stroke={color} strokeWidth="0.2" fill="none" opacity="0.5">
+            <circle cx="0" cy="0" r="14" strokeDasharray="1 3" />
+            <circle cx="0" cy="0" r="18" strokeWidth="0.4" />
+            <circle cx="0" cy="0" r="22" strokeDasharray="4 4" />
+            <path d="M-24 0 L24 0 M0 -24 L0 24 M-17 -17 L17 17 M-17 17 L17 -17" strokeWidth="0.2" opacity="0.5" />
+          </g>
+        )}
+        
+        {/* Glow behind the gem */}
+        <circle cx="0" cy="0" r="12" fill="url(#legendaryGlow)" />
+        
+        {/* Ornate Layered Casing (Extended backwards) */}
+        <path d="M-8 0 L0 -10 L8 0 L0 10 Z" fill="#1a0000" stroke={color} strokeWidth="0.5" />
+        {/* Original Casing */}
         <path d="M-6 0 L0 -8 L6 0 L0 8 Z" fill={color} stroke="#fff" strokeWidth="0.5" />
+        
+        {/* Casing Prongs (Original positions so chains perfectly link) */}
         <circle cx="0" cy="-8" r="1.5" fill={color} />
         <circle cx="0" cy="8" r="1.5" fill={color} />
         <circle cx="-6" cy="0" r="1.5" fill={color} />
         <circle cx="6" cy="0" r="1.5" fill={color} />
+        {/* Diamond rivets on prongs */}
+        <polygon points="0,-9 0.5,-8 0,-7 -0.5,-8" fill="#fff" />
+        <polygon points="0,7 0.5,8 0,9 -0.5,8" fill="#fff" />
+        <polygon points="-7,0 -6,0.5 -5,0 -6,-0.5" fill="#fff" />
+        <polygon points="5,0 6,0.5 7,0 6,-0.5" fill="#fff" />
         
         {/* Octagon Ruby */}
-        <path d="M-4 -2 L-2 -6 L2 -6 L4 -2 L4 2 L2 6 L-2 6 L-4 2 Z" fill={redAccent} />
+        <path d="M-4 -2 L-2 -6 L2 -6 L4 -2 L4 2 L2 6 L-2 6 L-4 2 Z" fill="url(#rubyGradient)" stroke="#550000" strokeWidth="0.5" />
         
-        {/* 3D Facets */}
-        <path d="M-4 -2 L-2 -6 L0 -2 Z" fill="#ff7777" opacity="0.6" />
-        <path d="M2 -6 L4 -2 L0 -2 Z" fill="#440000" opacity="0.6" />
-        <path d="M-2 -2 L2 -2 L2 2 L-2 2 Z" fill="#cc0000" />
-        <path d="M-4 2 L-2 2 L0 6 Z" fill="#ff4444" opacity="0.4" />
-        <path d="M4 2 L2 2 L0 6 Z" fill="#220000" opacity="0.8" />
-        <polygon points="-1,-1 1,-1 1,1 -1,1" fill="#fff" opacity="0.3" />
+        {/* Hyper-realistic 3D Facets */}
+        <path d="M-4 -2 L-2 -6 L0 -2 Z" fill="#ff7777" opacity="0.8" />
+        <path d="M2 -6 L4 -2 L0 -2 Z" fill="#440000" opacity="0.7" />
+        <path d="M-2 -2 L2 -2 L2 2 L-2 2 Z" fill="url(#tableGradient)" />
+        <path d="M-4 2 L-2 2 L0 6 Z" fill="#ff4444" opacity="0.5" />
+        <path d="M4 2 L2 2 L0 6 Z" fill="#220000" opacity="0.9" />
+        
+        {/* Sharp Specular Highlight (The gleaming glass effect) */}
+        <polygon points="-2,-4 0,-4 1,-2 -1,-2" fill="#ffffff" opacity="0.7" />
+        <polygon points="-1,-2 1,-2 1,-1 -1,-1" fill="#ffffff" opacity="0.3" />
       </g>
     );
     
@@ -227,11 +251,29 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
         {/* Continuous Pillar & Vine Pattern */}
         <svg className="absolute inset-0 w-full h-full opacity-95">
           <defs>
+             <radialGradient id="legendaryGlow" cx="50%" cy="50%" r="50%">
+               <stop offset="0%" stopColor="#ff0000" stopOpacity="0.5" />
+               <stop offset="100%" stopColor="#ff0000" stopOpacity="0" />
+             </radialGradient>
+             <linearGradient id="rubyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+               <stop offset="0%" stopColor="#ff4444" />
+               <stop offset="50%" stopColor="#aa0000" />
+               <stop offset="100%" stopColor="#330000" />
+             </linearGradient>
+             <linearGradient id="tableGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+               <stop offset="0%" stopColor="#ff0000" />
+               <stop offset="100%" stopColor="#aa0000" />
+             </linearGradient>
+
              <pattern id="leg-x" width="60" height="12" patternUnits="userSpaceOnUse">
+               <polygon points="15,4 16,5 15,6 14,5" fill={color} opacity="0.6" />
+               <polygon points="45,4 46,5 45,6 44,5" fill={color} opacity="0.6" />
                <ChainPath d="M0 6 Q 12 0, 25 6 M 35 6 Q 48 12, 60 6" />
                <Jewel x={30} y={6} scale={0.8} />
              </pattern>
              <pattern id="leg-y" width="12" height="60" patternUnits="userSpaceOnUse">
+               <polygon points="4,15 5,16 6,15 5,14" fill={color} opacity="0.6" />
+               <polygon points="4,45 5,46 6,45 5,44" fill={color} opacity="0.6" />
                <ChainPath d="M6 0 Q 0 12, 6 24 M 6 36 Q 12 48, 6 60" />
                <Jewel x={6} y={30} scale={0.8} />
              </pattern>
@@ -250,26 +292,49 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
           'bottom-0 right-0 rotate-180', 'bottom-0 left-0 -rotate-90'
         ].map((pos, i) => (
           <svg key={i} className={`absolute ${pos} w-16 h-16 drop-shadow-[0_0_4px_${color}]`} viewBox="0 0 64 64" fill="none">
+             {/* Wrought Iron Crown Flourishes */}
+             <path d="M32 0 C 32 16, 16 32, 0 32" fill="none" stroke={color} strokeWidth="0.5" opacity="0.5" />
+             <path d="M48 0 C 48 24, 24 48, 0 48" fill="none" stroke={color} strokeWidth="0.3" opacity="0.3" />
+             <path d="M64 0 C 64 48, 48 64, 0 64" fill="none" stroke={color} strokeWidth="0.1" opacity="0.2" />
+             
+             {/* Diamond Accents */}
+             <polygon points="12,4 13,5 12,6 11,5" fill="#fff" opacity="0.8" />
+             <polygon points="4,12 5,13 4,14 3,13" fill="#fff" opacity="0.8" />
+             <polygon points="20,8 21,9 20,10 19,9" fill={color} />
+             <polygon points="8,20 9,21 8,22 7,21" fill={color} />
+             <polygon points="40,24 42,26 40,28 38,26" fill="#fff" opacity="0.6" />
+             <polygon points="24,40 26,42 24,44 22,42" fill="#fff" opacity="0.6" />
+
              <ChainPath d="M64 6 C 50 6, 45 24, 33 24" />
              <ChainPath d="M6 64 C 6 50, 24 45, 24 36" />
              <ChainPath d="M24 12 Q 12 12, 15 24" />
-             <Jewel x={24} y={24} scale={1.5} />
+             <Jewel x={24} y={24} scale={1.5} showHalo={true} />
           </svg>
         ))}
 
         {/* Center Floral Crests */}
         <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-6 flex justify-center">
            <svg viewBox="0 0 128 24" className="w-full h-full" fill="none">
+             <path d="M40 0 C 40 12, 50 18, 64 18 C 78 18, 88 12, 88 0" fill="none" stroke={color} strokeWidth="0.5" opacity="0.4" />
+             
              <ChainPath d="M0 6 Q 32 6, 52 12" />
              <ChainPath d="M128 6 Q 96 6, 76 12" />
-             <Jewel x={64} y={12} scale={2} />
+             <Jewel x={64} y={12} scale={2} showHalo={true} />
+             
+             <polygon points="20,4 21,5 20,6 19,5" fill="#fff" opacity="0.7" />
+             <polygon points="108,4 109,5 108,6 107,5" fill="#fff" opacity="0.7" />
            </svg>
         </div>
         <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-32 h-6 flex justify-center items-end">
            <svg viewBox="0 0 128 24" className="w-full h-full rotate-180" fill="none">
+             <path d="M40 0 C 40 12, 50 18, 64 18 C 78 18, 88 12, 88 0" fill="none" stroke={color} strokeWidth="0.5" opacity="0.4" />
+             
              <ChainPath d="M0 6 Q 32 6, 52 12" />
              <ChainPath d="M128 6 Q 96 6, 76 12" />
-             <Jewel x={64} y={12} scale={2} />
+             <Jewel x={64} y={12} scale={2} showHalo={true} />
+             
+             <polygon points="20,4 21,5 20,6 19,5" fill="#fff" opacity="0.7" />
+             <polygon points="108,4 109,5 108,6 107,5" fill="#fff" opacity="0.7" />
            </svg>
         </div>
       </div>
