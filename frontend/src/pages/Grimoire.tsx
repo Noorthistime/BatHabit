@@ -192,12 +192,7 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
         <circle cx="5" cy="0" r="0.8" fill={color} />
       </g>
     );
-    const Leaf = ({ x, y, rot, scale = 1 }: { x: number, y: number, rot: number, scale?: number }) => (
-      <g transform={`translate(${x}, ${y}) rotate(${rot}) scale(${scale})`}>
-        <path d="M0,0 Q5,-3 10,0 Q5,3 0,0 Z" fill="#111" stroke={color} strokeWidth="0.5" />
-        <path d="M0,0 L9,0" stroke={color} strokeWidth="0.2" />
-      </g>
-    );
+    const Leaf = ({ x, y, rot, scale = 1 }: { x: number, y: number, rot: number, scale?: number }) => null; // Removed leaves for chain/jewel aesthetic
 
     return (
       <div className="absolute inset-0 pointer-events-none z-0">
@@ -208,14 +203,14 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
           <defs>
              <pattern id="leg-x" width="60" height="12" patternUnits="userSpaceOnUse">
                <path d="M0 3 L60 3 M0 5 L60 5 M0 7 L60 7 M0 9 L60 9" stroke={color} strokeWidth="0.5" opacity="0.6" />
-               <path d="M0 6 C15 0, 15 12, 30 6 C45 0, 45 12, 60 6" fill="none" stroke={color} strokeWidth="1" />
+               <path d="M0 6 C15 0, 15 12, 30 6 C45 0, 45 12, 60 6" fill="none" stroke={color} strokeWidth="1" strokeDasharray="3 2" />
                <Leaf x={12} y={3} rot={-30} scale={0.6} />
                <Leaf x={42} y={9} rot={150} scale={0.6} />
                <Jewel x={30} y={6} scale={0.8} />
              </pattern>
              <pattern id="leg-y" width="12" height="60" patternUnits="userSpaceOnUse">
                <path d="M3 0 L3 60 M5 0 L5 60 M7 0 L7 60 M9 0 L9 60" stroke={color} strokeWidth="0.5" opacity="0.6" />
-               <path d="M6 0 C0 15, 12 15, 6 30 C0 45, 12 45, 6 60" fill="none" stroke={color} strokeWidth="1" />
+               <path d="M6 0 C0 15, 12 15, 6 30 C0 45, 12 45, 6 60" fill="none" stroke={color} strokeWidth="1" strokeDasharray="3 2" />
                <Leaf x={3} y={12} rot={-120} scale={0.6} />
                <Leaf x={9} y={42} rot={60} scale={0.6} />
                <Jewel x={6} y={30} scale={0.8} />
@@ -237,8 +232,8 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
              <path d="M8 46 L8 8 L46 8" stroke={color} strokeWidth="1" />
              <path d="M8 24 C20 24, 24 16, 20 12 C16 8, 12 12, 14 16" fill="none" stroke={color} strokeWidth="1.5" />
              <path d="M24 8 C24 20, 16 24, 12 20 C8 16, 12 12, 16 14" fill="none" stroke={color} strokeWidth="1.5" />
-             <path d="M2 30 C12 25, 20 15, 30 2" fill="none" stroke={color} strokeWidth="1" />
-             <path d="M2 40 C18 35, 30 25, 40 2" fill="none" stroke={color} strokeWidth="0.5" />
+             <path d="M2 30 C12 25, 20 15, 30 2" fill="none" stroke={color} strokeWidth="1" strokeDasharray="3 2" />
+             <path d="M2 40 C18 35, 30 25, 40 2" fill="none" stroke={color} strokeWidth="0.5" strokeDasharray="2 2" />
              <Leaf x={10} y={30} rot={-45} scale={0.8} />
              <Leaf x={30} y={10} rot={-135} scale={0.8} />
              <Jewel x={16} y={16} scale={1.5} />
@@ -251,8 +246,8 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
            <svg viewBox="0 0 128 24" className="w-full h-full" fill="none">
              <path d="M30 4 L98 4" stroke={color} strokeWidth="3" />
              <path d="M30 8 L98 8" stroke={color} strokeWidth="1" />
-             <path d="M40 8 C45 20, 55 24, 64 24 C73 24, 83 20, 88 8" fill="none" stroke={color} strokeWidth="1.5" />
-             <path d="M48 8 C52 16, 58 18, 64 18 C70 18, 76 16, 80 8" fill="none" stroke={color} strokeWidth="1" />
+             <path d="M40 8 C45 20, 55 24, 64 24 C73 24, 83 20, 88 8" fill="none" stroke={color} strokeWidth="1.5" strokeDasharray="4 2" />
+             <path d="M48 8 C52 16, 58 18, 64 18 C70 18, 76 16, 80 8" fill="none" stroke={color} strokeWidth="1" strokeDasharray="3 2" />
              <Leaf x={48} y={14} rot={30} />
              <Leaf x={80} y={14} rot={150} />
              <Jewel x={64} y={12} scale={2} />
@@ -262,8 +257,8 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
            <svg viewBox="0 0 128 24" className="w-full h-full rotate-180" fill="none">
              <path d="M30 4 L98 4" stroke={color} strokeWidth="3" />
              <path d="M30 8 L98 8" stroke={color} strokeWidth="1" />
-             <path d="M40 8 C45 20, 55 24, 64 24 C73 24, 83 20, 88 8" fill="none" stroke={color} strokeWidth="1.5" />
-             <path d="M48 8 C52 16, 58 18, 64 18 C70 18, 76 16, 80 8" fill="none" stroke={color} strokeWidth="1" />
+             <path d="M40 8 C45 20, 55 24, 64 24 C73 24, 83 20, 88 8" fill="none" stroke={color} strokeWidth="1.5" strokeDasharray="4 2" />
+             <path d="M48 8 C52 16, 58 18, 64 18 C70 18, 76 16, 80 8" fill="none" stroke={color} strokeWidth="1" strokeDasharray="3 2" />
              <Leaf x={48} y={14} rot={30} />
              <Leaf x={80} y={14} rot={150} />
              <Jewel x={64} y={12} scale={2} />
