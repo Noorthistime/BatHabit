@@ -409,28 +409,23 @@ const VaultFrame = () => (
 );
 
 const MajesticEdgeOrnament = ({ className }: { className?: string }) => (
-  <div className={`absolute w-[160px] h-[32px] text-[#D4AF37] pointer-events-none ${className}`}>
-     <motion.svg viewBox="0 0 160 32" fill="none" className="w-full h-full drop-shadow-[0_0_6px_rgba(212,175,55,0.6)]">
-       {/* Diamond Center Motif */}
-       <motion.path d="M 80 0 L 88 12 L 80 24 L 72 12 Z" fill="currentColor" opacity="0.9"
+  <div className={`absolute w-[120px] h-[16px] text-[#D4AF37] pointer-events-none ${className}`}>
+     <motion.svg viewBox="0 0 120 16" fill="none" className="w-full h-full drop-shadow-[0_0_6px_rgba(212,175,55,0.6)]">
+       {/* Diamond centered around y=6 (between the 4px and 8px tracks) */}
+       <motion.path d="M 60 0 L 68 6 L 60 12 L 52 6 Z" fill="currentColor"
          initial={{ scale: 0 }} whileInView={{ scale: 1, transition: { duration: 0.5, delay: 1.2 } }} viewport={{ once: true }} />
-       <motion.path d="M 80 4 L 84 12 L 80 20 L 76 12 Z" fill="#1a0202"
+       <motion.path d="M 60 3 L 64 6 L 60 9 L 56 6 Z" fill="#0f0101"
          initial={{ scale: 0 }} whileInView={{ scale: 1, transition: { duration: 0.5, delay: 1.4 } }} viewport={{ once: true }} />
          
-       {/* Sword blades pointing outward from the center */}
-       <motion.path d="M 72 12 L 40 12 M 88 12 L 120 12" stroke="currentColor" strokeWidth="1.5"
-         initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 1, delay: 0.5 } }} viewport={{ once: true }} />
-       {/* Chevron/Flower accents on the blades */}
-       <motion.path d="M 40 12 L 48 8 L 48 16 Z M 120 12 L 112 8 L 112 16 Z" fill="currentColor"
-         initial={{ scale: 0, opacity: 0 }} whileInView={{ scale: 1, opacity: 1, transition: { duration: 0.5, delay: 1.2 } }} viewport={{ once: true }} />
+       {/* Small flanking geometric bracket lines around the tracks */}
+       <motion.path d="M 44 2 L 48 2 L 48 10 L 44 10" stroke="currentColor" strokeWidth="1"
+         initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 0.5, delay: 1.5 } }} viewport={{ once: true }} />
+       <motion.path d="M 76 2 L 72 2 L 72 10 L 76 10" stroke="currentColor" strokeWidth="1"
+         initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 0.5, delay: 1.5 } }} viewport={{ once: true }} />
          
-       {/* Geometric Floral leaves */}
-       <motion.path d="M 56 12 L 60 18 L 64 12 M 104 12 L 100 18 L 96 12" stroke="currentColor" strokeWidth="1"
-         initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 0.5, delay: 1.4 } }} viewport={{ once: true }} />
-         
-       {/* Decorative tracks overlaying the frame */}
-       <motion.path d="M 52 4 L 108 4 M 56 8 L 104 8" stroke="currentColor" strokeWidth="0.5"
-         initial={{ pathLength: 0 }} whileInView={{ pathLength: 1, transition: { duration: 0.5, delay: 0.8 } }} viewport={{ once: true }} />
+       {/* Subtle dots vertically centered at y=6 */}
+       <motion.rect x="38" y="5.25" width="1.5" height="1.5" fill="currentColor" initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition: { delay: 1.6 } }} viewport={{ once: true }} />
+       <motion.rect x="80.5" y="5.25" width="1.5" height="1.5" fill="currentColor" initial={{ opacity: 0 }} whileInView={{ opacity: 1, transition: { delay: 1.6 } }} viewport={{ once: true }} />
      </motion.svg>
   </div>
 );
@@ -489,8 +484,8 @@ const CodexMajesticFrame = () => (
     {/* Center Majestic Edge Ornaments */}
     <MajesticEdgeOrnament className="top-0 left-1/2 -translate-x-1/2" />
     <MajesticEdgeOrnament className="bottom-0 left-1/2 -translate-x-1/2 scale-y-[-1]" />
-    <MajesticEdgeOrnament className="left-[-64px] top-1/2 -translate-y-1/2 -rotate-90" />
-    <MajesticEdgeOrnament className="right-[-64px] top-1/2 -translate-y-1/2 rotate-90" />
+    <MajesticEdgeOrnament className="left-[-52px] top-1/2 -translate-y-1/2 -rotate-90" />
+    <MajesticEdgeOrnament className="right-[-52px] top-1/2 -translate-y-1/2 rotate-90" />
   </div>
 );
 
