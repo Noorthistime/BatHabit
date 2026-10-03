@@ -121,102 +121,90 @@ const GrimoireFrame = () => (
 const RoyalGrimoireFrame = () => (
   <div className="absolute inset-0 pointer-events-none z-0 text-[#D4AF37]/80">
     <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
-       {/* Majestic Outer Dual-Track Borders */}
+       {/* Majestic Outer Thin Border */}
        <motion.rect 
          initial={{ pathLength: 0, opacity: 0 }}
          animate={{ pathLength: 1, opacity: 1 }}
          transition={{ duration: 1.5, ease: "easeInOut" }}
-         x="2" y="2" width="calc(100% - 4px)" height="calc(100% - 4px)" rx="10" ry="10" fill="none" stroke="currentColor" strokeWidth="1.5" 
+         x="1" y="1" width="calc(100% - 2px)" height="calc(100% - 2px)" rx="11" ry="11" fill="none" stroke="currentColor" strokeWidth="1" 
          vectorEffect="non-scaling-stroke"
        />
+       {/* Inner Border */}
        <motion.rect 
          initial={{ pathLength: 0, opacity: 0 }}
          animate={{ pathLength: 1, opacity: 1 }}
          transition={{ duration: 1.5, ease: "easeInOut", delay: 0.2 }}
-         x="6" y="6" width="calc(100% - 12px)" height="calc(100% - 12px)" rx="8" ry="8" fill="none" stroke="currentColor" strokeWidth="0.5" 
+         x="4" y="4" width="calc(100% - 8px)" height="calc(100% - 8px)" rx="8" ry="8" fill="none" stroke="currentColor" strokeWidth="0.5" 
          vectorEffect="non-scaling-stroke"
          className="opacity-50"
        />
     </svg>
 
-    {/* Majestic Vintage Corners */}
+    {/* Vintage Delicate Corners (No thicker than 8px) */}
     {[
       "top-0 left-0",
       "top-0 right-0 scale-x-[-1]",
       "bottom-0 left-0 scale-y-[-1]",
       "bottom-0 right-0 scale-x-[-1] scale-y-[-1]"
     ].map((pos, i) => (
-      <div key={i} className={`absolute ${pos} w-10 h-10`}>
-        <motion.svg viewBox="0 0 40 40" fill="none" className="w-full h-full"
+      <div key={i} className={`absolute ${pos} w-4 h-4`}>
+        <motion.svg viewBox="0 0 16 16" fill="none" className="w-full h-full"
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: 0.5 }}>
-          <motion.path d="M 2 20 C 8 20 16 16 20 2" stroke="currentColor" strokeWidth="1.5" 
+          <motion.path d="M 1 12 C 4 12 8 8 12 1" stroke="currentColor" strokeWidth="1" 
              initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1, delay: 0.5 }} />
-          <motion.path d="M 6 24 C 12 24 20 18 24 6" stroke="currentColor" strokeWidth="0.5" 
+          <motion.path d="M 4 14 C 8 14 12 10 14 4" stroke="currentColor" strokeWidth="0.5" 
              initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1, delay: 0.7 }} />
-          <motion.path d="M 2 28 C 14 28 28 14 28 2" stroke="currentColor" strokeWidth="0.5" opacity="0.5"
-             initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1, delay: 0.9 }} />
-          <circle cx="16" cy="16" r="2" fill="currentColor" />
-          <circle cx="22" cy="22" r="1" fill="currentColor" opacity="0.6" />
+          <circle cx="8" cy="8" r="1" fill="currentColor" />
         </motion.svg>
       </div>
     ))}
 
-    {/* Grand Top/Bottom Center Scrollwork */}
-    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-48 h-6">
-      <motion.svg viewBox="0 0 192 24" fill="none" className="w-full h-full">
-        <motion.path d="M 0 2 C 32 2 48 16 72 20 C 88 22 96 6 96 6 C 96 6 104 22 120 20 C 144 16 160 2 192 2" stroke="currentColor" strokeWidth="1.5" 
+    {/* Horizontal Center Dividers (Strictly horizontal, 4px thick) */}
+    <div className="absolute top-[1px] left-1/2 -translate-x-1/2 w-32 h-1.5 flex items-center justify-center">
+      <motion.svg viewBox="0 0 128 6" fill="none" className="w-full h-full">
+        <motion.path d="M 0 3 L 56 3 L 64 0 L 72 3 L 128 3" stroke="currentColor" strokeWidth="1" 
           initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.5, delay: 0.4 }} />
-        <motion.path d="M 48 2 C 64 2 72 12 84 12 C 92 12 96 6 96 6 C 96 6 100 12 108 12 C 120 12 128 2 144 2" stroke="currentColor" strokeWidth="0.5" 
-          initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.2, delay: 0.6 }} />
-        <circle cx="96" cy="18" r="2.5" fill="currentColor" 
-          initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ duration: 0.5, delay: 1.2 }} />
+        <motion.path d="M 64 0 L 68 3 L 64 6 L 60 3 Z" fill="currentColor" opacity="0.8"
+          initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ duration: 0.5, delay: 1 }} />
       </motion.svg>
     </div>
-    <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-48 h-6 scale-y-[-1]">
-      <motion.svg viewBox="0 0 192 24" fill="none" className="w-full h-full">
-        <motion.path d="M 0 2 C 32 2 48 16 72 20 C 88 22 96 6 96 6 C 96 6 104 22 120 20 C 144 16 160 2 192 2" stroke="currentColor" strokeWidth="1.5" 
+    <div className="absolute bottom-[1px] left-1/2 -translate-x-1/2 w-32 h-1.5 flex items-center justify-center scale-y-[-1]">
+      <motion.svg viewBox="0 0 128 6" fill="none" className="w-full h-full">
+        <motion.path d="M 0 3 L 56 3 L 64 0 L 72 3 L 128 3" stroke="currentColor" strokeWidth="1" 
           initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.5, delay: 0.4 }} />
-        <motion.path d="M 48 2 C 64 2 72 12 84 12 C 92 12 96 6 96 6 C 96 6 100 12 108 12 C 120 12 128 2 144 2" stroke="currentColor" strokeWidth="0.5" 
-          initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 1.2, delay: 0.6 }} />
-        <circle cx="96" cy="18" r="2.5" fill="currentColor" 
-          initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ duration: 0.5, delay: 1.2 }} />
+        <motion.path d="M 64 0 L 68 3 L 64 6 L 60 3 Z" fill="currentColor" opacity="0.8"
+          initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ duration: 0.5, delay: 1 }} />
       </motion.svg>
     </div>
   </div>
 );
 
 const SubtleGrimoireFrame = ({ delay = 0 }: { delay?: number }) => (
-  <div className="absolute inset-0 pointer-events-none z-0 text-[#D4AF37]/60">
+  <div className="absolute inset-0 pointer-events-none z-0 text-[#D4AF37]/50">
+    {/* Single razor-thin border */}
     <svg className="absolute inset-0 w-full h-full" preserveAspectRatio="none">
        <motion.rect 
          initial={{ pathLength: 0, opacity: 0 }}
          animate={{ pathLength: 1, opacity: 1 }}
          transition={{ duration: 1.2, ease: "easeInOut", delay: delay }}
-         x="1" y="1" width="calc(100% - 2px)" height="calc(100% - 2px)" rx="11" ry="11" fill="none" stroke="currentColor" strokeWidth="1" 
+         x="1" y="1" width="calc(100% - 2px)" height="calc(100% - 2px)" rx="11" ry="11" fill="none" stroke="currentColor" strokeWidth="0.5" 
          vectorEffect="non-scaling-stroke"
-       />
-       <motion.rect 
-         initial={{ pathLength: 0, opacity: 0 }}
-         animate={{ pathLength: 1, opacity: 1 }}
-         transition={{ duration: 1.2, ease: "easeInOut", delay: delay + 0.2 }}
-         x="4" y="4" width="calc(100% - 8px)" height="calc(100% - 8px)" rx="8" ry="8" fill="none" stroke="currentColor" strokeWidth="0.5" 
-         vectorEffect="non-scaling-stroke"
-         className="opacity-40"
        />
     </svg>
 
+    {/* Minimalist 6px Corner Geometry */}
     {[
       "top-0 left-0",
       "top-0 right-0 scale-x-[-1]",
       "bottom-0 left-0 scale-y-[-1]",
       "bottom-0 right-0 scale-x-[-1] scale-y-[-1]"
     ].map((pos, i) => (
-      <div key={i} className={`absolute ${pos} w-6 h-6`}>
-        <motion.svg viewBox="0 0 24 24" fill="none" className="w-full h-full"
+      <div key={i} className={`absolute ${pos} w-2.5 h-2.5`}>
+        <motion.svg viewBox="0 0 10 10" fill="none" className="w-full h-full"
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ duration: 0.8, delay: delay + 0.4 }}>
-          <motion.path d="M 2 12 C 4 12 8 10 12 2" stroke="currentColor" strokeWidth="1" 
-             initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.8, delay: delay + 0.4 }} />
-          <circle cx="8" cy="8" r="1" fill="currentColor" />
+          <motion.path d="M 0 10 L 4 6 L 10 0" stroke="currentColor" strokeWidth="0.5" 
+             initial={{ pathLength: 0 }} animate={{ pathLength: 1 }} transition={{ duration: 0.6, delay: delay + 0.4 }} />
+          <circle cx="5" cy="5" r="0.75" fill="currentColor" />
         </motion.svg>
       </div>
     ))}
