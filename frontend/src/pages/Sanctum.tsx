@@ -871,7 +871,7 @@ export function Sanctum() {
                 <div className="p-8 flex-1 flex flex-col relative z-10 h-full">
                   
                   {/* Header */}
-                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 relative z-10 mb-8 pb-6">
+                  <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 relative z-10 mb-8 p-5 bg-[#1a0202]/60 border border-[#D4AF37]/20 rounded-md shadow-[inset_0_0_20px_rgba(0,0,0,0.5)]">
                   <div className="flex items-center gap-4">
                     <div className="w-10 h-10 rounded-sm border border-[#D4AF37]/50 flex items-center justify-center text-[#D4AF37] shrink-0 bg-[#0a0000] shadow-inner">
                       <Book size={20} />
@@ -895,7 +895,7 @@ export function Sanctum() {
                     { title: "Review 3 Algorithmic Systems", icon: Focus, tag: "Focus • Essential", xp: 68, crowns: 20, stat: "Focus +1" }
                   ].map((q, i, arr) => (
                     <React.Fragment key={i}>
-                      <article className="group relative transition-all flex flex-col md:flex-row justify-between items-center gap-4 py-4 px-2 hover:bg-[#D4AF37]/5 rounded-sm overflow-hidden">
+                      <article className="group relative transition-all flex flex-col md:flex-row justify-between items-center gap-4 p-5 mb-4 bg-[#1a0202]/40 border border-[#D4AF37]/15 hover:border-[#D4AF37]/40 hover:bg-[#D4AF37]/10 rounded-md shadow-sm overflow-hidden">
                         
                         <div className="flex flex-1 items-center gap-5 pl-2">
                           <div className="w-12 h-12 flex items-center justify-center text-[#D4AF37]/80 shrink-0 border border-transparent group-hover:border-[#D4AF37]/30 transition-colors">
