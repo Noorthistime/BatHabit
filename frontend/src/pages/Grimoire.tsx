@@ -179,156 +179,96 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
   }
 
   if (rarity === 'Legendary') {
-    const redAccent = '#8A0F0F';
-    
-    // Generative Paths for reusable Jewel and Chain symbols
-    const Jewel = ({ x, y, scale = 1, showHalo = false }: { x: number, y: number, scale?: number, showHalo?: boolean }) => (
-      <g transform={`translate(${x}, ${y}) scale(${scale})`}>
-        {showHalo && (
-          <g stroke={color} strokeWidth="0.2" fill="none" opacity="0.5">
-            <circle cx="0" cy="0" r="14" strokeDasharray="1 3" />
-            <circle cx="0" cy="0" r="18" strokeWidth="0.4" />
-            <circle cx="0" cy="0" r="22" strokeDasharray="4 4" />
-            <path d="M-24 0 L24 0 M0 -24 L0 24 M-17 -17 L17 17 M-17 17 L17 -17" strokeWidth="0.2" opacity="0.5" />
-          </g>
-        )}
-        
-        {/* Glow behind the gem */}
-        <circle cx="0" cy="0" r="12" fill="url(#legendaryGlow)" />
-        
-        {/* Ornate Layered Casing (Extended backwards) */}
-        <path d="M-8 0 L0 -10 L8 0 L0 10 Z" fill="#1a0000" stroke={color} strokeWidth="0.5" />
-        {/* Original Casing */}
-        <path d="M-6 0 L0 -8 L6 0 L0 8 Z" fill={color} stroke="#fff" strokeWidth="0.5" />
-        
-        {/* Casing Prongs (Original positions so chains perfectly link) */}
-        <circle cx="0" cy="-8" r="1.5" fill={color} />
-        <circle cx="0" cy="8" r="1.5" fill={color} />
-        <circle cx="-6" cy="0" r="1.5" fill={color} />
-        <circle cx="6" cy="0" r="1.5" fill={color} />
-        {/* Diamond rivets on prongs */}
-        <polygon points="0,-9 0.5,-8 0,-7 -0.5,-8" fill="#fff" />
-        <polygon points="0,7 0.5,8 0,9 -0.5,8" fill="#fff" />
-        <polygon points="-7,0 -6,0.5 -5,0 -6,-0.5" fill="#fff" />
-        <polygon points="5,0 6,0.5 7,0 6,-0.5" fill="#fff" />
-        
-        {/* Octagon Ruby */}
-        <path d="M-4 -2 L-2 -6 L2 -6 L4 -2 L4 2 L2 6 L-2 6 L-4 2 Z" fill="url(#rubyGradient)" stroke="#550000" strokeWidth="0.5" />
-        
-        {/* Hyper-realistic 3D Facets */}
-        <path d="M-4 -2 L-2 -6 L0 -2 Z" fill="#ff7777" opacity="0.8" />
-        <path d="M2 -6 L4 -2 L0 -2 Z" fill="#440000" opacity="0.7" />
-        <path d="M-2 -2 L2 -2 L2 2 L-2 2 Z" fill="url(#tableGradient)" />
-        <path d="M-4 2 L-2 2 L0 6 Z" fill="#ff4444" opacity="0.5" />
-        <path d="M4 2 L2 2 L0 6 Z" fill="#220000" opacity="0.9" />
-        
-        {/* Sharp Specular Highlight (The gleaming glass effect) */}
-        <polygon points="-2,-4 0,-4 1,-2 -1,-2" fill="#ffffff" opacity="0.7" />
-        <polygon points="-1,-2 1,-2 1,-1 -1,-1" fill="#ffffff" opacity="0.3" />
-      </g>
+    const CornerSVG = ({ pos, transform }: { pos: string, transform: string }) => (
+      <div className={`absolute ${pos} w-[80px] h-[80px] pointer-events-none`} style={{ transform }}>
+        <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-[0_0_5px_rgba(212,175,55,0.6)]" fill="none">
+          {/* Outer L Bracket */}
+          <path d="M 1 100 L 1 12 Q 1 1, 12 1 L 100 1" stroke={color} strokeWidth="1" />
+          <path d="M 5 100 L 5 16 Q 5 5, 16 5 L 100 5" stroke={color} strokeWidth="2" />
+          
+          {/* Small swirly ends for the brackets */}
+          <path d="M -1 100 C -1 95, 7 95, 7 100 Z" fill={color} />
+          <path d="M 100 -1 C 95 -1, 95 7, 100 7 Z" fill={color} />
+          
+          <path d="M 3 100 C 3 92, 11 92, 11 100 Z" fill={color} />
+          <path d="M 100 3 C 92 3, 92 11, 100 11 Z" fill={color} />
+
+          {/* Elaborate inner filigree scrollwork */}
+          <path d="M 15 15 C 30 30, 50 20, 65 35 C 80 50, 75 70, 60 85 C 45 100, 25 90, 15 75 C 5 60, 25 50, 40 60 C 50 67, 45 80, 35 75" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+          
+          {/* Thick Acanthus leaf flourishes */}
+          <path d="M 30 24 C 45 20, 60 10, 75 5 C 60 15, 45 18, 30 24 Z" fill={color} />
+          <path d="M 24 30 C 20 45, 10 60, 5 75 C 15 60, 18 45, 24 30 Z" fill={color} />
+          
+          <path d="M 48 43 C 65 48, 80 45, 95 35 C 75 50, 65 52, 48 43 Z" fill={color} />
+          <path d="M 43 48 C 48 65, 45 80, 35 95 C 50 75, 52 65, 43 48 Z" fill={color} />
+
+          {/* Decorative Diamonds */}
+          <polygon points="60,20 63,24 60,28 57,24" fill="#fff" opacity="0.9" />
+          <polygon points="20,60 24,63 28,60 24,57" fill="#fff" opacity="0.9" />
+          <polygon points="85,60 88,64 85,68 82,64" fill={color} />
+          <polygon points="60,85 64,88 68,85 64,82" fill={color} />
+        </svg>
+      </div>
     );
-    
-    // Simulates realistic interlocking chain links along any SVG path
-    const ChainPath = ({ d }: { d: string }) => (
-      <g>
-        {/* Side link (connecting bead) */}
-        <path d={d} fill="none" stroke={color} strokeWidth="3" strokeDasharray="0 14" strokeLinecap="round" strokeDashoffset="-11" />
-        <path d={d} fill="none" stroke="#222" strokeWidth="1" strokeDasharray="0 14" strokeLinecap="round" strokeDashoffset="-11" />
-        
-        {/* Main oval link outline */}
-        <path d={d} fill="none" stroke={color} strokeWidth="3" strokeDasharray="8 6" />
-        
-        {/* Main oval link hole (simulates shadow/transparency) */}
-        <path d={d} fill="none" stroke="#220505" strokeWidth="1.5" strokeDasharray="6 8" strokeDashoffset="-1" />
-      </g>
+
+    const CenterOrnament = ({ pos, transform }: { pos: string, transform: string }) => (
+      <div className={`absolute ${pos} w-[120px] h-[24px] pointer-events-none flex justify-center items-start`} style={{ transform }}>
+        <svg viewBox="0 0 120 24" className="w-full h-full drop-shadow-[0_0_5px_rgba(212,175,55,0.5)]" fill="none">
+          {/* Center Diamond / Crest */}
+          <polygon points="60,1 69,10 60,19 51,10" fill="none" stroke={color} strokeWidth="1.5" />
+          <polygon points="60,4 64,10 60,16 56,10" fill={color} />
+          <circle cx="60" cy="10" r="1.5" fill="#fff" />
+          
+          {/* Left Wing Swirls */}
+          <path d="M 48 10 C 35 10, 30 2, 15 5 C 20 7, 23 11, 18 10 C 12 15, 5 10, 0 10" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M 32 8 C 40 4, 45 4, 50 5 C 40 7, 35 7, 32 8 Z" fill={color} />
+          <path d="M 25 10 C 32 16, 40 16, 45 14 C 35 14, 30 12, 25 10 Z" fill={color} />
+          <polygon points="8,10 10,12 8,14 6,12" fill="#fff" opacity="0.8" />
+          
+          {/* Right Wing Swirls */}
+          <path d="M 72 10 C 85 10, 90 2, 105 5 C 100 7, 97 11, 102 10 C 108 15, 115 10, 120 10" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M 88 8 C 80 4, 75 4, 70 5 C 80 7, 85 7, 88 8 Z" fill={color} />
+          <path d="M 95 10 C 88 16, 80 16, 75 14 C 85 14, 90 12, 95 10 Z" fill={color} />
+          <polygon points="112,10 114,12 112,14 110,12" fill="#fff" opacity="0.8" />
+        </svg>
+      </div>
     );
-    const Leaf = ({ x, y, rot, scale = 1 }: { x: number, y: number, rot: number, scale?: number }) => null; // Removed leaves for chain/jewel aesthetic
 
     return (
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute inset-0 border-[2px]" style={{ borderColor: color, boxShadow: `0 0 12px ${color}, inset 0 0 20px ${redAccent}` }} />
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+        {/* Ambient Premium Red/Gold Glow */}
+        <div className="absolute inset-0" style={{ 
+          background: 'radial-gradient(ellipse at center, rgba(138,15,15,0.4) 0%, rgba(20,2,2,0.95) 100%)',
+          boxShadow: `inset 0 0 40px rgba(0,0,0,0.8), 0 0 15px rgba(212,175,55,0.3)`
+        }} />
         
-        {/* Continuous Pillar & Vine Pattern */}
-        <svg className="absolute inset-0 w-full h-full opacity-95">
-          <defs>
-             <radialGradient id="legendaryGlow" cx="50%" cy="50%" r="50%">
-               <stop offset="0%" stopColor="#ff0000" stopOpacity="0.5" />
-               <stop offset="100%" stopColor="#ff0000" stopOpacity="0" />
-             </radialGradient>
-             <linearGradient id="rubyGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-               <stop offset="0%" stopColor="#ff4444" />
-               <stop offset="50%" stopColor="#aa0000" />
-               <stop offset="100%" stopColor="#330000" />
-             </linearGradient>
-             <linearGradient id="tableGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-               <stop offset="0%" stopColor="#ff0000" />
-               <stop offset="100%" stopColor="#aa0000" />
-             </linearGradient>
+        {/* Subtle grid pattern */}
+        <div className="absolute inset-0 opacity-[0.03]" style={{
+          backgroundImage: `url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 0 L24 12 L12 24 L0 12 Z' fill='%23D4AF37' fill-rule='evenodd'/%3E%3C/svg%3E")`,
+          backgroundSize: '32px 32px'
+        }} />
 
-             <pattern id="leg-x" width="60" height="12" patternUnits="userSpaceOnUse">
-               <polygon points="15,4 16,5 15,6 14,5" fill={color} opacity="0.6" />
-               <polygon points="45,4 46,5 45,6 44,5" fill={color} opacity="0.6" />
-               <ChainPath d="M0 6 Q 12 0, 25 6 M 35 6 Q 48 12, 60 6" />
-               <Jewel x={30} y={6} scale={0.8} />
-             </pattern>
-             <pattern id="leg-y" width="12" height="60" patternUnits="userSpaceOnUse">
-               <polygon points="4,15 5,16 6,15 5,14" fill={color} opacity="0.6" />
-               <polygon points="4,45 5,46 6,45 5,44" fill={color} opacity="0.6" />
-               <ChainPath d="M6 0 Q 0 12, 6 24 M 6 36 Q 12 48, 6 60" />
-               <Jewel x={6} y={30} scale={0.8} />
-             </pattern>
-          </defs>
-          <rect x="64" y="0" width="calc(100% - 128px)" height="12" fill="url(#leg-x)" />
-          <rect x="64" y="calc(100% - 12px)" width="calc(50% - 128px)" height="12" fill="url(#leg-x)" />
-          <rect x="calc(50% + 64px)" y="calc(100% - 12px)" width="calc(50% - 128px)" height="12" fill="url(#leg-x)" />
-          <rect x="0" y="64" width="12" height="calc(100% - 128px)" fill="url(#leg-y)" />
-          <rect x="calc(100% - 12px)" y="64" width="12" height="calc(100% - 128px)" fill="url(#leg-y)" />
-        </svg>
+        {/* Straight Borders connecting the corners */}
+        <div className="absolute top-[1px] left-[80px] right-[80px] h-[1px]" style={{ backgroundColor: color, opacity: 0.8 }} />
+        <div className="absolute bottom-[1px] left-[80px] right-[80px] h-[1px]" style={{ backgroundColor: color, opacity: 0.8 }} />
+        <div className="absolute left-[1px] top-[80px] bottom-[80px] w-[1px]" style={{ backgroundColor: color, opacity: 0.8 }} />
+        <div className="absolute right-[1px] top-[80px] bottom-[80px] w-[1px]" style={{ backgroundColor: color, opacity: 0.8 }} />
+        
+        <div className="absolute top-[4px] left-[80px] right-[80px] h-[2px]" style={{ backgroundColor: color, opacity: 0.9 }} />
+        <div className="absolute bottom-[4px] left-[80px] right-[80px] h-[2px]" style={{ backgroundColor: color, opacity: 0.9 }} />
+        <div className="absolute left-[4px] top-[80px] bottom-[80px] w-[2px]" style={{ backgroundColor: color, opacity: 0.9 }} />
+        <div className="absolute right-[4px] top-[80px] bottom-[80px] w-[2px]" style={{ backgroundColor: color, opacity: 0.9 }} />
 
-        {/* Column Capital Corners */}
-        {[
-          'top-0 left-0', 'top-0 right-0 rotate-90',
-          'bottom-0 right-0 rotate-180', 'bottom-0 left-0 -rotate-90'
-        ].map((pos, i) => (
-          <svg key={i} className={`absolute ${pos} w-16 h-16 drop-shadow-[0_0_4px_${color}]`} viewBox="0 0 64 64" fill="none">
-             {/* Wrought Iron Crown Flourishes */}
-             <path d="M32 0 C 32 16, 16 32, 0 32" fill="none" stroke={color} strokeWidth="0.5" opacity="0.5" />
-             <path d="M48 0 C 48 24, 24 48, 0 48" fill="none" stroke={color} strokeWidth="0.3" opacity="0.3" />
-             <path d="M64 0 C 64 48, 48 64, 0 64" fill="none" stroke={color} strokeWidth="0.1" opacity="0.2" />
-             
-             {/* Diamond Accents */}
-             <polygon points="12,4 13,5 12,6 11,5" fill="#fff" opacity="0.8" />
-             <polygon points="4,12 5,13 4,14 3,13" fill="#fff" opacity="0.8" />
-             <polygon points="20,8 21,9 20,10 19,9" fill={color} />
-             <polygon points="8,20 9,21 8,22 7,21" fill={color} />
-             <polygon points="40,24 42,26 40,28 38,26" fill="#fff" opacity="0.6" />
-             <polygon points="24,40 26,42 24,44 22,42" fill="#fff" opacity="0.6" />
+        {/* 4 Corners */}
+        <CornerSVG pos="top-0 left-0" transform="" />
+        <CornerSVG pos="top-0 right-0" transform="scale(-1, 1)" />
+        <CornerSVG pos="bottom-0 right-0" transform="scale(-1, -1)" />
+        <CornerSVG pos="bottom-0 left-0" transform="scale(1, -1)" />
 
-             <ChainPath d="M64 6 C 50 6, 45 24, 33 24" />
-             <ChainPath d="M6 64 C 6 50, 24 45, 24 36" />
-             <ChainPath d="M24 12 Q 12 12, 15 24" />
-             <Jewel x={24} y={24} scale={1.5} showHalo={true} />
-          </svg>
-        ))}
-
-        {/* Center Floral Crests (Bottom Only) */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-32 h-6 flex justify-center items-end">
-           <svg viewBox="0 0 128 24" className="w-full h-full rotate-180" fill="none">
-             <path d="M40 0 C 40 12, 50 18, 64 18 C 78 18, 88 12, 88 0" fill="none" stroke={color} strokeWidth="0.5" opacity="0.4" />
-             
-             <ChainPath d="M0 6 Q 32 6, 57 12" />
-             <ChainPath d="M128 6 Q 96 6, 71 12" />
-             
-             {/* Extra glorious flourish arch */}
-             <path d="M45 16 Q 64 24, 83 16" fill="none" stroke={color} strokeWidth="1" />
-             <polygon points="64,19 65.5,21 64,23 62.5,21" fill="#fff" opacity="0.9" />
-             
-             <Jewel x={64} y={12} scale={1.2} showHalo={true} />
-             
-             <polygon points="20,4 21,5 20,6 19,5" fill="#fff" opacity="0.7" />
-             <polygon points="108,4 109,5 108,6 107,5" fill="#fff" opacity="0.7" />
-           </svg>
-        </div>
+        {/* 2 Center Ornaments (Top & Bottom) */}
+        <CenterOrnament pos="top-[-6px] left-1/2 -translate-x-1/2" transform="" />
+        <CenterOrnament pos="bottom-[-6px] left-1/2 -translate-x-1/2" transform="scale(1, -1)" />
       </div>
     );
   }
