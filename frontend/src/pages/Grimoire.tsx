@@ -180,38 +180,32 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
 
   if (rarity === 'Legendary') {
     const CornerSVG = ({ pos, transform }: { pos: string, transform: string }) => (
-      <div className={`absolute ${pos} w-[80px] h-[80px] pointer-events-none`} style={{ transform }}>
-        <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-[0_0_8px_rgba(212,175,55,0.6)]" fill="none">
-          {/* Intricate Baroque Corner Filigree (No straight border lines) */}
-          {/* Main sweeping corner bracket vine */}
-          <path d="M 0 60 C 10 55, 20 40, 25 25 C 30 10, 40 5, 60 0" stroke={color} strokeWidth="3" strokeLinecap="round" />
-          <path d="M 0 70 C 15 65, 30 50, 35 35 C 40 20, 55 10, 70 0" stroke={color} strokeWidth="1" strokeLinecap="round" />
+      <div className={`absolute ${pos} w-[56px] h-[56px] pointer-events-none`} style={{ transform }}>
+        <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-[0_0_6px_rgba(212,175,55,0.8)]" fill="none">
+          {/* Frame boundary curl (hugs the very outer edge tightly) */}
+          <path d="M 5 95 C 0 95, 2 90, 2 85 L 2 20 C 2 5, 20 2, 40 2 L 85 2 C 90 2, 95 0, 95 5" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
           
-          {/* Outward spreading floral swirls (Acanthus scrollwork) */}
-          <path d="M 25 25 C 35 35, 50 40, 65 30 C 75 25, 80 15, 75 5 C 70 -5, 60 0, 55 10" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
-          <path d="M 25 25 C 35 35, 40 50, 30 65 C 25 75, 15 80, 5 75 C -5 70, 0 60, 10 55" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
-          
-          {/* Curled leaf tips (Filled shapes) */}
-          <path d="M 60 0 C 75 5, 85 15, 95 10 C 85 20, 75 10, 60 0 Z" fill={color} />
-          <path d="M 0 60 C 5 75, 15 85, 10 95 C 20 85, 10 75, 0 60 Z" fill={color} />
-          
-          <path d="M 65 30 C 75 40, 90 40, 95 30 C 85 45, 70 45, 65 30 Z" fill={color} />
-          <path d="M 30 65 C 40 75, 40 90, 30 95 C 45 85, 45 70, 30 65 Z" fill={color} />
+          {/* Inner sweeping S-curve */}
+          <path d="M 6 70 C 10 50, 30 30, 50 25 C 70 20, 80 15, 85 5" stroke={color} strokeWidth="2" strokeLinecap="round" />
+          <path d="M 70 6 C 50 10, 30 30, 25 50 C 20 70, 15 80, 5 85" stroke={color} strokeWidth="2" strokeLinecap="round" />
 
-          {/* Inner floral core detail */}
-          <path d="M 5 5 C 15 10, 20 20, 15 25 C 10 30, 5 25, 0 20 Z" fill={color} />
-          <path d="M 5 5 C 10 15, 20 20, 25 15 C 30 10, 25 5, 20 0 Z" fill={color} />
+          {/* Center intertwining curl */}
+          <path d="M 12 12 C 25 25, 45 25, 50 40 C 55 55, 45 65, 35 60 C 25 55, 25 45, 35 40" stroke={color} strokeWidth="1" strokeLinecap="round" />
+          <path d="M 12 12 C 25 25, 25 45, 40 50 C 55 55, 65 45, 60 35 C 55 25, 45 25, 40 35" stroke={color} strokeWidth="1" strokeLinecap="round" />
           
-          {/* Glowing jewels nested in the vines (Metallic Red/Gold fusion) */}
-          <circle cx="25" cy="25" r="4.5" fill="#8A0F0F" stroke={color} strokeWidth="1" />
-          <circle cx="25" cy="25" r="2" fill="#ff4444" opacity="0.8" />
+          {/* Sharp diamond accents along the curves */}
+          <polygon points="12,8 14,12 12,16 10,12" fill={color} />
+          <polygon points="8,12 12,14 16,12 12,10" fill={color} />
           
-          <circle cx="55" cy="10" r="1.5" fill="#fff" opacity="0.9" />
-          <circle cx="10" cy="55" r="1.5" fill="#fff" opacity="0.9" />
-          <circle cx="75" cy="5" r="1" fill={color} />
-          <circle cx="5" cy="75" r="1" fill={color} />
-          <circle cx="95" cy="30" r="1" fill={color} />
-          <circle cx="30" cy="95" r="1" fill={color} />
+          {/* Red Jewel in the core */}
+          <circle cx="35" cy="35" r="3.5" fill="#8A0F0F" stroke={color} strokeWidth="1" />
+          <circle cx="34" cy="34" r="1" fill="#fff" opacity="0.7" />
+          
+          {/* Tiny starry dots */}
+          <circle cx="65" cy="15" r="1" fill="#fff" opacity="0.8" />
+          <circle cx="15" cy="65" r="1" fill="#fff" opacity="0.8" />
+          <circle cx="85" cy="15" r="0.8" fill={color} />
+          <circle cx="15" cy="85" r="0.8" fill={color} />
         </svg>
       </div>
     );
@@ -224,7 +218,7 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
           boxShadow: `inset 0 0 40px rgba(0,0,0,0.8), 0 0 15px rgba(212,175,55,0.3)`
         }} />
         
-        {/* 4 Majestic Corners Only - Center edges left totally clean */}
+        {/* 4 Majestic Corners Only - Strictly constrained to the absolute corners */}
         <CornerSVG pos="top-0 left-0" transform="" />
         <CornerSVG pos="top-0 right-0" transform="scale(-1, 1)" />
         <CornerSVG pos="bottom-0 right-0" transform="scale(-1, -1)" />
