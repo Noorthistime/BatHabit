@@ -180,89 +180,45 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
 
   if (rarity === 'Legendary') {
     const CornerSVG = ({ pos, transform }: { pos: string, transform: string }) => (
-      <div className={`absolute ${pos} w-[60px] h-[60px] pointer-events-none z-20`} style={{ transform }}>
-        <svg viewBox="0 0 60 60" className="w-full h-full drop-shadow-[0_0_5px_rgba(212,175,55,0.9)]" fill="none">
-          {/* Main sweeping curve connecting the horizontal line to the vertical line */}
-          <path d="M 60 10 C 30 10, 10 30, 10 60" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
-          
-          {/* The majestic inward spiral loop (volute) branching off */}
-          <path d="M 20 20 C 35 5, 55 15, 45 35 C 35 55, 15 45, 25 30 C 30 22, 40 28, 35 35" stroke={color} strokeWidth="1" strokeLinecap="round" />
-          
-          {/* Sharp graceful teardrop/leaf accents on the spiral */}
-          <path d="M 45 35 C 50 35, 55 30, 60 25 C 55 35, 50 40, 45 35 Z" fill={color} />
-          <path d="M 25 30 C 20 30, 15 25, 10 20 C 15 30, 20 35, 25 30 Z" fill={color} />
-          
-          {/* Small C-scroll accents on the outside corner (top left of the SVG) */}
-          <path d="M 5 5 C 10 0, 20 0, 25 5 C 20 10, 10 10, 5 5 Z" fill={color} />
-          <path d="M 2 15 C 5 5, 15 2, 25 2 C 15 -2, 2 5, 2 15 Z" fill={color} />
-          
-          {/* Center tiny diamond accent inside the spiral */}
-          <polygon points="35,30 37,32 35,34 33,32" fill={color} />
-          <circle cx="35" cy="32" r="1.5" fill="#8A0F0F" />
+      <div className={`absolute ${pos} w-[40px] h-[40px] pointer-events-none z-20`} style={{ transform }}>
+        <svg viewBox="0 0 40 40" className="w-full h-full drop-shadow-[0_0_4px_rgba(212,175,55,0.8)]" fill="none">
+          <path d="M 40 2 L 30 2 C 15 2, 2 15, 2 30 L 2 40" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M 2 15 C 10 15, 15 10, 15 2" stroke={color} strokeWidth="1" strokeLinecap="round" />
+          <polygon points="6,6 9,9 6,12 3,9" fill={color} />
         </svg>
       </div>
     );
 
     const EdgeCenterHorizontal = ({ pos, transform }: { pos: string, transform: string }) => (
-      <div className={`absolute ${pos} w-[140px] h-[30px] pointer-events-none z-20 flex items-center justify-center`} style={{ transform }}>
-        <svg viewBox="0 0 140 30" className="w-full h-full drop-shadow-[0_0_5px_rgba(212,175,55,0.9)]" fill="none">
-          {/* Stem connecting seamlessly from x=0,y=10 and x=140,y=10 */}
-          <path d="M 0 10 L 40 10 C 50 10, 60 15, 70 20 C 80 15, 90 10, 100 10 L 140 10" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
-          
-          {/* Sweeping C-scrolls looping off the center crest */}
-          <path d="M 50 15 C 30 35, 10 25, 20 15 C 30 5, 50 15, 50 15" stroke={color} strokeWidth="1" strokeLinecap="round" />
-          <path d="M 90 15 C 110 35, 130 25, 120 15 C 110 5, 90 15, 90 15" stroke={color} strokeWidth="1" strokeLinecap="round" />
-          
-          {/* Sharp diamond and jewel at the absolute center */}
-          <polygon points="70,12 76,20 70,28 64,20" fill={color} />
-          <circle cx="70" cy="20" r="2.5" fill="#8A0F0F" stroke="#fff" strokeWidth="0.5" />
-          
-          {/* Tiny teardrop accents on the scrolls */}
-          <path d="M 20 15 C 15 15, 10 10, 5 5 C 10 15, 15 20, 20 15 Z" fill={color} />
-          <path d="M 120 15 C 125 15, 130 10, 135 5 C 130 15, 125 20, 120 15 Z" fill={color} />
-          
-          {/* Top accent crest */}
-          <path d="M 60 5 C 65 0, 75 0, 80 5 C 75 8, 65 8, 60 5 Z" fill={color} />
-          <circle cx="70" cy="4" r="1" fill="#fff" opacity="0.8" />
+      <div className={`absolute ${pos} w-[100px] h-[12px] pointer-events-none z-20 flex items-center justify-center`} style={{ transform }}>
+        <svg viewBox="0 0 100 12" className="w-full h-full drop-shadow-[0_0_4px_rgba(212,175,55,0.8)]" fill="none">
+          <path d="M 0 2 L 30 2 C 40 2, 45 8, 50 8 C 55 8, 60 2, 70 2 L 100 2" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M 35 2 C 35 6, 45 6, 45 2" stroke={color} strokeWidth="1" strokeLinecap="round" />
+          <path d="M 65 2 C 65 6, 55 6, 55 2" stroke={color} strokeWidth="1" strokeLinecap="round" />
+          <circle cx="50" cy="8" r="2" fill="#8A0F0F" stroke={color} strokeWidth="0.5" />
+          <circle cx="50" cy="8" r="0.5" fill="#fff" />
         </svg>
       </div>
     );
 
     const EdgeCenterVertical = ({ pos, transform }: { pos: string, transform: string }) => (
-      <div className={`absolute ${pos} w-[30px] h-[140px] pointer-events-none z-20 flex items-center justify-center`} style={{ transform }}>
-        <svg viewBox="0 0 30 140" className="w-full h-full drop-shadow-[0_0_5px_rgba(212,175,55,0.9)]" fill="none">
-          {/* Stem connecting seamlessly from x=10,y=0 and x=10,y=140 */}
-          <path d="M 10 0 L 10 40 C 10 50, 15 60, 20 70 C 15 80, 10 90, 10 100 L 10 140" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
-          
-          {/* Sweeping C-scrolls looping off the center crest */}
-          <path d="M 15 50 C 35 30, 25 10, 15 20 C 5 30, 15 50, 15 50" stroke={color} strokeWidth="1" strokeLinecap="round" />
-          <path d="M 15 90 C 35 110, 25 130, 15 120 C 5 110, 15 90, 15 90" stroke={color} strokeWidth="1" strokeLinecap="round" />
-          
-          {/* Sharp diamond and jewel at the absolute center */}
-          <polygon points="12,70 20,76 28,70 20,64" fill={color} />
-          <circle cx="20" cy="70" r="2.5" fill="#8A0F0F" stroke="#fff" strokeWidth="0.5" />
-          
-          {/* Tiny teardrop accents on the scrolls */}
-          <path d="M 15 20 C 15 15, 10 10, 5 5 C 15 10, 20 15, 15 20 Z" fill={color} />
-          <path d="M 15 120 C 15 125, 10 130, 5 135 C 15 130, 20 125, 15 120 Z" fill={color} />
-          
-          {/* Outer accent crest */}
-          <path d="M 5 60 C 0 65, 0 75, 5 80 C 8 75, 8 65, 5 60 Z" fill={color} />
-          <circle cx="4" cy="70" r="1" fill="#fff" opacity="0.8" />
+      <div className={`absolute ${pos} w-[12px] h-[100px] pointer-events-none z-20 flex items-center justify-center`} style={{ transform }}>
+        <svg viewBox="0 0 12 100" className="w-full h-full drop-shadow-[0_0_4px_rgba(212,175,55,0.8)]" fill="none">
+          <path d="M 2 0 L 2 30 C 2 40, 8 45, 8 50 C 8 55, 2 60, 2 70 L 2 100" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M 2 35 C 6 35, 6 45, 2 45" stroke={color} strokeWidth="1" strokeLinecap="round" />
+          <path d="M 2 65 C 6 65, 6 55, 2 55" stroke={color} strokeWidth="1" strokeLinecap="round" />
+          <circle cx="8" cy="50" r="2" fill="#8A0F0F" stroke={color} strokeWidth="0.5" />
+          <circle cx="8" cy="50" r="0.5" fill="#fff" />
         </svg>
       </div>
     );
 
     const BorderLineHorizontal = ({ pos, left, right }: { pos: string, left: string, right: string }) => (
-      <svg className={`absolute ${pos} h-[16px] -mt-[8px] pointer-events-none z-10 opacity-90`} style={{ left, right }} fill="none" preserveAspectRatio="none">
-        <line x1="0" y1="8" x2="100%" y2="8" stroke={color} strokeWidth="1.5" />
-      </svg>
+      <div className={`absolute ${pos} h-[1.5px] pointer-events-none z-10 opacity-90 shadow-[0_0_4px_rgba(212,175,55,0.8)]`} style={{ left, right, backgroundColor: color }} />
     );
 
     const BorderLineVertical = ({ pos, top, bottom }: { pos: string, top: string, bottom: string }) => (
-      <svg className={`absolute ${pos} w-[16px] -ml-[8px] pointer-events-none z-10 opacity-90`} style={{ top, bottom }} fill="none" preserveAspectRatio="none">
-        <line x1="8" y1="0" x2="8" y2="100%" stroke={color} strokeWidth="1.5" />
-      </svg>
+      <div className={`absolute ${pos} w-[1.5px] pointer-events-none z-10 opacity-90 shadow-[0_0_4px_rgba(212,175,55,0.8)]`} style={{ top, bottom, backgroundColor: color }} />
     );
 
     return (
@@ -273,20 +229,20 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
           boxShadow: `inset 0 0 40px rgba(0,0,0,0.8), 0 0 15px rgba(212,175,55,0.3)`
         }} />
         
-        {/* --- STRAIGHT FRAME LINES --- */}
+        {/* --- STRAIGHT FRAME LINES (Hugging 2px from the edge) --- */}
         {/* Top Edge */}
-        <BorderLineHorizontal pos="top-[10px]" left="60px" right="calc(50% + 70px)" />
-        <BorderLineHorizontal pos="top-[10px]" left="calc(50% + 70px)" right="60px" />
+        <BorderLineHorizontal pos="top-[2px]" left="40px" right="calc(50% + 50px)" />
+        <BorderLineHorizontal pos="top-[2px]" left="calc(50% + 50px)" right="40px" />
         {/* Bottom Edge */}
-        <BorderLineHorizontal pos="bottom-[10px]" left="60px" right="calc(50% + 70px)" />
-        <BorderLineHorizontal pos="bottom-[10px]" left="calc(50% + 70px)" right="60px" />
+        <BorderLineHorizontal pos="bottom-[2px]" left="40px" right="calc(50% + 50px)" />
+        <BorderLineHorizontal pos="bottom-[2px]" left="calc(50% + 50px)" right="40px" />
         
         {/* Left Edge */}
-        <BorderLineVertical pos="left-[10px]" top="60px" bottom="calc(50% + 70px)" />
-        <BorderLineVertical pos="left-[10px]" top="calc(50% + 70px)" bottom="60px" />
+        <BorderLineVertical pos="left-[2px]" top="40px" bottom="calc(50% + 50px)" />
+        <BorderLineVertical pos="left-[2px]" top="calc(50% + 50px)" bottom="40px" />
         {/* Right Edge */}
-        <BorderLineVertical pos="right-[10px]" top="60px" bottom="calc(50% + 70px)" />
-        <BorderLineVertical pos="right-[10px]" top="calc(50% + 70px)" bottom="60px" />
+        <BorderLineVertical pos="right-[2px]" top="40px" bottom="calc(50% + 50px)" />
+        <BorderLineVertical pos="right-[2px]" top="calc(50% + 50px)" bottom="40px" />
 
         {/* --- CORNERS --- */}
         <CornerSVG pos="top-0 left-0" transform="" />
