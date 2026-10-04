@@ -180,32 +180,71 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
 
   if (rarity === 'Legendary') {
     const CornerSVG = ({ pos, transform }: { pos: string, transform: string }) => (
-      <div className={`absolute ${pos} w-[56px] h-[56px] pointer-events-none`} style={{ transform }}>
-        <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-[0_0_6px_rgba(212,175,55,0.8)]" fill="none">
-          {/* Frame boundary curl (hugs the very outer edge tightly) */}
-          <path d="M 5 95 C 0 95, 2 90, 2 85 L 2 20 C 2 5, 20 2, 40 2 L 85 2 C 90 2, 95 0, 95 5" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+      <div className={`absolute ${pos} w-[44px] h-[44px] pointer-events-none z-20`} style={{ transform }}>
+        <svg viewBox="0 0 44 44" className="w-full h-full drop-shadow-[0_0_5px_rgba(212,175,55,0.9)]" fill="none">
+          {/* Outer continuous line connection (x=2, y=2) */}
+          <path d="M 2 44 L 2 15 C 2 5, 5 2, 15 2 L 44 2" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
           
-          {/* Inner sweeping S-curve */}
-          <path d="M 6 70 C 10 50, 30 30, 50 25 C 70 20, 80 15, 85 5" stroke={color} strokeWidth="2" strokeLinecap="round" />
-          <path d="M 70 6 C 50 10, 30 30, 25 50 C 20 70, 15 80, 5 85" stroke={color} strokeWidth="2" strokeLinecap="round" />
+          {/* Inner continuous line connection (x=14, y=14) */}
+          <path d="M 14 44 L 14 24 C 14 18, 18 14, 24 14 L 44 14" stroke={color} strokeWidth="1" strokeLinecap="round" />
+          
+          {/* Ornate interlocking filigree loop around the corner */}
+          <path d="M 6 24 C 24 24, 30 30, 32 38 C 34 46, 24 46, 20 40 C 16 34, 20 28, 28 30" stroke={color} strokeWidth="1.2" strokeLinecap="round" />
+          <path d="M 24 6 C 24 24, 30 30, 38 32 C 46 34, 46 24, 40 20 C 34 16, 28 20, 30 28" stroke={color} strokeWidth="1.2" strokeLinecap="round" />
+          
+          {/* Gorgeous Corner Jewel */}
+          <polygon points="6,6 9,9 6,12 3,9" fill={color} />
+          <circle cx="6" cy="9" r="1.5" fill="#8A0F0F" />
+          
+          {/* Accents */}
+          <circle cx="28" cy="10" r="1" fill="#fff" opacity="0.8" />
+          <circle cx="10" cy="28" r="1" fill="#fff" opacity="0.8" />
+        </svg>
+      </div>
+    );
 
-          {/* Center intertwining curl */}
-          <path d="M 12 12 C 25 25, 45 25, 50 40 C 55 55, 45 65, 35 60 C 25 55, 25 45, 35 40" stroke={color} strokeWidth="1" strokeLinecap="round" />
-          <path d="M 12 12 C 25 25, 25 45, 40 50 C 55 55, 65 45, 60 35 C 55 25, 45 25, 40 35" stroke={color} strokeWidth="1" strokeLinecap="round" />
+    const EdgeCenterHorizontal = ({ pos, transform }: { pos: string, transform: string }) => (
+      <div className={`absolute ${pos} w-[160px] h-[24px] pointer-events-none z-10`} style={{ transform }}>
+        <svg viewBox="0 0 160 24" className="w-full h-full drop-shadow-[0_0_5px_rgba(212,175,55,0.8)]" fill="none">
+          {/* Dip for the outer line (y=2) */}
+          <path d="M 0 2 L 50 2 C 70 2, 75 12, 80 12 C 85 12, 90 2, 110 2 L 160 2" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
           
-          {/* Sharp diamond accents along the curves */}
-          <polygon points="12,8 14,12 12,16 10,12" fill={color} />
-          <polygon points="8,12 12,14 16,12 12,10" fill={color} />
+          {/* Crest for the inner line (y=14) */}
+          <path d="M 0 14 L 45 14 C 60 14, 65 4, 80 4 C 95 4, 100 14, 115 14 L 160 14" stroke={color} strokeWidth="1" strokeLinecap="round" />
           
-          {/* Red Jewel in the core */}
-          <circle cx="35" cy="35" r="3.5" fill="#8A0F0F" stroke={color} strokeWidth="1" />
-          <circle cx="34" cy="34" r="1" fill="#fff" opacity="0.7" />
+          {/* Central majestic diamond */}
+          <polygon points="76,8 80,12 84,8 80,4" fill={color} />
+          <circle cx="80" cy="8" r="1.5" fill="#8A0F0F" />
+          <circle cx="80" cy="8" r="0.5" fill="#fff" />
           
-          {/* Tiny starry dots */}
-          <circle cx="65" cy="15" r="1" fill="#fff" opacity="0.8" />
-          <circle cx="15" cy="65" r="1" fill="#fff" opacity="0.8" />
-          <circle cx="85" cy="15" r="0.8" fill={color} />
-          <circle cx="15" cy="85" r="0.8" fill={color} />
+          {/* Swirling flourish accents at the center */}
+          <path d="M 60 14 C 70 24, 90 24, 100 14" stroke={color} strokeWidth="1" strokeLinecap="round" />
+          <circle cx="80" cy="18" r="1" fill="#fff" opacity="0.8" />
+          <circle cx="60" cy="8" r="1" fill="#fff" opacity="0.8" />
+          <circle cx="100" cy="8" r="1" fill="#fff" opacity="0.8" />
+        </svg>
+      </div>
+    );
+
+    const EdgeCenterVertical = ({ pos, transform }: { pos: string, transform: string }) => (
+      <div className={`absolute ${pos} w-[24px] h-[160px] pointer-events-none z-10`} style={{ transform }}>
+        <svg viewBox="0 0 24 160" className="w-full h-full drop-shadow-[0_0_5px_rgba(212,175,55,0.8)]" fill="none">
+          {/* Dip for the outer line (x=2) */}
+          <path d="M 2 0 L 2 50 C 2 70, 12 75, 12 80 C 12 85, 2 90, 2 110 L 2 160" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+          
+          {/* Crest for the inner line (x=14) */}
+          <path d="M 14 0 L 14 45 C 14 60, 4 65, 4 80 C 4 95, 14 100, 14 115 L 14 160" stroke={color} strokeWidth="1" strokeLinecap="round" />
+          
+          {/* Central majestic diamond */}
+          <polygon points="8,76 12,80 8,84 4,80" fill={color} />
+          <circle cx="8" cy="80" r="1.5" fill="#8A0F0F" />
+          <circle cx="8" cy="80" r="0.5" fill="#fff" />
+          
+          {/* Swirling flourish accents */}
+          <path d="M 14 60 C 24 70, 24 90, 14 100" stroke={color} strokeWidth="1" strokeLinecap="round" />
+          <circle cx="18" cy="80" r="1" fill="#fff" opacity="0.8" />
+          <circle cx="8" cy="60" r="1" fill="#fff" opacity="0.8" />
+          <circle cx="8" cy="100" r="1" fill="#fff" opacity="0.8" />
         </svg>
       </div>
     );
@@ -218,11 +257,47 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
           boxShadow: `inset 0 0 40px rgba(0,0,0,0.8), 0 0 15px rgba(212,175,55,0.3)`
         }} />
         
-        {/* 4 Majestic Corners Only - Strictly constrained to the absolute corners */}
+        {/* --- STRAIGHT FRAME LINES --- */}
+        {/* Top Outer (2px) */}
+        <div className="absolute top-[2px] left-[44px] right-[calc(50%+80px)] h-[1.5px] opacity-80" style={{ backgroundColor: color }} />
+        <div className="absolute top-[2px] left-[calc(50%+80px)] right-[44px] h-[1.5px] opacity-80" style={{ backgroundColor: color }} />
+        {/* Top Inner (14px) */}
+        <div className="absolute top-[14px] left-[44px] right-[calc(50%+80px)] h-[1px] opacity-60" style={{ backgroundColor: color }} />
+        <div className="absolute top-[14px] left-[calc(50%+80px)] right-[44px] h-[1px] opacity-60" style={{ backgroundColor: color }} />
+
+        {/* Bottom Outer (2px) */}
+        <div className="absolute bottom-[2px] left-[44px] right-[calc(50%+80px)] h-[1.5px] opacity-80" style={{ backgroundColor: color }} />
+        <div className="absolute bottom-[2px] left-[calc(50%+80px)] right-[44px] h-[1.5px] opacity-80" style={{ backgroundColor: color }} />
+        {/* Bottom Inner (14px) */}
+        <div className="absolute bottom-[14px] left-[44px] right-[calc(50%+80px)] h-[1px] opacity-60" style={{ backgroundColor: color }} />
+        <div className="absolute bottom-[14px] left-[calc(50%+80px)] right-[44px] h-[1px] opacity-60" style={{ backgroundColor: color }} />
+
+        {/* Left Outer (2px) */}
+        <div className="absolute left-[2px] top-[44px] bottom-[calc(50%+80px)] w-[1.5px] opacity-80" style={{ backgroundColor: color }} />
+        <div className="absolute left-[2px] top-[calc(50%+80px)] bottom-[44px] w-[1.5px] opacity-80" style={{ backgroundColor: color }} />
+        {/* Left Inner (14px) */}
+        <div className="absolute left-[14px] top-[44px] bottom-[calc(50%+80px)] w-[1px] opacity-60" style={{ backgroundColor: color }} />
+        <div className="absolute left-[14px] top-[calc(50%+80px)] bottom-[44px] w-[1px] opacity-60" style={{ backgroundColor: color }} />
+
+        {/* Right Outer (2px) */}
+        <div className="absolute right-[2px] top-[44px] bottom-[calc(50%+80px)] w-[1.5px] opacity-80" style={{ backgroundColor: color }} />
+        <div className="absolute right-[2px] top-[calc(50%+80px)] bottom-[44px] w-[1.5px] opacity-80" style={{ backgroundColor: color }} />
+        {/* Right Inner (14px) */}
+        <div className="absolute right-[14px] top-[44px] bottom-[calc(50%+80px)] w-[1px] opacity-60" style={{ backgroundColor: color }} />
+        <div className="absolute right-[14px] top-[calc(50%+80px)] bottom-[44px] w-[1px] opacity-60" style={{ backgroundColor: color }} />
+
+        {/* --- CORNERS --- */}
         <CornerSVG pos="top-0 left-0" transform="" />
         <CornerSVG pos="top-0 right-0" transform="scale(-1, 1)" />
         <CornerSVG pos="bottom-0 right-0" transform="scale(-1, -1)" />
         <CornerSVG pos="bottom-0 left-0" transform="scale(1, -1)" />
+
+        {/* --- CENTER ORNAMENTS --- */}
+        <EdgeCenterHorizontal pos="top-0 left-1/2 -translate-x-1/2" transform="" />
+        <EdgeCenterHorizontal pos="bottom-0 left-1/2 -translate-x-1/2" transform="scale(1, -1)" />
+        
+        <EdgeCenterVertical pos="left-0 top-1/2 -translate-y-1/2" transform="" />
+        <EdgeCenterVertical pos="right-0 top-1/2 -translate-y-1/2" transform="scale(-1, 1)" />
       </div>
     );
   }
