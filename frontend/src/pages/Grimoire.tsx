@@ -181,94 +181,54 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
   if (rarity === 'Legendary') {
     const CornerSVG = ({ pos, transform }: { pos: string, transform: string }) => (
       <div className={`absolute ${pos} w-[80px] h-[80px] pointer-events-none`} style={{ transform }}>
-        <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-[0_0_5px_rgba(212,175,55,0.6)]" fill="none">
-          {/* Outer L Bracket */}
-          <path d="M 1 100 L 1 12 Q 1 1, 12 1 L 100 1" stroke={color} strokeWidth="1" />
-          <path d="M 5 100 L 5 16 Q 5 5, 16 5 L 100 5" stroke={color} strokeWidth="2" />
+        <svg viewBox="0 0 100 100" className="w-full h-full drop-shadow-[0_0_8px_rgba(212,175,55,0.6)]" fill="none">
+          {/* Intricate Baroque Corner Filigree (No straight border lines) */}
+          {/* Main sweeping corner bracket vine */}
+          <path d="M 0 60 C 10 55, 20 40, 25 25 C 30 10, 40 5, 60 0" stroke={color} strokeWidth="3" strokeLinecap="round" />
+          <path d="M 0 70 C 15 65, 30 50, 35 35 C 40 20, 55 10, 70 0" stroke={color} strokeWidth="1" strokeLinecap="round" />
           
-          {/* Small swirly ends for the brackets */}
-          <path d="M -1 100 C -1 95, 7 95, 7 100 Z" fill={color} />
-          <path d="M 100 -1 C 95 -1, 95 7, 100 7 Z" fill={color} />
+          {/* Outward spreading floral swirls (Acanthus scrollwork) */}
+          <path d="M 25 25 C 35 35, 50 40, 65 30 C 75 25, 80 15, 75 5 C 70 -5, 60 0, 55 10" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+          <path d="M 25 25 C 35 35, 40 50, 30 65 C 25 75, 15 80, 5 75 C -5 70, 0 60, 10 55" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
           
-          <path d="M 3 100 C 3 92, 11 92, 11 100 Z" fill={color} />
-          <path d="M 100 3 C 92 3, 92 11, 100 11 Z" fill={color} />
+          {/* Curled leaf tips (Filled shapes) */}
+          <path d="M 60 0 C 75 5, 85 15, 95 10 C 85 20, 75 10, 60 0 Z" fill={color} />
+          <path d="M 0 60 C 5 75, 15 85, 10 95 C 20 85, 10 75, 0 60 Z" fill={color} />
+          
+          <path d="M 65 30 C 75 40, 90 40, 95 30 C 85 45, 70 45, 65 30 Z" fill={color} />
+          <path d="M 30 65 C 40 75, 40 90, 30 95 C 45 85, 45 70, 30 65 Z" fill={color} />
 
-          {/* Elaborate inner filigree scrollwork */}
-          <path d="M 15 15 C 30 30, 50 20, 65 35 C 80 50, 75 70, 60 85 C 45 100, 25 90, 15 75 C 5 60, 25 50, 40 60 C 50 67, 45 80, 35 75" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+          {/* Inner floral core detail */}
+          <path d="M 5 5 C 15 10, 20 20, 15 25 C 10 30, 5 25, 0 20 Z" fill={color} />
+          <path d="M 5 5 C 10 15, 20 20, 25 15 C 30 10, 25 5, 20 0 Z" fill={color} />
           
-          {/* Thick Acanthus leaf flourishes */}
-          <path d="M 30 24 C 45 20, 60 10, 75 5 C 60 15, 45 18, 30 24 Z" fill={color} />
-          <path d="M 24 30 C 20 45, 10 60, 5 75 C 15 60, 18 45, 24 30 Z" fill={color} />
+          {/* Glowing jewels nested in the vines (Metallic Red/Gold fusion) */}
+          <circle cx="25" cy="25" r="4.5" fill="#8A0F0F" stroke={color} strokeWidth="1" />
+          <circle cx="25" cy="25" r="2" fill="#ff4444" opacity="0.8" />
           
-          <path d="M 48 43 C 65 48, 80 45, 95 35 C 75 50, 65 52, 48 43 Z" fill={color} />
-          <path d="M 43 48 C 48 65, 45 80, 35 95 C 50 75, 52 65, 43 48 Z" fill={color} />
-
-          {/* Decorative Diamonds */}
-          <polygon points="60,20 63,24 60,28 57,24" fill="#fff" opacity="0.9" />
-          <polygon points="20,60 24,63 28,60 24,57" fill="#fff" opacity="0.9" />
-          <polygon points="85,60 88,64 85,68 82,64" fill={color} />
-          <polygon points="60,85 64,88 68,85 64,82" fill={color} />
-        </svg>
-      </div>
-    );
-
-    const CenterOrnament = ({ pos, transform }: { pos: string, transform: string }) => (
-      <div className={`absolute ${pos} w-[120px] h-[24px] pointer-events-none flex justify-center items-start`} style={{ transform }}>
-        <svg viewBox="0 0 120 24" className="w-full h-full drop-shadow-[0_0_5px_rgba(212,175,55,0.5)]" fill="none">
-          {/* Center Diamond / Crest */}
-          <polygon points="60,1 69,10 60,19 51,10" fill="none" stroke={color} strokeWidth="1.5" />
-          <polygon points="60,4 64,10 60,16 56,10" fill={color} />
-          <circle cx="60" cy="10" r="1.5" fill="#fff" />
-          
-          {/* Left Wing Swirls */}
-          <path d="M 48 10 C 35 10, 30 2, 15 5 C 20 7, 23 11, 18 10 C 12 15, 5 10, 0 10" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
-          <path d="M 32 8 C 40 4, 45 4, 50 5 C 40 7, 35 7, 32 8 Z" fill={color} />
-          <path d="M 25 10 C 32 16, 40 16, 45 14 C 35 14, 30 12, 25 10 Z" fill={color} />
-          <polygon points="8,10 10,12 8,14 6,12" fill="#fff" opacity="0.8" />
-          
-          {/* Right Wing Swirls */}
-          <path d="M 72 10 C 85 10, 90 2, 105 5 C 100 7, 97 11, 102 10 C 108 15, 115 10, 120 10" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
-          <path d="M 88 8 C 80 4, 75 4, 70 5 C 80 7, 85 7, 88 8 Z" fill={color} />
-          <path d="M 95 10 C 88 16, 80 16, 75 14 C 85 14, 90 12, 95 10 Z" fill={color} />
-          <polygon points="112,10 114,12 112,14 110,12" fill="#fff" opacity="0.8" />
+          <circle cx="55" cy="10" r="1.5" fill="#fff" opacity="0.9" />
+          <circle cx="10" cy="55" r="1.5" fill="#fff" opacity="0.9" />
+          <circle cx="75" cy="5" r="1" fill={color} />
+          <circle cx="5" cy="75" r="1" fill={color} />
+          <circle cx="95" cy="30" r="1" fill={color} />
+          <circle cx="30" cy="95" r="1" fill={color} />
         </svg>
       </div>
     );
 
     return (
-      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden">
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden rounded-sm">
         {/* Ambient Premium Red/Gold Glow */}
         <div className="absolute inset-0" style={{ 
           background: 'radial-gradient(ellipse at center, rgba(138,15,15,0.4) 0%, rgba(20,2,2,0.95) 100%)',
           boxShadow: `inset 0 0 40px rgba(0,0,0,0.8), 0 0 15px rgba(212,175,55,0.3)`
         }} />
         
-        {/* Subtle grid pattern */}
-        <div className="absolute inset-0 opacity-[0.03]" style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg width='24' height='24' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M12 0 L24 12 L12 24 L0 12 Z' fill='%23D4AF37' fill-rule='evenodd'/%3E%3C/svg%3E")`,
-          backgroundSize: '32px 32px'
-        }} />
-
-        {/* Straight Borders connecting the corners */}
-        <div className="absolute top-[1px] left-[80px] right-[80px] h-[1px]" style={{ backgroundColor: color, opacity: 0.8 }} />
-        <div className="absolute bottom-[1px] left-[80px] right-[80px] h-[1px]" style={{ backgroundColor: color, opacity: 0.8 }} />
-        <div className="absolute left-[1px] top-[80px] bottom-[80px] w-[1px]" style={{ backgroundColor: color, opacity: 0.8 }} />
-        <div className="absolute right-[1px] top-[80px] bottom-[80px] w-[1px]" style={{ backgroundColor: color, opacity: 0.8 }} />
-        
-        <div className="absolute top-[4px] left-[80px] right-[80px] h-[2px]" style={{ backgroundColor: color, opacity: 0.9 }} />
-        <div className="absolute bottom-[4px] left-[80px] right-[80px] h-[2px]" style={{ backgroundColor: color, opacity: 0.9 }} />
-        <div className="absolute left-[4px] top-[80px] bottom-[80px] w-[2px]" style={{ backgroundColor: color, opacity: 0.9 }} />
-        <div className="absolute right-[4px] top-[80px] bottom-[80px] w-[2px]" style={{ backgroundColor: color, opacity: 0.9 }} />
-
-        {/* 4 Corners */}
+        {/* 4 Majestic Corners Only - Center edges left totally clean */}
         <CornerSVG pos="top-0 left-0" transform="" />
         <CornerSVG pos="top-0 right-0" transform="scale(-1, 1)" />
         <CornerSVG pos="bottom-0 right-0" transform="scale(-1, -1)" />
         <CornerSVG pos="bottom-0 left-0" transform="scale(1, -1)" />
-
-        {/* 2 Center Ornaments (Top & Bottom) */}
-        <CenterOrnament pos="top-[-6px] left-1/2 -translate-x-1/2" transform="" />
-        <CenterOrnament pos="bottom-[-6px] left-1/2 -translate-x-1/2" transform="scale(1, -1)" />
       </div>
     );
   }
