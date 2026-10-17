@@ -181,24 +181,95 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
   if (rarity === 'Legendary') {
     return (
       <div className="absolute inset-0 pointer-events-none z-0">
-        {/* Ambient Gothic Ruby Glow */}
+        {/* Outer Perimeter Gilded Border */}
         <div 
-          className="absolute inset-[6px] rounded-sm pointer-events-none z-0" 
+          className="absolute inset-0 border-[1.5px]" 
           style={{ 
-            background: 'radial-gradient(ellipse at center, rgba(160, 20, 20, 0.45) 0%, rgba(35, 4, 6, 0.85) 65%, rgba(12, 1, 2, 0.95) 100%)',
-            boxShadow: 'inset 0 0 25px rgba(0,0,0,0.9)'
+            borderColor: color, 
+            boxShadow: `0 0 10px ${color}, inset 0 0 18px rgba(109,8,8,0.5)` 
           }} 
         />
 
-        {/* 3D Gilded Baroque Picture Frame (Flush with outer border) */}
-        <img 
-          src="/legendary_baroque_frame.png" 
-          alt="Legendary Baroque Frame" 
-          className="absolute inset-0 w-full h-full object-fill pointer-events-none z-10"
-          style={{ 
-            filter: 'drop-shadow(0 0 8px rgba(212,175,55,0.6)) drop-shadow(0 2px 6px rgba(0,0,0,0.9))' 
-          }}
+        {/* Inner Fillet Moulding (Classical Double-Border Accent) */}
+        <div 
+          className="absolute inset-[3px] border border-[#D4AF37]/35" 
+          style={{ boxShadow: 'inset 0 0 8px rgba(212,175,55,0.2)' }}
         />
+
+        {/* --- 4 BAROQUE CORNER VOLUTES --- */}
+        {[
+          'top-0 left-0', 
+          'top-0 right-0 rotate-90', 
+          'bottom-0 right-0 rotate-180', 
+          'bottom-0 left-0 -rotate-90'
+        ].map((pos, i) => (
+          <svg 
+            key={i} 
+            className={`absolute ${pos} w-9 h-9 drop-shadow-[0_0_4px_${color}]`} 
+            viewBox="0 0 36 36" 
+            fill="none"
+          >
+            {/* Outer connecting swoop */}
+            <path d="M 36 0 L 22 0 C 10 0, 0 10, 0 22 L 0 36" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+            {/* Inner C-scroll eyelet */}
+            <path d="M 0 14 C 8 14, 14 8, 14 0" stroke={color} strokeWidth="1" strokeLinecap="round" />
+            {/* Acanthus leaf sprig */}
+            <path d="M 5 5 C 14 8, 18 14, 18 18 C 14 18, 8 14, 5 5 Z" fill={color} fillOpacity="0.25" stroke={color} strokeWidth="1" />
+            {/* Corner diamond boss accent */}
+            <polygon points="7,7 10,10 7,13 4,10" fill={color} />
+            <circle cx="16" cy="16" r="1.5" fill={color} />
+            <path d="M 26 2 L 2 26" stroke={color} strokeWidth="0.75" strokeDasharray="2 2" opacity="0.6" />
+          </svg>
+        ))}
+
+        {/* --- TOP ACANTHUS CROWN CREST --- */}
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80px] h-[14px] flex items-center justify-center">
+          <svg className="w-full h-full drop-shadow-[0_0_4px_rgba(212,175,55,0.9)]" viewBox="0 0 80 14" fill="none">
+            {/* Curled leaf wings extending along border */}
+            <path d="M 0 0 C 14 0, 24 5, 33 6 L 33 1 C 24 1, 16 0, 0 0 Z" fill={color} fillOpacity="0.25" stroke={color} strokeWidth="1" />
+            <path d="M 80 0 C 66 0, 56 5, 47 6 L 47 1 C 56 1, 64 0, 80 0 Z" fill={color} fillOpacity="0.25" stroke={color} strokeWidth="1" />
+            
+            {/* Central fanning acanthus shell */}
+            <path d="M 33 6 C 36 0, 44 0, 47 6 C 44 10, 36 10, 33 6 Z" fill={color} fillOpacity="0.3" stroke={color} strokeWidth="1" />
+            <path d="M 40 10 L 40 1 M 40 10 L 36 3 M 40 10 L 44 3" stroke={color} strokeWidth="0.8" strokeLinecap="round" />
+            
+            {/* Center Ruby Cabochon Jewel */}
+            <circle cx="40" cy="7" r="2.5" fill="#8A0F0F" stroke={color} strokeWidth="1" />
+            <circle cx="40" cy="7" r="0.8" fill="#FFF" />
+          </svg>
+        </div>
+
+        {/* --- BOTTOM INVERTED CARTOUCHE CREST --- */}
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[70px] h-[12px] flex items-center justify-center">
+          <svg className="w-full h-full drop-shadow-[0_0_4px_rgba(212,175,55,0.9)]" viewBox="0 0 70 12" fill="none">
+            {/* Curled wings */}
+            <path d="M 0 0 C 12 0, 20 4, 28 5 L 28 1 C 20 1, 14 0, 0 0 Z" fill={color} fillOpacity="0.25" stroke={color} strokeWidth="1" />
+            <path d="M 70 0 C 58 0, 50 4, 42 5 L 42 1 C 50 1, 56 0, 70 0 Z" fill={color} fillOpacity="0.25" stroke={color} strokeWidth="1" />
+            
+            {/* Cartouche drop */}
+            <path d="M 28 0 C 31 8, 39 8, 42 0" stroke={color} strokeWidth="1" fill={color} fillOpacity="0.2" />
+            
+            {/* Center Ruby Cabochon Jewel */}
+            <circle cx="35" cy="5" r="2.2" fill="#8A0F0F" stroke={color} strokeWidth="1" />
+            <circle cx="35" cy="5" r="0.7" fill="#FFF" />
+          </svg>
+        </div>
+
+        {/* --- LEFT & RIGHT MID-SIDE CLASPS --- */}
+        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[8px] h-[36px] flex items-center">
+          <svg className="w-full h-full drop-shadow-[0_0_3px_rgba(212,175,55,0.8)]" viewBox="0 0 8 36" fill="none">
+            <path d="M 0 0 C 5 6, 7 12, 7 18 C 7 24, 5 30, 0 36" stroke={color} strokeWidth="1.2" strokeLinecap="round" />
+            <path d="M 0 8 C 3 11, 4 14, 4 18 C 4 22, 3 25, 0 28" stroke={color} strokeWidth="0.8" />
+            <polygon points="3,18 6,15 6,21" fill={color} />
+          </svg>
+        </div>
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[8px] h-[36px] flex items-center scale-x-[-1]">
+          <svg className="w-full h-full drop-shadow-[0_0_3px_rgba(212,175,55,0.8)]" viewBox="0 0 8 36" fill="none">
+            <path d="M 0 0 C 5 6, 7 12, 7 18 C 7 24, 5 30, 0 36" stroke={color} strokeWidth="1.2" strokeLinecap="round" />
+            <path d="M 0 8 C 3 11, 4 14, 4 18 C 4 22, 3 25, 0 28" stroke={color} strokeWidth="0.8" />
+            <polygon points="3,18 6,15 6,21" fill={color} />
+          </svg>
+        </div>
       </div>
     );
   }
