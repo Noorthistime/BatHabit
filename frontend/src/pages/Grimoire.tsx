@@ -186,7 +186,7 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
           className="absolute inset-0 border-[1.5px]" 
           style={{ 
             borderColor: color, 
-            boxShadow: `0 0 10px ${color}, inset 0 0 18px rgba(109,8,8,0.5)` 
+            boxShadow: `0 0 12px ${color}, inset 0 0 20px rgba(109,8,8,0.55)` 
           }} 
         />
 
@@ -196,7 +196,58 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
           style={{ boxShadow: 'inset 0 0 8px rgba(212,175,55,0.2)' }}
         />
 
-        {/* --- 4 BAROQUE CORNER VOLUTES --- */}
+        {/* Continuous Baroque Guilloche & Acanthus Running Filigree */}
+        <svg className="absolute inset-0 w-full h-full opacity-90 drop-shadow-[0_0_3px_rgba(212,175,55,0.7)]">
+          <defs>
+            {/* Horizontal Running Filigree Pattern */}
+            <pattern id="legendary-filigree-x" width="40" height="12" patternUnits="userSpaceOnUse">
+              {/* Outer guide rail */}
+              <line x1="0" y1="1" x2="40" y2="1" stroke={color} strokeWidth="0.6" opacity="0.6" />
+              {/* Interlocking Baroque Ribbon Waves (Guilloche) */}
+              <path d="M 0 6 C 10 0.5, 10 11.5, 20 6 C 30 0.5, 30 11.5, 40 6" fill="none" stroke={color} strokeWidth="0.9" />
+              <path d="M 0 6 C 10 11.5, 10 0.5, 20 6 C 30 11.5, 30 0.5, 40 6" fill="none" stroke={color} strokeWidth="0.9" />
+              {/* Mandorla Diamond Rosette at nexus (x=10, 30) */}
+              <path d="M 10 3 L 12.5 6 L 10 9 L 7.5 6 Z" fill={color} fillOpacity="0.25" stroke={color} strokeWidth="0.75" />
+              <circle cx="10" cy="6" r="1.3" fill="#8A0F0F" stroke={color} strokeWidth="0.5" />
+              <path d="M 30 3 L 32.5 6 L 30 9 L 27.5 6 Z" fill={color} fillOpacity="0.25" stroke={color} strokeWidth="0.75" />
+              <circle cx="30" cy="6" r="1.3" fill="#8A0F0F" stroke={color} strokeWidth="0.5" />
+              {/* Acanthus leaf tendrils branching at crossover nodes (x=0, 20, 40) */}
+              <path d="M 20 6 C 16 3, 13 3.5, 10 4" fill="none" stroke={color} strokeWidth="0.6" opacity="0.75" />
+              <path d="M 20 6 C 24 3, 27 3.5, 30 4" fill="none" stroke={color} strokeWidth="0.6" opacity="0.75" />
+              <path d="M 20 6 C 16 9, 13 8.5, 10 8" fill="none" stroke={color} strokeWidth="0.6" opacity="0.75" />
+              <path d="M 20 6 C 24 9, 27 8.5, 30 8" fill="none" stroke={color} strokeWidth="0.6" opacity="0.75" />
+              <circle cx="20" cy="6" r="0.9" fill={color} />
+            </pattern>
+
+            {/* Vertical Running Filigree Pattern */}
+            <pattern id="legendary-filigree-y" width="12" height="40" patternUnits="userSpaceOnUse">
+              {/* Outer guide rail */}
+              <line x1="1" y1="0" x2="1" y2="40" stroke={color} strokeWidth="0.6" opacity="0.6" />
+              {/* Interlocking Baroque Ribbon Waves (Guilloche) */}
+              <path d="M 6 0 C 0.5 10, 11.5 10, 6 20 C 0.5 30, 11.5 30, 6 40" fill="none" stroke={color} strokeWidth="0.9" />
+              <path d="M 6 0 C 11.5 10, 0.5 10, 6 20 C 11.5 30, 0.5 30, 6 40" fill="none" stroke={color} strokeWidth="0.9" />
+              {/* Mandorla Diamond Rosette at nexus (y=10, 30) */}
+              <path d="M 3 10 L 6 12.5 L 9 10 L 6 7.5 Z" fill={color} fillOpacity="0.25" stroke={color} strokeWidth="0.75" />
+              <circle cx="6" cy="10" r="1.3" fill="#8A0F0F" stroke={color} strokeWidth="0.5" />
+              <path d="M 3 30 L 6 32.5 L 9 30 L 6 27.5 Z" fill={color} fillOpacity="0.25" stroke={color} strokeWidth="0.75" />
+              <circle cx="6" cy="30" r="1.3" fill="#8A0F0F" stroke={color} strokeWidth="0.5" />
+              {/* Acanthus leaf tendrils branching at crossover nodes (y=0, 20, 40) */}
+              <path d="M 6 20 C 3 16, 3.5 13, 4 10" fill="none" stroke={color} strokeWidth="0.6" opacity="0.75" />
+              <path d="M 6 20 C 3 24, 3.5 27, 4 30" fill="none" stroke={color} strokeWidth="0.6" opacity="0.75" />
+              <path d="M 6 20 C 9 16, 8.5 13, 8 10" fill="none" stroke={color} strokeWidth="0.6" opacity="0.75" />
+              <path d="M 6 20 C 9 24, 8.5 27, 8 30" fill="none" stroke={color} strokeWidth="0.6" opacity="0.75" />
+              <circle cx="6" cy="20" r="0.9" fill={color} />
+            </pattern>
+          </defs>
+
+          {/* 4 Borders Filled with Interlocking Baroque Filigree */}
+          <rect x="0" y="0" width="100%" height="12" fill="url(#legendary-filigree-x)" />
+          <rect x="0" y="calc(100% - 12px)" width="100%" height="12" fill="url(#legendary-filigree-x)" />
+          <rect x="0" y="0" width="12" height="100%" fill="url(#legendary-filigree-y)" />
+          <rect x="calc(100% - 12px)" y="0" width="12" height="100%" fill="url(#legendary-filigree-y)" />
+        </svg>
+
+        {/* --- 4 GRAND BAROQUE CORNER VOLUTES --- */}
         {[
           'top-0 left-0', 
           'top-0 right-0 rotate-90', 
@@ -205,69 +256,107 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
         ].map((pos, i) => (
           <svg 
             key={i} 
-            className={`absolute ${pos} w-9 h-9 drop-shadow-[0_0_4px_${color}]`} 
-            viewBox="0 0 36 36" 
+            className={`absolute ${pos} w-11 h-11 drop-shadow-[0_0_5px_${color}] pointer-events-none`} 
+            viewBox="0 0 44 44" 
             fill="none"
           >
-            {/* Outer connecting swoop */}
-            <path d="M 36 0 L 22 0 C 10 0, 0 10, 0 22 L 0 36" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
-            {/* Inner C-scroll eyelet */}
-            <path d="M 0 14 C 8 14, 14 8, 14 0" stroke={color} strokeWidth="1" strokeLinecap="round" />
-            {/* Acanthus leaf sprig */}
-            <path d="M 5 5 C 14 8, 18 14, 18 18 C 14 18, 8 14, 5 5 Z" fill={color} fillOpacity="0.25" stroke={color} strokeWidth="1" />
-            {/* Corner diamond boss accent */}
-            <polygon points="7,7 10,10 7,13 4,10" fill={color} />
-            <circle cx="16" cy="16" r="1.5" fill={color} />
-            <path d="M 26 2 L 2 26" stroke={color} strokeWidth="0.75" strokeDasharray="2 2" opacity="0.6" />
+            {/* Outer arch fillet seamlessly joining borders at (44,0) and (0,44) */}
+            <path d="M 44 0 L 26 0 C 13 0, 0 13, 0 26 L 0 44" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
+            {/* Concentric inner scroll fillet */}
+            <path d="M 44 2.5 L 28 2.5 C 16 2.5, 2.5 16, 2.5 28 L 2.5 44" stroke={color} strokeWidth="0.8" opacity="0.8" />
+            
+            {/* Sweeping Rococo C-Scroll Volute */}
+            <path d="M 40 4 C 22 7, 7 22, 4 40" stroke={color} strokeWidth="1" strokeLinecap="round" />
+            
+            {/* Inward Curling Volute Spiral Eye */}
+            <path d="M 18 0 C 18 10, 10 18, 0 18" stroke={color} strokeWidth="0.9" strokeLinecap="round" />
+            <path d="M 0 14 C 6 14, 14 6, 14 0" stroke={color} strokeWidth="0.7" opacity="0.7" />
+            
+            {/* Baroque Acanthus Palmette along diagonal axis */}
+            <path d="M 8 8 C 16 11, 22 17, 22 22 C 17 22, 11 16, 8 8 Z" fill={color} fillOpacity="0.25" stroke={color} strokeWidth="1" />
+            <path d="M 14 14 C 20 11, 26 13, 27 17 C 23 18, 17 17, 14 14 Z" fill={color} fillOpacity="0.2" stroke={color} strokeWidth="0.8" />
+            <path d="M 14 14 C 11 20, 13 26, 17 27 C 18 23, 17 17, 14 14 Z" fill={color} fillOpacity="0.2" stroke={color} strokeWidth="0.8" />
+            
+            {/* Diagonal stem tying palmette to corner and terminal bud */}
+            <line x1="2" y1="2" x2="8" y2="8" stroke={color} strokeWidth="1.2" strokeLinecap="round" />
+            <line x1="16" y1="16" x2="25" y2="25" stroke={color} strokeWidth="0.9" strokeLinecap="round" />
+            <polygon points="25,23 27,25 25,27 23,25" fill={color} />
+            
+            {/* Central Ruby Cabochon set in Gold Bezel */}
+            <circle cx="12" cy="12" r="2.8" fill="#8A0F0F" stroke={color} strokeWidth="1" />
+            <circle cx="11.2" cy="11.2" r="0.8" fill="#FFF" opacity="0.9" />
           </svg>
         ))}
 
         {/* --- TOP ACANTHUS CROWN CREST --- */}
-        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[80px] h-[14px] flex items-center justify-center">
-          <svg className="w-full h-full drop-shadow-[0_0_4px_rgba(212,175,55,0.9)]" viewBox="0 0 80 14" fill="none">
-            {/* Curled leaf wings extending along border */}
-            <path d="M 0 0 C 14 0, 24 5, 33 6 L 33 1 C 24 1, 16 0, 0 0 Z" fill={color} fillOpacity="0.25" stroke={color} strokeWidth="1" />
-            <path d="M 80 0 C 66 0, 56 5, 47 6 L 47 1 C 56 1, 64 0, 80 0 Z" fill={color} fillOpacity="0.25" stroke={color} strokeWidth="1" />
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[96px] h-[16px] flex items-center justify-center">
+          <svg className="w-full h-full drop-shadow-[0_0_5px_rgba(212,175,55,0.9)]" viewBox="0 0 96 16" fill="none">
+            {/* Left wing spreading smoothly along border */}
+            <path d="M 0 0 C 18 0, 30 6, 40 7 L 40 2 C 30 2, 20 0, 0 0 Z" fill={color} fillOpacity="0.25" stroke={color} strokeWidth="1" />
+            <path d="M 10 1 C 22 2, 32 6, 40 7" stroke={color} strokeWidth="0.75" />
             
-            {/* Central fanning acanthus shell */}
-            <path d="M 33 6 C 36 0, 44 0, 47 6 C 44 10, 36 10, 33 6 Z" fill={color} fillOpacity="0.3" stroke={color} strokeWidth="1" />
-            <path d="M 40 10 L 40 1 M 40 10 L 36 3 M 40 10 L 44 3" stroke={color} strokeWidth="0.8" strokeLinecap="round" />
+            {/* Right wing spreading smoothly along border */}
+            <path d="M 96 0 C 78 0, 66 6, 56 7 L 56 2 C 66 2, 76 0, 96 0 Z" fill={color} fillOpacity="0.25" stroke={color} strokeWidth="1" />
+            <path d="M 86 1 C 74 2, 64 6, 56 7" stroke={color} strokeWidth="0.75" />
+            
+            {/* Central Royal Acanthus Shell Fan */}
+            <path d="M 40 7 C 43 1, 53 1, 56 7 C 53 12, 43 12, 40 7 Z" fill={color} fillOpacity="0.3" stroke={color} strokeWidth="1" />
+            
+            {/* Radiating Shell Ribs converging at Crown Apex */}
+            <path d="M 48 12 L 48 2 M 48 12 L 43 4 M 48 12 L 53 4 M 48 12 L 40 6 M 48 12 L 56 6" stroke={color} strokeWidth="0.8" strokeLinecap="round" />
+            
+            {/* Fleur Finial Droplet at apex */}
+            <polygon points="48,0 50,3 48,4 46,3" fill={color} />
             
             {/* Center Ruby Cabochon Jewel */}
-            <circle cx="40" cy="7" r="2.5" fill="#8A0F0F" stroke={color} strokeWidth="1" />
-            <circle cx="40" cy="7" r="0.8" fill="#FFF" />
+            <circle cx="48" cy="8" r="3" fill="#8A0F0F" stroke={color} strokeWidth="1" />
+            <circle cx="47" cy="7" r="0.9" fill="#FFF" opacity="0.95" />
           </svg>
         </div>
 
         {/* --- BOTTOM INVERTED CARTOUCHE CREST --- */}
-        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[70px] h-[12px] flex items-center justify-center">
-          <svg className="w-full h-full drop-shadow-[0_0_4px_rgba(212,175,55,0.9)]" viewBox="0 0 70 12" fill="none">
-            {/* Curled wings */}
-            <path d="M 0 0 C 12 0, 20 4, 28 5 L 28 1 C 20 1, 14 0, 0 0 Z" fill={color} fillOpacity="0.25" stroke={color} strokeWidth="1" />
-            <path d="M 70 0 C 58 0, 50 4, 42 5 L 42 1 C 50 1, 56 0, 70 0 Z" fill={color} fillOpacity="0.25" stroke={color} strokeWidth="1" />
+        <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[88px] h-[15px] flex items-center justify-center">
+          <svg className="w-full h-full drop-shadow-[0_0_5px_rgba(212,175,55,0.9)]" viewBox="0 0 88 15" fill="none">
+            {/* Left wing */}
+            <path d="M 0 0 C 16 0, 26 5, 36 6 L 36 1 C 26 1, 18 0, 0 0 Z" fill={color} fillOpacity="0.25" stroke={color} strokeWidth="1" />
+            <path d="M 10 0 C 20 2, 28 5, 36 6" stroke={color} strokeWidth="0.75" />
+            
+            {/* Right wing */}
+            <path d="M 88 0 C 72 0, 62 5, 52 6 L 52 1 C 62 1, 70 0, 88 0 Z" fill={color} fillOpacity="0.25" stroke={color} strokeWidth="1" />
+            <path d="M 78 0 C 68 2, 60 5, 52 6" stroke={color} strokeWidth="0.75" />
             
             {/* Cartouche drop */}
-            <path d="M 28 0 C 31 8, 39 8, 42 0" stroke={color} strokeWidth="1" fill={color} fillOpacity="0.2" />
+            <path d="M 36 0 C 39 10, 49 10, 52 0" stroke={color} strokeWidth="1" fill={color} fillOpacity="0.2" />
+            <path d="M 39 0 C 41 7, 47 7, 49 0" stroke={color} strokeWidth="0.7" opacity="0.8" />
+            
+            {/* Drop Finial */}
+            <polygon points="44,14 46,10 44,11 42,10" fill={color} />
             
             {/* Center Ruby Cabochon Jewel */}
-            <circle cx="35" cy="5" r="2.2" fill="#8A0F0F" stroke={color} strokeWidth="1" />
-            <circle cx="35" cy="5" r="0.7" fill="#FFF" />
+            <circle cx="44" cy="6" r="2.6" fill="#8A0F0F" stroke={color} strokeWidth="1" />
+            <circle cx="43.2" cy="5.2" r="0.8" fill="#FFF" opacity="0.95" />
           </svg>
         </div>
 
         {/* --- LEFT & RIGHT MID-SIDE CLASPS --- */}
-        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[8px] h-[36px] flex items-center">
-          <svg className="w-full h-full drop-shadow-[0_0_3px_rgba(212,175,55,0.8)]" viewBox="0 0 8 36" fill="none">
-            <path d="M 0 0 C 5 6, 7 12, 7 18 C 7 24, 5 30, 0 36" stroke={color} strokeWidth="1.2" strokeLinecap="round" />
-            <path d="M 0 8 C 3 11, 4 14, 4 18 C 4 22, 3 25, 0 28" stroke={color} strokeWidth="0.8" />
-            <polygon points="3,18 6,15 6,21" fill={color} />
+        <div className="absolute left-0 top-1/2 -translate-y-1/2 w-[10px] h-[44px] flex items-center">
+          <svg className="w-full h-full drop-shadow-[0_0_4px_rgba(212,175,55,0.8)]" viewBox="0 0 10 44" fill="none">
+            <path d="M 0 0 C 7 8, 9 14, 9 22 C 9 30, 7 36, 0 44" stroke={color} strokeWidth="1.2" strokeLinecap="round" />
+            <path d="M 0 10 C 4 14, 5 18, 5 22 C 5 26, 4 30, 0 34" stroke={color} strokeWidth="0.8" />
+            <circle cx="5" cy="22" r="2" fill="#8A0F0F" stroke={color} strokeWidth="0.8" />
+            <circle cx="4.5" cy="21.5" r="0.6" fill="#FFF" />
+            <polygon points="0,2 3,5 0,8" fill={color} />
+            <polygon points="0,42 3,39 0,36" fill={color} />
           </svg>
         </div>
-        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[8px] h-[36px] flex items-center scale-x-[-1]">
-          <svg className="w-full h-full drop-shadow-[0_0_3px_rgba(212,175,55,0.8)]" viewBox="0 0 8 36" fill="none">
-            <path d="M 0 0 C 5 6, 7 12, 7 18 C 7 24, 5 30, 0 36" stroke={color} strokeWidth="1.2" strokeLinecap="round" />
-            <path d="M 0 8 C 3 11, 4 14, 4 18 C 4 22, 3 25, 0 28" stroke={color} strokeWidth="0.8" />
-            <polygon points="3,18 6,15 6,21" fill={color} />
+        <div className="absolute right-0 top-1/2 -translate-y-1/2 w-[10px] h-[44px] flex items-center scale-x-[-1]">
+          <svg className="w-full h-full drop-shadow-[0_0_4px_rgba(212,175,55,0.8)]" viewBox="0 0 10 44" fill="none">
+            <path d="M 0 0 C 7 8, 9 14, 9 22 C 9 30, 7 36, 0 44" stroke={color} strokeWidth="1.2" strokeLinecap="round" />
+            <path d="M 0 10 C 4 14, 5 18, 5 22 C 5 26, 4 30, 0 34" stroke={color} strokeWidth="0.8" />
+            <circle cx="5" cy="22" r="2" fill="#8A0F0F" stroke={color} strokeWidth="0.8" />
+            <circle cx="4.5" cy="21.5" r="0.6" fill="#FFF" />
+            <polygon points="0,2 3,5 0,8" fill={color} />
+            <polygon points="0,42 3,39 0,36" fill={color} />
           </svg>
         </div>
       </div>
