@@ -180,23 +180,23 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
 
   if (rarity === 'Legendary') {
     return (
-      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden rounded-md">
-        {/* Ambient Gothic Ruby/Gold Radial Glow */}
+      <div className="absolute inset-0 pointer-events-none z-0">
+        {/* Ambient Gothic Ruby Glow (Confined strictly inside the frame window) */}
         <div 
-          className="absolute inset-0" 
+          className="absolute inset-x-[24px] inset-y-[26px] rounded-sm pointer-events-none z-0" 
           style={{ 
-            background: 'radial-gradient(ellipse at center, rgba(160, 20, 20, 0.45) 0%, rgba(35, 4, 6, 0.85) 65%, rgba(12, 1, 2, 0.98) 100%)',
-            boxShadow: 'inset 0 0 30px rgba(0,0,0,0.9), 0 0 15px rgba(212,175,55,0.25)'
+            background: 'radial-gradient(ellipse at center, rgba(160, 20, 20, 0.5) 0%, rgba(35, 4, 6, 0.9) 65%, rgba(12, 1, 2, 1) 100%)',
+            boxShadow: 'inset 0 0 25px rgba(0,0,0,0.95), 0 0 10px rgba(0,0,0,0.8)'
           }} 
         />
 
-        {/* 3D Gilded Baroque Picture Frame */}
+        {/* 3D Gilded Baroque Picture Frame (Serving as the actual border of the box) */}
         <img 
           src="/legendary_baroque_frame.png" 
           alt="Legendary Baroque Frame" 
           className="absolute inset-0 w-full h-full object-fill pointer-events-none z-10"
           style={{ 
-            filter: 'drop-shadow(0 0 8px rgba(212,175,55,0.5)) drop-shadow(0 2px 6px rgba(0,0,0,0.85))' 
+            filter: 'drop-shadow(0 0 10px rgba(212,175,55,0.6)) drop-shadow(0 2px 6px rgba(0,0,0,0.9))' 
           }}
         />
       </div>
@@ -878,8 +878,11 @@ export function Grimoire() {
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.5, delay: i * 0.08 }}
                       whileHover={{ scale: 1.02, transition: { duration: 0.2, delay: 0 } }}
-                      className={`relative p-2 sm:p-2.5 flex flex-col h-full rounded-none overflow-hidden group ${!a.earned ? 'opacity-40 grayscale' : ''}`}
-                      style={{ 
+                      className={`relative p-2 sm:p-2.5 flex flex-col h-full rounded-none group ${a.rarity === 'Legendary' ? 'overflow-visible' : 'overflow-hidden'} ${!a.earned ? 'opacity-40 grayscale' : ''}`}
+                      style={a.rarity === 'Legendary' ? {
+                        backgroundColor: 'transparent',
+                        boxShadow: 'none'
+                      } : { 
                         backgroundColor: '#0a0a0a',
                         backgroundImage: `radial-gradient(ellipse at center, ${rStyle.bg} 0%, transparent 100%)`,
                         boxShadow: a.earned ? `inset 0 0 15px ${rStyle.bg}, 0 0 10px ${rStyle.glow || 'rgba(0,0,0,0.5)'}` : '0 0 10px rgba(0,0,0,0.5)'
