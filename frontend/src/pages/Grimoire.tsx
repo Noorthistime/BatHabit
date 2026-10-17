@@ -179,83 +179,26 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
   }
 
   if (rarity === 'Legendary') {
-    const CornerSVG = ({ pos, transform }: { pos: string, transform: string }) => (
-      <div className={`absolute ${pos} w-[40px] h-[40px] pointer-events-none z-20`} style={{ transform }}>
-        <svg viewBox="0 0 40 40" className="w-full h-full drop-shadow-[0_0_4px_rgba(212,175,55,0.8)]" fill="none">
-          <path d="M 40 2 L 30 2 C 15 2, 2 15, 2 30 L 2 40" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
-          <path d="M 2 15 C 10 15, 15 10, 15 2" stroke={color} strokeWidth="1" strokeLinecap="round" />
-          <polygon points="6,6 9,9 6,12 3,9" fill={color} />
-        </svg>
-      </div>
-    );
-
-    const EdgeCenterHorizontal = ({ pos, transform }: { pos: string, transform: string }) => (
-      <div className={`absolute ${pos} w-[100px] h-[12px] pointer-events-none z-20 flex items-center justify-center`} style={{ transform }}>
-        <svg viewBox="0 0 100 12" className="w-full h-full drop-shadow-[0_0_4px_rgba(212,175,55,0.8)]" fill="none">
-          <path d="M 0 2 L 30 2 C 40 2, 45 8, 50 8 C 55 8, 60 2, 70 2 L 100 2" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
-          <path d="M 35 2 C 35 6, 45 6, 45 2" stroke={color} strokeWidth="1" strokeLinecap="round" />
-          <path d="M 65 2 C 65 6, 55 6, 55 2" stroke={color} strokeWidth="1" strokeLinecap="round" />
-          <circle cx="50" cy="8" r="2" fill="#8A0F0F" stroke={color} strokeWidth="0.5" />
-          <circle cx="50" cy="8" r="0.5" fill="#fff" />
-        </svg>
-      </div>
-    );
-
-    const EdgeCenterVertical = ({ pos, transform }: { pos: string, transform: string }) => (
-      <div className={`absolute ${pos} w-[12px] h-[100px] pointer-events-none z-20 flex items-center justify-center`} style={{ transform }}>
-        <svg viewBox="0 0 12 100" className="w-full h-full drop-shadow-[0_0_4px_rgba(212,175,55,0.8)]" fill="none">
-          <path d="M 2 0 L 2 30 C 2 40, 8 45, 8 50 C 8 55, 2 60, 2 70 L 2 100" stroke={color} strokeWidth="1.5" strokeLinecap="round" />
-          <path d="M 2 35 C 6 35, 6 45, 2 45" stroke={color} strokeWidth="1" strokeLinecap="round" />
-          <path d="M 2 65 C 6 65, 6 55, 2 55" stroke={color} strokeWidth="1" strokeLinecap="round" />
-          <circle cx="8" cy="50" r="2" fill="#8A0F0F" stroke={color} strokeWidth="0.5" />
-          <circle cx="8" cy="50" r="0.5" fill="#fff" />
-        </svg>
-      </div>
-    );
-
-    const BorderLineHorizontal = ({ pos, left, right }: { pos: string, left: string, right: string }) => (
-      <div className={`absolute ${pos} h-[1.5px] pointer-events-none z-10 opacity-90 shadow-[0_0_4px_rgba(212,175,55,0.8)]`} style={{ left, right, backgroundColor: color }} />
-    );
-
-    const BorderLineVertical = ({ pos, top, bottom }: { pos: string, top: string, bottom: string }) => (
-      <div className={`absolute ${pos} w-[1.5px] pointer-events-none z-10 opacity-90 shadow-[0_0_4px_rgba(212,175,55,0.8)]`} style={{ top, bottom, backgroundColor: color }} />
-    );
-
     return (
-      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden rounded-sm">
-        {/* Ambient Premium Red/Gold Glow */}
-        <div className="absolute inset-0" style={{ 
-          background: 'radial-gradient(ellipse at center, rgba(138,15,15,0.4) 0%, rgba(20,2,2,0.95) 100%)',
-          boxShadow: `inset 0 0 40px rgba(0,0,0,0.8), 0 0 15px rgba(212,175,55,0.3)`
-        }} />
-        
-        {/* --- STRAIGHT FRAME LINES (Hugging 2px from the edge) --- */}
-        {/* Top Edge */}
-        <BorderLineHorizontal pos="top-[2px]" left="40px" right="calc(50% + 50px)" />
-        <BorderLineHorizontal pos="top-[2px]" left="calc(50% + 50px)" right="40px" />
-        {/* Bottom Edge */}
-        <BorderLineHorizontal pos="bottom-[2px]" left="40px" right="calc(50% + 50px)" />
-        <BorderLineHorizontal pos="bottom-[2px]" left="calc(50% + 50px)" right="40px" />
-        
-        {/* Left Edge */}
-        <BorderLineVertical pos="left-[2px]" top="40px" bottom="calc(50% + 50px)" />
-        <BorderLineVertical pos="left-[2px]" top="calc(50% + 50px)" bottom="40px" />
-        {/* Right Edge */}
-        <BorderLineVertical pos="right-[2px]" top="40px" bottom="calc(50% + 50px)" />
-        <BorderLineVertical pos="right-[2px]" top="calc(50% + 50px)" bottom="40px" />
+      <div className="absolute inset-0 pointer-events-none z-0 overflow-hidden rounded-md">
+        {/* Ambient Gothic Ruby/Gold Radial Glow */}
+        <div 
+          className="absolute inset-0" 
+          style={{ 
+            background: 'radial-gradient(ellipse at center, rgba(160, 20, 20, 0.45) 0%, rgba(35, 4, 6, 0.85) 65%, rgba(12, 1, 2, 0.98) 100%)',
+            boxShadow: 'inset 0 0 30px rgba(0,0,0,0.9), 0 0 15px rgba(212,175,55,0.25)'
+          }} 
+        />
 
-        {/* --- CORNERS --- */}
-        <CornerSVG pos="top-0 left-0" transform="" />
-        <CornerSVG pos="top-0 right-0" transform="scale(-1, 1)" />
-        <CornerSVG pos="bottom-0 right-0" transform="scale(-1, -1)" />
-        <CornerSVG pos="bottom-0 left-0" transform="scale(1, -1)" />
-
-        {/* --- CENTER ORNAMENTS --- */}
-        <EdgeCenterHorizontal pos="top-0 left-1/2 -translate-x-1/2" transform="" />
-        <EdgeCenterHorizontal pos="bottom-0 left-1/2 -translate-x-1/2" transform="scale(1, -1)" />
-        
-        <EdgeCenterVertical pos="left-0 top-1/2 -translate-y-1/2" transform="" />
-        <EdgeCenterVertical pos="right-0 top-1/2 -translate-y-1/2" transform="scale(-1, 1)" />
+        {/* 3D Gilded Baroque Picture Frame */}
+        <img 
+          src="/legendary_baroque_frame.png" 
+          alt="Legendary Baroque Frame" 
+          className="absolute inset-0 w-full h-full object-fill pointer-events-none z-10"
+          style={{ 
+            filter: 'drop-shadow(0 0 8px rgba(212,175,55,0.5)) drop-shadow(0 2px 6px rgba(0,0,0,0.85))' 
+          }}
+        />
       </div>
     );
   }
@@ -950,7 +893,7 @@ export function Grimoire() {
                       />
 
                       {/* Perfectly centered icon and text */}
-                      <div className="flex-1 flex flex-col justify-center items-center gap-1.5 relative z-10 pb-4">
+                      <div className={`flex-1 flex flex-col justify-center items-center gap-1 relative z-10 ${a.rarity === 'Legendary' ? 'pt-3 pb-6' : 'pb-4'}`}>
                         {/* Icon inside a metallic frame */}
                         <div className="w-8 h-8 flex items-center justify-center relative shrink-0">
                           <svg className="absolute inset-0 w-full h-full opacity-60" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -966,7 +909,7 @@ export function Grimoire() {
                       </div>
                       
                       {/* Elevated Rarity Badge */}
-                      <div className="absolute bottom-5 left-0 w-full flex justify-center z-10 pointer-events-none">
+                      <div className={`absolute ${a.rarity === 'Legendary' ? 'bottom-[23px]' : 'bottom-5'} left-0 w-full flex justify-center z-10 pointer-events-none`}>
                         <span
                           className={`font-mono text-[8px] uppercase tracking-widest px-1.5 py-0.5 pointer-events-auto ${a.rarity === 'Mythic' ? 'animate-pulse font-bold drop-shadow-[0_0_5px_rgba(212,175,55,0.8)]' : ''}`}
                           style={{ color: rStyle.text, border: `1px solid ${rStyle.border}`, background: rStyle.bg }}
