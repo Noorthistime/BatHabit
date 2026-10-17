@@ -6,11 +6,11 @@ import { motion } from 'framer-motion';
 type Section = 'account' | 'appearance' | 'notifications' | 'security' | 'preferences';
 
 const SECTIONS = [
-  { key: 'account' as Section, label: 'Account', icon: User },
-  { key: 'appearance' as Section, label: 'Appearance', icon: Moon },
-  { key: 'notifications' as Section, label: 'Notifications', icon: Bell },
-  { key: 'security' as Section, label: 'Security', icon: Shield },
-  { key: 'preferences' as Section, label: 'Preferences', icon: Settings },
+  { key: 'account' as Section, label: 'Account', subtitle: 'Profile & Identity', icon: User },
+  { key: 'appearance' as Section, label: 'Appearance', subtitle: 'Theme & Sanctum Mood', icon: Moon },
+  { key: 'notifications' as Section, label: 'Notifications', subtitle: 'Alerts & Reminders', icon: Bell },
+  { key: 'security' as Section, label: 'Security', subtitle: 'Wards & Credentials', icon: Shield },
+  { key: 'preferences' as Section, label: 'Preferences', subtitle: 'Codex & Behavior', icon: Settings },
 ];
 
 function Toggle({ enabled, onToggle }: { enabled: boolean; onToggle: () => void }) {
@@ -175,32 +175,72 @@ export function Chamber() {
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-5">
 
           <div
-            className="lg:col-span-1 h-fit rounded-xl bg-[#1B263B]/80 dark:bg-[rgba(20,4,5,0.85)] backdrop-blur-xl border border-[#415A77] dark:border-[#D4AF37]/30 shadow-[0_8px_30px_rgba(0,0,0,0.5)] overflow-hidden relative"
+            className="lg:col-span-1 h-full min-h-[520px] rounded-xl bg-[#1B263B]/80 dark:bg-[rgba(20,4,5,0.88)] backdrop-blur-xl border border-[#415A77] dark:border-[#D4AF37]/35 shadow-[0_8px_30px_rgba(0,0,0,0.5)] overflow-hidden relative flex flex-col justify-between"
           >
-            {SECTIONS.map(sec => (
-              <button
-                key={sec.key}
-                onClick={() => setActiveSection(sec.key)}
-                className={`w-full flex items-center justify-between px-4 py-3 transition-all border-b border-[#D4AF37]/10 last:border-b-0 relative overflow-hidden group ${
-                  activeSection === sec.key 
-                    ? 'bg-[radial-gradient(ellipse_at_left,_rgba(109,8,8,0.6)_0%,_transparent_100%)] text-[#D4AF37] border-l-[3px] border-l-[#D4AF37] shadow-[inset_4px_0_15px_-5px_rgba(212,175,55,0.4)]' 
-                    : 'bg-transparent text-[#8d9685] border-l-[3px] border-l-transparent hover:text-[#D4AF37]/80 hover:bg-[#1B263B]/50 dark:hover:bg-[rgba(109,8,8,0.1)]'
-                }`}
-              >
-                {/* Golden Sweep Hover Effect */}
-                <div 
-                  className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D4AF37]/10 to-transparent -translate-x-full group-hover:translate-x-full transition-all duration-700 ease-in-out pointer-events-none" 
-                />
+            {/* Corner Filigrees matching SectionCards */}
+            <CardFiligree position="top-left" />
+            <CardFiligree position="top-right" />
+            <CardFiligree position="bottom-left" />
+            <CardFiligree position="bottom-right" />
 
-                <div className="flex items-center gap-2.5 relative z-10">
-                  <sec.icon size={14} className={activeSection === sec.key ? 'drop-shadow-[0_0_5px_rgba(212,175,55,0.8)]' : ''} />
-                  <span className={`font-mono text-xs uppercase tracking-widest ${activeSection === sec.key ? 'font-bold drop-shadow-[0_0_3px_rgba(212,175,55,0.5)]' : ''}`}>
-                    {sec.label}
-                  </span>
+            {/* Top Section: Header & Navigation Items */}
+            <div className="flex flex-col relative z-10">
+              {/* Sidebar Header Plate */}
+              <div className="px-4 py-3.5 border-b border-[#D4AF37]/20 flex items-center gap-2 bg-[#140204]/70">
+                <div className="w-1.5 h-3.5 bg-[#F5D77F] shadow-[0_0_8px_rgba(245,215,127,0.8)]" />
+                <span className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#F5D77F] font-bold">
+                  Chamber Codex
+                </span>
+              </div>
+
+              {/* Navigation Buttons */}
+              {SECTIONS.map(sec => (
+                <button
+                  key={sec.key}
+                  onClick={() => setActiveSection(sec.key)}
+                  className={`w-full flex items-center justify-between px-4 py-4 transition-all border-b border-[#D4AF37]/10 last:border-b-0 relative overflow-hidden group ${
+                    activeSection === sec.key 
+                      ? 'bg-[radial-gradient(ellipse_at_left,_rgba(109,8,8,0.7)_0%,_transparent_100%)] text-[#F5D77F] border-l-[3px] border-l-[#F5D77F] shadow-[inset_4px_0_15px_-5px_rgba(245,215,127,0.4)]' 
+                      : 'bg-transparent text-[#8d9685] border-l-[3px] border-l-transparent hover:text-[#F5D77F]/90 hover:bg-[#1B263B]/50 dark:hover:bg-[rgba(109,8,8,0.15)]'
+                  }`}
+                >
+                  {/* Golden Sweep Hover Effect */}
+                  <div 
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-[#D4AF37]/10 to-transparent -translate-x-full group-hover:translate-x-full transition-all duration-700 ease-in-out pointer-events-none" 
+                  />
+
+                  <div className="flex items-center gap-3 relative z-10 text-left">
+                    <sec.icon size={16} className={activeSection === sec.key ? 'drop-shadow-[0_0_6px_rgba(245,215,127,0.8)] text-[#F5D77F]' : 'opacity-70'} />
+                    <div className="flex flex-col">
+                      <span className={`font-mono text-xs uppercase tracking-wider ${activeSection === sec.key ? 'font-bold text-[#F5D77F] drop-shadow-[0_0_3px_rgba(245,215,127,0.5)]' : 'text-[#EEEAD7]'}`}>
+                        {sec.label}
+                      </span>
+                      <span className="font-sans text-[10px] text-[#8d9685] leading-tight">
+                        {sec.subtitle}
+                      </span>
+                    </div>
+                  </div>
+                  <ChevronRight size={13} className={`relative z-10 transition-transform ${activeSection === sec.key ? 'text-[#F5D77F] translate-x-0.5' : 'opacity-40'}`} />
+                </button>
+              ))}
+            </div>
+
+            {/* Bottom Section: Covenant Status & Quick Sign Out */}
+            <div className="p-4 border-t border-[#D4AF37]/20 bg-[#140204]/75 relative z-10 flex flex-col gap-2.5">
+              <div className="flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <span className="w-2 h-2 rounded-full bg-[#6ee7b7] shadow-[0_0_8px_rgba(110,231,183,0.8)] animate-pulse" />
+                  <span className="font-mono text-[9px] uppercase tracking-wider text-[#EEEAD7]/80">Sanctuary Secure</span>
                 </div>
-                <ChevronRight size={12} className="relative z-10 opacity-50" />
+                <span className="font-mono text-[9px] text-[#8d9685]">v1.4.0</span>
+              </div>
+              
+              <button 
+                className="w-full flex items-center justify-center gap-2 px-3 py-2 font-mono text-[10px] uppercase tracking-wider rounded border border-[#D4AF37]/25 text-[#8d9685] hover:text-[#F5D77F] hover:border-[#F5D77F]/50 hover:bg-[rgba(109,8,8,0.3)] transition-all shadow-sm"
+              >
+                <LogOut size={12} /> Sign Out
               </button>
-            ))}
+            </div>
           </div>
 
           {/* Section Content */}
