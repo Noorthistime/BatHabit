@@ -187,6 +187,80 @@ const AnimatedCornerFiligree = ({ className = "" }: { className?: string }) => {
   );
 };
 
+const StatCardFiligree = ({ color = '#D4AF37' }: { color?: string }) => {
+  const uid = React.useId().replace(/:/g, '');
+  const patternXId = `stat-filigree-x-${uid}`;
+  const patternYId = `stat-filigree-y-${uid}`;
+
+  return (
+    <div className="absolute inset-0 pointer-events-none overflow-hidden rounded-xl z-0">
+      {/* Outer & Inner Dual Bevel Moulding */}
+      <div 
+        className="absolute inset-0 border border-[#D4AF37]/30 rounded-xl"
+        style={{ boxShadow: 'inset 0 0 12px rgba(0,0,0,0.5)' }} 
+      />
+      <div className="absolute inset-[3px] border border-[#D4AF37]/15 rounded-[9px]" />
+
+      {/* Continuous Subtle Running Border Filigree */}
+      <svg className="absolute inset-0 w-full h-full opacity-45 group-hover:opacity-75 transition-opacity duration-300">
+        <defs>
+          <pattern id={patternXId} width="32" height="8" patternUnits="userSpaceOnUse">
+            <line x1="0" y1="1" x2="32" y2="1" stroke={color} strokeWidth="0.5" opacity="0.4" />
+            <path d="M 0 4 C 8 0.5, 8 7.5, 16 4 C 24 0.5, 24 7.5, 32 4" fill="none" stroke={color} strokeWidth="0.7" />
+            <path d="M 0 4 C 8 7.5, 8 0.5, 16 4 C 24 7.5, 24 0.5, 32 4" fill="none" stroke={color} strokeWidth="0.7" />
+            <polygon points="16,2.5 17.5,4 16,5.5 14.5,4" fill={color} opacity="0.8" />
+          </pattern>
+          <pattern id={patternYId} width="8" height="32" patternUnits="userSpaceOnUse">
+            <line x1="1" y1="0" x2="1" y2="32" stroke={color} strokeWidth="0.5" opacity="0.4" />
+            <path d="M 4 0 C 0.5 8, 7.5 8, 4 16 C 0.5 24, 7.5 24, 4 32" fill="none" stroke={color} strokeWidth="0.7" />
+            <path d="M 4 0 C 7.5 8, 0.5 8, 4 16 C 7.5 24, 0.5 24, 4 32" fill="none" stroke={color} strokeWidth="0.7" />
+            <polygon points="2.5,16 4,17.5 5.5,16 4,14.5" fill={color} opacity="0.8" />
+          </pattern>
+        </defs>
+
+        <rect x="0" y="0" width="100%" height="8" fill={`url(#${patternXId})`} />
+        <rect x="0" y="calc(100% - 8px)" width="100%" height="8" fill={`url(#${patternXId})`} />
+        <rect x="0" y="0" width="8" height="100%" fill={`url(#${patternYId})`} />
+        <rect x="calc(100% - 8px)" y="0" width="8" height="100%" fill={`url(#${patternYId})`} />
+      </svg>
+
+      {/* 4 Corner Volutes */}
+      {[
+        'top-0 left-0', 
+        'top-0 right-0 rotate-90', 
+        'bottom-0 right-0 rotate-180', 
+        'bottom-0 left-0 -rotate-90'
+      ].map((pos, i) => (
+        <svg 
+          key={i} 
+          className={`absolute ${pos} w-6 h-6 text-[#D4AF37] opacity-60 group-hover:opacity-90 transition-opacity duration-300 drop-shadow-[0_0_2px_rgba(212,175,55,0.4)]`} 
+          viewBox="0 0 24 24" 
+          fill="none"
+        >
+          <path d="M 24 1 L 12 1 C 5 1, 1 5, 1 12 L 1 24" stroke="currentColor" strokeWidth="1" strokeLinecap="round" />
+          <path d="M 12 1 C 12 6, 6 12, 1 12" stroke="currentColor" strokeWidth="0.75" />
+          <path d="M 4 4 C 8 6, 11 9, 11 11 C 9 11, 6 8, 4 4 Z" fill="currentColor" fillOpacity="0.25" stroke="currentColor" strokeWidth="0.6" />
+          <polygon points="5,5 7,7 5,9 3,7" fill="currentColor" />
+        </svg>
+      ))}
+
+      {/* Center Crest Accents */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-4 h-1.5 flex items-center justify-center">
+        <div className="w-1.5 h-1.5 rotate-45 border border-[#D4AF37]/60 bg-[#1a0204]" />
+      </div>
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-4 h-1.5 flex items-center justify-center">
+        <div className="w-1.5 h-1.5 rotate-45 border border-[#D4AF37]/60 bg-[#1a0204]" />
+      </div>
+      <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1.5 h-4 flex items-center justify-center">
+        <div className="w-1.5 h-1.5 rotate-45 border border-[#D4AF37]/60 bg-[#1a0204]" />
+      </div>
+      <div className="absolute right-0 top-1/2 -translate-y-1/2 w-1.5 h-4 flex items-center justify-center">
+        <div className="w-1.5 h-1.5 rotate-45 border border-[#D4AF37]/60 bg-[#1a0204]" />
+      </div>
+    </div>
+  );
+};
+
 const MONTHS = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
 
 // Generate mock calendar data (last 365 days)
@@ -350,15 +424,18 @@ export function Bloodline() {
           ].map(s => (
             <div
               key={s.label}
-              className="p-4 flex flex-col items-center text-center gap-2 relative rounded-xl bg-[#1B263B]/40 dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-sm border border-[#415A77]/60 dark:border-[#D4AF37]/35 shadow-[0_4px_20px_rgba(0,0,0,0.5)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(212,175,55,0.2)] hover:border-[#415A77] dark:hover:border-[#F5D77F] group"
+              className="p-4 flex flex-col items-center text-center gap-2 relative rounded-xl bg-[#1B263B]/40 dark:bg-[rgba(35,6,8,0.78)] backdrop-blur-sm border border-[#415A77]/60 dark:border-[#D4AF37]/35 shadow-[0_4px_20px_rgba(0,0,0,0.5)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_8px_30px_rgba(212,175,55,0.2)] hover:border-[#415A77] dark:hover:border-[#F5D77F] group overflow-hidden"
             >
-              <s.icon size={20} style={{ color: s.color }} className="group-hover:scale-110 transition-transform" />
-              <div className="font-mono text-2xl font-bold drop-shadow-[0_0_8px_currentColor]" style={{ color: s.color }}>
-                <AnimatedNumber value={s.value} decimals={s.decimals} prefix={s.prefix} suffix={s.suffix} />
-              </div>
-              <div>
-                <div className="font-mono text-[10px] uppercase tracking-widest text-[#EEEAD7]">{s.label}</div>
-                <div className="font-mono text-[11px] text-[#8d9685] mt-1">{s.sub}</div>
+              <StatCardFiligree color="#D4AF37" />
+              <div className="relative z-10 flex flex-col items-center text-center gap-2">
+                <s.icon size={20} style={{ color: s.color }} className="group-hover:scale-110 transition-transform" />
+                <div className="font-mono text-2xl font-bold drop-shadow-[0_0_8px_currentColor]" style={{ color: s.color }}>
+                  <AnimatedNumber value={s.value} decimals={s.decimals} prefix={s.prefix} suffix={s.suffix} />
+                </div>
+                <div>
+                  <div className="font-mono text-[10px] uppercase tracking-widest text-[#EEEAD7]">{s.label}</div>
+                  <div className="font-mono text-[11px] text-[#8d9685] mt-1">{s.sub}</div>
+                </div>
               </div>
             </div>
           ))}
