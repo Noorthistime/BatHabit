@@ -181,22 +181,22 @@ const AchievementFrame = ({ rarity, color, isEarned }: { rarity: string, color: 
   if (rarity === 'Legendary') {
     return (
       <div className="absolute inset-0 pointer-events-none z-0">
-        {/* Ambient Gothic Ruby Glow (Confined strictly inside the frame window) */}
+        {/* Ambient Gothic Ruby Glow */}
         <div 
-          className="absolute inset-x-[24px] inset-y-[26px] rounded-sm pointer-events-none z-0" 
+          className="absolute inset-[6px] rounded-sm pointer-events-none z-0" 
           style={{ 
-            background: 'radial-gradient(ellipse at center, rgba(160, 20, 20, 0.5) 0%, rgba(35, 4, 6, 0.9) 65%, rgba(12, 1, 2, 1) 100%)',
-            boxShadow: 'inset 0 0 25px rgba(0,0,0,0.95), 0 0 10px rgba(0,0,0,0.8)'
+            background: 'radial-gradient(ellipse at center, rgba(160, 20, 20, 0.45) 0%, rgba(35, 4, 6, 0.85) 65%, rgba(12, 1, 2, 0.95) 100%)',
+            boxShadow: 'inset 0 0 25px rgba(0,0,0,0.9)'
           }} 
         />
 
-        {/* 3D Gilded Baroque Picture Frame (Serving as the actual border of the box) */}
+        {/* 3D Gilded Baroque Picture Frame (Flush with outer border) */}
         <img 
           src="/legendary_baroque_frame.png" 
           alt="Legendary Baroque Frame" 
           className="absolute inset-0 w-full h-full object-fill pointer-events-none z-10"
           style={{ 
-            filter: 'drop-shadow(0 0 10px rgba(212,175,55,0.6)) drop-shadow(0 2px 6px rgba(0,0,0,0.9))' 
+            filter: 'drop-shadow(0 0 8px rgba(212,175,55,0.6)) drop-shadow(0 2px 6px rgba(0,0,0,0.9))' 
           }}
         />
       </div>
@@ -878,11 +878,8 @@ export function Grimoire() {
                       animate={{ opacity: 1 }}
                       transition={{ duration: 0.5, delay: i * 0.08 }}
                       whileHover={{ scale: 1.02, transition: { duration: 0.2, delay: 0 } }}
-                      className={`relative p-2 sm:p-2.5 flex flex-col h-full rounded-none group ${a.rarity === 'Legendary' ? 'overflow-visible' : 'overflow-hidden'} ${!a.earned ? 'opacity-40 grayscale' : ''}`}
-                      style={a.rarity === 'Legendary' ? {
-                        backgroundColor: 'transparent',
-                        boxShadow: 'none'
-                      } : { 
+                      className={`relative p-2 sm:p-2.5 flex flex-col h-full rounded-none overflow-hidden group ${!a.earned ? 'opacity-40 grayscale' : ''}`}
+                      style={{ 
                         backgroundColor: '#0a0a0a',
                         backgroundImage: `radial-gradient(ellipse at center, ${rStyle.bg} 0%, transparent 100%)`,
                         boxShadow: a.earned ? `inset 0 0 15px ${rStyle.bg}, 0 0 10px ${rStyle.glow || 'rgba(0,0,0,0.5)'}` : '0 0 10px rgba(0,0,0,0.5)'
@@ -896,7 +893,7 @@ export function Grimoire() {
                       />
 
                       {/* Perfectly centered icon and text */}
-                      <div className={`flex-1 flex flex-col justify-center items-center gap-1 relative z-10 ${a.rarity === 'Legendary' ? 'pt-3 pb-6' : 'pb-4'}`}>
+                      <div className="flex-1 flex flex-col justify-center items-center gap-1.5 relative z-10 pt-1 pb-5">
                         {/* Icon inside a metallic frame */}
                         <div className="w-8 h-8 flex items-center justify-center relative shrink-0">
                           <svg className="absolute inset-0 w-full h-full opacity-60" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -912,7 +909,7 @@ export function Grimoire() {
                       </div>
                       
                       {/* Elevated Rarity Badge */}
-                      <div className={`absolute ${a.rarity === 'Legendary' ? 'bottom-[23px]' : 'bottom-5'} left-0 w-full flex justify-center z-10 pointer-events-none`}>
+                      <div className="absolute bottom-4 left-0 w-full flex justify-center z-10 pointer-events-none">
                         <span
                           className={`font-mono text-[8px] uppercase tracking-widest px-1.5 py-0.5 pointer-events-auto ${a.rarity === 'Mythic' ? 'animate-pulse font-bold drop-shadow-[0_0_5px_rgba(212,175,55,0.8)]' : ''}`}
                           style={{ color: rStyle.text, border: `1px solid ${rStyle.border}`, background: rStyle.bg }}
